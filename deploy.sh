@@ -44,10 +44,9 @@ if [ ! -f .env ]; then
     exit 0
 fi
 
-# 4. 방화벽 포트 열기 (80, 7474)
+# 4. 방화벽 포트 열기 (80만 — Neo4j는 외부 노출하지 않음)
 echo ">> 방화벽 포트 확인..."
 sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT 2>/dev/null || true
-sudo iptables -I INPUT -p tcp --dport 7474 -j ACCEPT 2>/dev/null || true
 
 # 5. Docker Compose 빌드 & 실행
 echo ">> Docker Compose 빌드 & 실행..."

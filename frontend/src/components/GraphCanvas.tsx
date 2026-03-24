@@ -248,9 +248,19 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     node.on("mouseover", function (event, d) {
       if (!selectedNodeRef.current) highlight(d.id);
       if (tooltip) {
-        tooltip.innerHTML =
-          `<strong>${d.label}</strong><br/><span style="color:${NODE_COLORS[d.type]}">${d.type}</span>` +
-          (d.data.rate_min != null ? `<br/>금리: ${d.data.rate_min}%~${d.data.rate_max}%` : "");
+        tooltip.textContent = "";
+        const strong = document.createElement("strong");
+        strong.textContent = d.label;
+        tooltip.appendChild(strong);
+        tooltip.appendChild(document.createElement("br"));
+        const span = document.createElement("span");
+        span.style.color = NODE_COLORS[d.type] || "#999";
+        span.textContent = d.type;
+        tooltip.appendChild(span);
+        if (d.data.rate_min != null) {
+          tooltip.appendChild(document.createElement("br"));
+          tooltip.appendChild(document.createTextNode(`금리: ${d.data.rate_min}%~${d.data.rate_max}%`));
+        }
         tooltip.style.left = event.pageX + 12 + "px";
         tooltip.style.top = event.pageY - 8 + "px";
         tooltip.style.opacity = "1";

@@ -2,7 +2,7 @@
 
 ![메인 화면](docs/mainPage.png)
 
-> **[Live Demo](https://bancakim.github.io/KBBank_Knowledge_graph/)** — 브라우저에서 바로 지식그래프를 탐색해보세요.
+> **[Live Demo](https://kb-kg.duckdns.org/)** — 브라우저에서 바로 지식그래프를 탐색해보세요.
 
 KB국민은행 공식 웹사이트([obank.kbstar.com](https://obank.kbstar.com))에 **공개된 금융상품 정보**를 수집하여 **Neo4j 지식그래프**로 구축한 프로젝트입니다. 162개 금융상품을 14개 엔티티 타입과 14개 관계 타입으로 구조화하고, D3.js 기반 인터랙티브 시각화와 GraphRAG 챗봇을 제공합니다.
 
@@ -42,6 +42,14 @@ flowchart LR
 | PDF 파싱 | 입출금자유 | 10개 |
 | PDF 파싱 | 주택청약 | 2개 |
 | **합계** | | **162개** |
+
+### 데이터 파일 위치
+
+| 경로 | 설명 | 파일 수 |
+|------|------|--------|
+| `data/raw/` | 스크래핑한 원본 PDF (카테고리별 하위폴더) | ~150개 |
+| `data/products/` | PDF에서 파싱한 Markdown 파일 (카테고리별 하위폴더) | 162개 |
+| `data/graph/graph.json` | D3.js 시각화용 그래프 JSON (노드+엣지) | 1개 (~1.3MB) |
 
 ### 마크다운 파일 구조
 
@@ -289,45 +297,7 @@ flowchart LR
 | **온톨로지** | Pydantic v2, 14 엔티티 타입, 14 관계 타입 |
 | **백엔드** | FastAPI, LangChain, LangGraph |
 | **프론트엔드** | React 19, TypeScript, D3.js 7, Vite |
-| **인프라** | Docker (Neo4j), Python 3.11+ |
-
----
-
-## 빠른 시작
-
-```bash
-# 1. 클론
-git clone https://github.com/BancaKim/KBBank_Knowledge_graph.git
-cd KBBank_Knowledge_graph
-
-# 2. 환경변수
-cp .env.example .env
-# .env 파일에 NEO4J_PASSWORD, OPENAI_API_KEY 설정
-
-# 3. Neo4j 시작
-docker-compose up -d
-
-# 4. Python 설치
-pip install -e .
-
-# 5. 지식그래프 구축
-python -m knowledge_graph.builder
-
-# 6. 백엔드 시작
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-
-# 7. 프론트엔드 시작 (새 터미널)
-cd frontend && npm install && npm run dev
-```
-
-| 서비스 | URL |
-|--------|-----|
-| 프론트엔드 | http://localhost:5173 |
-| 백엔드 API | http://localhost:8000 |
-| API 문서 | http://localhost:8000/docs |
-| Neo4j Browser | http://localhost:7474 |
-
-> Neo4j 없이도 동작합니다 (정적 graph.json 폴백 모드).
+| **인프라** | Docker, Oracle Cloud (Free Tier), Caddy (HTTPS) |
 
 ---
 
@@ -354,9 +324,9 @@ KBBank_Knowledge_Graph/
 │   └── parse_missing_pdfs.py # 누락 PDF 증분 파싱
 │
 ├── data/
-│   ├── raw/                  # 원본 PDF (150개)
-│   ├── products/             # 파싱된 마크다운 (162개)
-│   └── graph/graph.json      # D3.js 그래프 데이터
+│   ├── raw/                  # 원본 PDF (카테고리별 하위폴더, ~150개)
+│   ├── products/             # 파싱된 마크다운 (카테고리별 하위폴더, 162개)
+│   └── graph/graph.json      # D3.js 그래프 데이터 (1.3MB)
 │
 ├── backend/                  # FastAPI 백엔드
 │   ├── main.py               # 앱 진입점 (Neo4j 선택적)
@@ -367,7 +337,10 @@ KBBank_Knowledge_Graph/
 │   └── src/components/
 │       └── GraphCanvas.tsx   # 인터랙티브 그래프 시각화
 │
-└── docker-compose.yml        # Neo4j 컨테이너
+├── docker-compose.yml        # 로컬 개발용 (Neo4j + App)
+├── docker-compose.prod.yml   # 프로덕션 배포용 (App 단독)
+├── Dockerfile                # 멀티스테이지 빌드
+└── deploy.sh                 # Oracle Cloud 배포 스크립트
 ```
 
 ---

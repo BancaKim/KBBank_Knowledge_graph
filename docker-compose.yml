@@ -16,8 +16,8 @@ services:
     image: neo4j:5-community
     container_name: banking_bot_neo4j
     ports:
-      - "7474:7474"
-      - "7687:7687"
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
     env_file: .env
     environment:
       NEO4J_AUTH: ${NEO4J_USER}/${NEO4J_PASSWORD}
