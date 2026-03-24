@@ -75,24 +75,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
     const text = input.trim();
     if (!text || loading) return;
 
-    if (!apiKey) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: crypto.randomUUID(),
-          role: "user" as const,
-          content: text,
-        },
-        {
-          id: crypto.randomUUID(),
-          role: "assistant" as const,
-          content:
-            "챗봇을 사용하려면 OpenAI API 키를 입력해주세요.",
-        },
-      ]);
-      setInput("");
-      return;
-    }
+    // API 키 없이도 서버에 요청 (서버에 OPENAI_API_KEY 환경변수가 있으면 그걸 사용)
 
     const userMsg: ChatMessage = { id: crypto.randomUUID(), role: "user", content: text };
     setMessages((prev) => [...prev, userMsg]);
