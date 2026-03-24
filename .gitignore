@@ -28,4 +28,5 @@ dist/
 # Screenshots (generated during dev)
 *.png
 !frontend/public/**/*.png
+!docs/**/*.png
 print-popup.png
