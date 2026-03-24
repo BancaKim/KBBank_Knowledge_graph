@@ -35,6 +35,16 @@ const EDGE_COLORS: Record<string, string> = {
   HAS_TYPE: "#16A085",
 };
 
+/** Stored D3 state for highlight updates without re-creating the graph */
+interface D3State {
+  node: d3.Selection<SVGCircleElement, GraphNode, SVGGElement, unknown>;
+  link: d3.Selection<SVGLineElement, GraphLink, SVGGElement, unknown>;
+  label: d3.Selection<SVGTextElement, GraphNode, SVGGElement, unknown>;
+  linkLabel: d3.Selection<SVGTextElement, GraphLink, SVGGElement, unknown>;
+  connectedMap: Map<string, Set<string>>;
+  nodes: GraphNode[];
+}
+
 const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
   { data, onNodeClick, highlightNodeId, highlightNodeIds = [], selectedCategories, selectedNodeTypes },
   ref
@@ -44,6 +54,7 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
   const simulationRef = useRef<d3.Simulation<GraphNode, GraphLink>>(undefined);
   const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown>>(undefined);
   const selectedNodeRef = useRef<string | null>(null);
+  const d3StateRef = useRef<D3State | null>(null);
 
   useImperativeHandle(ref, () => ({
     zoomIn: () => {
@@ -59,12 +70,6 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
         d3.select(svgRef.current).transition().duration(500).call(zoomRef.current.transform, d3.zoomIdentity);
     },
   }));
-
-  const highlightSet = useCallback(() => {
-    const set = new Set<string>(highlightNodeIds);
-    if (highlightNodeId) set.add(highlightNodeId);
-    return set;
-  }, [highlightNodeId, highlightNodeIds]);
 
   const getFilteredData = useCallback(() => {
     const visibleProductIds = new Set<string>();
@@ -102,10 +107,10 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     return { nodes, links };
   }, [data, selectedCategories, selectedNodeTypes]);
 
+  // ========== MAIN EFFECT: Build the D3 graph ==========
   useEffect(() => {
     if (!svgRef.current || !data) return;
 
-    const highlighted = highlightSet();
     const tooltip = tooltipRef.current;
     selectedNodeRef.current = null;
 
@@ -171,12 +176,12 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     zoomRef.current = zoom;
 
     // === LINKS ===
-    const link = g.append("g").selectAll("line").data(visibleLinks).join("line")
+    const link = g.append("g").selectAll<SVGLineElement, GraphLink>("line").data(visibleLinks).join("line")
       .attr("stroke", "#333").attr("stroke-opacity", 0.2).attr("stroke-width", 0.7)
       .attr("marker-end", "url(#arrow)");
 
     // === LINK LABELS (hidden by default, shown on select) ===
-    const linkLabel = g.append("g").selectAll("text").data(visibleLinks).join("text")
+    const linkLabel = g.append("g").selectAll<SVGTextElement, GraphLink>("text").data(visibleLinks).join("text")
       .text((d) => d.type.replace(/_/g, " "))
       .attr("font-size", 9).attr("fill", "#aaa").attr("text-anchor", "middle")
       .attr("dominant-baseline", "central").attr("pointer-events", "none")
@@ -187,26 +192,24 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
       .data(nodes).join("circle")
       .attr("r", radius)
       .attr("fill", (d) => NODE_COLORS[d.type] || "#999")
-      .attr("stroke", (d) => highlighted.has(d.id) ? "#FFD700" : "#ffffff30")
-      .attr("stroke-width", (d) => highlighted.has(d.id) ? 3 : 1)
+      .attr("stroke", "#ffffff30")
+      .attr("stroke-width", 1)
       .attr("cursor", "pointer");
 
     // === LABELS ===
-    const label = g.append("g").selectAll("text").data(nodes).join("text")
+    const label = g.append("g").selectAll<SVGTextElement, GraphNode>("text").data(nodes).join("text")
       .text((d) => d.label.length > 14 ? d.label.slice(0, 14) + "\u2026" : d.label)
       .attr("font-size", (d) => d.type === "parentcategory" ? 13 : d.type === "category" ? 11 : d.type === "product" ? 8 : 7)
       .attr("font-weight", (d) => d.type === "parentcategory" || d.type === "category" ? "bold" : "normal")
       .attr("fill", "#ccc").attr("text-anchor", "middle")
       .attr("dy", (d) => radius(d) + 10).attr("pointer-events", "none");
 
+    // Store D3 state in ref for highlight effect
+    d3StateRef.current = { node, link, label, linkLabel, connectedMap, nodes };
+
     // ========== STATE: Neo4j style - instant, no animation ==========
 
     function resetAll() {
-      if (highlighted.size > 0) {
-        // Restore chat/search highlight instead of full reset
-        highlightMultiple(highlighted);
-        return;
-      }
       node.attr("opacity", 1)
         .attr("stroke", "#ffffff30")
         .attr("stroke-width", 1);
@@ -237,39 +240,6 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
 
       // Edge labels: show for connected edges
       linkLabel.attr("visibility", (l) => isLinkOf(l, nodeId) ? "visible" : "hidden")
-        .attr("fill", (l) => EDGE_COLORS[l.type] || "#aaa");
-    }
-
-    function highlightMultiple(nodeIds: Set<string>) {
-      // Collect all neighbors of all highlighted nodes
-      const allNeighbors = new Set<string>();
-      nodeIds.forEach((id) => {
-        const neighbors = connectedMap.get(id);
-        if (neighbors) neighbors.forEach((n) => allNeighbors.add(n));
-      });
-
-      const isRelevant = (id: string) => nodeIds.has(id) || allNeighbors.has(id);
-      const isLinkRelevant = (l: GraphLink) => {
-        const src = typeof l.source === "string" ? l.source : (l.source as GraphNode).id;
-        const tgt = typeof l.target === "string" ? l.target : (l.target as GraphNode).id;
-        return nodeIds.has(src) || nodeIds.has(tgt);
-      };
-
-      node.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.08)
-        .attr("stroke", (d) => {
-          if (nodeIds.has(d.id)) return "#FFD700";
-          if (allNeighbors.has(d.id)) return "#ffffff80";
-          return "#ffffff10";
-        })
-        .attr("stroke-width", (d) => nodeIds.has(d.id) ? 4 : allNeighbors.has(d.id) ? 2 : 0.5);
-
-      link.attr("stroke", (l) => isLinkRelevant(l) ? (EDGE_COLORS[l.type] || "#888") : "#222")
-        .attr("stroke-opacity", (l) => isLinkRelevant(l) ? 0.9 : 0.03)
-        .attr("stroke-width", (l) => isLinkRelevant(l) ? 2.5 : 0.5);
-
-      label.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.04);
-
-      linkLabel.attr("visibility", (l) => isLinkRelevant(l) ? "visible" : "hidden")
         .attr("fill", (l) => EDGE_COLORS[l.type] || "#aaa");
     }
 
@@ -379,31 +349,6 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
 
     simulationRef.current = simulation;
 
-    // Auto-zoom and highlight for chat/search referenced nodes
-    if (highlighted.size > 0) {
-      // Apply multi-node highlight with neighbors and edges
-      highlightMultiple(highlighted);
-
-      simulation.on("end", () => {
-        // Re-apply after simulation settles (positions are final)
-        highlightMultiple(highlighted);
-
-        const hn = nodes.filter((n) => highlighted.has(n.id));
-        if (!hn.length) return;
-        if (hn.length === 1) {
-          const n = hn[0];
-          svg.transition().duration(750).call(zoom.transform,
-            d3.zoomIdentity.translate(width / 2, height / 2).scale(1.5).translate(-(n.x ?? 0), -(n.y ?? 0)));
-        } else {
-          const [x0, x1] = d3.extent(hn, (n) => n.x) as [number, number];
-          const [y0, y1] = d3.extent(hn, (n) => n.y) as [number, number];
-          const s = Math.min(0.8 * width / Math.max(x1 - x0 + 100, 1), 0.8 * height / Math.max(y1 - y0 + 100, 1), 2);
-          svg.transition().duration(750).call(zoom.transform,
-            d3.zoomIdentity.translate(width / 2, height / 2).scale(s).translate(-(x0 + x1) / 2, -(y0 + y1) / 2));
-        }
-      });
-    }
-
     const observer = new ResizeObserver(([entry]) => {
       const { width: w, height: h } = entry.contentRect;
       svg.attr("width", w).attr("height", h);
@@ -413,7 +358,88 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     observer.observe(container);
 
     return () => { simulation.stop(); observer.disconnect(); };
-  }, [data, getFilteredData, highlightSet, onNodeClick]);
+  }, [data, getFilteredData, onNodeClick]);
+
+  // ========== SEPARATE EFFECT: Apply highlights without re-creating graph ==========
+  useEffect(() => {
+    const state = d3StateRef.current;
+    if (!state) return;
+
+    const { node, link, label, linkLabel, connectedMap, nodes } = state;
+    const highlighted = new Set<string>(highlightNodeIds);
+    if (highlightNodeId) highlighted.add(highlightNodeId);
+
+    if (highlighted.size === 0) {
+      // Reset to default
+      node.attr("opacity", 1)
+        .attr("stroke", "#ffffff30")
+        .attr("stroke-width", 1);
+      link.attr("stroke", "#333").attr("stroke-opacity", 0.2).attr("stroke-width", 0.7);
+      label.attr("opacity", 0.7);
+      linkLabel.attr("visibility", "hidden");
+      return;
+    }
+
+    // Collect all neighbors of highlighted nodes
+    const allNeighbors = new Set<string>();
+    highlighted.forEach((id) => {
+      const neighbors = connectedMap.get(id);
+      if (neighbors) neighbors.forEach((n) => allNeighbors.add(n));
+    });
+
+    const isRelevant = (id: string) => highlighted.has(id) || allNeighbors.has(id);
+    const isLinkRelevant = (l: GraphLink) => {
+      const src = typeof l.source === "string" ? l.source : (l.source as GraphNode).id;
+      const tgt = typeof l.target === "string" ? l.target : (l.target as GraphNode).id;
+      return highlighted.has(src) || highlighted.has(tgt);
+    };
+
+    // Nodes: highlighted=gold ring, neighbors=visible, rest=faded
+    node.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.08)
+      .attr("stroke", (d) => {
+        if (highlighted.has(d.id)) return "#FFD700";
+        if (allNeighbors.has(d.id)) return "#ffffff80";
+        return "#ffffff10";
+      })
+      .attr("stroke-width", (d) => highlighted.has(d.id) ? 4 : allNeighbors.has(d.id) ? 2 : 0.5);
+
+    // Links: connected=colored+thick, rest=nearly invisible
+    link.attr("stroke", (l) => isLinkRelevant(l) ? (EDGE_COLORS[l.type] || "#888") : "#222")
+      .attr("stroke-opacity", (l) => isLinkRelevant(l) ? 0.9 : 0.03)
+      .attr("stroke-width", (l) => isLinkRelevant(l) ? 2.5 : 0.5);
+
+    // Labels: only show for highlighted + neighbors
+    label.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.04);
+
+    // Edge labels: show for connected edges
+    linkLabel.attr("visibility", (l) => isLinkRelevant(l) ? "visible" : "hidden")
+      .attr("fill", (l) => EDGE_COLORS[l.type] || "#aaa");
+
+    // Auto-zoom to highlighted nodes
+    if (svgRef.current && zoomRef.current) {
+      const svg = d3.select(svgRef.current);
+      const zoom = zoomRef.current;
+      const container = svg.node()!.parentElement!;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      const hn = nodes.filter((n) => highlighted.has(n.id));
+      if (hn.length === 1 && hn[0].x != null) {
+        const n = hn[0];
+        svg.transition().duration(750).call(zoom.transform,
+          d3.zoomIdentity.translate(width / 2, height / 2).scale(1.5).translate(-(n.x ?? 0), -(n.y ?? 0)));
+      } else if (hn.length > 1) {
+        const positioned = hn.filter((n) => n.x != null);
+        if (positioned.length > 0) {
+          const [x0, x1] = d3.extent(positioned, (n) => n.x) as [number, number];
+          const [y0, y1] = d3.extent(positioned, (n) => n.y) as [number, number];
+          const s = Math.min(0.8 * width / Math.max(x1 - x0 + 100, 1), 0.8 * height / Math.max(y1 - y0 + 100, 1), 2);
+          svg.transition().duration(750).call(zoom.transform,
+            d3.zoomIdentity.translate(width / 2, height / 2).scale(s).translate(-(x0 + x1) / 2, -(y0 + y1) / 2));
+        }
+      }
+    }
+  }, [highlightNodeId, highlightNodeIds]);
 
   return (
     <div style={{ width: "100%", height: "100%", background: "#0f0f1a", position: "relative" }}>
