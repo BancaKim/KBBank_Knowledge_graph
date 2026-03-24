@@ -3,7 +3,7 @@ import { API_BASE } from "../config";
 
 const genId = (): string =>
   typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
-    ? genId()
+    ? crypto.randomUUID()
     : `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 
 const API_KEY_STORAGE_KEY = "openai_api_key";
