@@ -29,27 +29,6 @@ flowchart LR
     H --> I["162개 상품 마크다운 파일"]
 ```
 
-### 수집 경로별 상품 수
-
-| 수집 방법 | 카테고리 | 상품 수 |
-|----------|---------|--------|
-| PDF 파싱 | 신용대출 | 47개 |
-| PDF 파싱 | 담보대출 | 41개 |
-| PDF 파싱 | 전월세대출 | 37개 |
-| PDF 파싱 | 자동차대출 | 10개 |
-| PDF 파싱 | 정기예금 | 5개 |
-| PDF 파싱 | 적금 | 10개 |
-| PDF 파싱 | 입출금자유 | 10개 |
-| PDF 파싱 | 주택청약 | 2개 |
-| **합계** | | **162개** |
-
-### 데이터 파일 위치
-
-| 경로 | 설명 | 파일 수 |
-|------|------|--------|
-| `data/raw/` | 스크래핑한 원본 PDF (카테고리별 하위폴더) | ~150개 |
-| `data/products/` | PDF에서 파싱한 Markdown 파일 (카테고리별 하위폴더) | 162개 |
-| `data/graph/graph.json` | D3.js 시각화용 그래프 JSON (노드+엣지) | 1개 (~1.3MB) |
 
 ### 마크다운 파일 구조
 
@@ -319,62 +298,6 @@ flowchart LR
 
 ---
 
-## 기술 스택
-
-| 계층 | 기술 |
-|------|------|
-| **지식그래프** | Neo4j 5.x, Cypher, CJK Fulltext Index |
-| **데이터 수집** | Playwright, PyMuPDF, GPT-4o-mini |
-| **온톨로지** | Pydantic v2, 14 엔티티 타입, 14 관계 타입 |
-| **백엔드** | FastAPI, LangChain, LangGraph |
-| **프론트엔드** | React 19, TypeScript, D3.js 7, Vite |
-| **인프라** | Docker, Oracle Cloud (Free Tier), Caddy (HTTPS) |
-
----
-
-## 프로젝트 구조
-
-```
-KBBank_Knowledge_Graph/
-├── knowledge_graph/          # 온톨로지 및 그래프 구축
-│   ├── models.py             # 14개 Pydantic 엔티티 모델
-│   ├── ontology.py           # 노드/관계 스키마 정의
-│   ├── parser.py             # 마크다운 → 엔티티 추출
-│   ├── builder.py            # Neo4j 그래프 구축
-│   ├── exporter.py           # D3.js JSON 내보내기
-│   ├── export_from_md.py     # Neo4j 없이 직접 내보내기
-│   ├── query.py              # Cypher 쿼리 모음
-│   ├── db.py                 # Neo4j 연결 관리
-│   └── schema.cypher         # 제약사항 및 인덱스
-│
-├── scraper/                  # 데이터 수집
-│   ├── run_scraper.py        # 메인 웹 스크래퍼
-│   ├── download_pdfs.py      # 대출 PDF 다운로드
-│   ├── download_deposit_pdfs.py  # 예금 PDF 다운로드
-│   ├── parse_pdfs.py         # PDF → 마크다운 파싱
-│   └── parse_missing_pdfs.py # 누락 PDF 증분 파싱
-│
-├── data/
-│   ├── raw/                  # 원본 PDF (카테고리별 하위폴더, ~150개)
-│   ├── products/             # 파싱된 마크다운 (카테고리별 하위폴더, 162개)
-│   └── graph/graph.json      # D3.js 그래프 데이터 (1.3MB)
-│
-├── backend/                  # FastAPI 백엔드
-│   ├── main.py               # 앱 진입점 (Neo4j 선택적)
-│   ├── routers/              # REST API 엔드포인트
-│   └── agent/                # LangGraph 챗봇 에이전트
-│
-├── frontend/                 # React + D3.js 프론트엔드
-│   └── src/components/
-│       └── GraphCanvas.tsx   # 인터랙티브 그래프 시각화
-│
-├── docker-compose.yml        # 로컬 개발용 (Neo4j + App)
-├── docker-compose.prod.yml   # 프로덕션 배포용 (App 단독)
-├── Dockerfile                # 멀티스테이지 빌드
-└── deploy.sh                 # Oracle Cloud 배포 스크립트
-```
-
----
 
 ## 면책 조항 (Disclaimer)
 
