@@ -202,9 +202,14 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     // ========== STATE: Neo4j style - instant, no animation ==========
 
     function resetAll() {
+      if (highlighted.size > 0) {
+        // Restore chat/search highlight instead of full reset
+        highlightMultiple(highlighted);
+        return;
+      }
       node.attr("opacity", 1)
-        .attr("stroke", (d) => highlighted.has(d.id) ? "#FFD700" : "#ffffff30")
-        .attr("stroke-width", (d) => highlighted.has(d.id) ? 3 : 1);
+        .attr("stroke", "#ffffff30")
+        .attr("stroke-width", 1);
       link.attr("stroke", "#333").attr("stroke-opacity", 0.2).attr("stroke-width", 0.7);
       label.attr("opacity", 0.7);
       linkLabel.attr("visibility", "hidden");
@@ -232,6 +237,39 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
 
       // Edge labels: show for connected edges
       linkLabel.attr("visibility", (l) => isLinkOf(l, nodeId) ? "visible" : "hidden")
+        .attr("fill", (l) => EDGE_COLORS[l.type] || "#aaa");
+    }
+
+    function highlightMultiple(nodeIds: Set<string>) {
+      // Collect all neighbors of all highlighted nodes
+      const allNeighbors = new Set<string>();
+      nodeIds.forEach((id) => {
+        const neighbors = connectedMap.get(id);
+        if (neighbors) neighbors.forEach((n) => allNeighbors.add(n));
+      });
+
+      const isRelevant = (id: string) => nodeIds.has(id) || allNeighbors.has(id);
+      const isLinkRelevant = (l: GraphLink) => {
+        const src = typeof l.source === "string" ? l.source : (l.source as GraphNode).id;
+        const tgt = typeof l.target === "string" ? l.target : (l.target as GraphNode).id;
+        return nodeIds.has(src) || nodeIds.has(tgt);
+      };
+
+      node.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.08)
+        .attr("stroke", (d) => {
+          if (nodeIds.has(d.id)) return "#FFD700";
+          if (allNeighbors.has(d.id)) return "#ffffff80";
+          return "#ffffff10";
+        })
+        .attr("stroke-width", (d) => nodeIds.has(d.id) ? 4 : allNeighbors.has(d.id) ? 2 : 0.5);
+
+      link.attr("stroke", (l) => isLinkRelevant(l) ? (EDGE_COLORS[l.type] || "#888") : "#222")
+        .attr("stroke-opacity", (l) => isLinkRelevant(l) ? 0.9 : 0.03)
+        .attr("stroke-width", (l) => isLinkRelevant(l) ? 2.5 : 0.5);
+
+      label.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.04);
+
+      linkLabel.attr("visibility", (l) => isLinkRelevant(l) ? "visible" : "hidden")
         .attr("fill", (l) => EDGE_COLORS[l.type] || "#aaa");
     }
 
@@ -341,9 +379,15 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
 
     simulationRef.current = simulation;
 
-    // Auto-zoom to search highlights
+    // Auto-zoom and highlight for chat/search referenced nodes
     if (highlighted.size > 0) {
+      // Apply multi-node highlight with neighbors and edges
+      highlightMultiple(highlighted);
+
       simulation.on("end", () => {
+        // Re-apply after simulation settles (positions are final)
+        highlightMultiple(highlighted);
+
         const hn = nodes.filter((n) => highlighted.has(n.id));
         if (!hn.length) return;
         if (hn.length === 1) {
