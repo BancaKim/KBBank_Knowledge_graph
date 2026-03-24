@@ -27,7 +27,9 @@ export default function App() {
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
   const [highlightNodeId, setHighlightNodeId] = useState<string | null>(null);
   const [highlightNodeIds, setHighlightNodeIds] = useState<string[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(ALL_CATEGORIES);
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
+    new Set(["정기예금", "적금", "입출금통장", "청약"])
+  );
   const [selectedNodeTypes, setSelectedNodeTypes] = useState<Set<string>>(ALL_NODE_TYPES);
 
   const handleNodeClick = useCallback((node: GraphNode) => {
