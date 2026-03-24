@@ -3099,11 +3099,11 @@
     },
     {
       "id": "channel__인터넷",
-      "label": "인터넷",
+      "label": "인터넷뱅킹",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "인터넷",
+        "name": "인터넷뱅킹",
         "name_en": "Internet Banking",
         "size": 9.166666666666666
       }
@@ -3126,15 +3126,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001633",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:39:19",
         "name": "KB GS Pay통장",
-        "description": "- GS Pay 계좌간편결제 실적에 따라 혜택을 제공하는 GS리테일 제휴 전용 입출금통장",
+        "description": "",
         "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.944444444444445
+        "eligibility_summary": "만 14세 이상 실명의 개인(1인1계좌), 개인사업자 및 공동명의 가입 불가, 외국인은 비대면 상품 가입 가능 시에 한함.",
+        "size": 7.5
       }
     },
     {
@@ -3150,13 +3149,13 @@
     },
     {
       "id": "kb-gs-paytongjang__term__primary",
-      "label": "- 선착순 20만좌\n- 2026년1월22일부터 2026년12월31일까지\n※ 판매한도 소진 시 별도 안내 없이 즉시 판매 종료",
+      "label": "2026년1월22일부터 2026년12월31일까지",
       "type": "term",
       "group": 5,
       "data": {
-        "raw_text": "- 선착순 20만좌\n- 2026년1월22일부터 2026년12월31일까지\n※ 판매한도 소진 시 별도 안내 없이 즉시 판매 종료",
+        "raw_text": "2026년1월22일부터 2026년12월31일까지",
         "min_months": 24312,
-        "name": "- 선착순 20만좌\n- 2026년1월22일부터 2026년12월31일까지\n※ 판매한도 소진 시 별도 안내 없이 즉시 판매 종료",
+        "name": "2026년1월22일부터 2026년12월31일까지",
         "max_months": 24312,
         "size": 5.277777777777778
       }
@@ -3169,7 +3168,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자 만14세이상",
-        "description": "- 만 14세 이상 실명의 개인(1인1계좌)\n※ 개인사업자, 임의단체(서류 미제출 임의단체 포함), 공동명의 가입 불가\n※ 외국인은 비대면 상품 가입이 가능한 경우에 한함",
+        "description": "만 14세 이상 실명의 개인(1인1계좌), 개인사업자 및 공동명의 가입 불가, 외국인은 비대면 상품 가입 가능 시에 한함.",
         "min_age": 14,
         "size": 5.277777777777778
       }
@@ -3216,15 +3215,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000938",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:36:50",
         "name": "KB Star 정기예금",
-        "description": "인터넷뱅킹, KB스타뱅킹, 고객센터를 통해서만 가입가능한 Digital KB 대표 정기예금으로, 자동 만기관리부터 분할인출까지 가능한 편리한 온라인 전용 정기예금입니다.",
+        "description": "",
+        "eligibility_summary": "개인 및 개인사업자",
         "category": "정기예금",
-        "eligibility_summary": "",
-        "size": 8.88888888888889
+        "size": 10.0
       }
     },
     {
@@ -3235,7 +3233,7 @@
       "data": {
         "name": "정기예금",
         "name_en": "Time Deposit",
-        "size": 6.388888888888889
+        "size": 6.666666666666667
       }
     },
     {
@@ -3328,12 +3326,12 @@
     },
     {
       "id": "kb-star-jeonggiyegeum__term__primary",
-      "label": "1~36개월",
+      "label": "1개월 이상 36개월 이하(월단위)",
       "type": "term",
       "group": 5,
       "data": {
-        "raw_text": "1~36개월",
-        "name": "1~36개월",
+        "raw_text": "1개월 이상 36개월 이하(월단위)",
+        "name": "1개월 이상 36개월 이하(월단위)",
         "min_months": 1,
         "max_months": 36,
         "size": 5.277777777777778
@@ -3383,15 +3381,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000936",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:40:17",
         "name": "KB Young Youth 통장",
-        "description": "계좌 안의 계좌 '저금통'으로 특별우대이율 및 수수료면제 서비스와 무료 교육서비스를 제공하는 Youth 고객 맞춤 입출금이 자유로운 예금",
+        "description": "",
+        "eligibility_summary": "만 19세 미만 개인",
         "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.944444444444445
+        "size": 7.777777777777778
       }
     },
     {
@@ -3407,13 +3404,13 @@
     },
     {
       "id": "kb-young-youth-tongjang__elig",
-      "label": "개인사업자 만19세이상",
+      "label": "개인 만19세이상",
       "type": "eligibilitycondition",
       "group": 7,
       "data": {
-        "target_audience": "개인사업자",
-        "name": "개인사업자 만19세이상",
-        "description": "만 19세 미만 실명의 개인\n※ 개인사업자 및 서류미제출 임의단체, 공동명의 가입 불가\n※「KB Young Youth 청소년통장」을 포함하여 1인 1계좌",
+        "target_audience": "개인",
+        "name": "개인 만19세이상",
+        "description": "만 19세 미만 개인",
         "min_age": 19,
         "size": 5.277777777777778
       }
@@ -3456,19 +3453,18 @@
     },
     {
       "id": "kbguninyeongeumpyeongsaengansimtongjang",
-      "label": "KB군인연금평생안심통장",
+      "label": "군인연금 압류방지 전용통장",
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000945",
-        "product_type": "deposit",
+        "page_url": "",
+        "product_type": "",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:40:08",
-        "name": "KB군인연금평생안심통장",
-        "description": "군인연금 급여가 생활비로 사용될 수 있도록 압류가 금지되고, 연금수령 실적이 있는 경우 은행거래 수수료를 면제해주는 압류방지 전용통장",
-        "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.388888888888889
+        "name": "군인연금 압류방지 전용통장",
+        "description": "",
+        "category": "예금",
+        "eligibility_summary": "실명의 개인으로 군인연금을 수령하는 고객(1인1계좌)",
+        "size": 6.666666666666667
       }
     },
     {
@@ -3515,15 +3511,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001593",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:39:35",
         "name": "KB모임금고",
-        "description": "KB모임통장 서비스에 참여 중인 모임원이 있는 경우 우대금리를 제공하는 파킹통장",
-        "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.944444444444445
+        "description": "",
+        "category": "정기예금",
+        "eligibility_summary": "KB모임통장 서비스에 등록된 통장을 보유한 실명의 개인",
+        "size": 8.055555555555555
       }
     },
     {
@@ -3584,27 +3579,25 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001643",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:39:10",
         "name": "KB생계비계좌",
-        "description": "법령에 따라 생계 유지에 필요한 자금을 최대 250만원까지 보호하는 압류방지 전용통장",
+        "description": "",
         "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.666666666666667
+        "eligibility_summary": "실명의 개인(연령 제한 없음, 전 금융기관 1인 1계좌), 외국인 가입 가능",
+        "size": 7.777777777777778
       }
     },
     {
       "id": "kbsaenggyebigyejwa__elig",
-      "label": "개인 만14세이상",
+      "label": "개인",
       "type": "eligibilitycondition",
       "group": 7,
       "data": {
         "target_audience": "개인",
-        "name": "개인 만14세이상",
-        "description": "실명의 개인(연령 제한 없음, 전 금융기관 1인 1계좌)\n※ 실명확인증표 제출한 외국인 가입 가능(실명확인증표는 외국인등록증, 국내거소신고증, 영주증에 한함)\n※ 공동명의 불가\n※ 단, 만 14세 미만 미성년자의 경우 지점에서만 가입가능",
-        "min_age": 14,
+        "name": "개인",
+        "description": "실명의 개인(연령 제한 없음, 전 금융기관 1인 1계좌), 외국인 가입 가능",
         "size": 5.277777777777778
       }
     },
@@ -3623,14 +3616,13 @@
     },
     {
       "id": "kbsaenggyebigyejwa__dp",
-      "label": "예금자보호 1억원",
+      "label": "예금자보호 해당",
       "type": "depositprotection",
       "group": 10,
       "data": {
-        "protected": true,
-        "max_amount_won": 100000000,
-        "name": "예금자보호 1억원",
-        "description": "예금보험공사 보호금융상품 1인당 최고 1억원 \n이 예금은 예금자보호법에 따라 원금과 소정의 이자를 합하여 1인당 “1억원까지”(본 은행의 여타 보호상품과 합산) 보호됩니다.\n준법감시인 심의필 제 2026-0371-3호(2026.01.29)\n본 공시내용의 유효기간 : 2026.02.02.~2027.12.31.까지",
+        "protected": false,
+        "name": "예금자보호 해당",
+        "description": "압류방지",
         "size": 5.277777777777778
       }
     },
@@ -3640,15 +3632,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001565",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:39:44",
         "name": "KB스타통장",
-        "description": "소득이 있는 누구나 혜택을 받을 수 있는 KB의 대표 통장",
+        "description": "",
         "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.944444444444445
+        "eligibility_summary": "실명의 개인 (1인 1계좌), 개인사업자 및 서류 미제출 임의단체 포함, 공동명의 가입 불가.",
+        "size": 8.055555555555555
       }
     },
     {
@@ -3670,7 +3661,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자",
-        "description": "실명의 개인 (1인 1계좌)\n※ 개인사업자 및 서류 미제출 임의단체 포함\n※ 공동명의 가입 불가.",
+        "description": "실명의 개인 (1인 1계좌), 개인사업자 및 서류 미제출 임의단체 포함, 공동명의 가입 불가.",
         "size": 5.277777777777778
       }
     },
@@ -3716,15 +3707,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001494",
-        "product_type": "deposit",
+        "page_url": "",
+        "product_type": "",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:39:52",
         "name": "KB주택연금지킴이통장",
-        "description": "주택담보노후연금(주택연금) 수령금이 생활비로 사용될 수 있도록 압류가 금지되고, 연금수령 실적이 있는 경우 각종 은행거래 수수료를 면제해주는 압류방지 전용통장",
-        "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.666666666666667
+        "description": "",
+        "category": "예금",
+        "eligibility_summary": "실명의 개인으로 한국주택금융공사의 주택담보노후연금(주택연금)을 수령하는 고객(1인1계좌), '주택연금 전용계좌 이용대상 확인서' 제출 후 가입 가능",
+        "size": 7.5
       }
     },
     {
@@ -3746,7 +3736,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "실명의 개인으로 한국주택금융공사의 주택담보노후연금(주택연금)을 수령하는 고객(1인1계좌)\n※ “주택연금 전용계좌 이용대상 확인서” 제출 후 가입 가능",
+        "description": "실명의 개인으로 한국주택금융공사의 주택담보노후연금(주택연금)을 수령하는 고객(1인1계좌), '주택연금 전용계좌 이용대상 확인서' 제출 후 가입 가능",
         "size": 5.277777777777778
       }
     },
@@ -3782,15 +3772,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001479",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:40:00",
         "name": "ONE KB 사업자통장",
-        "description": "사업자가 은행 거래 시 발생되는 수수료를 면제 받으며, 대출 상품 가입 시 금리우대 혜택을 받을 수 있는 입출금이 자유로운 예금",
+        "description": "",
         "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.666666666666667
+        "eligibility_summary": "개인사업자 및 법인 등",
+        "size": 7.5
       }
     },
     {
@@ -3801,7 +3790,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자",
-        "description": "개인사업자, 법인 및 납세번호(또는 고유번호) 부여자",
+        "description": "개인사업자 및 법인 등",
         "size": 5.277777777777778
       }
     },
@@ -3853,9 +3842,9 @@
         "scraped_at": "2026-03-23T13:37:15",
         "name": "국민수퍼정기예금 (CD금리연동형)",
         "description": "매 3개월마다 CD수익률에 따라 금리가 변경 적용되어 금리상승기에 유리한 정기예금 (예금자 보호 대상)",
-        "category": "정기예금",
         "eligibility_summary": "",
-        "size": 6.944444444444445
+        "category": "정기예금",
+        "size": 8.333333333333334
       }
     },
     {
@@ -3934,7 +3923,7 @@
         "description": "가입자가 이율, 이자지급, 만기일 등을 직접 설계하여 저축할 수 있는 다기능 맞춤식 정기예금입니다.",
         "category": "정기예금",
         "eligibility_summary": "",
-        "size": 8.055555555555555
+        "size": 9.166666666666666
       }
     },
     {
@@ -4052,15 +4041,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000011",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:39:02",
         "name": "당선통장",
-        "description": "각종 공직선거 입후보자 및 입후보자 후원회의 선거자금 관리 통장",
+        "description": "",
         "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.388888888888889
+        "eligibility_summary": "각종 공직선거 입후보자, 입후보자가 지정한 회계책임자(예비후보자 포함) 또는 입후보자 후원회(고유번호를 부여받은 임의단체 또는 비영리법인)",
+        "size": 7.222222222222222
       }
     },
     {
@@ -4104,15 +4092,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001594",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:39:27",
         "name": "모니모 KB 매일이자 통장",
-        "description": "삼성카드(주)의 「모니모 앱」 서비스 이용시 우대금리 및 혜택을 제공하는 통장\n(최초 가입시 최고 연 4.0%, 2백만원 이하, 2025.10.21 기준, 세전)",
+        "description": "",
         "category": "입출금통장",
-        "eligibility_summary": "",
-        "size": 6.944444444444445
+        "eligibility_summary": "만 17세 이상의 실명의 개인(1인 1계좌), 관련서류 미제출 임의단체, 개인사업자 및 공동명의 가입 불가, 비거주자 및 외국인 가입 불가",
+        "size": 7.777777777777778
       }
     },
     {
@@ -4137,7 +4124,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자 만17세이상",
-        "description": "만 17세 이상의 실명의 개인(1인 1계좌)\n※ 관련서류 미제출 임의단체, 개인사업자 및 공동명의 가입 불가\n※ 비거주자 및 외국인 가입 불가",
+        "description": "만 17세 이상의 실명의 개인(1인 1계좌), 관련서류 미제출 임의단체, 개인사업자 및 공동명의 가입 불가, 비거주자 및 외국인 가입 불가",
         "min_age": 17,
         "size": 5.277777777777778
       }
@@ -4256,15 +4243,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000940",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:38:04",
         "name": "KB Young Youth 적금",
-        "description": "자녀가 성년이 될 때까지 장기거래가 가능하며, 어린이/청소년을 위한 무료 보험가입서비스를 제공하는 적금",
+        "description": "",
         "category": "적금",
-        "eligibility_summary": "",
-        "size": 7.5
+        "eligibility_summary": "만 19세 미만 실명의 개인 (1인 1계좌), 개인사업자 및 서류미제출 임의단체, 공동 명의 가입 불가",
+        "size": 8.055555555555555
       }
     },
     {
@@ -4275,7 +4261,7 @@
       "data": {
         "name": "적금",
         "name_en": "Installment Savings",
-        "size": 8.055555555555555
+        "size": 8.333333333333334
       }
     },
     {
@@ -4305,12 +4291,12 @@
     },
     {
       "id": "kb-young-youth-jeoggeum__term__primary",
-      "label": "1년",
+      "label": "1년 (가입 시 등 재예치를 신청하는 경우, 1년 마다 자동 재예치)",
       "type": "term",
       "group": 5,
       "data": {
-        "raw_text": "1년",
-        "name": "1년",
+        "raw_text": "1년 (가입 시 등 재예치를 신청하는 경우, 1년 마다 자동 재예치)",
+        "name": "1년 (가입 시 등 재예치를 신청하는 경우, 1년 마다 자동 재예치)",
         "min_months": 12,
         "max_months": 12,
         "size": 5.277777777777778
@@ -4324,7 +4310,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자 만19세이상",
-        "description": "만 19세 미만 실명의 개인 (1인 1계좌)\n※ 개인사업자 및 서류미제출 임의단체, 공동 명의 가입 불가",
+        "description": "만 19세 미만 실명의 개인 (1인 1계좌), 개인사업자 및 서류미제출 임의단체, 공동 명의 가입 불가",
         "min_age": 19,
         "size": 5.277777777777778
       }
@@ -4493,7 +4479,7 @@
         "description": "단체가입고객 또는 병역명문가 등에게 우대금리를 제공하는 적립식 상품",
         "category": "적금",
         "eligibility_summary": "",
-        "size": 7.5
+        "size": 8.88888888888889
       }
     },
     {
@@ -4588,15 +4574,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001632",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:38:21",
         "name": "KB나만의 적금",
-        "description": "나에게 가장 유리한 조건으로 내가 완성하는 패키지형 적금",
+        "description": "",
         "category": "적금",
-        "eligibility_summary": "",
-        "size": 7.5
+        "eligibility_summary": "실명의 개인(1인 2계좌 제한), 개인사업자 및 서류 미제출 임의단체 가입 가능, 공동명의 가입 불가",
+        "size": 8.61111111111111
       }
     },
     {
@@ -4645,7 +4630,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자",
-        "description": "실명의 개인(1인 2계좌 제한)\n※ 개인사업자 및 서류 미제출 임의단체 가입 가능\n※ 공동명의 가입 불가",
+        "description": "실명의 개인(1인 2계좌 제한), 개인사업자 및 서류 미제출 임의단체 가입 가능, 공동명의 가입 불가",
         "size": 5.277777777777778
       }
     },
@@ -4691,15 +4676,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000821",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:37:47",
         "name": "KB내맘대로적금",
         "description": "",
         "category": "적금",
-        "eligibility_summary": "",
-        "size": 7.5
+        "eligibility_summary": "만 14세 이상의 실명의 개인 (공동명의 불가)",
+        "size": 8.61111111111111
       }
     },
     {
@@ -4747,7 +4731,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인 만14세이상",
-        "description": "만 14세 이상의 실명의 개인 (공동명의 불가)\n※ 자유적립식 예금은 1인 최대 5계좌까지 가입 가능",
+        "description": "만 14세 이상의 실명의 개인 (공동명의 불가)",
         "min_age": 14,
         "size": 5.277777777777778
       }
@@ -4794,15 +4778,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000942",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:37:55",
         "name": "KB맑은하늘적금",
         "description": "",
         "category": "적금",
-        "eligibility_summary": "",
-        "size": 7.5
+        "eligibility_summary": "실명의 개인, 1인 3계좌까지 가입 가능, 개인사업자 및 서류 미제출 임의단체 가입 가능, 공동명의 가입 불가.",
+        "size": 9.722222222222221
       }
     },
     {
@@ -4851,7 +4834,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자",
-        "description": "실명의 개인\n※ 1인 3계좌까지 가입 가능\n※ 개인사업자 및 서류 미제출 임의단체 가입 가능, 공동명의 가입 불가",
+        "description": "실명의 개인, 1인 3계좌까지 가입 가능, 개인사업자 및 서류 미제출 임의단체 가입 가능, 공동명의 가입 불가.",
         "size": 5.277777777777778
       }
     },
@@ -4893,9 +4876,9 @@
         "scraped_at": "2026-03-23T13:38:38",
         "name": "KB상호부금(정액적립식)",
         "description": "목돈을 마련하는 국민은행의 대표 적립식예금",
-        "category": "적금",
         "eligibility_summary": "",
-        "size": 7.5
+        "category": "적금",
+        "size": 9.722222222222221
       }
     },
     {
@@ -4990,15 +4973,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001596",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:38:13",
         "name": "KB스타 건강적금",
-        "description": "걸음수에 따른 우대금리 적용으로 저축과 건강관리를 함께 할 수 있는 적금",
+        "description": "",
         "category": "적금",
-        "eligibility_summary": "",
-        "size": 7.5
+        "eligibility_summary": "만 14세 이상 실명의 개인(1인 1계좌 보유 가능). 개인사업자, 임의단체 및 공동명의 가입 불가.",
+        "size": 8.61111111111111
       }
     },
     {
@@ -5047,7 +5029,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자 만14세이상",
-        "description": "만 14세 이상 실명의 개인(1인 1계좌 보유 가능)\n※ 개인사업자, 임의단체 및 공동명의 가입 불가(서류 미제출 임의단체 가입 불가)",
+        "description": "만 14세 이상 실명의 개인(1인 1계좌 보유 가능). 개인사업자, 임의단체 및 공동명의 가입 불가.",
         "min_age": 14,
         "size": 5.277777777777778
       }
@@ -5084,15 +5066,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001587",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:38:30",
         "name": "KB아이사랑적금",
-        "description": "아이 키우는 가정을 응원하고 목돈 마련을 지원하는 적금",
+        "description": "",
         "category": "적금",
-        "eligibility_summary": "",
-        "size": 7.5
+        "eligibility_summary": "만19세 이상 실명의 개인 (1인 1계좌), 개인사업자, 임의단체 및 공동명의 가입불가",
+        "size": 9.166666666666666
       }
     },
     {
@@ -5141,7 +5122,7 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자 만19세이상",
-        "description": "만19세 이상 실명의 개인 (1인 1계좌)\n※ 개인사업자, 임의단체 및 공동명의 가입불가(서류 미제출 임의단체 가입 불가)",
+        "description": "만19세 이상 실명의 개인 (1인 1계좌), 개인사업자, 임의단체 및 공동명의 가입불가",
         "min_age": 19,
         "size": 5.277777777777778
       }
@@ -5174,19 +5155,18 @@
     },
     {
       "id": "kbjangbyeongnaeiljunbijeoggeum",
-      "label": "KB장병내일준비적금",
+      "label": "국군장병 미래준비 맞춤적금",
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000939",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:38:26",
-        "name": "KB장병내일준비적금",
+        "name": "국군장병 미래준비 맞춤적금",
         "description": "",
         "category": "적금",
-        "eligibility_summary": "",
-        "size": 7.777777777777778
+        "eligibility_summary": "현역병, 상근예비역, 의무경찰, 대체복무요원, 사회복무요원으로 가입 시 증빙서류 제출 필요.",
+        "size": 10.0
       }
     },
     {
@@ -5240,13 +5220,13 @@
     },
     {
       "id": "kbjangbyeongnaeiljunbijeoggeum__elig",
-      "label": "개인",
+      "label": "가입자격",
       "type": "eligibilitycondition",
       "group": 7,
       "data": {
-        "target_audience": "개인",
-        "name": "개인",
-        "description": "가입시점에 아래 ①, ② 조건을 모두 충족하는 현역병, 상근예비역, 의무경찰, 대체복무요원, 사회복무요원(※ 1인 1계좌 제한)\n① 이 적금 신규일 기준으로 남은 의무복무기간이 1개월 이상\n② 가입대상임을 증빙하는 ‘장병내일준비적금 가입자격 확인서주)’원본 제출\n※ 확인서를 제출하지 않은 경우 상품가입 불가\n※ 기존 가입대상 증빙서류인 '장병내일준비적금 가입·재정지원 자격 확인서' 의 경우, 2019.3.31 이전 발급분에 한하여 발급일로부터 3개월까지 사용 가능. 단, 조세특례제산법의 제129조2에 따른 금융소득종합과세 대상자는 ",
+        "target_audience": "",
+        "name": "가입자격",
+        "description": "현역병, 상근예비역, 의무경찰, 대체복무요원, 사회복무요원으로 가입 시 증빙서류 제출 필요.",
         "size": 5.277777777777778
       }
     },
@@ -5282,15 +5262,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000620",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:40:32",
         "name": "주택청약종합저축",
-        "description": "매월 약정납입일(신규가입일 해당일)에 월저축금을 납입하는 적금식 상품으로 순위가 발생하고 소정의 청약자격을 갖추면 국민주택 및 민영주택에 모두 청약할 수 있는 입주자저축",
+        "description": "",
         "category": "청약",
-        "eligibility_summary": "",
-        "size": 6.666666666666667
+        "eligibility_summary": "국내에 거주하는 국민인 개인 또는 외국인 거주자(재외국민, 외국국적동포 포함)로서 연령에 관계없이 누구든지 가입 가능",
+        "size": 8.61111111111111
       }
     },
     {
@@ -5319,26 +5298,26 @@
     },
     {
       "id": "jutaegceongyagjonghabjeocug__elig",
-      "label": "가입자격",
+      "label": "개인",
       "type": "eligibilitycondition",
       "group": 7,
       "data": {
-        "target_audience": "",
-        "name": "가입자격",
-        "description": "무주택확인서 제출자(소득공제 대상 등록자)가 통장 해지 시 다음 중 어느 하나라도 해당하는 경우에는 세금 추징\n\t\t\t\t①소득공제를 받은 자가 국민주택규모를 초과하는 주택에 당첨된 계좌를 해지하는 경우\n\t\t\t\t②소득공제를 받은 자가 가입일로부터 5년 이내에 계좌를 해지하는 경우\n\t\t\t\t(단, 국민주택규모 이하 주택에 당첨된 계좌를 해지하는 경우 또는 사망, 해외이주 등의 특별해지 사유로 계좌를 해지하는 경우에는 세금 추징에서 제외)\n                                 ※ 전환 해약 시에는 추징세가 발생하지 않고",
+        "target_audience": "개인",
+        "name": "개인",
+        "description": "국내에 거주하는 국민인 개인 또는 외국인 거주자(재외국민, 외국국적동포 포함)로서 연령에 관계없이 누구든지 가입 가능",
         "size": 5.277777777777778
       }
     },
     {
       "id": "jutaegceongyagjonghabjeocug__tax",
-      "label": "비과세 가능",
+      "label": "비과세종합저축 가능",
       "type": "taxbenefit",
       "group": 9,
       "data": {
         "eligible": true,
-        "name": "비과세 가능",
-        "description": "일반과세·비과세 선택 가능\n과세구분별 세율표\n구분\t일반과세\t비과세\n세율\t15.4%\t0%\n※ 기존 세금우대(9.5%) 가입계좌는 계좌해지일까지(또는 일반과세 전환일 전일까지) 세금우대 적용\n※ 단, 관련세법이 개정될 경우 세율이 변경되거나 세금이 부과될 수 있음",
-        "type": "비과세",
+        "name": "비과세종합저축 가능",
+        "description": "비과세종합저축으로 가입 가능",
+        "type": "비과세종합저축",
         "size": 5.277777777777778
       }
     },
@@ -5348,9 +5327,9 @@
       "type": "depositprotection",
       "group": 10,
       "data": {
-        "protected": true,
+        "protected": false,
         "name": "예금자보호 해당",
-        "description": "주택청약종합저축은 예금자보호법에 따라 보호되지 않으나, 주택도시기금의 조성 재원으로 정부가 관리",
+        "description": "X",
         "size": 5.277777777777778
       }
     },
@@ -5360,15 +5339,14 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000935",
+        "page_url": "",
         "amount_max_raw": "",
         "product_type": "savings",
-        "scraped_at": "2026-03-23T13:40:41",
         "name": "청년 주택드림 청약통장",
-        "description": "매월 약정납입일(신규가입일 해당일)에 월저축금을 납입하는 적립식 상품으로 순위가 발생하고 소정의 청약자격을 갖추면 민영주택 및 국민주택에 모두 청약할 수 있으며, 일정자격 충족 시 우대이율 및 비과세 혜택이 추가되는 주택청약종합저축\n\n[국토교통부 주택도시기금포털 바로가기]",
+        "description": "",
         "category": "청약",
-        "eligibility_summary": "",
-        "size": 6.944444444444445
+        "eligibility_summary": "대한민국에 거주하는 19세 이상 34세 이하의 무주택자",
+        "size": 8.055555555555555
       }
     },
     {
@@ -5404,20 +5382,20 @@
       "data": {
         "target_audience": "",
         "name": "가입자격",
-        "description": "모두",
+        "description": "대한민국에 거주하는 19세 이상 34세 이하의 무주택자",
         "size": 5.277777777777778
       }
     },
     {
       "id": "ceongnyeon-jutaegdeurim-ceongyagtongjang__tax",
-      "label": "비과세종합저축 불가",
+      "label": "비과세 가능",
       "type": "taxbenefit",
       "group": 9,
       "data": {
-        "eligible": false,
-        "name": "비과세종합저축 불가",
-        "description": "「조세특례제한법」제87조, 제129조의2, 제146조의2 및 동법 시행령 제81조, 제123조의2, 제137조의2에서 정하는 요건 충족 시 이자소득 500만원(납입금액 연600만원 한도)에 대하여 비과세 적용 가능(우대이율 적용 요건과 상이함에 유의)\n\n\n\n비과세 요건\n- 가입(전환)일 기준 무주택세대주1)의 세대주 또는 세대주의 배우자로서 다음 요건 모두",
-        "type": "비과세종합저축",
+        "eligible": true,
+        "name": "비과세 가능",
+        "description": "가입기간 2년 이상 유지 시 이자소득 500만원에 대해 비과세 적용 가능",
+        "type": "비과세",
         "size": 5.277777777777778
       }
     },
@@ -5427,9 +5405,9 @@
       "type": "depositprotection",
       "group": 10,
       "data": {
-        "protected": true,
+        "protected": false,
         "name": "예금자보호 해당",
-        "description": "청년 주택드림 청약통장은 예금자보호법에 따라 보호되지 않으나, 주택도시기금의 조성 재원으로 정부가 관리",
+        "description": "X",
         "size": 5.277777777777778
       }
     },
@@ -5490,13 +5468,13 @@
     },
     {
       "id": "channel__모바일",
-      "label": "모바일 앱",
+      "label": "모바일브랜치",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "모바일 앱",
+        "name": "모바일브랜치",
         "name_en": "Mobile",
-        "size": 5.833333333333333
+        "size": 6.111111111111111
       }
     },
     {
@@ -5772,13 +5750,13 @@
     },
     {
       "id": "channel__스타뱅킹",
-      "label": "스타뱅킹",
+      "label": "KB스타뱅킹",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "스타뱅킹",
+        "name": "KB스타뱅킹",
         "name_en": "KB Star Banking App",
-        "size": 21.666666666666664
+        "size": 22.22222222222222
       }
     },
     {
@@ -5973,7 +5951,7 @@
       "data": {
         "name": "영업점",
         "name_en": "Branch",
-        "size": 26.11111111111111
+        "size": 27.5
       }
     },
     {
@@ -15339,6 +15317,862 @@
         "description": "한 고객(신용관리대상자 포함)으로 전환대상 대출 포함 휴·폐업 사업자 관련 SOHO대출을 전액 상환할 수 있는 고객",
         "size": 5.277777777777778
       }
+    },
+    {
+      "id": "kb-star-jeonggiyegeum__feat__jadong-mangigwanri",
+      "label": "자동 만기관리",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자동 만기관리",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-star-jeonggiyegeum__feat__bunhalincul-ganeung",
+      "label": "분할인출 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "분할인출 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "channel__고객센터",
+      "label": "고객센터",
+      "type": "channel",
+      "group": 6,
+      "data": {
+        "name": "고객센터",
+        "name_en": "Call Center",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "gugminsupeojeonggiyegeum-gaein__feat__gaibjaga-iyul-ijajigeub-mangiil-deungeul-jigjeob-seolgye-ganeung",
+      "label": "가입자가 이율, 이자지급, 만기일 등을 직접 설계 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "가입자가 이율, 이자지급, 만기일 등을 직접 설계 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "gugminsupeojeonggiyegeum-gaein__feat__gojeonggeumrihyeong-mic-danwigigan-geumriyeondonghyeong-seontaeg-ganeung",
+      "label": "고정금리형 및 단위기간 금리연동형 선택 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "고정금리형 및 단위기간 금리연동형 선택 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "gugminsupeojeonggiyegeum-gaein__feat__coejeo-100manweon-isang-weondanwiro-yeci",
+      "label": "최저 100만원 이상 원단위로 예치",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "최저 100만원 이상 원단위로 예치",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "gugminsupeojeonggiyegeum-gaein__feat__bunhalincul-ganeung-gyejwabyeol-3hoe-inae-cong-15hoe-hando",
+      "label": "분할인출 가능 (계좌별 3회 이내, 총 15회 한도)",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "분할인출 가능 (계좌별 3회 이내, 총 15회 한도)",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong__feat__geumrisangseunggie-yurihan-jeonggiyegeum",
+      "label": "금리상승기에 유리한 정기예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "금리상승기에 유리한 정기예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong__feat__mae-3gaeweolmada-geumri-byeongyeong",
+      "label": "매 3개월마다 금리 변경",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매 3개월마다 금리 변경",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__mangiijajigeubsig",
+      "label": "만기이자지급식",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "만기이자지급식",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__3gaeweolijajigeubsig",
+      "label": "3개월이자지급식",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "3개월이자지급식",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__weolijajigeubsig-3jongryu",
+      "label": "월이자지급식 (3종류)",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "월이자지급식 (3종류)",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-gs-paytongjang__feat__susuryo-myeonje-hyetaeg-susuryo-myeonjejogeon-cungjogsi",
+      "label": "수수료 면제 혜택 (수수료 면제조건 충족시)",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "수수료 면제 혜택 (수수료 면제조건 충족시)",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-gs-paytongjang__feat__jadongjeonhwan-sangpum-juyohyetaeg-kbseutatongjang-kbjonghabtongjang",
+      "label": "자동전환 상품 주요혜택: KB스타통장, KB종합통장",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자동전환 상품 주요혜택: KB스타통장, KB종합통장",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-young-youth-tongjang__feat__jeogeumtong-gineung",
+      "label": "저금통 기능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "저금통 기능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-young-youth-tongjang__feat__susuryo-myeonje",
+      "label": "수수료 면제",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "수수료 면제",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-young-youth-tongjang__feat__gyoyug-seobiseu",
+      "label": "교육 서비스",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "교육 서비스",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "yegeum",
+      "label": "예금",
+      "type": "category",
+      "group": 1,
+      "data": {
+        "name": "예금",
+        "name_en": "",
+        "size": 5.555555555555555
+      }
+    },
+    {
+      "id": "kbmoimgeumgo__feat__ibculgeumi-jayuroun-yegeum-jeocugyegeum",
+      "label": "입출금이 자유로운 예금 (저축예금)",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "입출금이 자유로운 예금 (저축예금)",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbmoimgeumgo__feat__moim-yeoyujageumeul-yeon-2-0-coedae-1ceonmanweon-ro",
+      "label": "모임 여유자금을 연 2.0%(최대 1천만원)로",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "모임 여유자금을 연 2.0%(최대 1천만원)로",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbmoimgeumgo__pref__0",
+      "label": "- **우대금리**: 연 2% (KB모임통장 서비스에 참여 중인 모임원이",
+      "type": "preferentialrate",
+      "group": 11,
+      "data": {
+        "rate_value_pp": 2.0,
+        "name": "- **우대금리**: 연 2% (KB모임통장 서비스에 참여 중인 모임원이",
+        "condition_description": "- **우대금리**: 연 2% (KB모임통장 서비스에 참여 중인 모임원이 있는 경우)",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbsaenggyebigyejwa__feat__ibculgeumi-jayuroun-yegeum-jeocugyegeum",
+      "label": "입출금이 자유로운 예금(저축예금)",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "입출금이 자유로운 예금(저축예금)",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbsaenggyebigyejwa__feat__abryubangji",
+      "label": "압류방지",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "압류방지",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbsaenggyebigyejwa__feat__susuryo-myeonje",
+      "label": "수수료 면제",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "수수료 면제",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "channel__jijeom",
+      "label": "지점",
+      "type": "channel",
+      "group": 6,
+      "data": {
+        "name": "지점",
+        "name_en": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbseutatongjang__feat__susuryo-myeonje",
+      "label": "수수료 면제",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "수수료 면제",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbseutatongjang__feat__inkeombagseu",
+      "label": "인컴박스",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "인컴박스",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "channel__bidaemyeoncaeneol",
+      "label": "비대면채널",
+      "type": "channel",
+      "group": 6,
+      "data": {
+        "name": "비대면채널",
+        "name_en": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbjutaegyeongeumjikimitongjang__feat__abryubangji-jeonyongtongjang",
+      "label": "압류방지 전용통장",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "압류방지 전용통장",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbjutaegyeongeumjikimitongjang__feat__suryeonggeumi-saenghwalbiro-sayong-ganeung",
+      "label": "수령금이 생활비로 사용 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "수령금이 생활비로 사용 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "one-kb-saeobjatongjang__feat__susuryo-myeonje",
+      "label": "수수료 면제",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "수수료 면제",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "one-kb-saeobjatongjang__feat__daecul-geumri-udae",
+      "label": "대출 금리 우대",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "대출 금리 우대",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "one-kb-saeobjatongjang__feat__ibculgeumi-jayuroun-yegeum",
+      "label": "입출금이 자유로운 예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "입출금이 자유로운 예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "dangseontongjang__feat__ibculgeumijayurounyegeum-botongyegeum",
+      "label": "입출금이자유로운예금(보통예금)",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "입출금이자유로운예금(보통예금)",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "dangseontongjang__feat__dongil-yegeumgwamog-jeonhwanganeung",
+      "label": "동일 예금과목 전환가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "동일 예금과목 전환가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "channel__jijeom-bangmun",
+      "label": "지점 방문",
+      "type": "channel",
+      "group": 6,
+      "data": {
+        "name": "지점 방문",
+        "name_en": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "monimo-kb-maeilija-tongjang__feat__samseongkadeu-ju-yi-monimo-aeb-seobiseu-iyongsi-udaegeumri-mic-hyetaeg-jegong",
+      "label": "삼성카드(주)의 모니모 앱 서비스 이용시 우대금리 및 혜택 제공",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "삼성카드(주)의 모니모 앱 서비스 이용시 우대금리 및 혜택 제공",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "monimo-kb-maeilija-tongjang__feat__bidaemyeongyejwagaeseolseo-biseu-tonghaeseoman-ganeung",
+      "label": "비대면계좌개설서 비스 통해서만 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "비대면계좌개설서 비스 통해서만 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "channel__monimo-aeb",
+      "label": "모니모 앱",
+      "type": "channel",
+      "group": 6,
+      "data": {
+        "name": "모니모 앱",
+        "name_en": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-teughan-jeoggeum",
+      "label": "KB 특★한 적금",
+      "type": "product",
+      "group": 0,
+      "data": {
+        "page_url": "",
+        "product_type": "savings",
+        "amount_max_raw": "",
+        "name": "KB 특★한 적금",
+        "description": "",
+        "category": "적금",
+        "eligibility_summary": "실명의 개인(1인3계좌), 개인사업자, 임의단체 및 공동명의 가입불가",
+        "size": 8.055555555555555
+      }
+    },
+    {
+      "id": "kb-teughan-jeoggeum__feat__jayujeogribsig-yegeum",
+      "label": "자유적립식 예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자유적립식 예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-teughan-jeoggeum__feat__maeweol-1ileseo-malilggaji-jayurobge-jeocug-ganeung",
+      "label": "매월(1일에서 말일까지) 자유롭게 저축 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매월(1일에서 말일까지) 자유롭게 저축 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-teughan-jeoggeum__feat__mangiil-byeongyeong-ganeung-dancug-ddoneun-yeonjang",
+      "label": "만기일 변경 가능(단축 또는 연장)",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "만기일 변경 가능(단축 또는 연장)",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-teughan-jeoggeum__term__primary",
+      "label": "1개월 ~ 6개월",
+      "type": "term",
+      "group": 5,
+      "data": {
+        "raw_text": "1개월 ~ 6개월",
+        "min_months": 1,
+        "name": "1개월 ~ 6개월",
+        "max_months": 6,
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-teughan-jeoggeum__elig",
+      "label": "개인사업자",
+      "type": "eligibilitycondition",
+      "group": 7,
+      "data": {
+        "target_audience": "개인사업자",
+        "name": "개인사업자",
+        "description": "실명의 개인(1인3계좌), 개인사업자, 임의단체 및 공동명의 가입불가",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__mangiilsijigeubsig",
+      "label": "만기일시지급식",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "만기일시지급식",
+        "description": "",
+        "size": 6.388888888888889
+      }
+    },
+    {
+      "id": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig__feat__jeongaegjeongribsig-yegeum",
+      "label": "정액정립식 예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "정액정립식 예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig__feat__maeweol-iljeonggeumaegeul-jeocughal-ddae",
+      "label": "매월 일정금액을 저축할 때",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매월 일정금액을 저축할 때",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig__feat__mogpyogeumaegeul-moeul-ddae",
+      "label": "목표금액을 모을 때",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "목표금액을 모을 때",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "channel__onraingaib",
+      "label": "온라인가입",
+      "type": "channel",
+      "group": 6,
+      "data": {
+        "name": "온라인가입",
+        "name_en": "",
+        "size": 6.111111111111111
+      }
+    },
+    {
+      "id": "kbsanghobugeum-jeongaegjeogribsig__feat__jeongaegjeogribsig-yegeum",
+      "label": "정액적립식 예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "정액적립식 예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbsanghobugeum-jeongaegjeogribsig__feat__singyu-si-yagjeonghan-jeocuggeumaegeul-maeweol-yagjeonghan-naljjae-dongilhage-jeocug",
+      "label": "신규 시 약정한 저축금액을 매월 약정한 날짜에 동일하게 저축",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "신규 시 약정한 저축금액을 매월 약정한 날짜에 동일하게 저축",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-young-youth-jeoggeum__feat__janyeoga-seongnyeoni-doel-ddaeggaji-janggigeorae-ganeung",
+      "label": "자녀가 성년이 될 때까지 장기거래 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자녀가 성년이 될 때까지 장기거래 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kb-young-youth-jeoggeum__feat__eorini-ceongsonyeon-muryo-boheomgaib-seobiseu-jegong",
+      "label": "어린이/청소년 무료 보험가입 서비스 제공",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "어린이/청소년 무료 보험가입 서비스 제공",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbnamanyi-jeoggeum__feat__jayujeogribsig-yegeum",
+      "label": "자유적립식 예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자유적립식 예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbnamanyi-jeoggeum__feat__maeweol-1ilbuteo-majimagnalggaji-jayurobge-jeocug",
+      "label": "매월 1일부터 마지막날까지 자유롭게 저축",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매월 1일부터 마지막날까지 자유롭게 저축",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__mangiilsijigeubsig-mangi-hu-haeji-ddoneun-jungdohaeji-si-ija-jigeub",
+      "label": "만기일시지급식: 만기(후)해지 또는 중도해지 시 이자 지급",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "만기일시지급식: 만기(후)해지 또는 중도해지 시 이자 지급",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbnaemamdaerojeoggeum__feat__jeongaegjeogribsig-jayujeogribsig",
+      "label": "정액적립식/자유적립식",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "정액적립식/자유적립식",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbnaemamdaerojeoggeum__feat__maeweol-1manweon-isang-3baegmanweon-iha-geumaegeul-jayurobge-jeocug-ganeung",
+      "label": "매월 1만원 이상 3백만원 이하 금액을 자유롭게 저축 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매월 1만원 이상 3백만원 이하 금액을 자유롭게 저축 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbnaemamdaerojeoggeum__feat__singyu-si-yagjeonghan-weol-1manweon-isangyi-jeocuggeumaegeul-maeweol-yagjeonghan-naljjae-dongilhage",
+      "label": "신규 시 약정한 월 1만원 이상의 저축금액을 매월 약정한 날짜에 동일하게 저축",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "신규 시 약정한 월 1만원 이상의 저축금액을 매월 약정한 날짜에 동일하게 저축",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbmalgeunhaneuljeoggeum__feat__cinhwangyeong-teughwa-sangpum",
+      "label": "친환경 특화 상품",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "친환경 특화 상품",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbmalgeunhaneuljeoggeum__feat__daejunggyotong-jajeongeosanghae-gwanryeon-muryo-boheomseobiseu-jegong",
+      "label": "대중교통/자전거상해 관련 무료 보험서비스 제공",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "대중교통/자전거상해 관련 무료 보험서비스 제공",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbseuta-geongangjeoggeum__feat__jayujeogribsig-yegeum",
+      "label": "자유적립식 예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자유적립식 예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbseuta-geongangjeoggeum__feat__seoncagsun-20manjwa",
+      "label": "선착순 20만좌",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "선착순 20만좌",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbseuta-geongangjeoggeum__feat__sangpumculsiilbuteo-2026nyeon6weol19ilggaji",
+      "label": "상품출시일부터 2026년6월19일까지",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "상품출시일부터 2026년6월19일까지",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__mangiilsijigeubsig-mangi-hu-haeji-ddoneun-jungdohaeji-si-ijareul-ilsie-jigeub",
+      "label": "만기일시지급식: 만기(후)해지 또는 중도해지 시 이자를 일시에 지급.",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "만기일시지급식: 만기(후)해지 또는 중도해지 시 이자를 일시에 지급.",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__mangi-hu-haeji-ddoneun-jungdohaeji-si-ijareul-han-beone-jigeub",
+      "label": "만기(후)해지 또는 중도해지 시 이자를 한 번에 지급",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "만기(후)해지 또는 중도해지 시 이자를 한 번에 지급",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbjangbyeongnaeiljunbijeoggeum__feat__jayujeogribsig-yegeum",
+      "label": "자유적립식 예금",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자유적립식 예금",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbjangbyeongnaeiljunbijeoggeum__feat__maeweol-iljeonggeumaegeul-jeocughal-su-isseum",
+      "label": "매월 일정금액을 저축할 수 있음",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매월 일정금액을 저축할 수 있음",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "kbjangbyeongnaeiljunbijeoggeum__feat__geumyunggigwan-habsan-jeocughandoneun-gogaegbyeol-weol-55manweon",
+      "label": "금융기관 합산 저축한도는 고객별 월 55만원",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "금융기관 합산 저축한도는 고객별 월 55만원",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "jutaegceongyagjonghabjeocug__feat__maeweol-iljeonggeumaegeul-jeocug",
+      "label": "매월 일정금액을 저축",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매월 일정금액을 저축",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "jutaegceongyagjonghabjeocug__feat__ceongyagjagyeogeul-gajcumyeon-gugminjutaeg-mic-minyeongjutaege-ceongyag-ganeung",
+      "label": "청약자격을 갖추면 국민주택 및 민영주택에 청약 가능",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "청약자격을 갖추면 국민주택 및 민영주택에 청약 가능",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "jutaegceongyagjonghabjeocug__feat__jayujeogribsig",
+      "label": "자유적립식",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "자유적립식",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "repay__haeji-si-weongeumgwa-ija-ilgwal-jigeub",
+      "label": "해지 시 원금과 이자 일괄 지급",
+      "type": "repaymentmethod",
+      "group": 8,
+      "data": {
+        "name": "해지 시 원금과 이자 일괄 지급",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "ceongnyeon-jutaegdeurim-ceongyagtongjang__feat__maeweol-iljeonggeumaegeul-jeocug",
+      "label": "매월 일정금액을 저축",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "매월 일정금액을 저축",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "ceongnyeon-jutaegdeurim-ceongyagtongjang__feat__ceongyagjagyeog-buyeo",
+      "label": "청약자격 부여",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "청약자격 부여",
+        "description": "",
+        "size": 5.277777777777778
+      }
+    },
+    {
+      "id": "ceongnyeon-jutaegdeurim-ceongyagtongjang__feat__udaeiyul-mic-bigwase-hyetaeg",
+      "label": "우대이율 및 비과세 혜택",
+      "type": "feature",
+      "group": 3,
+      "data": {
+        "name": "우대이율 및 비과세 혜택",
+        "description": "",
+        "size": 5.277777777777778
+      }
     }
   ],
   "links": [
@@ -19922,6 +20756,18 @@
     },
     {
       "source": "kb-gs-paytongjang",
+      "target": "kb-gs-paytongjang__feat__jadongjeonhwan-sangpum-juyohyetaeg-kbseutatongjang-kbjonghabtongjang",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-gs-paytongjang",
+      "target": "kb-gs-paytongjang__feat__susuryo-myeonje-hyetaeg-susuryo-myeonjejogeon-cungjogsi",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-gs-paytongjang",
       "target": "ptype__ibculgeumi-jayuroun-yegeum-jeocugyegeum",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -19960,6 +20806,30 @@
       "source": "kb-gs-paytongjang",
       "target": "ibculgeumtongjang",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kb-star-jeonggiyegeum",
+      "target": "channel__고객센터",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kb-star-jeonggiyegeum",
+      "target": "channel__스타뱅킹",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kb-star-jeonggiyegeum",
+      "target": "kb-star-jeonggiyegeum__feat__bunhalincul-ganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-star-jeonggiyegeum",
+      "target": "kb-star-jeonggiyegeum__feat__jadong-mangigwanri",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20048,6 +20918,24 @@
     },
     {
       "source": "kb-young-youth-tongjang",
+      "target": "kb-young-youth-tongjang__feat__gyoyug-seobiseu",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-young-youth-tongjang",
+      "target": "kb-young-youth-tongjang__feat__susuryo-myeonje",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-young-youth-tongjang",
+      "target": "kb-young-youth-tongjang__feat__jeogeumtong-gineung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-young-youth-tongjang",
       "target": "ptype__ibculgeumi-jayuroun-yegeum-jeocugyegeum-gijon-jeocugyegeum-tongjang-jeonhwan-ganeung-dan-gongdongmyeongyi-gyejwa-kbjeunggweontongjang-mmdatongjangeun-jeonhwan-bulga",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -20090,6 +20978,12 @@
     },
     {
       "source": "kbguninyeongeumpyeongsaengansimtongjang",
+      "target": "yegeum",
+      "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbguninyeongeumpyeongsaengansimtongjang",
       "target": "kbguninyeongeumpyeongsaengansimtongjang__dp",
       "type": "PROTECTED_BY",
       "value": 1.0
@@ -20115,6 +21009,30 @@
     {
       "source": "kbguninyeongeumpyeongsaengansimtongjang",
       "target": "ibculgeumtongjang",
+      "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbmoimgeumgo",
+      "target": "kbmoimgeumgo__pref__0",
+      "type": "HAS_PREFERENTIAL_RATE",
+      "value": 1.0
+    },
+    {
+      "source": "kbmoimgeumgo",
+      "target": "kbmoimgeumgo__feat__moim-yeoyujageumeul-yeon-2-0-coedae-1ceonmanweon-ro",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbmoimgeumgo",
+      "target": "kbmoimgeumgo__feat__ibculgeumi-jayuroun-yegeum-jeocugyegeum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbmoimgeumgo",
+      "target": "jeonggiyegeum",
       "type": "BELONGS_TO",
       "value": 1.0
     },
@@ -20162,6 +21080,30 @@
     },
     {
       "source": "kbsaenggyebigyejwa",
+      "target": "channel__jijeom",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbsaenggyebigyejwa",
+      "target": "kbsaenggyebigyejwa__feat__susuryo-myeonje",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbsaenggyebigyejwa",
+      "target": "kbsaenggyebigyejwa__feat__abryubangji",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbsaenggyebigyejwa",
+      "target": "kbsaenggyebigyejwa__feat__ibculgeumi-jayuroun-yegeum-jeocugyegeum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbsaenggyebigyejwa",
       "target": "ptype__ibculgeumi-jayuroun-yegeum-jeocugyegeum",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -20194,6 +21136,30 @@
       "source": "kbsaenggyebigyejwa",
       "target": "ibculgeumtongjang",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbseutatongjang",
+      "target": "channel__bidaemyeoncaeneol",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbseutatongjang",
+      "target": "channel__영업점",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbseutatongjang",
+      "target": "kbseutatongjang__feat__inkeombagseu",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbseutatongjang",
+      "target": "kbseutatongjang__feat__susuryo-myeonje",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20240,6 +21206,24 @@
     },
     {
       "source": "kbjutaegyeongeumjikimitongjang",
+      "target": "kbjutaegyeongeumjikimitongjang__feat__suryeonggeumi-saenghwalbiro-sayong-ganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbjutaegyeongeumjikimitongjang",
+      "target": "kbjutaegyeongeumjikimitongjang__feat__abryubangji-jeonyongtongjang",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbjutaegyeongeumjikimitongjang",
+      "target": "yegeum",
+      "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbjutaegyeongeumjikimitongjang",
       "target": "kbjutaegyeongeumjikimitongjang__dp",
       "type": "PROTECTED_BY",
       "value": 1.0
@@ -20276,6 +21260,24 @@
     },
     {
       "source": "one-kb-saeobjatongjang",
+      "target": "one-kb-saeobjatongjang__feat__ibculgeumi-jayuroun-yegeum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "one-kb-saeobjatongjang",
+      "target": "one-kb-saeobjatongjang__feat__daecul-geumri-udae",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "one-kb-saeobjatongjang",
+      "target": "one-kb-saeobjatongjang__feat__susuryo-myeonje",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "one-kb-saeobjatongjang",
       "target": "ptype__ibculgeumi-jayuroun-yegeum-botongyegeum-gieobjayuyegeum-gieobyongmmda",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -20308,6 +21310,36 @@
       "source": "one-kb-saeobjatongjang",
       "target": "ibculgeumtongjang",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong",
+      "target": "repay__weolijajigeubsig-3jongryu",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong",
+      "target": "repay__3gaeweolijajigeubsig",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong",
+      "target": "repay__mangiijajigeubsig",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong",
+      "target": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong__feat__mae-3gaeweolmada-geumri-byeongyeong",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong",
+      "target": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong__feat__geumrisangseunggie-yurihan-jeonggiyegeum",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20350,6 +21382,30 @@
       "source": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong",
       "target": "jeonggiyegeum",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-gaein",
+      "target": "gugminsupeojeonggiyegeum-gaein__feat__bunhalincul-ganeung-gyejwabyeol-3hoe-inae-cong-15hoe-hando",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-gaein",
+      "target": "gugminsupeojeonggiyegeum-gaein__feat__coejeo-100manweon-isang-weondanwiro-yeci",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-gaein",
+      "target": "gugminsupeojeonggiyegeum-gaein__feat__gojeonggeumrihyeong-mic-danwigigan-geumriyeondonghyeong-seontaeg-ganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "gugminsupeojeonggiyegeum-gaein",
+      "target": "gugminsupeojeonggiyegeum-gaein__feat__gaibjaga-iyul-ijajigeub-mangiil-deungeul-jigjeob-seolgye-ganeung",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20420,6 +21476,24 @@
     },
     {
       "source": "dangseontongjang",
+      "target": "channel__jijeom-bangmun",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "dangseontongjang",
+      "target": "dangseontongjang__feat__dongil-yegeumgwamog-jeonhwanganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "dangseontongjang",
+      "target": "dangseontongjang__feat__ibculgeumijayurounyegeum-botongyegeum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "dangseontongjang",
       "target": "ptype__ibculgeumijayurounyegeum-botongyegeum-dongil-yegeumgwamog-jeonhwanganeung",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -20446,6 +21520,24 @@
       "source": "dangseontongjang",
       "target": "ibculgeumtongjang",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "monimo-kb-maeilija-tongjang",
+      "target": "channel__monimo-aeb",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "monimo-kb-maeilija-tongjang",
+      "target": "monimo-kb-maeilija-tongjang__feat__bidaemyeongyejwagaeseolseo-biseu-tonghaeseoman-ganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "monimo-kb-maeilija-tongjang",
+      "target": "monimo-kb-maeilija-tongjang__feat__samseongkadeu-ju-yi-monimo-aeb-seobiseu-iyongsi-udaegeumri-mic-hyetaeg-jegong",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20530,6 +21622,18 @@
       "source": "ilbanjeonggiyegeum",
       "target": "jeonggiyegeum",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kb-young-youth-jeoggeum",
+      "target": "kb-young-youth-jeoggeum__feat__eorini-ceongsonyeon-muryo-boheomgaib-seobiseu-jegong",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-young-youth-jeoggeum",
+      "target": "kb-young-youth-jeoggeum__feat__janyeoga-seongnyeoni-doel-ddaeggaji-janggigeorae-ganeung",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20648,6 +21752,36 @@
     },
     {
       "source": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
+      "target": "channel__영업점",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
+      "target": "channel__onraingaib",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
+      "target": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig__feat__mogpyogeumaegeul-moeul-ddae",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
+      "target": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig__feat__maeweol-iljeonggeumaegeul-jeocughal-ddae",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
+      "target": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig__feat__jeongaegjeongribsig-yegeum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
       "target": "ptype__jeongaegjeongribsig-yegeum",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -20698,6 +21832,30 @@
       "source": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
       "target": "jeoggeum",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbnamanyi-jeoggeum",
+      "target": "repay__mangiilsijigeubsig-mangi-hu-haeji-ddoneun-jungdohaeji-si-ija-jigeub",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbnamanyi-jeoggeum",
+      "target": "channel__영업점",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbnamanyi-jeoggeum",
+      "target": "kbnamanyi-jeoggeum__feat__maeweol-1ilbuteo-majimagnalggaji-jayurobge-jeocug",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbnamanyi-jeoggeum",
+      "target": "kbnamanyi-jeoggeum__feat__jayujeogribsig-yegeum",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20756,6 +21914,30 @@
     },
     {
       "source": "kbnaemamdaerojeoggeum",
+      "target": "channel__onraingaib",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbnaemamdaerojeoggeum",
+      "target": "kbnaemamdaerojeoggeum__feat__singyu-si-yagjeonghan-weol-1manweon-isangyi-jeocuggeumaegeul-maeweol-yagjeonghan-naljjae-dongilhage",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbnaemamdaerojeoggeum",
+      "target": "kbnaemamdaerojeoggeum__feat__maeweol-1manweon-isang-3baegmanweon-iha-geumaegeul-jayurobge-jeocug-ganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbnaemamdaerojeoggeum",
+      "target": "kbnaemamdaerojeoggeum__feat__jeongaegjeogribsig-jayujeogribsig",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbnaemamdaerojeoggeum",
       "target": "ptype__jeongaegjeogribsig-jayujeogribsig",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -20806,6 +21988,36 @@
       "source": "kbnaemamdaerojeoggeum",
       "target": "jeoggeum",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbmalgeunhaneuljeoggeum",
+      "target": "kbsanghobugeum-jeongaegjeogribsig",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kbmalgeunhaneuljeoggeum",
+      "target": "repay__mangiilsijigeubsig",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbmalgeunhaneuljeoggeum",
+      "target": "channel__onraingaib",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbmalgeunhaneuljeoggeum",
+      "target": "kbmalgeunhaneuljeoggeum__feat__daejunggyotong-jajeongeosanghae-gwanryeon-muryo-boheomseobiseu-jegong",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbmalgeunhaneuljeoggeum",
+      "target": "kbmalgeunhaneuljeoggeum__feat__cinhwangyeong-teughwa-sangpum",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20864,6 +22076,30 @@
     },
     {
       "source": "kbsanghobugeum-jeongaegjeogribsig",
+      "target": "repay__mangiilsijigeubsig",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbsanghobugeum-jeongaegjeogribsig",
+      "target": "channel__onraingaib",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbsanghobugeum-jeongaegjeogribsig",
+      "target": "kbsanghobugeum-jeongaegjeogribsig__feat__singyu-si-yagjeonghan-jeocuggeumaegeul-maeweol-yagjeonghan-naljjae-dongilhage-jeocug",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbsanghobugeum-jeongaegjeogribsig",
+      "target": "kbsanghobugeum-jeongaegjeogribsig__feat__jeongaegjeogribsig-yegeum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbsanghobugeum-jeongaegjeogribsig",
       "target": "ptype__jeongaegjeogribsig-yegeum-singyu-si-yagjeonghan-jeocuggeumaegeul-maeweol-yagjeonghan-naljjae-dongilhage-jeocug",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -20914,6 +22150,30 @@
       "source": "kbsanghobugeum-jeongaegjeogribsig",
       "target": "jeoggeum",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbseuta-geongangjeoggeum",
+      "target": "repay__mangiilsijigeubsig-mangi-hu-haeji-ddoneun-jungdohaeji-si-ijareul-ilsie-jigeub",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbseuta-geongangjeoggeum",
+      "target": "kbseuta-geongangjeoggeum__feat__sangpumculsiilbuteo-2026nyeon6weol19ilggaji",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbseuta-geongangjeoggeum",
+      "target": "kbseuta-geongangjeoggeum__feat__seoncagsun-20manjwa",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbseuta-geongangjeoggeum",
+      "target": "kbseuta-geongangjeoggeum__feat__jayujeogribsig-yegeum",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -20972,6 +22232,36 @@
     },
     {
       "source": "kbaisarangjeoggeum",
+      "target": "kbjangbyeongnaeiljunbijeoggeum",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kbaisarangjeoggeum",
+      "target": "kbmalgeunhaneuljeoggeum",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kbaisarangjeoggeum",
+      "target": "kbsanghobugeum-jeongaegjeogribsig",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kbaisarangjeoggeum",
+      "target": "repay__mangi-hu-haeji-ddoneun-jungdohaeji-si-ijareul-han-beone-jigeub",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbaisarangjeoggeum",
+      "target": "repay__mangiilsijigeubsig",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbaisarangjeoggeum",
       "target": "ptype__jayujeogribsig-yegeum",
       "type": "HAS_TYPE",
       "value": 1.0
@@ -21022,6 +22312,42 @@
       "source": "kbaisarangjeoggeum",
       "target": "jeoggeum",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "kbjangbyeongnaeiljunbijeoggeum",
+      "target": "kbmalgeunhaneuljeoggeum",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kbjangbyeongnaeiljunbijeoggeum",
+      "target": "kbsanghobugeum-jeongaegjeogribsig",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kbjangbyeongnaeiljunbijeoggeum",
+      "target": "repay__mangiilsijigeubsig",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kbjangbyeongnaeiljunbijeoggeum",
+      "target": "kbjangbyeongnaeiljunbijeoggeum__feat__geumyunggigwan-habsan-jeocughandoneun-gogaegbyeol-weol-55manweon",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbjangbyeongnaeiljunbijeoggeum",
+      "target": "kbjangbyeongnaeiljunbijeoggeum__feat__maeweol-iljeonggeumaegeul-jeocughal-su-isseum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kbjangbyeongnaeiljunbijeoggeum",
+      "target": "kbjangbyeongnaeiljunbijeoggeum__feat__jayujeogribsig-yegeum",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -21086,6 +22412,48 @@
     },
     {
       "source": "jutaegceongyagjonghabjeocug",
+      "target": "repay__haeji-si-weongeumgwa-ija-ilgwal-jigeub",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "jutaegceongyagjonghabjeocug",
+      "target": "channel__모바일",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "jutaegceongyagjonghabjeocug",
+      "target": "channel__스타뱅킹",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "jutaegceongyagjonghabjeocug",
+      "target": "channel__영업점",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "jutaegceongyagjonghabjeocug",
+      "target": "jutaegceongyagjonghabjeocug__feat__jayujeogribsig",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "jutaegceongyagjonghabjeocug",
+      "target": "jutaegceongyagjonghabjeocug__feat__ceongyagjagyeogeul-gajcumyeon-gugminjutaeg-mic-minyeongjutaege-ceongyag-ganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "jutaegceongyagjonghabjeocug",
+      "target": "jutaegceongyagjonghabjeocug__feat__maeweol-iljeonggeumaegeul-jeocug",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "jutaegceongyagjonghabjeocug",
       "target": "jutaegceongyagjonghabjeocug__dp",
       "type": "PROTECTED_BY",
       "value": 1.0
@@ -21118,6 +22486,30 @@
       "source": "jutaegceongyagjonghabjeocug",
       "target": "ceongyag",
       "type": "BELONGS_TO",
+      "value": 1.0
+    },
+    {
+      "source": "ceongnyeon-jutaegdeurim-ceongyagtongjang",
+      "target": "channel__영업점",
+      "type": "AVAILABLE_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "ceongnyeon-jutaegdeurim-ceongyagtongjang",
+      "target": "ceongnyeon-jutaegdeurim-ceongyagtongjang__feat__udaeiyul-mic-bigwase-hyetaeg",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "ceongnyeon-jutaegdeurim-ceongyagtongjang",
+      "target": "ceongnyeon-jutaegdeurim-ceongyagtongjang__feat__ceongyagjagyeog-buyeo",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "ceongnyeon-jutaegdeurim-ceongyagtongjang",
+      "target": "ceongnyeon-jutaegdeurim-ceongyagtongjang__feat__maeweol-iljeonggeumaegeul-jeocug",
+      "type": "HAS_FEATURE",
       "value": 1.0
     },
     {
@@ -37883,6 +39275,72 @@
       "target": "sinyongdaecul",
       "type": "BELONGS_TO",
       "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kbjangbyeongnaeiljunbijeoggeum",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kbaisarangjeoggeum",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kbsanghobugeum-jeongaegjeogribsig",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kbmalgeunhaneuljeoggeum",
+      "type": "COMPETES_WITH",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "repay__mangiilsijigeubsig",
+      "type": "REPAID_VIA",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kb-teughan-jeoggeum__elig",
+      "type": "REQUIRES",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kb-teughan-jeoggeum__term__primary",
+      "type": "HAS_TERM",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kb-teughan-jeoggeum__feat__mangiil-byeongyeong-ganeung-dancug-ddoneun-yeonjang",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kb-teughan-jeoggeum__feat__maeweol-1ileseo-malilggaji-jayurobge-jeocug-ganeung",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "kb-teughan-jeoggeum__feat__jayujeogribsig-yegeum",
+      "type": "HAS_FEATURE",
+      "value": 1.0
+    },
+    {
+      "source": "kb-teughan-jeoggeum",
+      "target": "jeoggeum",
+      "type": "BELONGS_TO",
+      "value": 1.0
     }
   ],
   "metadata": {
@@ -37935,39 +39393,39 @@
       "term": "#9B59B6"
     },
     "stats": {
-      "total_nodes": 1233,
-      "total_edges": 3757,
+      "total_nodes": 1310,
+      "total_edges": 3861,
       "nodes_by_type": {
-        "category": 9,
-        "channel": 10,
+        "category": 10,
+        "channel": 16,
         "depositprotection": 28,
-        "eligibilitycondition": 161,
-        "feature": 306,
+        "eligibilitycondition": 162,
+        "feature": 364,
         "fee": 40,
         "interestrate": 16,
         "parentcategory": 2,
-        "preferentialrate": 308,
-        "product": 161,
+        "preferentialrate": 309,
+        "product": 162,
         "producttype": 11,
-        "repaymentmethod": 12,
+        "repaymentmethod": 20,
         "taxbenefit": 28,
-        "term": 141
+        "term": 142
       },
       "links_by_type": {
-        "AVAILABLE_VIA": 162,
-        "BELONGS_TO": 162,
-        "COMPETES_WITH": 2144,
-        "HAS_FEATURE": 306,
+        "AVAILABLE_VIA": 179,
+        "BELONGS_TO": 166,
+        "COMPETES_WITH": 2154,
+        "HAS_FEATURE": 364,
         "HAS_FEE": 40,
-        "HAS_PREFERENTIAL_RATE": 308,
+        "HAS_PREFERENTIAL_RATE": 309,
         "HAS_RATE": 16,
         "HAS_SUBCATEGORY": 8,
         "HAS_TAX_BENEFIT": 28,
-        "HAS_TERM": 141,
+        "HAS_TERM": 142,
         "HAS_TYPE": 18,
         "PROTECTED_BY": 28,
-        "REPAID_VIA": 235,
-        "REQUIRES": 161
+        "REPAID_VIA": 247,
+        "REQUIRES": 162
       }
     }
   }
