@@ -13,8 +13,13 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Install Python dependencies (core only — no langchain/playwright to stay under free tier limits)
-COPY pyproject.toml ./
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir \
+    "fastapi>=0.100" \
+    "uvicorn>=0.24" \
+    "neo4j>=5.0" \
+    "pydantic>=2.0" \
+    "python-dotenv>=1.0" \
+    "httpx>=0.25"
 
 # Copy application code
 COPY backend/ ./backend/
