@@ -12,9 +12,9 @@ RUN npm run build
 FROM python:3.12-slim
 WORKDIR /app
 
-# Install Python dependencies (chat extras only, exclude scrape tools)
+# Install Python dependencies (core only — no langchain/playwright to stay under free tier limits)
 COPY pyproject.toml ./
-RUN pip install --no-cache-dir ".[chat]"
+RUN pip install --no-cache-dir .
 
 # Copy application code
 COPY backend/ ./backend/

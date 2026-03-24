@@ -35,6 +35,8 @@ class Neo4jConnection:
         self._driver = GraphDatabase.driver(
             self._uri,
             auth=(self._user, self._password),
+            connection_timeout=5,
+            connection_acquisition_timeout=10,
         )
 
     # -- context manager ----------------------------------------------------

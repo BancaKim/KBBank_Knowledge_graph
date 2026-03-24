@@ -11,11 +11,13 @@ from fastapi.responses import FileResponse
 
 from backend.routers import graph, products, search, chat
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    logger.info("Starting Banking Bot API...")
     # Startup: try to initialize Neo4j connection (graceful fallback if unavailable)
     try:
         from knowledge_graph.db import Neo4jConnection
