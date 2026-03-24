@@ -56,6 +56,9 @@ export interface Product {
   amount_max_won: number | null;
   eligibility_summary: string;
   page_url: string;
+  category?: string;
+  rate_min?: number | null;
+  rate_max?: number | null;
 }
 
 export interface Category {

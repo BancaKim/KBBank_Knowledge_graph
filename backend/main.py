@@ -1,9 +1,13 @@
 import logging
+import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 from backend.routers import graph, products, search, chat
 
@@ -35,9 +39,17 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+cors_origins = [
+    "http://localhost:5173",
+    "http://localhost:8000",
+]
+render_url = os.environ.get("RENDER_EXTERNAL_URL")
+if render_url:
+    cors_origins.append(render_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "X-OpenAI-Key"],
@@ -60,6 +72,21 @@ async def health():
         return {"status": "ok", "mode": "neo4j", "neo4j": True}
     except Exception:
         raise HTTPException(status_code=503, detail="Database unavailable")
+
+
+# --- Static frontend serving (production) ---
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+
+if FRONTEND_DIR.is_dir():
+    app.mount("/assets", StaticFiles(directory=FRONTEND_DIR / "assets"), name="static-assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_spa(full_path: str):
+        """Serve frontend SPA — any non-API route returns index.html."""
+        file_path = FRONTEND_DIR / full_path
+        if file_path.is_file():
+            return FileResponse(file_path)
+        return FileResponse(FRONTEND_DIR / "index.html")
 
 
 def run():
