@@ -128,51 +128,39 @@ erDiagram
 
 ### 14개 관계 타입
 
+| 분류 | 관계 | 시작 노드 | 끝 노드 | 설명 |
+|------|------|----------|---------|------|
+| **카테고리** | `BELONGS_TO` | Product | Category | 상품이 속한 카테고리 |
+| | `HAS_SUBCATEGORY` | ParentCategory | Category | 상위→하위 카테고리 |
+| **금리/기간** | `HAS_RATE` | Product | InterestRate | 기본 금리 |
+| | `HAS_PREFERENTIAL_RATE` | Product | PreferentialRate | 우대금리 조건 |
+| | `HAS_TERM` | Product | Term | 가입/대출 기간 |
+| **상품 정보** | `HAS_FEATURE` | Product | Feature | 상품 특징 |
+| | `HAS_FEE` | Product | Fee | 수수료 |
+| | `HAS_TYPE` | Product | ProductType | 상품 유형 |
+| **조건/보호** | `REQUIRES` | Product | EligibilityCondition | 가입 자격 조건 |
+| | `HAS_TAX_BENEFIT` | Product | TaxBenefit | 세제 혜택 |
+| | `PROTECTED_BY` | Product | DepositProtection | 예금자 보호 |
+| **이용 방법** | `AVAILABLE_VIA` | Product | Channel | 가입 가능 채널 |
+| | `REPAID_VIA` | Product | RepaymentMethod | 상환 방법 |
+| **추론** | `COMPETES_WITH` | Product | Product | 같은 카테고리 경쟁 상품 |
+
 ```mermaid
-graph TD
-    subgraph 카테고리 계층
-        PC[ParentCategory] -->|HAS_SUBCATEGORY| C[Category]
-        P[Product] -->|BELONGS_TO| C
-    end
-
-    subgraph 상품 속성
-        P -->|HAS_RATE| IR[InterestRate]
-        P -->|HAS_PREFERENTIAL_RATE| PR[PreferentialRate]
-        P -->|HAS_TERM| T[Term]
-        P -->|HAS_FEATURE| F[Feature]
-        P -->|HAS_FEE| FE[Fee]
-        P -->|HAS_TYPE| PT[ProductType]
-    end
-
-    subgraph 조건/보호
-        P -->|REQUIRES| EC[EligibilityCondition]
-        P -->|HAS_TAX_BENEFIT| TB[TaxBenefit]
-        P -->|PROTECTED_BY| DP[DepositProtection]
-    end
-
-    subgraph 이용 방법
-        P -->|AVAILABLE_VIA| CH[Channel]
-        P -->|REPAID_VIA| RM[RepaymentMethod]
-    end
-
-    subgraph 추론 관계
-        P -.->|COMPETES_WITH| P2[Product]
-    end
-
-    style PC fill:#E65100,color:#fff
-    style C fill:#F5A623,color:#000
-    style P fill:#4A90D9,color:#fff
-    style IR fill:#D0021B,color:#fff
-    style PR fill:#E74C3C,color:#fff
-    style T fill:#9B59B6,color:#fff
-    style F fill:#7ED321,color:#000
-    style FE fill:#8E44AD,color:#fff
-    style EC fill:#95A5A6,color:#000
-    style TB fill:#27AE60,color:#fff
-    style DP fill:#2980B9,color:#fff
-    style CH fill:#1ABC9C,color:#fff
-    style RM fill:#E67E22,color:#fff
-    style PT fill:#16A085,color:#fff
+graph LR
+    PC["🏦 ParentCategory"] -->|HAS_SUBCATEGORY| C["📁 Category"]
+    P["📦 Product"] -->|BELONGS_TO| C
+    P -->|HAS_RATE| IR["💰 InterestRate"]
+    P -->|HAS_PREFERENTIAL_RATE| PR["⭐ PreferentialRate"]
+    P -->|HAS_TERM| T["📅 Term"]
+    P -->|HAS_FEATURE| F["✨ Feature"]
+    P -->|HAS_FEE| FE["💳 Fee"]
+    P -->|HAS_TYPE| PT["🏷️ ProductType"]
+    P -->|REQUIRES| EC["👤 Eligibility"]
+    P -->|HAS_TAX_BENEFIT| TB["🏛️ TaxBenefit"]
+    P -->|PROTECTED_BY| DP["🛡️ Protection"]
+    P -->|AVAILABLE_VIA| CH["📱 Channel"]
+    P -->|REPAID_VIA| RM["💸 Repayment"]
+    P -.->|COMPETES_WITH| P2["📦 Product"]
 ```
 
 ### 카테고리 계층 구조
