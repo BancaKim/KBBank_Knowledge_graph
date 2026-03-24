@@ -3836,13 +3836,12 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000214",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:37:15",
         "name": "국민수퍼정기예금 (CD금리연동형)",
-        "description": "매 3개월마다 CD수익률에 따라 금리가 변경 적용되어 금리상승기에 유리한 정기예금 (예금자 보호 대상)",
-        "eligibility_summary": "",
+        "description": "",
+        "eligibility_summary": "제한없음",
         "category": "정기예금",
         "size": 8.333333333333334
       }
@@ -3860,12 +3859,12 @@
     },
     {
       "id": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong__term__primary",
-      "label": "6개월,1년,2년,3년",
+      "label": "6개월, 1년, 2년, 3년",
       "type": "term",
       "group": 5,
       "data": {
-        "raw_text": "6개월,1년,2년,3년",
-        "name": "6개월,1년,2년,3년",
+        "raw_text": "6개월, 1년, 2년, 3년",
+        "name": "6개월, 1년, 2년, 3년",
         "min_months": 6,
         "max_months": 36,
         "size": 5.277777777777778
@@ -3885,27 +3884,26 @@
     },
     {
       "id": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong__tax",
-      "label": "비과세종합저축 가능",
+      "label": "일반과세 불가",
       "type": "taxbenefit",
       "group": 9,
       "data": {
-        "eligible": true,
-        "name": "비과세종합저축 가능",
-        "description": "비과세종합저축으로 가입 가능\n ※ 관련 세법이 개정될 경우 세율이 변경되거나 세금이 부과될 수 있음 \n ※ 계약기간 만료일 이후의 이자는 과세됨",
-        "type": "비과세종합저축",
+        "eligible": false,
+        "name": "일반과세 불가",
+        "description": "단, 관련 세법 개정 시 세율이 변경되거나 세금이 부과될 수 있음. 계약기간 만료일 이후의 이자는 과세됨.",
+        "type": "일반과세",
         "size": 5.277777777777778
       }
     },
     {
       "id": "gugminsupeojeonggiyegeum-cdgeumriyeondonghyeong__dp",
-      "label": "예금자보호 1억원",
+      "label": "예금자보호 해당",
       "type": "depositprotection",
       "group": 10,
       "data": {
         "protected": true,
-        "max_amount_won": 100000000,
-        "name": "예금자보호 1억원",
-        "description": "예금보험공사 보호금융상품 1인당 최고 1억원 \n\n이 예금은 예금자보호법에 따라 원금과 소정의 이자를 합하여 1인당 “1억원까지”(본 은행의 여타 보호상품과 합산) 보호됩니다.\n\n\n준법감시인 심의필 제2025-4024-2호(2025.09.25)\n본 공시내용의 유효기간 : 2025.10.01~2027.08.31까지",
+        "name": "예금자보호 해당",
+        "description": "예금자 보호 대상",
         "size": 5.277777777777778
       }
     },
@@ -3915,14 +3913,13 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000029",
+        "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:36:58",
         "name": "국민수퍼정기예금(개인)",
-        "description": "가입자가 이율, 이자지급, 만기일 등을 직접 설계하여 저축할 수 있는 다기능 맞춤식 정기예금입니다.",
+        "description": "",
         "category": "정기예금",
-        "eligibility_summary": "",
+        "eligibility_summary": "제한없음(단, 무기명으로는 가입하실 수 없습니다.)",
         "size": 9.166666666666666
       }
     },
@@ -4471,14 +4468,13 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000428",
+        "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "scraped_at": "2026-03-23T13:38:46",
         "name": "KB국민프리미엄적금 (정액적립식)",
-        "description": "단체가입고객 또는 병역명문가 등에게 우대금리를 제공하는 적립식 상품",
+        "description": "",
         "category": "적금",
-        "eligibility_summary": "",
+        "eligibility_summary": "실명의 개인 (KB국민프리미엄적금(자유적립식) 포함 1인 1계좌)",
         "size": 8.88888888888889
       }
     },
@@ -4528,7 +4524,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "실명의 개인 (KB국민프리미엄적금(자유적립식) 포함 1인 1계좌))",
+        "description": "실명의 개인 (KB국민프리미엄적금(자유적립식) 포함 1인 1계좌)",
         "size": 5.277777777777778
       }
     },
@@ -4870,13 +4866,12 @@
       "type": "product",
       "group": 0,
       "data": {
-        "page_url": "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000038",
+        "page_url": "",
         "amount_max_raw": "",
         "product_type": "savings",
-        "scraped_at": "2026-03-23T13:38:38",
         "name": "KB상호부금(정액적립식)",
-        "description": "목돈을 마련하는 국민은행의 대표 적립식예금",
-        "eligibility_summary": "",
+        "description": "",
+        "eligibility_summary": "제한없음",
         "category": "적금",
         "size": 9.722222222222221
       }
