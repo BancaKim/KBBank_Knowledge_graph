@@ -1,0 +1,236 @@
+import { NODE_COLORS } from "../types/graph";
+
+const CATEGORY_GROUPS = [
+  {
+    parent: "예금",
+    children: ["정기예금", "적금", "입출금통장", "청약"],
+  },
+  {
+    parent: "대출",
+    children: ["신용대출", "담보대출", "전월세대출", "자동차대출"],
+  },
+];
+
+const ALL_SUBCATEGORIES = CATEGORY_GROUPS.flatMap((g) => g.children);
+
+const NODE_TYPES = [
+  { key: "product", label: "상품" },
+  { key: "category", label: "카테고리" },
+  { key: "parentcategory", label: "상위카테고리" },
+  { key: "feature", label: "특징" },
+  { key: "interestrate", label: "금리" },
+  { key: "term", label: "기간" },
+  { key: "channel", label: "채널" },
+  { key: "eligibilitycondition", label: "가입조건" },
+  { key: "repaymentmethod", label: "상환방법" },
+  { key: "taxbenefit", label: "세제혜택" },
+  { key: "depositprotection", label: "예금자보호" },
+  { key: "preferentialrate", label: "우대금리" },
+  { key: "fee", label: "수수료" },
+  { key: "producttype", label: "상품유형" },
+];
+
+interface Props {
+  selectedCategories: Set<string>;
+  onCategoryChange: (categories: Set<string>) => void;
+  selectedNodeTypes: Set<string>;
+  onNodeTypeChange: (types: Set<string>) => void;
+  categoryCounts?: Record<string, number>;
+}
+
+export default function CategoryFilter({
+  selectedCategories,
+  onCategoryChange,
+  selectedNodeTypes,
+  onNodeTypeChange,
+  categoryCounts = {},
+}: Props) {
+  const toggleCategory = (cat: string) => {
+    const next = new Set(selectedCategories);
+    if (next.has(cat)) next.delete(cat);
+    else next.add(cat);
+    onCategoryChange(next);
+  };
+
+  const toggleGroup = (children: string[]) => {
+    const next = new Set(selectedCategories);
+    const allSelected = children.every((c) => next.has(c));
+    if (allSelected) {
+      children.forEach((c) => next.delete(c));
+    } else {
+      children.forEach((c) => next.add(c));
+    }
+    onCategoryChange(next);
+  };
+
+  const isGroupChecked = (children: string[]) =>
+    children.every((c) => selectedCategories.has(c));
+
+  const isGroupIndeterminate = (children: string[]) =>
+    children.some((c) => selectedCategories.has(c)) && !isGroupChecked(children);
+
+  const groupCount = (children: string[]) =>
+    children.reduce((sum, c) => sum + (categoryCounts[c] || 0), 0);
+
+  const toggleNodeType = (type: string) => {
+    const next = new Set(selectedNodeTypes);
+    if (next.has(type)) next.delete(type);
+    else next.add(type);
+    onNodeTypeChange(next);
+  };
+
+  const selectAll = () => onCategoryChange(new Set(ALL_SUBCATEGORIES));
+  const clearAll = () => onCategoryChange(new Set());
+
+  return (
+    <div style={{ padding: "0 4px" }}>
+      <h3 style={{ color: "#ccc", fontSize: 14, marginBottom: 8, marginTop: 0 }}>
+        카테고리
+      </h3>
+      <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
+        <button onClick={selectAll} style={btnStyle}>
+          전체 선택
+        </button>
+        <button onClick={clearAll} style={btnStyle}>
+          초기화
+        </button>
+      </div>
+
+      {CATEGORY_GROUPS.map(({ parent, children }) => (
+        <div key={parent} style={{ marginBottom: 8 }}>
+          {/* Parent group header */}
+          <label
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "6px 0",
+              cursor: "pointer",
+              color: "#fff",
+              fontSize: 14,
+              fontWeight: "bold",
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={isGroupChecked(children)}
+              ref={(el) => {
+                if (el) el.indeterminate = isGroupIndeterminate(children);
+              }}
+              onChange={() => toggleGroup(children)}
+              style={{ accentColor: NODE_COLORS.category }}
+            />
+            <span
+              style={{
+                width: 12,
+                height: 12,
+                borderRadius: "50%",
+                background: NODE_COLORS.category,
+                display: "inline-block",
+              }}
+            />
+            <span>{parent}</span>
+            <span
+              style={{
+                marginLeft: "auto",
+                background: "#444",
+                borderRadius: 10,
+                padding: "1px 8px",
+                fontSize: 11,
+                color: "#aaa",
+                fontWeight: "normal",
+              }}
+            >
+              {groupCount(children)}
+            </span>
+          </label>
+
+          {/* Child subcategories */}
+          <div style={{ paddingLeft: 24 }}>
+            {children.map((cat) => (
+              <label
+                key={cat}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "4px 0",
+                  cursor: "pointer",
+                  color: "#ccc",
+                  fontSize: 13,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.has(cat)}
+                  onChange={() => toggleCategory(cat)}
+                  style={{ accentColor: NODE_COLORS.product }}
+                />
+                <span>{cat}</span>
+                {categoryCounts[cat] != null && (
+                  <span
+                    style={{
+                      marginLeft: "auto",
+                      background: "#333",
+                      borderRadius: 10,
+                      padding: "1px 8px",
+                      fontSize: 11,
+                      color: "#999",
+                    }}
+                  >
+                    {categoryCounts[cat]}
+                  </span>
+                )}
+              </label>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <h3 style={{ color: "#ccc", fontSize: 14, marginBottom: 8, marginTop: 20 }}>
+        노드 타입
+      </h3>
+      {NODE_TYPES.map(({ key, label }) => (
+        <label
+          key={key}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "5px 0",
+            cursor: "pointer",
+            color: "#ddd",
+            fontSize: 13,
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={selectedNodeTypes.has(key)}
+            onChange={() => toggleNodeType(key)}
+            style={{ accentColor: NODE_COLORS[key] || "#999" }}
+          />
+          <span
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              background: NODE_COLORS[key] || "#999",
+              display: "inline-block",
+            }}
+          />
+          <span>{label}</span>
+        </label>
+      ))}
+    </div>
+  );
+}
+
+const btnStyle: React.CSSProperties = {
+  padding: "4px 10px",
+  fontSize: 11,
+  border: "1px solid #555",
+  borderRadius: 4,
+  background: "#2a2a3e",
+  color: "#ccc",
+  cursor: "pointer",
+};

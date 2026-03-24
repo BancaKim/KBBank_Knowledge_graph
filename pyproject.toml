@@ -1,0 +1,28 @@
+[project]
+name = "banking-bot"
+version = "0.1.0"
+description = "KB Star Bank 금융상품 지식그래프"
+requires-python = ">=3.11"
+dependencies = [
+    "playwright>=1.40",
+    "fastapi>=0.100",
+    "uvicorn>=0.24",
+    "neo4j>=5.0",
+    "pydantic>=2.0",
+    "python-frontmatter>=1.0",
+    "python-slugify>=8.0",
+    "pyyaml>=6.0",
+    "httpx>=0.25",
+    "langchain>=0.3",
+    "langchain-openai>=0.3",
+    "langchain-community>=0.3",
+    "langchain-neo4j>=0.3",
+    "python-dotenv>=1.0",
+    "langgraph>=0.4",
+    "PyMuPDF>=1.24",
+]
+
+[project.scripts]
+scrape = "scraper.run_scraper:main"
+build-graph = "knowledge_graph.builder:main"
+serve = "backend.main:run"
