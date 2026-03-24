@@ -12,14 +12,9 @@ RUN npm run build
 FROM python:3.12-slim
 WORKDIR /app
 
-# Install Python dependencies (core only — no langchain/playwright to stay under free tier limits)
-RUN pip install --no-cache-dir \
-    "fastapi>=0.100" \
-    "uvicorn>=0.24" \
-    "neo4j>=5.0" \
-    "pydantic>=2.0" \
-    "python-dotenv>=1.0" \
-    "httpx>=0.25"
+# Install Python dependencies (chat included for full chatbot support)
+COPY pyproject.toml ./
+RUN pip install --no-cache-dir ".[chat]"
 
 # Copy application code
 COPY backend/ ./backend/

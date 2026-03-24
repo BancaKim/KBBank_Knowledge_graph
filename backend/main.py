@@ -45,9 +45,10 @@ cors_origins = [
     "http://localhost:5173",
     "http://localhost:8000",
 ]
-render_url = os.environ.get("RENDER_EXTERNAL_URL")
-if render_url:
-    cors_origins.append(render_url)
+# Support external deployment URLs (Render, Oracle Cloud, etc.)
+external_url = os.environ.get("RENDER_EXTERNAL_URL") or os.environ.get("EXTERNAL_URL")
+if external_url:
+    cors_origins.append(external_url)
 
 app.add_middleware(
     CORSMiddleware,
