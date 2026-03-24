@@ -1,6 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { API_BASE } from "../config";
 
+const genId = (): string =>
+  typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+    ? genId()
+    : `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
+
 const API_KEY_STORAGE_KEY = "openai_api_key";
 
 interface ChatMessage {
@@ -17,7 +22,7 @@ interface Props {
 export default function ChatPanel({ onHighlightNodes }: Props) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-      id: crypto.randomUUID(),
+      id: genId(),
       role: "assistant",
       content:
         "안녕하세요! KB국민은행 금융상품 상담 챗봇입니다. 예금, 적금, 대출 등 금융상품에 대해 궁금한 점을 물어보세요.",
@@ -78,14 +83,14 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
     if (!apiKey) {
       setMessages((prev) => [
         ...prev,
-        { id: crypto.randomUUID(), role: "user" as const, content: text },
-        { id: crypto.randomUUID(), role: "assistant" as const, content: "챗봇을 사용하려면 OpenAI API 키를 입력해주세요." },
+        { id: genId(), role: "user" as const, content: text },
+        { id: genId(), role: "assistant" as const, content: "챗봇을 사용하려면 OpenAI API 키를 입력해주세요." },
       ]);
       setInput("");
       return;
     }
 
-    const userMsg: ChatMessage = { id: crypto.randomUUID(), role: "user", content: text };
+    const userMsg: ChatMessage = { id: genId(), role: "user", content: text };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setLoading(true);
@@ -116,7 +121,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
 
       const data = await res.json();
       const assistantMsg: ChatMessage = {
-        id: crypto.randomUUID(),
+        id: genId(),
         role: "assistant",
         content: data.answer,
         referencedNodes: data.referenced_nodes || [],
@@ -133,7 +138,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
       setMessages((prev) => [
         ...prev,
         {
-          id: crypto.randomUUID(),
+          id: genId(),
           role: "assistant" as const,
           content: `오류가 발생했습니다: ${err instanceof Error ? err.message : "알 수 없는 오류"}`,
         },
