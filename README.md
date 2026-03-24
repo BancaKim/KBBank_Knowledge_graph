@@ -90,21 +90,64 @@ source: 'PDF: KB-Star-정기예금.pdf'
 ### 엔티티-관계 모델
 
 ```mermaid
-erDiagram
-    Product ||--o{ Feature : HAS_FEATURE
-    Product ||--o{ InterestRate : HAS_RATE
-    Product ||--o{ PreferentialRate : HAS_PREFERENTIAL_RATE
-    Product ||--o{ Term : HAS_TERM
-    Product ||--o{ Fee : HAS_FEE
-    Product ||--|| EligibilityCondition : REQUIRES
-    Product ||--o{ Channel : AVAILABLE_VIA
-    Product ||--o{ RepaymentMethod : REPAID_VIA
-    Product ||--o| TaxBenefit : HAS_TAX_BENEFIT
-    Product ||--o| DepositProtection : PROTECTED_BY
-    Product ||--o| ProductType : HAS_TYPE
-    Product }o--|| Category : BELONGS_TO
-    Category }o--|| ParentCategory : HAS_SUBCATEGORY
-    Product }o--o{ Product : COMPETES_WITH
+graph TB
+    PC["🏦 ParentCategory\n<i>예금 · 대출</i>"]
+    C["📁 Category\n<i>정기예금 · 신용대출 등 9개</i>"]
+    P["📦 Product\n<i>162개 금융상품</i>"]
+
+    PC -->|HAS_SUBCATEGORY| C
+    P -->|BELONGS_TO| C
+
+    subgraph " 💰 금리 · 기간"
+        IR["InterestRate\n<i>기본금리 16개</i>"]
+        PR["PreferentialRate\n<i>우대금리 308개</i>"]
+        T["Term\n<i>가입기간 141개</i>"]
+    end
+
+    subgraph " ✨ 상품 정보"
+        F["Feature\n<i>특징 306개</i>"]
+        FE["Fee\n<i>수수료 40개</i>"]
+        PT["ProductType\n<i>상품유형 11개</i>"]
+    end
+
+    subgraph " 🛡️ 조건 · 보호"
+        EC["EligibilityCondition\n<i>가입자격 161개</i>"]
+        TB["TaxBenefit\n<i>세제혜택 28개</i>"]
+        DP["DepositProtection\n<i>예금자보호 28개</i>"]
+    end
+
+    subgraph " 📱 이용 방법"
+        CH["Channel\n<i>채널 10개</i>"]
+        RM["RepaymentMethod\n<i>상환 12개</i>"]
+    end
+
+    P -->|HAS_RATE| IR
+    P -->|HAS_PREFERENTIAL_RATE| PR
+    P -->|HAS_TERM| T
+    P -->|HAS_FEATURE| F
+    P -->|HAS_FEE| FE
+    P -->|HAS_TYPE| PT
+    P -->|REQUIRES| EC
+    P -->|HAS_TAX_BENEFIT| TB
+    P -->|PROTECTED_BY| DP
+    P -->|AVAILABLE_VIA| CH
+    P -->|REPAID_VIA| RM
+    P -.->|COMPETES_WITH| P
+
+    style PC fill:#E65100,color:#fff,stroke:#E65100
+    style C fill:#F5A623,color:#000,stroke:#F5A623
+    style P fill:#4A90D9,color:#fff,stroke:#4A90D9,stroke-width:3px
+    style IR fill:#D0021B,color:#fff,stroke:#D0021B
+    style PR fill:#E74C3C,color:#fff,stroke:#E74C3C
+    style T fill:#9B59B6,color:#fff,stroke:#9B59B6
+    style F fill:#7ED321,color:#000,stroke:#7ED321
+    style FE fill:#8E44AD,color:#fff,stroke:#8E44AD
+    style PT fill:#16A085,color:#fff,stroke:#16A085
+    style EC fill:#95A5A6,color:#000,stroke:#95A5A6
+    style TB fill:#27AE60,color:#fff,stroke:#27AE60
+    style DP fill:#2980B9,color:#fff,stroke:#2980B9
+    style CH fill:#1ABC9C,color:#fff,stroke:#1ABC9C
+    style RM fill:#E67E22,color:#fff,stroke:#E67E22
 ```
 
 ### 14개 엔티티 타입
