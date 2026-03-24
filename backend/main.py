@@ -40,7 +40,7 @@ app.add_middleware(
     allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type"],
+    allow_headers=["Content-Type", "X-OpenAI-Key"],
 )
 
 app.include_router(graph.router)
