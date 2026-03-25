@@ -33,3 +33,4 @@ rag_storage/
 !frontend/public/**/*.png
 !docs/**/*.png
 print-popup.png
+docs/

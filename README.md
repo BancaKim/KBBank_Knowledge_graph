@@ -1,7 +1,5 @@
 # KB국민은행 금융상품 지식그래프
 
-![메인 화면](docs/mainPage.png)
-
 > **[Live Demo](https://kb-kg.duckdns.org/)** — 브라우저에서 바로 지식그래프를 탐색해보세요.
 
 KB국민은행 공식 웹사이트([obank.kbstar.com](https://obank.kbstar.com))에 **공개된 금융상품 정보**를 수집하여 **Neo4j 지식그래프**로 구축한 프로젝트입니다. LLM 기반 엔티티 추출로 162개 금융상품을 구조화하고, D3.js 시각화와 GraphRAG 챗봇을 제공합니다.
@@ -154,23 +152,6 @@ graph TB
     style LR fill:#D0021B,color:#fff
     style LPR fill:#E74C3C,color:#fff
 ```
-
-### Legacy 온톨로지 매핑
-
-LLM 추출 스키마는 Legacy 온톨로지의 24개 엔티티를 100% 커버합니다.
-
-| Legacy 엔티티 | 추출 스키마 필드 |
-|---|---|
-| 예금 (적립식/거치식/요구불) | `deposit_subclass` |
-| 예금이율 (거주자유형/적립방법유형/개인기업구분/기간구간) | `ExtractedDepositRate` (10개 필드) |
-| 금액 (최소/최대/증가/단위/통화) | `ExtractedAmount` |
-| 기간 (최소/최대/단위) | `ExtractedTerm` |
-| 대출 (가계/기업/기금) | `loan_subclass` |
-| 대출금리 (기준금리유형/기준금리/가산금리/우대금리/최저/최고) | `ExtractedLoanRate` (8개 필드) |
-| 연체금리 | `ExtractedPenaltyRate` |
-| 기한연장 | `ExtractedTermExtension` |
-| 통장자동대출 | `ExtractedOverdraft` |
-| 중도상환수수료 | `ExtractedLoanFee` |
 
 ---
 
