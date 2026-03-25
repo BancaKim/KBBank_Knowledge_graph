@@ -19,6 +19,7 @@ chat = [
     "langchain-community>=0.3",
     "langchain-neo4j>=0.3",
     "langgraph>=0.4",
+    "deepagents>=0.4",
 ]
 scrape = [
     "playwright>=1.40",
