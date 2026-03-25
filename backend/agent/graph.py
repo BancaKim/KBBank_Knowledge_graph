@@ -31,22 +31,8 @@ from backend.agent.prompts import (
     MAIN_SYSTEM_PROMPT,
 )
 
-
-# ---------------------------------------------------------------------------
-# Skill loading — inject domain knowledge into sub-agent prompts
-# ---------------------------------------------------------------------------
-
-_REGULATION_SKILL_PATH = (
-    Path(__file__).resolve().parent.parent.parent
-    / "skills" / "financial-regulations" / "references" / "loan-regulations.md"
-)
-
-
-def _load_regulation_skill() -> str:
-    """Load financial regulation skill content for loan expert."""
-    if _REGULATION_SKILL_PATH.exists():
-        return _REGULATION_SKILL_PATH.read_text(encoding="utf-8")
-    return ""
+# Skills directory (contains SKILL.md + references/)
+_SKILLS_DIR = Path(__file__).resolve().parent.parent.parent / "skills"
 
 
 # ---------------------------------------------------------------------------
@@ -201,7 +187,7 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 "상환방법, 담보, 중도상환수수료, 소비자 3대 권리를 안내합니다. "
                 "LTV, DSR, 대출한도, 생애최초 등 규제 관련 질문도 답변합니다."
             ),
-            "system_prompt": LOAN_EXPERT_PROMPT + "\n\n" + _load_regulation_skill(),
+            "system_prompt": LOAN_EXPERT_PROMPT,
             "tools": [
                 tools["search_loan_products"],
                 tools["get_loan_product_detail"],
@@ -241,6 +227,13 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
         },
     ]
 
+    # SkillsMiddleware — LLM loads skills on-demand (token efficient)
+    from deepagents.backends import FilesystemBackend
+    from deepagents.middleware.skills import SkillsMiddleware
+
+    skills_backend = FilesystemBackend(root_dir=str(_SKILLS_DIR.parent))
+    skills_sources = [str(_SKILLS_DIR)]
+
     # Create main agent — no direct tools, MUST delegate to sub-agents
     agent = create_agent(
         model=llm,
@@ -250,6 +243,10 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
             SubAgentMiddleware(
                 default_model=llm,
                 subagents=subagents,
+            ),
+            SkillsMiddleware(
+                backend=skills_backend,
+                sources=skills_sources,
             ),
         ],
         name="kb_banking_agent",
