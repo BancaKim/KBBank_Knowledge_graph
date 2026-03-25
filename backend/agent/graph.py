@@ -39,11 +39,11 @@ _SKILLS_DIR = Path(__file__).resolve().parent.parent.parent / "skills"
 # Tool factory — create tools with db pre-bound via closure
 # ---------------------------------------------------------------------------
 
-def _make_tools(db: Any) -> dict[str, Any]:
+def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
     """Create all tools with Neo4j db connection pre-bound.
 
-    Wrapper tools capture `db` from closure so the LLM only sees
-    the user-facing parameters (query, name, etc).
+    Wrapper tools capture `db` (and optionally `llm`) from closure
+    so the LLM only sees the user-facing parameters.
     """
     # Import raw tool modules
     from backend.agent.skills import (
@@ -53,6 +53,7 @@ def _make_tools(db: Any) -> dict[str, Any]:
         rate_calculator,
         eligibility_check,
         dsr_calculator,
+        cypher_rag,
     )
     from backend.agent.skills import loan_search
 
@@ -172,6 +173,13 @@ def _make_tools(db: Any) -> dict[str, Any]:
             "existing_loans": existing_loans,
         })
 
+    # --- Agentic GraphRAG (LLM → Cypher, db-bound + llm-bound) ---
+
+    @tool
+    def query_knowledge_graph(question: str) -> str:
+        """자연어 질문을 Cypher 쿼리로 변환하여 지식그래프를 검색합니다. 복합 조건, 관계 탐색, 집계/비교/정렬 등 기존 검색 도구로 처리 어려운 질문에 사용합니다."""
+        return cypher_rag.query_knowledge_graph.invoke({"question": question, "db": db, "llm": llm})
+
     return {
         # Deposit tools
         "search_products": search_products,
@@ -189,6 +197,8 @@ def _make_tools(db: Any) -> dict[str, Any]:
         # DSR tools
         "calculate_dsr": calculate_dsr,
         "calculate_max_mortgage_by_dsr": calculate_max_mortgage_by_dsr,
+        # Agentic GraphRAG
+        "query_knowledge_graph": query_knowledge_graph,
     }
 
 
@@ -212,8 +222,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
     resolved_key = api_key or os.environ.get("OPENAI_API_KEY")
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=resolved_key)
 
-    # Create tools with db pre-bound
-    tools = _make_tools(db)
+    # Create tools with db + llm pre-bound
+    tools = _make_tools(db, llm)
 
     # Define sub-agents with specialized tools and prompts
     subagents = [
@@ -231,6 +241,7 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 tools["list_products_by_category"],
                 tools["check_eligibility"],
                 tools["calculate_deposit_maturity"],
+                tools["query_knowledge_graph"],
             ],
         },
         {
@@ -252,6 +263,7 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 tools["calculate_loan_payment"],
                 tools["calculate_dsr"],
                 tools["calculate_max_mortgage_by_dsr"],
+                tools["query_knowledge_graph"],
             ],
         },
         {
@@ -284,6 +296,7 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 tools["get_loan_product_detail"],
                 tools["compare_products"],
                 tools["list_products_by_category"],
+                tools["query_knowledge_graph"],
             ],
         },
     ]
