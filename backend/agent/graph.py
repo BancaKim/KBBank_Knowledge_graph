@@ -52,6 +52,7 @@ def _make_tools(db: Any) -> dict[str, Any]:
         product_compare,
         rate_calculator,
         eligibility_check,
+        dsr_calculator,
     )
     from backend.agent.skills import loan_search
 
@@ -121,6 +122,52 @@ def _make_tools(db: Any) -> dict[str, Any]:
             "principal": principal, "annual_rate": annual_rate, "months": months, "tax_type": tax_type,
         })
 
+    # --- DSR calculation tools (no db needed) ---
+
+    @tool
+    def calculate_dsr(
+        annual_income: float,
+        new_loan_amount: float,
+        new_loan_rate: float,
+        new_loan_months: int,
+        new_loan_method: str = "원리금균등",
+        region: str = "수도권",
+        sector: str = "은행",
+        existing_loans: str = "",
+    ) -> str:
+        """DSR(총부채원리금상환비율)을 계산합니다. 스트레스 DSR 가산금리를 반영하여 규제 충족 여부를 판단합니다."""
+        return dsr_calculator.calculate_dsr.invoke({
+            "annual_income": annual_income,
+            "new_loan_amount": new_loan_amount,
+            "new_loan_rate": new_loan_rate,
+            "new_loan_months": new_loan_months,
+            "new_loan_method": new_loan_method,
+            "region": region,
+            "sector": sector,
+            "existing_loans": existing_loans,
+        })
+
+    @tool
+    def calculate_max_mortgage_by_dsr(
+        annual_income: float,
+        loan_rate: float,
+        loan_months: int,
+        loan_method: str = "원리금균등",
+        region: str = "수도권",
+        sector: str = "은행",
+        existing_loans: str = "",
+    ) -> str:
+        """DSR 한도 내 최대 주택담보대출 가능액을 계산합니다. 상환방식별·기간별 비교표도 제공합니다."""
+        return dsr_calculator.calculate_max_mortgage_by_dsr.invoke({
+            "annual_income": annual_income,
+            "loan_rate": loan_rate,
+            "loan_months": loan_months,
+            "loan_method": loan_method,
+            "region": region,
+            "sector": sector,
+            "existing_loans": existing_loans,
+        })
+
     return {
         # Deposit tools
         "search_products": search_products,
@@ -135,6 +182,9 @@ def _make_tools(db: Any) -> dict[str, Any]:
         # Shared tools
         "compare_products": compare_products,
         "calculate_loan_payment": calculate_loan_payment,
+        # DSR tools
+        "calculate_dsr": calculate_dsr,
+        "calculate_max_mortgage_by_dsr": calculate_max_mortgage_by_dsr,
     }
 
 
@@ -194,6 +244,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 tools["get_loan_rates"],
                 tools["list_products_by_category"],
                 tools["check_eligibility"],
+                tools["calculate_dsr"],
+                tools["calculate_max_mortgage_by_dsr"],
             ],
         },
         {
@@ -207,6 +259,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
             "tools": [
                 tools["calculate_loan_payment"],
                 tools["calculate_deposit_maturity"],
+                tools["calculate_dsr"],
+                tools["calculate_max_mortgage_by_dsr"],
             ],
         },
         {
