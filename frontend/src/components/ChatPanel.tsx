@@ -13,6 +13,7 @@ interface ChatMessage {
   role: "user" | "assistant";
   content: string;
   referencedNodes?: Array<{ id: string; type: string; name: string }>;
+  elapsedSeconds?: number;
 }
 
 interface Props {
@@ -125,6 +126,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
         role: "assistant",
         content: data.answer,
         referencedNodes: data.referenced_nodes || [],
+        elapsedSeconds: data.elapsed_seconds,
       };
       setMessages((prev) => [...prev, assistantMsg]);
 
@@ -359,6 +361,18 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
               >
                 {msg.content}
               </div>
+              {msg.role === "assistant" && msg.elapsedSeconds != null && (
+                <div
+                  style={{
+                    fontSize: 11,
+                    color: "#888",
+                    marginTop: 4,
+                    textAlign: "right",
+                  }}
+                >
+                  {msg.elapsedSeconds}초
+                </div>
+              )}
             </div>
 
             {/* Referenced nodes chips */}

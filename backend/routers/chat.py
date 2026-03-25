@@ -20,6 +20,7 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
     referenced_nodes: list[dict]
+    elapsed_seconds: float = 0.0
 
 
 @router.post("", response_model=ChatResponse)
@@ -29,6 +30,8 @@ async def chat_endpoint(
     x_openai_key: str | None = Header(None, alias="X-OpenAI-Key"),
 ):
     """Process a chat message using GraphRAG."""
+    import time
+
     api_key = x_openai_key or os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise HTTPException(
@@ -45,8 +48,10 @@ async def chat_endpoint(
         import asyncio
         from backend.chatbot import chat
 
+        start = time.monotonic()
         result = await asyncio.to_thread(chat, request.message, request.history, db, api_key=x_openai_key)
-        return ChatResponse(**result)
+        elapsed = round(time.monotonic() - start, 2)
+        return ChatResponse(**result, elapsed_seconds=elapsed)
     except HTTPException:
         raise
     except Exception as exc:
