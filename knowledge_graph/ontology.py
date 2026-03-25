@@ -14,11 +14,10 @@ NODE_LABELS: list[str] = [
     "Term",
     "Channel",
     "EligibilityCondition",
-    "RepaymentMethod",
+    "Benefit",
     "TaxBenefit",
     "DepositProtection",
     "PreferentialRate",
-    "Fee",
     "ProductType",
 ]
 
@@ -28,7 +27,6 @@ NODE_LABELS: list[str] = [
 RELATIONSHIP_TYPES: dict[str, dict[str, str]] = {
     "BELONGS_TO": {"source": "Product", "target": "Category"},
     "AVAILABLE_VIA": {"source": "Product", "target": "Channel"},
-    "REPAID_VIA": {"source": "Product", "target": "RepaymentMethod"},
     "HAS_RATE": {"source": "Product", "target": "InterestRate"},
     "HAS_PREFERENTIAL_RATE": {"source": "Product", "target": "PreferentialRate"},
     "HAS_TERM": {"source": "Product", "target": "Term"},
@@ -36,7 +34,7 @@ RELATIONSHIP_TYPES: dict[str, dict[str, str]] = {
     "HAS_TAX_BENEFIT": {"source": "Product", "target": "TaxBenefit"},
     "PROTECTED_BY": {"source": "Product", "target": "DepositProtection"},
     "HAS_FEATURE": {"source": "Product", "target": "Feature"},
-    "HAS_FEE": {"source": "Product", "target": "Fee"},
+    "HAS_BENEFIT": {"source": "Product", "target": "Benefit"},
     "HAS_TYPE": {"source": "Product", "target": "ProductType"},
     "COMPETES_WITH": {"source": "Product", "target": "Product"},
     "HAS_SUBCATEGORY": {"source": "ParentCategory", "target": "Category"},
@@ -54,11 +52,10 @@ COLOR_MAP: dict[str, str] = {
     "Term": "#9B59B6",               # purple
     "Channel": "#1ABC9C",            # teal
     "EligibilityCondition": "#95A5A6",  # gray
-    "RepaymentMethod": "#E67E22",    # amber
+    "Benefit": "#2ECC71",            # green
     "TaxBenefit": "#27AE60",         # emerald
     "DepositProtection": "#2980B9",  # dark blue
     "PreferentialRate": "#E74C3C",   # coral
-    "Fee": "#8E44AD",               # dark purple
     "ProductType": "#16A085",        # dark teal
 }
 

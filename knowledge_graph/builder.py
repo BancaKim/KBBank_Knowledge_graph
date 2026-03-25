@@ -218,20 +218,21 @@ def _merge_channels(conn: Neo4jConnection, p: ParsedProduct) -> None:
         )
 
 
-def _merge_repayment_methods(conn: Neo4jConnection, p: ParsedProduct) -> None:
+def _merge_benefits(conn: Neo4jConnection, p: ParsedProduct) -> None:
     if p.product is None:
         return
-    for rm in p.repayment_methods:
+    for benefit in p.benefits:
         conn.run_write(
             """
-            MERGE (rm:RepaymentMethod {id: $rmid})
-            SET rm.name        = $name,
-                rm.description = $description
-            WITH rm
+            MERGE (b:Benefit {id: $bid})
+            SET b.name          = $name,
+                b.benefit_type  = $benefit_type,
+                b.description   = $description
+            WITH b
             MATCH (p:Product {id: $pid})
-            MERGE (p)-[:REPAID_VIA]->(rm)
+            MERGE (p)-[:HAS_BENEFIT]->(b)
             """,
-            {"rmid": rm.id, "name": rm.name, "description": rm.description, "pid": p.product.id},
+            {"bid": benefit.id, "name": benefit.name, "benefit_type": benefit.benefit_type, "description": benefit.description, "pid": p.product.id},
         )
 
 
@@ -311,23 +312,6 @@ def _merge_preferential_rates(conn: Neo4jConnection, p: ParsedProduct) -> None:
         )
 
 
-def _merge_fees(conn: Neo4jConnection, p: ParsedProduct) -> None:
-    if p.product is None:
-        return
-    for fee in p.fees:
-        conn.run_write(
-            """
-            MERGE (f:Fee {id: $fid})
-            SET f.name        = $name,
-                f.fee_type    = $fee_type,
-                f.description = $description
-            WITH f
-            MATCH (p:Product {id: $pid})
-            MERGE (p)-[:HAS_FEE]->(f)
-            """,
-            {"fid": fee.id, "name": fee.fee_type, "fee_type": fee.fee_type, "description": fee.description, "pid": p.product.id},
-        )
-
 
 def _merge_product_type(conn: Neo4jConnection, p: ParsedProduct) -> None:
     if p.product_type is None or p.product is None:
@@ -355,10 +339,6 @@ def _create_category_hierarchy(conn: Neo4jConnection) -> None:
         "예금": {
             "name_en": "Deposits",
             "subcategories": ["입출금통장", "정기예금", "적금", "청약"],
-        },
-        "대출": {
-            "name_en": "Loans",
-            "subcategories": ["신용대출", "담보대출", "전월세대출", "자동차대출"],
         },
     }
 
@@ -390,23 +370,12 @@ def _create_category_hierarchy(conn: Neo4jConnection) -> None:
 # ---------------------------------------------------------------------------
 
 def _infer_competes_with(conn: Neo4jConnection) -> None:
-    """Products compete if same category AND similar product purpose."""
-    # Only link products in the same category that share similar features
-    # or have overlapping amount ranges
+    """Products compete if same category AND same product type."""
     conn.run_write(
         """
         MATCH (a:Product)-[:BELONGS_TO]->(c:Category)<-[:BELONGS_TO]-(b:Product)
         WHERE a.id < b.id
           AND a.product_type = b.product_type
-          AND (
-            // Same repayment method
-            EXISTS { MATCH (a)-[:REPAID_VIA]->(rm)<-[:REPAID_VIA]-(b) }
-            OR
-            // Similar amount range (both have amount_max_won)
-            (a.amount_max_won IS NOT NULL AND b.amount_max_won IS NOT NULL
-             AND abs(a.amount_max_won - b.amount_max_won) <
-                 0.5 * toFloat(a.amount_max_won + b.amount_max_won) / 2)
-          )
         MERGE (a)-[:COMPETES_WITH]->(b)
         """
     )
@@ -437,11 +406,10 @@ def build_graph(conn: Neo4jConnection, products_dir: Path | None = None) -> None
         _merge_terms(conn, pp)
         _merge_eligibility(conn, pp)
         _merge_channels(conn, pp)
-        _merge_repayment_methods(conn, pp)
         _merge_tax_benefit(conn, pp)
         _merge_deposit_protection(conn, pp)
         _merge_preferential_rates(conn, pp)
-        _merge_fees(conn, pp)
+        _merge_benefits(conn, pp)
         _merge_product_type(conn, pp)
 
     print("[builder] creating category hierarchy ...")
@@ -453,10 +421,30 @@ def build_graph(conn: Neo4jConnection, products_dir: Path | None = None) -> None
     print("[builder] done.")
 
 
+def build_all(conn: Neo4jConnection) -> None:
+    """Build both deposit and loan graphs in the same Aura DB."""
+    from knowledge_graph.loan_builder import build_loan_graph
+
+    build_graph(conn)
+    build_loan_graph(conn)
+    print("[builder] === all graphs (deposit + loan) built ===")
+
+
 def main() -> None:
-    """Entry point for ``build-graph`` console script."""
+    """Entry point for ``build-graph`` console script.
+
+    Builds deposit graph by default. Pass --all to include loans.
+    """
+    import sys
+
     with Neo4jConnection() as conn:
-        build_graph(conn)
+        if "--all" in sys.argv:
+            build_all(conn)
+        elif "--loan" in sys.argv:
+            from knowledge_graph.loan_builder import build_loan_graph
+            build_loan_graph(conn)
+        else:
+            build_graph(conn)
 
 
 if __name__ == "__main__":

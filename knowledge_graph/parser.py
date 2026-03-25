@@ -1,4 +1,7 @@
-"""Parse markdown product files from data/products/ into Pydantic models."""
+"""Parse markdown product files from data/products/ into Pydantic models.
+
+Regex-based parser (fallback). Primary extraction is now LLM-based via llm_mapper.py.
+"""
 
 from __future__ import annotations
 
@@ -9,18 +12,33 @@ from typing import Any
 import frontmatter
 from slugify import slugify
 
+from knowledge_graph.md_utils import (
+    CATEGORY_NAME_EN,
+    CATEGORY_TO_PARENT,
+    CATEGORY_TO_PRODUCT_TYPE,
+    CHANNEL_MAP,
+    extract_channels as _extract_channels,
+    extract_list_items as _extract_list_items,
+    load_md_file,
+    parse_korean_amount,
+    parse_korean_term,
+    parse_rate_string,
+    safe_float as _safe_float,
+    split_sections as _split_sections,
+    split_sections_full as _split_sections_full,
+    split_subsections as _split_subsections,
+)
 from knowledge_graph.models import (
+    Benefit,
     Category,
     Channel,
     DepositProtection,
     EligibilityCondition,
     Feature,
-    Fee,
     InterestRate,
     PreferentialRate,
     Product,
     ProductType,
-    RepaymentMethod,
     TaxBenefit,
     Term,
 )
@@ -41,154 +59,46 @@ class ParsedProduct:
         self.terms: list[Term] = []
         self.eligibility: EligibilityCondition | None = None
         self.channels: list[Channel] = []
-        self.repayment_methods: list[RepaymentMethod] = []
         self.tax_benefit: TaxBenefit | None = None
         self.deposit_protection: DepositProtection | None = None
         self.preferential_rates: list[PreferentialRate] = []
-        self.fees: list[Fee] = []
+        self.benefits: list[Benefit] = []
         self.product_type: ProductType | None = None
 
 
-# ---------------------------------------------------------------------------
-# Korean amount / term / rate parsing helpers
-# ---------------------------------------------------------------------------
-
-
-def parse_korean_amount(text: str) -> int | None:
-    """Parse Korean currency string to integer won.
-
-    Examples: '3백만원' -> 3_000_000, '3.5억원' -> 350_000_000
-    """
-    if not text:
-        return None
-    text = text.strip()
-    patterns = [
-        (r"(\d+\.?\d*)\s*억", lambda m: int(float(m.group(1)) * 100_000_000)),
-        (r"(\d+\.?\d*)\s*천만", lambda m: int(float(m.group(1)) * 10_000_000)),
-        (r"(\d+\.?\d*)\s*백만", lambda m: int(float(m.group(1)) * 1_000_000)),
-        (r"(\d+\.?\d*)\s*만", lambda m: int(float(m.group(1)) * 10_000)),
-        (r"(\d+\.?\d*)\s*천", lambda m: int(float(m.group(1)) * 1_000)),
-    ]
-    for pat, conv in patterns:
-        m = re.search(pat, text)
-        if m:
-            return conv(m)
-    return None
-
-
-def parse_korean_term(text: str) -> tuple[int | None, int | None]:
-    """Parse Korean duration to (min_months, max_months).
-
-    Examples: '6~36개월' -> (6, 36), '최장 10년' -> (None, 120)
-    """
-    if not text:
-        return None, None
-
-    # Range with 개월
-    range_match = re.search(r"(\d+)\s*[~～\-]\s*(\d+)\s*개월", text)
-    if range_match:
-        return int(range_match.group(1)), int(range_match.group(2))
-
-    # Range with 년
-    range_match = re.search(r"(\d+)\s*[~～\-]\s*(\d+)\s*년", text)
-    if range_match:
-        return int(range_match.group(1)) * 12, int(range_match.group(2)) * 12
-
-    months = re.findall(r"(\d+)\s*개월", text)
-    years = re.findall(r"(\d+)\s*년", text)
-
-    values = [int(m) for m in months] + [int(y) * 12 for y in years]
-    if len(values) >= 2:
-        return min(values), max(values)
-    elif len(values) == 1:
-        # Check for "최장" (max) prefix
-        if "최장" in text or "이내" in text:
-            return None, values[0]
-        return values[0], values[0]
-    return None, None
-
-
-def parse_rate_string(text: str) -> float | None:
-    """Parse rate string like '2.25%' to float. Filter out invalid rates > 20%."""
-    if text is None:
-        return None
-    m = re.search(r"(\d+\.?\d*)\s*%", str(text))
-    if m:
-        val = float(m.group(1))
-        if val <= 15.0:  # Korean bank rates are typically 0.01% ~ 15%; values > 15% are likely early-termination multipliers
-            return val
-    return None
 
 
 # ---------------------------------------------------------------------------
-# Channel extraction
+# Benefit extraction (replaces loan-only Fee/RepaymentMethod)
 # ---------------------------------------------------------------------------
 
-CHANNEL_MAP: dict[str, tuple[str, str]] = {
-    "스타뱅킹": ("channel__스타뱅킹", "KB Star Banking App"),
-    "인터넷": ("channel__인터넷", "Internet Banking"),
-    "영업점": ("channel__영업점", "Branch"),
-    "고객센터": ("channel__고객센터", "Call Center"),
-    "모바일": ("channel__모바일", "Mobile"),
-    "리브 next": ("channel__리브넥스트", "Liiv Next"),
-    "리브next": ("channel__리브넥스트", "Liiv Next"),
-}
-
-
-def _extract_channels(channel_list: list[str]) -> list[Channel]:
-    """Map frontmatter channel strings to Channel entities."""
-    channels: list[Channel] = []
-    seen: set[str] = set()
-    for raw in channel_list:
-        raw_lower = raw.strip().lower()
-        for key, (cid, name_en) in CHANNEL_MAP.items():
-            if key in raw_lower or raw_lower in key:
-                if cid not in seen:
-                    seen.add(cid)
-                    channels.append(Channel(id=cid, name=raw.strip(), name_en=name_en))
-                break
-        else:
-            # Fallback: use as-is
-            cid = f"channel__{slugify(raw.strip()) or raw.strip()}"
-            if cid not in seen:
-                seen.add(cid)
-                channels.append(Channel(id=cid, name=raw.strip(), name_en=""))
-    return channels
-
-
-# ---------------------------------------------------------------------------
-# Repayment method extraction
-# ---------------------------------------------------------------------------
-
-def parse_repayment(text: str) -> list[str]:
-    """Split and normalize repayment methods from body text."""
-    if not text:
-        return []
-    methods: list[str] = []
-    text = text.replace("원(리)금균등분할상환", "원리금균등분할상환")
-
-    known = [
-        "마이너스통장",
-        "일시상환",
-        "원리금균등분할상환",
-        "원금균등분할상환",
-        "혼합상환",
-        "분할상환",
-    ]
-    for k in known:
-        if k in text:
-            methods.append(k)
-
-    # If nothing matched, try splitting
-    if not methods:
-        for sep in [",", "/", "\n"]:
-            if sep in text:
-                parts = [p.strip() for p in text.split(sep) if p.strip()]
-                methods.extend(parts)
-                return methods
-        if text.strip():
-            methods.append(text.strip())
-    return methods
+def parse_benefits(section_text: str, product_id: str) -> list[Benefit]:
+    """Extract benefits (수수료면제, 부가서비스 등) from ## 혜택 sections."""
+    benefits: list[Benefit] = []
+    idx = 0
+    if "수수료" in section_text and ("면제" in section_text or "무료" in section_text):
+        benefits.append(Benefit(
+            id=f"{product_id}__benefit__{idx}",
+            benefit_type="fee_exemption",
+            name="수수료 면제",
+            description=section_text.strip()[:200],
+        ))
+        idx += 1
+    for line in section_text.split("\n"):
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith(("- ", "* ")):
+            item = line[2:].strip()
+            if item and not any(b.name == item for b in benefits):
+                benefits.append(Benefit(
+                    id=f"{product_id}__benefit__{idx}",
+                    benefit_type="service",
+                    name=item[:80],
+                    description=item[:150],
+                ))
+                idx += 1
+    return benefits
 
 
 # ---------------------------------------------------------------------------
@@ -281,41 +191,11 @@ def parse_eligibility(text: str, product_id: str) -> EligibilityCondition:
     )
 
 
-# ---------------------------------------------------------------------------
-# Fee extraction
-# ---------------------------------------------------------------------------
-
-def parse_fees(section_text: str, product_id: str) -> list[Fee]:
-    """Extract fees from ## 수수료 or ### 중도상환수수료 sections."""
-    fees: list[Fee] = []
-    idx = 0
-    if "중도상환" in section_text:
-        fees.append(Fee(id=f"{product_id}__fee__{idx}", fee_type="중도상환수수료", description=section_text.strip()[:200]))
-        idx += 1
-    if "부대비용" in section_text:
-        fees.append(Fee(id=f"{product_id}__fee__{idx}", fee_type="부대비용", description=section_text.strip()[:200]))
-        idx += 1
-    if "조기상환" in section_text:
-        fees.append(Fee(id=f"{product_id}__fee__{idx}", fee_type="조기상환수수료", description=section_text.strip()[:200]))
-        idx += 1
-    if not fees:
-        fees.append(Fee(id=f"{product_id}__fee__{idx}", fee_type="수수료", description=section_text.strip()[:200]))
-    return fees
 
 
 # ---------------------------------------------------------------------------
 # Feature extraction from body sections
 # ---------------------------------------------------------------------------
-
-def _extract_list_items(text: str) -> list[str]:
-    """Return lines that start with ``-`` or ``*`` as stripped strings."""
-    items: list[str] = []
-    for line in text.splitlines():
-        stripped = line.strip()
-        if stripped.startswith(("- ", "* ")):
-            items.append(stripped[2:].strip())
-    return items
-
 
 def _parse_features(section: str, product_id: str) -> list[Feature]:
     items = _extract_list_items(section)
@@ -324,118 +204,6 @@ def _parse_features(section: str, product_id: str) -> list[Feature]:
         for i, item in enumerate(items)
         if item
     ]
-
-
-# ---------------------------------------------------------------------------
-# Category mapping
-# ---------------------------------------------------------------------------
-
-CATEGORY_NAME_EN: dict[str, str] = {
-    "신용대출": "Credit Loan",
-    "담보대출": "Secured Loan",
-    "전월세대출": "Jeonse/Wolse Loan",
-    "자동차대출": "Auto Loan",
-    "적금": "Installment Savings",
-    "입출금통장": "Checking Account",
-    "정기예금": "Time Deposit",
-    "청약": "Housing Subscription",
-}
-
-CATEGORY_TO_PARENT: dict[str, str] = {
-    "신용대출": "대출",
-    "담보대출": "대출",
-    "전월세대출": "대출",
-    "자동차대출": "대출",
-    "적금": "예금",
-    "입출금통장": "예금",
-    "정기예금": "예금",
-    "청약": "예금",
-}
-
-CATEGORY_TO_PRODUCT_TYPE: dict[str, str] = {
-    "신용대출": "loan",
-    "담보대출": "loan",
-    "전월세대출": "loan",
-    "자동차대출": "loan",
-    "적금": "savings",
-    "입출금통장": "deposit",
-    "정기예금": "deposit",
-    "청약": "savings",
-}
-
-
-# ---------------------------------------------------------------------------
-# Body section splitting
-# ---------------------------------------------------------------------------
-
-_SECTION_RE = re.compile(r"^##\s+(.+)", re.MULTILINE)
-
-
-def _split_sections(body: str) -> dict[str, str]:
-    """Split a markdown body into {heading: content} dict.
-
-    Stops at ## 유의사항 to avoid HTML noise.
-    """
-    # Truncate at 유의사항
-    stop_idx = body.find("## 유의사항")
-    if stop_idx != -1:
-        body = body[:stop_idx]
-
-    headings = list(_SECTION_RE.finditer(body))
-    sections: dict[str, str] = {}
-    for idx, match in enumerate(headings):
-        title = match.group(1).strip()
-        start = match.end()
-        end = headings[idx + 1].start() if idx + 1 < len(headings) else len(body)
-        sections[title] = body[start:end].strip()
-    return sections
-
-
-def _split_sections_full(body: str) -> dict[str, str]:
-    """Split a markdown body into {heading: content} dict WITHOUT truncation.
-
-    Used for sections like 예금자보호여부 that appear after 유의사항.
-    """
-    headings = list(_SECTION_RE.finditer(body))
-    sections: dict[str, str] = {}
-    for idx, match in enumerate(headings):
-        title = match.group(1).strip()
-        start = match.end()
-        end = headings[idx + 1].start() if idx + 1 < len(headings) else len(body)
-        sections[title] = body[start:end].strip()
-    return sections
-
-
-def _split_subsections(body: str) -> dict[str, str]:
-    """Split body into ### sub-headings as well (for loan product details)."""
-    sub_re = re.compile(r"^###\s+(.+)", re.MULTILINE)
-
-    # Truncate at 유의사항
-    stop_idx = body.find("## 유의사항")
-    if stop_idx != -1:
-        body = body[:stop_idx]
-
-    headings = list(sub_re.finditer(body))
-    sections: dict[str, str] = {}
-    for idx, match in enumerate(headings):
-        title = match.group(1).strip()
-        start = match.end()
-        end = headings[idx + 1].start() if idx + 1 < len(headings) else len(body)
-        sections[title] = body[start:end].strip()
-    return sections
-
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
-def _safe_float(value: Any) -> float | None:
-    if value is None:
-        return None
-    try:
-        return float(value)
-    except (TypeError, ValueError):
-        return None
 
 
 # ---------------------------------------------------------------------------
@@ -461,6 +229,8 @@ def parse_product_file(path: Path) -> ParsedProduct:
     amounts = meta.get("amounts", {}) or {}
     amount_max_raw = str(amounts.get("max", "")) if isinstance(amounts, dict) else ""
     amount_max_won = parse_korean_amount(amount_max_raw)
+    amount_min_raw = str(amounts.get("min", "")) if isinstance(amounts, dict) else ""
+    amount_min_won = parse_korean_amount(amount_min_raw)
 
     # --- Parse eligibility summary ---
     eligibility_summary = str(meta.get("eligibility_summary", ""))
@@ -473,6 +243,7 @@ def parse_product_file(path: Path) -> ParsedProduct:
         description=str(meta.get("description", "")),
         amount_max_raw=amount_max_raw,
         amount_max_won=amount_max_won,
+        amount_min_won=amount_min_won,
         eligibility_summary=eligibility_summary,
         page_url=str(meta.get("page_url", "")),
         scraped_at=meta.get("scraped_at"),
@@ -493,19 +264,31 @@ def parse_product_file(path: Path) -> ParsedProduct:
         parsed.channels = _extract_channels(channels_raw)
 
     # --- Rates from frontmatter ---
+    # Supports both dict format (rates.min/rates.max) and string format ("연 2.4% ~ 2.9%")
     rates_meta = meta.get("rates", {}) or {}
+    rate_min: float | None = None
+    rate_max: float | None = None
     if isinstance(rates_meta, dict):
         rate_min = parse_rate_string(str(rates_meta.get("min", "")))
         rate_max = parse_rate_string(str(rates_meta.get("max", "")))
-        if rate_min is not None or rate_max is not None:
-            parsed.rates.append(
-                InterestRate(
-                    id=f"{product_id}__rate__base",
-                    rate_type="base",
-                    min_rate=rate_min,
-                    max_rate=rate_max,
-                )
+    elif isinstance(rates_meta, str):
+        # Parse string format: "연 2.4% ~ 2.9%" or "연 2.4%"
+        all_rates = [float(m.group(1)) for m in re.finditer(r"(\d+\.?\d*)\s*%", rates_meta) if float(m.group(1)) <= 15.0]
+        if len(all_rates) >= 2:
+            rate_min = min(all_rates)
+            rate_max = max(all_rates)
+        elif len(all_rates) == 1:
+            rate_min = all_rates[0]
+            rate_max = all_rates[0]
+    if rate_min is not None or rate_max is not None:
+        parsed.rates.append(
+            InterestRate(
+                id=f"{product_id}__rate__base",
+                rate_type="base",
+                min_rate=rate_min,
+                max_rate=rate_max,
             )
+        )
 
     # --- Terms from frontmatter ---
     term_raw = str(meta.get("terms", meta.get("term", "")))
@@ -549,20 +332,6 @@ def parse_product_file(path: Path) -> ParsedProduct:
     if elig_text:
         parsed.eligibility = parse_eligibility(elig_text, product_id)
 
-    # --- Repayment methods from body ---
-    for key in ("대출기간 및 상환 방법", "대출기간 및 상환방법", "상환방법"):
-        if key in sections:
-            method_names = parse_repayment(sections[key])
-            seen: set[str] = set()
-            for mn in method_names:
-                mid = f"repay__{slugify(mn) or mn}"
-                if mid not in seen:
-                    seen.add(mid)
-                    parsed.repayment_methods.append(
-                        RepaymentMethod(id=mid, name=mn, description="")
-                    )
-            break
-
     # --- Tax benefit ---
     for key in ("세제혜택",):
         if key in sections:
@@ -597,17 +366,21 @@ def parse_product_file(path: Path) -> ParsedProduct:
         if "우대" in key and not parsed.preferential_rates:
             parsed.preferential_rates = parse_preferential_rates(text, product_id)
 
-    # --- Fees from body subsections ---
-    for key in ("중도상환수수료", "조기상환수수료", "수수료"):
-        if key in subsections:
-            parsed.fees = parse_fees(subsections[key], product_id)
+    # --- Benefits from body sections (Legacy 수수료면제 + 서비스) ---
+    for key in ("혜택", "부가서비스", "우대서비스"):
+        if key in sections:
+            parsed.benefits = parse_benefits(sections[key], product_id)
             break
-    # Also check main sections
-    if not parsed.fees:
-        for key in ("부대비용",):
-            if key in subsections:
-                parsed.fees = parse_fees(subsections[key], product_id)
-                break
+
+    # --- Populate deposit_insured on Product from deposit_protection ---
+    if parsed.deposit_protection is not None and parsed.product is not None:
+        parsed.product.deposit_insured = parsed.deposit_protection.protected
+
+    # --- Populate tax_free_savings_eligible on Product from tax_benefit ---
+    if parsed.tax_benefit is not None and parsed.product is not None:
+        parsed.product.tax_free_savings_eligible = (
+            parsed.tax_benefit.type == "비과세종합저축" and parsed.tax_benefit.eligible
+        )
 
     # --- Product type from body (appears after 유의사항, use full_sections) ---
     for key in ("상품유형",):

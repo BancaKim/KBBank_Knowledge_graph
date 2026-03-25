@@ -1,4 +1,9 @@
-"""Pydantic v2 models for knowledge graph entity types."""
+"""Pydantic v2 models for knowledge graph entity types.
+
+Deposit-only ontology. Loan models have been removed — loans will have
+a separate ontology.  Only attributes that can actually be populated
+from scraped KB product data are included (no overfitting).
+"""
 
 from __future__ import annotations
 
@@ -9,19 +14,23 @@ from pydantic import BaseModel, Field
 
 
 # ---------------------------------------------------------------------------
-# Core entity models (expanded schema)
+# Core entity models (deposit-only)
 # ---------------------------------------------------------------------------
 
 class Product(BaseModel):
     id: str
     name: str
-    product_type: str = ""  # loan / deposit / savings
+    product_type: str = ""  # deposit / savings
     description: str = ""
     amount_max_raw: str = ""
     amount_max_won: int | None = None
+    amount_min_won: int | None = None  # Legacy 최소가입금액
     eligibility_summary: str = ""
     page_url: str = ""
     scraped_at: datetime | None = None
+    # --- 파서에서 실제 추출 가능한 Legacy 속성 ---
+    deposit_insured: bool = True  # 예금자보호여부 (parse_deposit_protection)
+    tax_free_savings_eligible: bool = False  # 비과세종합저축 가능여부 (parse_tax_benefit)
 
 
 class Category(BaseModel):
@@ -40,12 +49,6 @@ class Channel(BaseModel):
     id: str
     name: str
     name_en: str = ""
-
-
-class RepaymentMethod(BaseModel):
-    id: str
-    name: str
-    description: str = ""
 
 
 class InterestRate(BaseModel):
@@ -68,6 +71,7 @@ class EligibilityCondition(BaseModel):
     id: str
     description: str = ""
     min_age: int | None = None
+    max_age: int | None = None
     target_audience: str = ""
 
 
@@ -98,9 +102,11 @@ class Feature(BaseModel):
     description: str = ""
 
 
-class Fee(BaseModel):
+class Benefit(BaseModel):
+    """상품 혜택 (수수료면제, 부가서비스 등). Legacy :수수료면제 + :서비스 통합."""
     id: str
-    fee_type: str = ""  # 중도상환수수료 / 조기상환수수료 / 부대비용
+    benefit_type: str = ""  # fee_exemption / service / gift / rate_bonus
+    name: str = ""
     description: str = ""
 
 

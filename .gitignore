@@ -14,7 +14,9 @@ node_modules/
 dist/
 .vite/
 
-# data/raw/ PDFs included for reproducibility (~43MB)
+# Data files (private — not shared)
+data/
+rag_storage/
 
 # IDE & OS
 .DS_Store

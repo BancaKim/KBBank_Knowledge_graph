@@ -4,308 +4,233 @@
 
 > **[Live Demo](https://kb-kg.duckdns.org/)** — 브라우저에서 바로 지식그래프를 탐색해보세요.
 
-KB국민은행 공식 웹사이트([obank.kbstar.com](https://obank.kbstar.com))에 **공개된 금융상품 정보**를 수집하여 **Neo4j 지식그래프**로 구축한 프로젝트입니다. 162개 금융상품을 14개 엔티티 타입과 14개 관계 타입으로 구조화하고, D3.js 기반 인터랙티브 시각화와 GraphRAG 챗봇을 제공합니다.
+KB국민은행 공식 웹사이트([obank.kbstar.com](https://obank.kbstar.com))에 **공개된 금융상품 정보**를 수집하여 **Neo4j 지식그래프**로 구축한 프로젝트입니다. LLM 기반 엔티티 추출로 162개 금융상품을 구조화하고, D3.js 시각화와 GraphRAG 챗봇을 제공합니다.
 
-> **1,310개 노드 · 3,861개 관계 · 162개 금융상품**
+> **2,610개 노드 · 5,209개 관계 · 162개 금융상품**
 
 ---
 
-## 데이터 수집
-
-KB국민은행 웹사이트에서 두 가지 방법으로 금융상품 데이터를 수집합니다.
+## 아키텍처
 
 ```mermaid
-flowchart LR
-    A[KB국민은행 웹사이트] --> B{수집 방법}
-    B --> C[Playwright 웹 스크래핑]
-    B --> D[PDF 다운로드 + OCR]
+flowchart TD
+    A["KB국민은행 웹사이트"] --> B["Playwright 스크래핑 / PDF 다운로드"]
+    B --> C["data/raw/ (150개 PDF)"]
+    C --> D["PyMuPDF + GPT-4o Vision OCR"]
+    D --> E["GPT-4o-mini 구조화 추출"]
+    E --> F["data/products/ (162개 Markdown)"]
+    F --> G["LLM 엔티티 추출\n(with_structured_output + 온톨로지 주입)"]
+    G --> H["Neo4j Aura Knowledge Graph\n2,610 노드 · 5,209 관계"]
+    H --> I["Frontend (React + D3.js)\n인터랙티브 시각화"]
+    H --> J["Backend (FastAPI)\nGraphRAG 챗봇"]
 
-    C --> E[HTML 파싱]
-    D --> F[PyMuPDF 텍스트 추출]
-    F --> G[GPT-4o-mini 구조화]
-    E --> H[YAML frontmatter + Markdown]
-    G --> H
-
-    H --> I["162개 상품 마크다운 파일"]
+    style A fill:#FFB300,color:#000
+    style G fill:#E74C3C,color:#fff
+    style H fill:#4A90D9,color:#fff
+    style I fill:#7ED321,color:#000
+    style J fill:#9B59B6,color:#fff
 ```
 
+### 핵심 기술 스택
 
-### 마크다운 파일 구조
+| 계층 | 기술 |
+|------|------|
+| 데이터 수집 | Playwright, PyMuPDF, GPT-4o Vision OCR |
+| 엔티티 추출 | **LangChain `with_structured_output(strict=True)`** + Foundry 온톨로지 스킬 주입 |
+| 그래프 DB | Neo4j Aura (클라우드) |
+| 백엔드 | FastAPI + LangGraph 에이전트 (7개 도구) |
+| 프론트엔드 | React 19 + D3.js + TypeScript + Vite |
+| 배포 | Docker + Oracle Cloud (Ubuntu 22.04) |
 
-각 상품은 YAML frontmatter + 본문으로 구성됩니다.
-
-```yaml
 ---
-name: KB Star 정기예금
-category: 정기예금
-rates: 연 2.4% ~ 2.9%
-terms: 1개월 이상 36개월 이하
-channels: [인터넷, 스타뱅킹, 고객센터]
-eligibility_summary: 개인 및 개인사업자
-source: 'PDF: KB-Star-정기예금.pdf'
----
-# KB Star 정기예금
-## 상품설명
-## 금리
-## 가입대상
-## 가입기간
-## 우대금리
-## 유의사항
+
+## LLM 기반 엔티티 추출
+
+기존 정규식 파서를 **LLM Structured Output**으로 대체하여, Legacy 온톨로지의 깊이를 살린 추출을 수행합니다.
+
+```
+MD 파일
+  → LLM (gpt-4o-mini + Pydantic strict schema)
+  → ExtractedDepositProduct / ExtractedLoanProduct
+  → map_deposit() / map_loan() (content-hash ID)
+  → ParsedProduct (기존 builder 호환)
+  → Neo4j MERGE
 ```
 
-### 한국어 데이터 처리
+### Foundry 온톨로지 스킬 주입
 
-| 처리 항목 | 예시 | 변환 결과 |
-|----------|------|----------|
-| 금액 파싱 | "3백만원", "1억5천만원" | 3,000,000 / 150,000,000 |
-| 기간 파싱 | "6~36개월", "최장 10년" | min=6, max=36 / max=120 |
-| 금리 필터링 | "연 3.5%" (15% 초과 제거) | 3.5 |
-| CJK 풀텍스트 | Neo4j fulltext index | 한글 검색 지원 |
+Palantir Foundry 온톨로지 스킬의 카탈로그 Object Type + Enum 정의를 LLM 시스템 프롬프트에 주입하여 도메인 인식 추출을 수행합니다.
+
+### 정규식 대비 개선점
+
+| 항목 | 정규식 파서 | LLM 추출 |
+|------|:---------:|:-------:|
+| 금리 기준금리별 분리 (CD/COFIX/금융채) | X | O |
+| 가산금리/우대금리 분해 | X | O |
+| 통장자동대출/기한연장/연체금리 | X | O |
+| 금액 문자열 자연어 파싱 | X | O |
+| Legacy 서브클래스 (적립식/거치식/요구불) | X | O |
+| 원문 보존 필드 | X | O |
 
 ---
 
 ## 온톨로지 설계
 
-### 엔티티-관계 모델
+### 예금 도메인 (27개 상품)
 
 ```mermaid
 graph TB
-    PC["🏦 ParentCategory\n<i>예금 · 대출</i>"]
-    C["📁 Category\n<i>정기예금 · 신용대출 등 9개</i>"]
-    P["📦 Product\n<i>162개 금융상품</i>"]
+    PC["🏦 ParentCategory\n예금"]
+    C["📁 Category\n정기예금 · 적금 · 입출금 · 청약"]
+    P["📦 Product\n27개 예금상품"]
 
     PC -->|HAS_SUBCATEGORY| C
     P -->|BELONGS_TO| C
 
-    subgraph " 💰 금리 · 기간"
-        IR["InterestRate\n<i>기본금리 16개</i>"]
-        PR["PreferentialRate\n<i>우대금리 308개</i>"]
-        T["Term\n<i>가입기간 141개</i>"]
+    subgraph "💰 금리"
+        IR["InterestRate\n기본금리"]
+        PR["PreferentialRate\n우대금리 304개"]
     end
 
-    subgraph " ✨ 상품 정보"
-        F["Feature\n<i>특징 306개</i>"]
-        FE["Fee\n<i>수수료 40개</i>"]
-        PT["ProductType\n<i>상품유형 11개</i>"]
+    subgraph "📋 상품 정보"
+        T["Term\n가입기간"]
+        F["Feature\n상품특징"]
+        B["Benefit\n혜택"]
     end
 
-    subgraph " 🛡️ 조건 · 보호"
-        EC["EligibilityCondition\n<i>가입자격 161개</i>"]
-        TB["TaxBenefit\n<i>세제혜택 28개</i>"]
-        DP["DepositProtection\n<i>예금자보호 28개</i>"]
-    end
-
-    subgraph " 📱 이용 방법"
-        CH["Channel\n<i>채널 10개</i>"]
-        RM["RepaymentMethod\n<i>상환 12개</i>"]
+    subgraph "🛡️ 조건 · 보호"
+        EC["EligibilityCondition\n가입자격"]
+        TB["TaxBenefit\n세제혜택"]
+        DP["DepositProtection\n예금자보호"]
     end
 
     P -->|HAS_RATE| IR
     P -->|HAS_PREFERENTIAL_RATE| PR
     P -->|HAS_TERM| T
     P -->|HAS_FEATURE| F
-    P -->|HAS_FEE| FE
-    P -->|HAS_TYPE| PT
+    P -->|HAS_BENEFIT| B
     P -->|REQUIRES| EC
     P -->|HAS_TAX_BENEFIT| TB
     P -->|PROTECTED_BY| DP
-    P -->|AVAILABLE_VIA| CH
-    P -->|REPAID_VIA| RM
-    P -.->|COMPETES_WITH| P
-
-    style PC fill:#E65100,color:#fff,stroke:#E65100
-    style C fill:#F5A623,color:#000,stroke:#F5A623
-    style P fill:#4A90D9,color:#fff,stroke:#4A90D9,stroke-width:3px
-    style IR fill:#D0021B,color:#fff,stroke:#D0021B
-    style PR fill:#E74C3C,color:#fff,stroke:#E74C3C
-    style T fill:#9B59B6,color:#fff,stroke:#9B59B6
-    style F fill:#7ED321,color:#000,stroke:#7ED321
-    style FE fill:#8E44AD,color:#fff,stroke:#8E44AD
-    style PT fill:#16A085,color:#fff,stroke:#16A085
-    style EC fill:#95A5A6,color:#000,stroke:#95A5A6
-    style TB fill:#27AE60,color:#fff,stroke:#27AE60
-    style DP fill:#2980B9,color:#fff,stroke:#2980B9
-    style CH fill:#1ABC9C,color:#fff,stroke:#1ABC9C
-    style RM fill:#E67E22,color:#fff,stroke:#E67E22
-```
-
-### 14개 엔티티 타입
-
-| 엔티티 | 노드 수 | 설명 | 주요 속성 |
-|--------|--------|------|----------|
-| **Product** | 162 | 금융상품 | name, product_type, description, amount_max |
-| **PreferentialRate** | 308 | 우대금리 조건 | name, rate_value_pp, condition_description |
-| **Feature** | 306 | 상품 특징 | name, description |
-| **EligibilityCondition** | 161 | 가입 자격 | description, min_age, target_audience |
-| **Term** | 141 | 가입/대출 기간 | min_months, max_months, raw_text |
-| **Fee** | 40 | 수수료 | fee_type, description |
-| **TaxBenefit** | 28 | 세제혜택 | type (비과세/일반과세), eligible |
-| **DepositProtection** | 28 | 예금자보호 | protected, max_amount_won |
-| **InterestRate** | 16 | 기본금리 | rate_type, min_rate, max_rate |
-| **RepaymentMethod** | 12 | 상환방법 | name (원리금균등/원금균등/일시상환) |
-| **ProductType** | 11 | 상품유형 | name |
-| **Channel** | 10 | 가입채널 | name (스타뱅킹/인터넷/영업점) |
-| **Category** | 9 | 하위 카테고리 | name, name_en |
-| **ParentCategory** | 2 | 상위 카테고리 | name (예금/대출) |
-
-### 14개 관계 타입
-
-| 분류 | 관계 | 시작 노드 | 끝 노드 | 설명 |
-|------|------|----------|---------|------|
-| **카테고리** | `BELONGS_TO` | Product | Category | 상품이 속한 카테고리 |
-| | `HAS_SUBCATEGORY` | ParentCategory | Category | 상위→하위 카테고리 |
-| **금리/기간** | `HAS_RATE` | Product | InterestRate | 기본 금리 |
-| | `HAS_PREFERENTIAL_RATE` | Product | PreferentialRate | 우대금리 조건 |
-| | `HAS_TERM` | Product | Term | 가입/대출 기간 |
-| **상품 정보** | `HAS_FEATURE` | Product | Feature | 상품 특징 |
-| | `HAS_FEE` | Product | Fee | 수수료 |
-| | `HAS_TYPE` | Product | ProductType | 상품 유형 |
-| **조건/보호** | `REQUIRES` | Product | EligibilityCondition | 가입 자격 조건 |
-| | `HAS_TAX_BENEFIT` | Product | TaxBenefit | 세제 혜택 |
-| | `PROTECTED_BY` | Product | DepositProtection | 예금자 보호 |
-| **이용 방법** | `AVAILABLE_VIA` | Product | Channel | 가입 가능 채널 |
-| | `REPAID_VIA` | Product | RepaymentMethod | 상환 방법 |
-| **추론** | `COMPETES_WITH` | Product | Product | 같은 카테고리 경쟁 상품 |
-
-```mermaid
-graph LR
-    PC["🏦 ParentCategory"] -->|HAS_SUBCATEGORY| C["📁 Category"]
-    P["📦 Product"] -->|BELONGS_TO| C
-    P -->|HAS_RATE| IR["💰 InterestRate"]
-    P -->|HAS_PREFERENTIAL_RATE| PR["⭐ PreferentialRate"]
-    P -->|HAS_TERM| T["📅 Term"]
-    P -->|HAS_FEATURE| F["✨ Feature"]
-    P -->|HAS_FEE| FE["💳 Fee"]
-    P -->|HAS_TYPE| PT["🏷️ ProductType"]
-    P -->|REQUIRES| EC["👤 Eligibility"]
-    P -->|HAS_TAX_BENEFIT| TB["🏛️ TaxBenefit"]
-    P -->|PROTECTED_BY| DP["🛡️ Protection"]
     P -->|AVAILABLE_VIA| CH["📱 Channel"]
-    P -->|REPAID_VIA| RM["💸 Repayment"]
-    P -.->|COMPETES_WITH| P2["📦 Product"]
+
+    style PC fill:#E65100,color:#fff
+    style P fill:#4A90D9,color:#fff,stroke-width:3px
+    style IR fill:#D0021B,color:#fff
+    style PR fill:#E74C3C,color:#fff
 ```
 
-### 카테고리 계층 구조
+### 대출 도메인 (135개 상품)
 
 ```mermaid
-graph TD
-    예금[예금 Deposits] --> 정기예금["정기예금 (5)"]
-    예금 --> 적금["적금 (10)"]
-    예금 --> 입출금자유["입출금자유 (10)"]
-    예금 --> 주택청약["주택청약 (2)"]
+graph TB
+    LC["📁 LoanCategory\n신용 · 담보 · 전월세 · 자동차"]
+    LP["📦 LoanProduct\n135개 대출상품"]
 
-    대출[대출 Loans] --> 신용대출["신용대출 (47)"]
-    대출 --> 담보대출["담보대출 (41)"]
-    대출 --> 전월세대출["전월세대출 (37)"]
-    대출 --> 자동차대출["자동차대출 (10)"]
+    LP -->|BELONGS_TO| LC
 
-    style 예금 fill:#E65100,color:#fff,font-weight:bold
-    style 대출 fill:#E65100,color:#fff,font-weight:bold
-    style 정기예금 fill:#F5A623
-    style 적금 fill:#F5A623
-    style 입출금자유 fill:#F5A623
-    style 주택청약 fill:#F5A623
-    style 신용대출 fill:#F5A623
-    style 담보대출 fill:#F5A623
-    style 전월세대출 fill:#F5A623
-    style 자동차대출 fill:#F5A623
+    subgraph "💰 금리 체계"
+        LR["LoanRate\n기준금리별 분리 257개"]
+        LPR["LoanPreferentialRate\n우대금리 253개"]
+    end
+
+    subgraph "📋 상환 · 수수료"
+        RM["RepaymentMethod\n상환방법 254개"]
+        LF["LoanFee\n수수료 34개"]
+        CO["Collateral\n담보 74개"]
+    end
+
+    LP -->|HAS_RATE| LR
+    LP -->|HAS_PREFERENTIAL_RATE| LPR
+    LP -->|REPAID_VIA| RM
+    LP -->|HAS_FEE| LF
+    LP -->|SECURED_BY| CO
+    LP -->|REQUIRES| LE["LoanEligibility"]
+    LP -->|HAS_TERM| LT["LoanTerm"]
+    LP -->|AVAILABLE_VIA| CH["📱 Channel"]
+
+    style LC fill:#F5A623,color:#000
+    style LP fill:#4A90D9,color:#fff,stroke-width:3px
+    style LR fill:#D0021B,color:#fff
+    style LPR fill:#E74C3C,color:#fff
 ```
+
+### Legacy 온톨로지 매핑
+
+LLM 추출 스키마는 Legacy 온톨로지의 24개 엔티티를 100% 커버합니다.
+
+| Legacy 엔티티 | 추출 스키마 필드 |
+|---|---|
+| 예금 (적립식/거치식/요구불) | `deposit_subclass` |
+| 예금이율 (거주자유형/적립방법유형/개인기업구분/기간구간) | `ExtractedDepositRate` (10개 필드) |
+| 금액 (최소/최대/증가/단위/통화) | `ExtractedAmount` |
+| 기간 (최소/최대/단위) | `ExtractedTerm` |
+| 대출 (가계/기업/기금) | `loan_subclass` |
+| 대출금리 (기준금리유형/기준금리/가산금리/우대금리/최저/최고) | `ExtractedLoanRate` (8개 필드) |
+| 연체금리 | `ExtractedPenaltyRate` |
+| 기한연장 | `ExtractedTermExtension` |
+| 통장자동대출 | `ExtractedOverdraft` |
+| 중도상환수수료 | `ExtractedLoanFee` |
 
 ---
 
-## 데이터 파이프라인
+## GraphRAG 챗봇
 
-```mermaid
-flowchart TD
-    A["KB국민은행 웹사이트"] --> B["Playwright 스크래핑 / PDF 다운로드"]
-    B --> C["data/raw/ (150개 PDF)"]
-    C --> D["PyMuPDF 텍스트 추출"]
-    D --> E["GPT-4o-mini 구조화 추출"]
-    E --> F["data/products/ (162개 Markdown)"]
-    F --> G["knowledge_graph/parser.py\n엔티티 추출 (Pydantic 모델)"]
-    G --> H["knowledge_graph/builder.py\nNeo4j MERGE 쿼리"]
-    H --> I["Neo4j Knowledge Graph\n1,310 노드 · 3,861 관계"]
-    I --> J["knowledge_graph/exporter.py\nD3.js JSON 내보내기"]
-    J --> K["data/graph/graph.json"]
-    K --> L["Frontend (React + D3.js)\n인터랙티브 시각화"]
-    I --> M["Backend (FastAPI)\nREST API + GraphRAG 챗봇"]
+LangGraph 기반 대화형 상담 챗봇으로, 7가지 도구를 통해 지식그래프를 쿼리합니다.
 
-    style A fill:#FFB300,color:#000
-    style I fill:#4A90D9,color:#fff
-    style L fill:#7ED321,color:#000
-    style M fill:#9B59B6,color:#fff
-```
-
-### 파서 동작 과정
-
-```mermaid
-sequenceDiagram
-    participant MD as Markdown 파일
-    participant P as parser.py
-    participant M as Pydantic Models
-    participant B as builder.py
-    participant N as Neo4j
-
-    MD->>P: frontmatter + body 로드
-    P->>P: YAML frontmatter 파싱
-    P->>P: 본문 섹션 분할 (## 헤딩 기준)
-    P->>M: Product, Category, Feature... 생성
-    P->>P: 금리/기간/금액 한국어 파싱
-    P->>P: 우대금리 조건 추출
-    P->>P: 수수료/세제혜택/예금자보호 추출
-    M->>B: ParsedProduct 전달
-    B->>N: MERGE 쿼리 (상품별 13개 노드/관계)
-    B->>N: 카테고리 계층 생성
-    B->>N: COMPETES_WITH 추론
-```
+| 도구 | 기능 |
+|------|------|
+| `search_products` | Neo4j fulltext 검색 (CJK 지원) |
+| `get_product_detail` | 상품 상세 + 관련 엔티티 조회 |
+| `list_products_by_category` | 카테고리별 목록 |
+| `compare_products` | 상품 비교 |
+| `calculate_loan_payment` | 대출 상환액 계산기 |
+| `calculate_deposit_maturity` | 예금 만기액 계산기 |
+| `check_eligibility` | 가입자격 확인 |
 
 ---
 
-## 시각화
+## 실행 방법
 
-D3.js 기반 인터랙티브 그래프 시각화를 제공합니다.
+### 데이터 파이프라인 (로컬)
 
-- **카테고리별 클러스터링**: 같은 카테고리 상품이 가까이 모여 표시
-- **노드 크기 계층**: ParentCategory > Category > Product > 기타
-- **클릭 선택**: 노드 클릭 시 연결된 노드/엣지 하이라이트, 비관련 노드 페이드
-- **관계 타입별 엣지 색상**: 13가지 색상으로 관계 구분
-- **카테고리 필터**: 특정 카테고리/노드 타입만 표시
-- **줌/팬/드래그**: 자유로운 그래프 탐색
+```bash
+# 1. PDF → Markdown
+python -m scraper.parse_pdfs
 
----
+# 2. Markdown → Neo4j (LLM 추출)
+python -m knowledge_graph.llm_extractor data/products/
 
-## GraphRAG 챗봇 (부가 기능)
-
-지식그래프를 활용한 LangGraph 기반 대화형 상담 챗봇입니다.
-
-```mermaid
-flowchart LR
-    Q[사용자 질문] --> R[지식그래프 컨텍스트 검색]
-    R --> L[LLM + 도구 선택]
-    L --> T{7가지 도구}
-    T --> T1[상품 검색]
-    T --> T2[상세 조회]
-    T --> T3[카테고리별 목록]
-    T --> T4[상품 비교]
-    T --> T5[대출 상환액 계산]
-    T --> T6[예금 만기액 계산]
-    T --> T7[가입 자격 확인]
-    T1 & T2 & T3 & T4 & T5 & T6 & T7 --> A[응답 생성]
+# 2-alt. Markdown → Neo4j (정규식 fallback)
+python -m knowledge_graph.builder --all
 ```
 
-- 사용자 본인의 OpenAI API 키를 프론트엔드에서 입력하여 사용
-- Neo4j 없이도 정적 graph.json 기반으로 그래프/검색/상품 조회 가능
+### 서비스 (로컬 개발)
+
+```bash
+# 백엔드
+pip install -e ".[chat]"
+uvicorn backend.main:app --reload
+
+# 프론트엔드
+cd frontend && npm install && npm run dev
+```
+
+### Docker 배포
+
+```bash
+docker compose -f docker-compose.prod.yml up -d
+```
 
 ---
-
 
 ## 면책 조항 (Disclaimer)
 
 - 본 프로젝트는 **학술 및 포트폴리오 목적**의 비영리 프로젝트입니다.
 - 모든 금융상품 정보는 [KB국민은행 공식 웹사이트](https://obank.kbstar.com)에 **일반에 공개된 정보**를 기반으로 수집되었으며, 비공개 정보나 내부 데이터는 포함되어 있지 않습니다.
-- 수집된 정보는 **사실적 데이터**(상품명, 금리, 가입 조건 등)로서 지식그래프 형태로 구조화·변환한 것이며, KB국민은행의 원본 콘텐츠를 그대로 재배포하는 것이 아닙니다.
-- 본 프로젝트의 금융상품 정보는 **수집 시점 기준**이며, 실제 상품 조건과 다를 수 있습니다. 정확한 정보는 반드시 [KB국민은행 공식 웹사이트](https://obank.kbstar.com)에서 확인하시기 바랍니다.
-- 본 프로젝트는 KB국민은행과 어떠한 제휴·협약 관계에 있지 않습니다.
+- 수집된 정보는 **사실적 데이터**(상품명, 금리, 가입 조건 등)로서 지식그래프 형태로 구조화한 것이며, KB국민은행의 원본 콘텐츠를 그대로 재배포하는 것이 아닙니다.
+- 본 프로젝트의 금융상품 정보는 **수집 시점 기준**이며, 실제 상품 조건과 다를 수 있습니다.
+- 본 프로젝트는 KB국민은행과 어떠한 제휴 관계에 있지 않습니다.
 
 ---
 
@@ -315,4 +240,4 @@ MIT License
 
 ---
 
-**마지막 업데이트**: 2026년 3월 24일
+**마지막 업데이트**: 2026년 3월 25일
