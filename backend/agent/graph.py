@@ -131,17 +131,19 @@ def _make_tools(db: Any) -> dict[str, Any]:
         new_loan_rate: float,
         new_loan_months: int,
         new_loan_method: str = "원리금균등",
+        new_loan_rate_type: str = "변동",
         region: str = "수도권",
         sector: str = "은행",
         existing_loans: str = "",
     ) -> str:
-        """DSR(총부채원리금상환비율)을 계산합니다. 스트레스 DSR 가산금리를 반영하여 규제 충족 여부를 판단합니다."""
+        """DSR(총부채원리금상환비율)을 계산합니다. 금감원 기준으로 스트레스 DSR 가산금리, 만기일시 원리금균등전환, 금리유형별 차등을 반영합니다."""
         return dsr_calculator.calculate_dsr.invoke({
             "annual_income": annual_income,
             "new_loan_amount": new_loan_amount,
             "new_loan_rate": new_loan_rate,
             "new_loan_months": new_loan_months,
             "new_loan_method": new_loan_method,
+            "new_loan_rate_type": new_loan_rate_type,
             "region": region,
             "sector": sector,
             "existing_loans": existing_loans,
@@ -153,16 +155,18 @@ def _make_tools(db: Any) -> dict[str, Any]:
         loan_rate: float,
         loan_months: int,
         loan_method: str = "원리금균등",
+        loan_rate_type: str = "변동",
         region: str = "수도권",
         sector: str = "은행",
         existing_loans: str = "",
     ) -> str:
-        """DSR 한도 내 최대 주택담보대출 가능액을 계산합니다. 상환방식별·기간별 비교표도 제공합니다."""
+        """DSR 한도 내 최대 주택담보대출 가능액을 계산합니다. 상환방식별·기간별·금리유형별 비교표도 제공합니다."""
         return dsr_calculator.calculate_max_mortgage_by_dsr.invoke({
             "annual_income": annual_income,
             "loan_rate": loan_rate,
             "loan_months": loan_months,
             "loan_method": loan_method,
+            "loan_rate_type": loan_rate_type,
             "region": region,
             "sector": sector,
             "existing_loans": existing_loans,
