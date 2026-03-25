@@ -235,7 +235,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 "대출 상품 관련 질문에 답변합니다. "
                 "신용대출, 담보대출, 전월세대출, 자동차대출의 금리(기준금리별), "
                 "상환방법, 담보, 중도상환수수료, 소비자 3대 권리를 안내합니다. "
-                "LTV, DSR, 대출한도, 생애최초 등 규제 관련 질문도 답변합니다."
+                "LTV, DSR, 대출한도, 생애최초 등 규제 관련 질문도 답변합니다. "
+                "DSR 계산, 대출 상환액 계산, 최대 대출 가능액 산출도 직접 수행합니다."
             ),
             "system_prompt": LOAN_EXPERT_PROMPT,
             "tools": [
@@ -244,6 +245,7 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 tools["get_loan_rates"],
                 tools["list_products_by_category"],
                 tools["check_eligibility"],
+                tools["calculate_loan_payment"],
                 tools["calculate_dsr"],
                 tools["calculate_max_mortgage_by_dsr"],
             ],
@@ -253,7 +255,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
             "description": (
                 "금융 계산을 수행합니다. "
                 "대출 월 상환액(원리금균등/원금균등/만기일시), "
-                "예금 만기 수령액(세전/세후) 등을 계산합니다."
+                "예금 만기 수령액(세전/세후), "
+                "DSR 계산, 최대 대출 가능액 산출 등을 계산합니다."
             ),
             "system_prompt": CALCULATOR_PROMPT,
             "tools": [
