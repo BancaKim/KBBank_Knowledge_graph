@@ -1,14 +1,19 @@
-"""LangGraph-based banking chatbot agent."""
+"""Multi-agent banking chatbot using create_agent + SubAgentMiddleware.
+
+Supervisor pattern: main agent routes to specialized sub-agents
+(deposit_expert, loan_expert, calculator, comparator).
+
+Uses LangChain standard `create_agent` API with SubAgentMiddleware
+from deepagents for automatic sub-agent delegation.
+"""
+
 from __future__ import annotations
 
 import os
 from typing import Any
 
+from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, ToolMessage
-from langgraph.graph import StateGraph, END
-
-from backend.agent.state import AgentState
 
 try:
     from dotenv import load_dotenv
@@ -16,225 +21,286 @@ try:
 except ImportError:
     pass
 
-
-SYSTEM_PROMPT = """당신은 KB국민은행 금융상품 전문 상담 에이전트입니다.
-주어진 도구(tools)를 활용하여 고객의 질문에 정확하게 답변합니다.
-
-사용 가능한 도구:
-- search_products: 상품 검색
-- get_product_detail: 상품 상세 조회
-- list_products_by_category: 카테고리별 상품 목록
-- compare_products: 상품 비교
-- calculate_loan_payment: 대출 상환액 계산
-- calculate_deposit_maturity: 예금 만기액 계산
-- check_eligibility: 가입 자격 확인
-
-규칙:
-1. 도구에서 얻은 정보만 사용합니다.
-2. 구체적인 수치(금리, 한도 등)를 포함합니다.
-3. 한국어로 답변합니다.
-4. 확실하지 않으면 KB국민은행 문의를 안내합니다.
-"""
-
-# Tools that accept a db parameter for Neo4j connection injection
-_DB_TOOLS = frozenset({
-    "search_products", "get_product_detail", "list_products_by_category",
-    "compare_products", "check_eligibility",
-})
+from backend.agent.prompts import (
+    CALCULATOR_PROMPT,
+    COMPARATOR_PROMPT,
+    DEPOSIT_EXPERT_PROMPT,
+    LOAN_EXPERT_PROMPT,
+    MAIN_SYSTEM_PROMPT,
+)
 
 
-def _get_tools():
-    """Import and return all available tools."""
-    from backend.agent.skills.graph_rag import search_products
-    from backend.agent.skills.product_search import get_product_detail, list_products_by_category
-    from backend.agent.skills.product_compare import compare_products
-    from backend.agent.skills.rate_calculator import calculate_loan_payment, calculate_deposit_maturity
-    from backend.agent.skills.eligibility_check import check_eligibility
+# ---------------------------------------------------------------------------
+# Tool factory — create tools with db pre-bound via closure
+# ---------------------------------------------------------------------------
 
-    return [
-        search_products,
-        get_product_detail,
-        list_products_by_category,
-        compare_products,
-        calculate_loan_payment,
-        calculate_deposit_maturity,
-        check_eligibility,
-    ]
+def _make_tools(db: Any) -> dict[str, Any]:
+    """Create all tools with Neo4j db connection pre-bound.
+
+    Wrapper tools capture `db` from closure so the LLM only sees
+    the user-facing parameters (query, name, etc).
+    """
+    # Import raw tool modules
+    from backend.agent.skills import (
+        graph_rag,
+        product_search,
+        product_compare,
+        rate_calculator,
+        eligibility_check,
+    )
+    from backend.agent.skills import loan_search
+
+    # --- Deposit/common tools (db-bound) ---
+
+    @tool
+    def search_products(query: str) -> str:
+        """상품을 검색합니다. 예금, 적금, 대출 등 모든 금융상품을 검색합니다."""
+        return graph_rag.search_products.invoke({"query": query, "db": db})
+
+    @tool
+    def get_product_detail(product_name: str) -> str:
+        """특정 상품의 상세 정보(금리, 가입조건, 우대금리, 채널 등)를 조회합니다."""
+        return product_search.get_product_detail.invoke({"product_name": product_name, "db": db})
+
+    @tool
+    def list_products_by_category(category: str) -> str:
+        """특정 카테고리(정기예금, 적금, 신용대출 등)의 상품 목록을 조회합니다."""
+        return product_search.list_products_by_category.invoke({"category": category, "db": db})
+
+    @tool
+    def compare_products(product_a: str, product_b: str) -> str:
+        """두 상품을 비교합니다. 금리, 한도, 기간, 채널 등을 표로 비교합니다."""
+        return product_compare.compare_products.invoke({"product_a": product_a, "product_b": product_b, "db": db})
+
+    @tool
+    def check_eligibility(product_name: str, age: int = 0, employment_type: str = "") -> str:
+        """특정 상품의 가입 자격을 확인합니다."""
+        return eligibility_check.check_eligibility.invoke({
+            "product_name": product_name, "age": age, "employment_type": employment_type, "db": db,
+        })
+
+    # --- Loan-specific tools (db-bound) ---
+
+    @tool
+    def search_loan_products(query: str) -> str:
+        """대출 상품을 검색합니다. 신용대출, 담보대출, 전세대출, 자동차대출 등을 검색합니다."""
+        return loan_search.search_loan_products.invoke({"query": query, "db": db})
+
+    @tool
+    def get_loan_product_detail(name: str) -> str:
+        """대출 상품의 상세 정보를 조회합니다. 금리(기준금리별), 상환방법, 담보, 수수료, 소비자권리를 포함합니다."""
+        return loan_search.get_loan_product_detail.invoke({"name": name, "db": db})
+
+    @tool
+    def get_loan_rates(base_rate_type: str) -> str:
+        """특정 기준금리 유형(CD91일물, COFIX, 금융채 등)별 대출 금리를 비교 조회합니다."""
+        return loan_search.get_loan_rates.invoke({"base_rate_type": base_rate_type, "db": db})
+
+    # --- Calculation tools (no db needed) ---
+
+    @tool
+    def calculate_loan_payment(
+        principal: int, annual_rate: float, months: int, method: str = "원리금균등"
+    ) -> str:
+        """대출 월 상환액을 계산합니다. method: 원리금균등, 원금균등, 만기일시"""
+        return rate_calculator.calculate_loan_payment.invoke({
+            "principal": principal, "annual_rate": annual_rate, "months": months, "method": method,
+        })
+
+    @tool
+    def calculate_deposit_maturity(
+        principal: int, annual_rate: float, months: int, tax_type: str = "일반과세"
+    ) -> str:
+        """예금 만기 수령액을 계산합니다. tax_type: 일반과세, 비과세, 세금우대"""
+        return rate_calculator.calculate_deposit_maturity.invoke({
+            "principal": principal, "annual_rate": annual_rate, "months": months, "tax_type": tax_type,
+        })
+
+    return {
+        # Deposit tools
+        "search_products": search_products,
+        "get_product_detail": get_product_detail,
+        "list_products_by_category": list_products_by_category,
+        "check_eligibility": check_eligibility,
+        "calculate_deposit_maturity": calculate_deposit_maturity,
+        # Loan tools
+        "search_loan_products": search_loan_products,
+        "get_loan_product_detail": get_loan_product_detail,
+        "get_loan_rates": get_loan_rates,
+        # Shared tools
+        "compare_products": compare_products,
+        "calculate_loan_payment": calculate_loan_payment,
+    }
 
 
-def create_agent(db=None, api_key: str | None = None):
-    """Create a LangGraph agent for banking chatbot."""
-    tools = _get_tools()
-    tools_by_name = {t.name: t for t in tools}
+# ---------------------------------------------------------------------------
+# Agent factory
+# ---------------------------------------------------------------------------
+
+def create_banking_agent(db: Any = None, api_key: str | None = None):
+    """Create a multi-agent banking chatbot with SubAgentMiddleware.
+
+    Architecture:
+      Main Agent (supervisor) → routes to specialized sub-agents
+      ├── deposit_expert: 예금/적금 상담
+      ├── loan_expert: 대출 상담
+      ├── calculator: 금융 계산
+      └── comparator: 상품 비교/추천
+    """
+    from langchain.agents import create_agent
+    from deepagents.middleware.subagents import SubAgentMiddleware
 
     resolved_key = api_key or os.environ.get("OPENAI_API_KEY")
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=resolved_key)
 
-    llm = ChatOpenAI(
-        model="gpt-4o-mini",
-        temperature=0,
-        api_key=resolved_key,
+    # Create tools with db pre-bound
+    tools = _make_tools(db)
+
+    # Define sub-agents with specialized tools and prompts
+    subagents = [
+        {
+            "name": "deposit_expert",
+            "description": (
+                "예금/적금 상품 관련 질문에 답변합니다. "
+                "정기예금, 적금, 자유입출금통장, 주택청약의 금리, 가입조건, "
+                "세제혜택, 우대금리, 예금자보호 등을 안내합니다."
+            ),
+            "system_prompt": DEPOSIT_EXPERT_PROMPT,
+            "tools": [
+                tools["search_products"],
+                tools["get_product_detail"],
+                tools["list_products_by_category"],
+                tools["check_eligibility"],
+                tools["calculate_deposit_maturity"],
+            ],
+        },
+        {
+            "name": "loan_expert",
+            "description": (
+                "대출 상품 관련 질문에 답변합니다. "
+                "신용대출, 담보대출, 전월세대출, 자동차대출의 금리(기준금리별), "
+                "상환방법, 담보, 중도상환수수료, 소비자 3대 권리를 안내합니다."
+            ),
+            "system_prompt": LOAN_EXPERT_PROMPT,
+            "tools": [
+                tools["search_loan_products"],
+                tools["get_loan_product_detail"],
+                tools["get_loan_rates"],
+                tools["list_products_by_category"],
+                tools["check_eligibility"],
+            ],
+        },
+        {
+            "name": "calculator",
+            "description": (
+                "금융 계산을 수행합니다. "
+                "대출 월 상환액(원리금균등/원금균등/만기일시), "
+                "예금 만기 수령액(세전/세후) 등을 계산합니다."
+            ),
+            "system_prompt": CALCULATOR_PROMPT,
+            "tools": [
+                tools["calculate_loan_payment"],
+                tools["calculate_deposit_maturity"],
+            ],
+        },
+        {
+            "name": "comparator",
+            "description": (
+                "여러 금융상품을 비교하거나 조건에 맞는 상품을 추천합니다. "
+                "예금/대출 간 크로스 비교, 금리 비교, 조건별 추천을 수행합니다."
+            ),
+            "system_prompt": COMPARATOR_PROMPT,
+            "tools": [
+                tools["search_products"],
+                tools["search_loan_products"],
+                tools["get_product_detail"],
+                tools["get_loan_product_detail"],
+                tools["compare_products"],
+                tools["list_products_by_category"],
+            ],
+        },
+    ]
+
+    # Create main agent — no direct tools, MUST delegate to sub-agents
+    agent = create_agent(
+        model=llm,
+        tools=[],  # No direct tools — forces delegation to sub-agents
+        system_prompt=MAIN_SYSTEM_PROMPT,
+        middleware=[
+            SubAgentMiddleware(
+                default_model=llm,
+                subagents=subagents,
+            ),
+        ],
+        name="kb_banking_agent",
     )
 
-    llm_with_tools = llm.bind_tools(tools)
+    return agent
 
-    # ── Node: retrieve context from knowledge graph ──────────────────────
-    def retrieve_context(state: AgentState) -> AgentState:
-        """Pre-retrieve relevant context from knowledge graph."""
-        conn = state.get("db")
-        if not conn:
-            return state
 
-        query = state["query"]
-        referenced_nodes: list[dict] = []
-        context_parts: list[str] = []
+# ---------------------------------------------------------------------------
+# Public API — backward compatible
+# ---------------------------------------------------------------------------
 
-        try:
-            products = conn.run_query("""
-                CALL db.index.fulltext.queryNodes('product_search', $query)
-                YIELD node, score
-                WHERE score > 0.5
-                RETURN node.id AS id, node.name AS name, node.category AS category,
-                       node.description AS description, score
-                ORDER BY score DESC LIMIT 3
-            """, {"query": query})
+def _extract_refs(db: Any, answer: str) -> list[dict]:
+    """Extract referenced product nodes from answer text."""
+    if not db or not answer:
+        return []
+    try:
+        # Search for product names mentioned in the answer
+        results = db.run_query(
+            """
+            MATCH (p:Product)
+            WHERE any(word IN split($answer, ' ') WHERE size(word) > 3 AND p.name CONTAINS word)
+            RETURN p.id AS id, p.name AS name
+            LIMIT 5
+            UNION
+            MATCH (lp:LoanProduct)
+            WHERE any(word IN split($answer, ' ') WHERE size(word) > 3 AND lp.name CONTAINS word)
+            RETURN lp.id AS id, lp.name AS name
+            LIMIT 5
+            """,
+            {"answer": answer},
+        )
+        return [{"id": r["id"], "type": "product", "name": r["name"]} for r in results]
+    except Exception:
+        return []
 
-            for p in products:
-                referenced_nodes.append({"id": p["id"], "type": "product", "name": p["name"]})
-                ctx = f"{p['name']} ({p.get('category', '')})"
-                if p.get('description'):
-                    ctx += f": {p['description'][:100]}"
-                context_parts.append(ctx)
-        except Exception:
-            pass
 
-        return {
-            **state,
-            "context": "\n".join(context_parts) if context_parts else "",
-            "referenced_nodes": referenced_nodes,
-        }
+def chat(
+    query: str,
+    history: list[dict] | None = None,
+    db: Any = None,
+    api_key: str | None = None,
+) -> dict:
+    """Process a chat query using the multi-agent banking chatbot.
 
-    # ── Node: run the LLM agent with tool calling ────────────────────────
-    def call_agent(state: AgentState) -> AgentState:
-        """Run the agent with tools."""
-        messages: list = [SystemMessage(content=SYSTEM_PROMPT)]
+    Drop-in replacement for the previous single-agent ``chat`` function.
+    Returns: {"answer": str, "referenced_nodes": list[dict]}
+    """
+    try:
+        agent = create_banking_agent(db, api_key=api_key)
 
-        # Add conversation history
-        if state.get("history"):
-            for msg in state["history"][-6:]:
+        # Build messages from history
+        from langchain_core.messages import HumanMessage, AIMessage
+        messages = []
+        if history:
+            for msg in history[-6:]:
                 if msg["role"] == "user":
                     messages.append(HumanMessage(content=msg["content"]))
                 elif msg["role"] == "assistant":
                     messages.append(AIMessage(content=msg["content"]))
-
-        # Add context from previous retrieval if available
-        query = state["query"]
-        if state.get("context"):
-            query = f"[참고 정보]\n{state['context']}\n\n[질문] {query}"
-
         messages.append(HumanMessage(content=query))
 
-        # Invoke LLM with tools
-        response = llm_with_tools.invoke(messages)
-
-        referenced_nodes = list(state.get("referenced_nodes", []))
-
-        if response.tool_calls:
-            messages.append(response)
-
-            for tool_call in response.tool_calls:
-                tool_name = tool_call["name"]
-                tool_args = dict(tool_call["args"])
-
-                # Inject db connection for Neo4j-dependent tools
-                if tool_name in _DB_TOOLS:
-                    tool_args["db"] = state.get("db")
-
-                tool_fn = tools_by_name.get(tool_name)
-                if tool_fn:
-                    try:
-                        result = tool_fn.invoke(tool_args)
-                    except Exception as e:
-                        result = f"도구 실행 오류: {type(e).__name__}"
-                else:
-                    result = f"알 수 없는 도구: {tool_name}"
-
-                messages.append(ToolMessage(content=str(result), tool_call_id=tool_call["id"]))
-
-                # Collect referenced nodes from search results
-                if tool_name in _DB_TOOLS:
-                    _extract_refs(state.get("db"), tool_args, referenced_nodes)
-
-            # Get final response after tool calls
-            final_response = llm.invoke(messages)
-            answer = final_response.content
-        else:
-            answer = response.content
+        result = agent.invoke({"messages": messages})
+        answer = result["messages"][-1].content if result.get("messages") else "답변을 생성할 수 없습니다."
 
         return {
-            **state,
             "answer": answer,
-            "referenced_nodes": referenced_nodes,
+            "referenced_nodes": _extract_refs(db, answer),
         }
-
-    # ── Build LangGraph ──────────────────────────────────────────────────
-    workflow = StateGraph(AgentState)
-    workflow.add_node("retrieve", retrieve_context)
-    workflow.add_node("agent", call_agent)
-
-    workflow.set_entry_point("retrieve")
-    workflow.add_edge("retrieve", "agent")
-    workflow.add_edge("agent", END)
-
-    return workflow.compile()
-
-
-def _extract_refs(db, tool_args: dict, referenced_nodes: list[dict]) -> None:
-    """Extract referenced node IDs from tool args."""
-    if not db:
-        return
-    try:
-        query = tool_args.get("query") or tool_args.get("product_name") or tool_args.get("product_a", "")
-        if query:
-            results = db.run_query("""
-                MATCH (p:Product)
-                WHERE p.name CONTAINS $q
-                RETURN p.id AS id, p.name AS name
-                LIMIT 5
-            """, {"q": query})
-            for r in results:
-                if not any(n["id"] == r["id"] for n in referenced_nodes):
-                    referenced_nodes.append({"id": r["id"], "type": "product", "name": r["name"]})
-    except Exception:
-        pass
-
-
-def chat(query: str, history: list[dict] | None = None, db=None, api_key: str | None = None) -> dict:
-    """Process a chat query using the LangGraph agent.
-
-    Drop-in replacement for the previous ``backend.chatbot.chat`` function.
-    """
-    agent = create_agent(db, api_key=api_key)
-
-    state = AgentState(
-        query=query,
-        history=history or [],
-        db=db,
-        intent="general",
-        entities=[],
-        context="",
-        referenced_nodes=[],
-        answer="",
-        verified=False,
-    )
-
-    try:
-        result = agent.invoke(state)
+    except Exception as exc:
         return {
-            "answer": result.get("answer", "답변을 생성할 수 없습니다."),
-            "referenced_nodes": result.get("referenced_nodes", []),
-        }
-    except Exception:
-        return {
-            "answer": "죄송합니다. 답변 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+            "answer": f"죄송합니다. 답변 생성 중 오류가 발생했습니다: {type(exc).__name__}. 잠시 후 다시 시도해주세요.",
             "referenced_nodes": [],
         }
