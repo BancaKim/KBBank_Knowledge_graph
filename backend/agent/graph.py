@@ -21,6 +21,8 @@ try:
 except ImportError:
     pass
 
+from pathlib import Path
+
 from backend.agent.prompts import (
     CALCULATOR_PROMPT,
     COMPARATOR_PROMPT,
@@ -28,6 +30,23 @@ from backend.agent.prompts import (
     LOAN_EXPERT_PROMPT,
     MAIN_SYSTEM_PROMPT,
 )
+
+
+# ---------------------------------------------------------------------------
+# Skill loading — inject domain knowledge into sub-agent prompts
+# ---------------------------------------------------------------------------
+
+_REGULATION_SKILL_PATH = (
+    Path(__file__).resolve().parent.parent.parent
+    / "skills" / "financial-regulations" / "references" / "loan-regulations.md"
+)
+
+
+def _load_regulation_skill() -> str:
+    """Load financial regulation skill content for loan expert."""
+    if _REGULATION_SKILL_PATH.exists():
+        return _REGULATION_SKILL_PATH.read_text(encoding="utf-8")
+    return ""
 
 
 # ---------------------------------------------------------------------------
@@ -179,9 +198,10 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
             "description": (
                 "대출 상품 관련 질문에 답변합니다. "
                 "신용대출, 담보대출, 전월세대출, 자동차대출의 금리(기준금리별), "
-                "상환방법, 담보, 중도상환수수료, 소비자 3대 권리를 안내합니다."
+                "상환방법, 담보, 중도상환수수료, 소비자 3대 권리를 안내합니다. "
+                "LTV, DSR, 대출한도, 생애최초 등 규제 관련 질문도 답변합니다."
             ),
-            "system_prompt": LOAN_EXPERT_PROMPT,
+            "system_prompt": LOAN_EXPERT_PROMPT + "\n\n" + _load_regulation_skill(),
             "tools": [
                 tools["search_loan_products"],
                 tools["get_loan_product_detail"],
