@@ -54,6 +54,8 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
         eligibility_check,
         dsr_calculator,
         cypher_rag,
+        ltv_calculator,
+        mortgage_calculator,
     )
     from backend.agent.skills import loan_search
 
@@ -132,6 +134,7 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
         new_loan_rate: float,
         new_loan_months: int,
         new_loan_method: str = "원리금균등",
+        new_loan_type: str = "주담대",
         new_loan_rate_type: str = "변동",
         region: str = "수도권",
         sector: str = "은행",
@@ -144,6 +147,7 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
             "new_loan_rate": new_loan_rate,
             "new_loan_months": new_loan_months,
             "new_loan_method": new_loan_method,
+            "new_loan_type": new_loan_type,
             "new_loan_rate_type": new_loan_rate_type,
             "region": region,
             "sector": sector,
@@ -173,6 +177,72 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
             "existing_loans": existing_loans,
         })
 
+    # --- LTV & Mortgage limit tools (no db needed) ---
+
+    @tool
+    def calculate_ltv_limit(
+        property_value: float,
+        region: str = "수도권",
+        is_first_time: bool = False,
+        num_homes: int = 0,
+        disposal_condition: bool = False,
+        prior_loans: float = 0.0,
+        lease_deposit: float = 0.0,
+        num_rooms: int = 1,
+        is_apartment: bool = True,
+    ) -> str:
+        """LTV(담보인정비율) 기반 주택담보대출 최대 한도를 계산합니다. 규제지역/비규제지역, 생애최초, 주택가격대별 상한을 반영합니다."""
+        return ltv_calculator.calculate_ltv_limit.invoke({
+            "property_value": property_value,
+            "region": region,
+            "is_first_time": is_first_time,
+            "num_homes": num_homes,
+            "disposal_condition": disposal_condition,
+            "prior_loans": prior_loans,
+            "lease_deposit": lease_deposit,
+            "num_rooms": num_rooms,
+            "is_apartment": is_apartment,
+        })
+
+    @tool
+    def calculate_mortgage_limit(
+        property_value: float,
+        annual_income: float,
+        loan_rate: float,
+        loan_months: int = 360,
+        loan_method: str = "원리금균등",
+        loan_rate_type: str = "변동",
+        region: str = "수도권",
+        sector: str = "은행",
+        is_first_time: bool = False,
+        num_homes: int = 0,
+        disposal_condition: bool = False,
+        prior_loans: float = 0.0,
+        lease_deposit: float = 0.0,
+        is_apartment: bool = True,
+        num_rooms: int = 1,
+        existing_loans: str = "",
+    ) -> str:
+        """주택담보대출 최종 한도를 계산합니다. LTV와 DSR을 모두 계산하여 min(LTV한도, DSR한도)를 안내합니다."""
+        return mortgage_calculator.calculate_mortgage_limit.invoke({
+            "property_value": property_value,
+            "annual_income": annual_income,
+            "loan_rate": loan_rate,
+            "loan_months": loan_months,
+            "loan_method": loan_method,
+            "loan_rate_type": loan_rate_type,
+            "region": region,
+            "sector": sector,
+            "is_first_time": is_first_time,
+            "num_homes": num_homes,
+            "disposal_condition": disposal_condition,
+            "prior_loans": prior_loans,
+            "lease_deposit": lease_deposit,
+            "is_apartment": is_apartment,
+            "num_rooms": num_rooms,
+            "existing_loans": existing_loans,
+        })
+
     # --- Agentic GraphRAG (LLM → Cypher, db-bound + llm-bound) ---
 
     @tool
@@ -197,6 +267,9 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
         # DSR tools
         "calculate_dsr": calculate_dsr,
         "calculate_max_mortgage_by_dsr": calculate_max_mortgage_by_dsr,
+        # LTV & Mortgage limit tools
+        "calculate_ltv_limit": calculate_ltv_limit,
+        "calculate_mortgage_limit": calculate_mortgage_limit,
         # Agentic GraphRAG
         "query_knowledge_graph": query_knowledge_graph,
     }
@@ -250,8 +323,9 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 "대출 상품 관련 질문에 답변합니다. "
                 "신용대출, 담보대출, 전월세대출, 자동차대출의 금리(기준금리별), "
                 "상환방법, 담보, 중도상환수수료, 소비자 3대 권리를 안내합니다. "
-                "LTV, DSR, 대출한도, 생애최초 등 규제 관련 질문도 답변합니다. "
-                "DSR 계산, 대출 상환액 계산, 최대 대출 가능액 산출도 직접 수행합니다."
+                "LTV, DSR, 대출한도, 생애최초, 규제지역 등 규제 관련 질문도 답변합니다. "
+                "DSR 계산, LTV 한도, 최종 대출한도(min(LTV,DSR)), "
+                "대출 상환액 계산, 최대 대출 가능액 산출도 직접 수행합니다."
             ),
             "system_prompt": LOAN_EXPERT_PROMPT,
             "tools": [
@@ -263,6 +337,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 tools["calculate_loan_payment"],
                 tools["calculate_dsr"],
                 tools["calculate_max_mortgage_by_dsr"],
+                tools["calculate_ltv_limit"],
+                tools["calculate_mortgage_limit"],
                 tools["query_knowledge_graph"],
             ],
         },
@@ -272,7 +348,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 "금융 계산을 수행합니다. "
                 "대출 월 상환액(원리금균등/원금균등/만기일시), "
                 "예금 만기 수령액(세전/세후), "
-                "DSR 계산, 최대 대출 가능액 산출 등을 계산합니다."
+                "DSR 계산, LTV 한도 계산, 주택담보대출 최종 한도 계산, "
+                "최대 대출 가능액 산출 등을 계산합니다."
             ),
             "system_prompt": CALCULATOR_PROMPT,
             "tools": [
@@ -280,6 +357,8 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
                 tools["calculate_deposit_maturity"],
                 tools["calculate_dsr"],
                 tools["calculate_max_mortgage_by_dsr"],
+                tools["calculate_ltv_limit"],
+                tools["calculate_mortgage_limit"],
             ],
         },
         {

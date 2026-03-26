@@ -54,6 +54,15 @@ BULLET_MATURITY_CAP: dict[str, int] = {
 }
 
 
+# 수도권 지역 목록 (지역 매핑용)
+_METRO_REGIONS = {"수도권", "규제지역", "서울", "경기", "인천", "강남", "서초", "송파", "용산"}
+
+
+def _is_metro(region: str) -> bool:
+    """수도권/규제지역 여부 판별."""
+    return region in _METRO_REGIONS or "규제" in region or "수도" in region
+
+
 # ---------------------------------------------------------------------------
 # 내부 계산 함수
 # ---------------------------------------------------------------------------
@@ -145,7 +154,9 @@ def _get_stress_rate(region: str, loan_type: str, rate_type: str = "변동") -> 
     # 기본 가산금리 결정
     if loan_type == "신용대출":
         base = STRESS_BASE_RATE["신용대출"]
-    elif region in ("수도권", "규제지역", "서울"):
+    elif loan_type in ("카드론", "기타가계"):
+        base = STRESS_BASE_RATE["기타가계"]
+    elif _is_metro(region):
         base = STRESS_BASE_RATE["수도권"]
     else:
         base = STRESS_BASE_RATE["지방"]
@@ -167,13 +178,18 @@ def _parse_existing_loans(existing_loans: str, region: str) -> tuple[float, list
     """
     total = 0.0
     details = []
+    warnings = []
 
     if not existing_loans or not existing_loans.strip():
         return total, details
 
     for entry in existing_loans.split("|"):
+        entry = entry.strip()
+        if not entry:
+            continue
         parts = [p.strip() for p in entry.split(":")]
         if len(parts) < 3:
+            warnings.append(f"⚠ 기존대출 파싱 실패 (최소 '잔액:금리:개월' 필요): '{entry}'")
             continue
         ex_amount = float(parts[0]) * 10000
         ex_rate = float(parts[1])
@@ -196,6 +212,11 @@ def _parse_existing_loans(existing_loans: str, region: str) -> tuple[float, list
             "rate_type": ex_rate_type,
             "annual": ex_annual,
         })
+
+    # 경고가 있으면 details에 포함
+    if warnings:
+        for w in warnings:
+            details.append({"warning": w})
 
     return total, details
 
@@ -258,6 +279,7 @@ def calculate_dsr(
     new_loan_rate: float,
     new_loan_months: int,
     new_loan_method: str = "원리금균등",
+    new_loan_type: str = "주담대",
     new_loan_rate_type: str = "변동",
     region: str = "수도권",
     sector: str = "은행",
@@ -265,7 +287,8 @@ def calculate_dsr(
 ) -> str:
     """DSR(총부채원리금상환비율)을 계산하고 규제 충족 여부를 판단합니다.
 
-    신규 주택담보대출의 DSR을 스트레스 금리 포함하여 금감원 기준으로 산출합니다.
+    신규 대출의 DSR을 스트레스 금리 포함하여 금감원 기준으로 산출합니다.
+    주택담보대출뿐 아니라 신용대출 등 모든 대출 유형의 DSR을 계산할 수 있습니다.
 
     Args:
         annual_income: 연소득 (만원 단위, 예: 5000 = 5천만원)
@@ -273,8 +296,9 @@ def calculate_dsr(
         new_loan_rate: 신규 대출 약정 연이자율 (%, 예: 4.5)
         new_loan_months: 신규 대출 상환기간 (개월, 예: 360 = 30년)
         new_loan_method: 상환방식 ("원리금균등", "원금균등", "만기일시")
+        new_loan_type: 대출유형 ("주담대", "신용대출", "전세보증금담보", "카드론" 등)
         new_loan_rate_type: 금리유형 ("변동", "혼합5년", "혼합10년", "고정" 등)
-        region: 지역 ("수도권", "지방", "규제지역")
+        region: 지역 ("서울", "수도권", "경기", "지방" 등)
         sector: 금융권 ("은행", "2금융")
         existing_loans: 기존 대출 정보 (형식: "잔액(만원):금리(%):잔여개월:상환방식:유형:금리유형"
             여러 건은 | 구분, 예: "5000:5.0:48:원리금균등:신용대출:변동|10000:3.5:240:원리금균등:주담대:혼합5년")
@@ -287,10 +311,10 @@ def calculate_dsr(
     existing_annual_total, existing_details = _parse_existing_loans(existing_loans, region)
 
     # --- 신규 대출 스트레스 금리 반영 ---
-    stress_rate = _get_stress_rate(region, "주담대", new_loan_rate_type)
+    stress_rate = _get_stress_rate(region, new_loan_type, new_loan_rate_type)
     new_rate_stressed = new_loan_rate + stress_rate
     new_annual = calculate_annual_repayment(
-        new_principal_won, new_rate_stressed, new_loan_months, new_loan_method, "주담대",
+        new_principal_won, new_rate_stressed, new_loan_months, new_loan_method, new_loan_type,
     )
 
     # --- DSR 계산 ---
@@ -311,7 +335,8 @@ def calculate_dsr(
     ]
 
     # 신규 대출
-    lines.append("### 신규 주택담보대출")
+    loan_type_label = {"주담대": "주택담보대출", "신용대출": "신용대출", "전세보증금담보": "전세대출", "카드론": "카드론"}.get(new_loan_type, new_loan_type)
+    lines.append(f"### 신규 {loan_type_label}")
     lines.append(f"- 대출원금: **{new_principal_won:,.0f}원** ({new_loan_amount:,.0f}만원)")
     lines.append(f"- 약정금리: {new_loan_rate}%")
     lines.append(f"- 금리유형: {new_loan_rate_type} (스트레스 적용비율 {stress_ratio * 100:.0f}%)")
@@ -320,7 +345,7 @@ def calculate_dsr(
     lines.append(f"- 상환기간: {new_loan_months}개월 ({new_loan_months // 12}년)")
     lines.append(f"- 상환방식: {new_loan_method}")
     if new_loan_method == "만기일시":
-        cap = BULLET_MATURITY_CAP["주담대"]
+        cap = BULLET_MATURITY_CAP.get(new_loan_type, BULLET_MATURITY_CAP["기타"])
         deemed = min(new_loan_months, cap)
         lines.append(f"- DSR 산정: 원리금균등 전환 가정, 산정만기 {deemed}개월({deemed // 12}년) 적용")
     lines.append(f"- 연간 원리금 상환액: **{new_annual:,.0f}원** (월 {new_annual / 12:,.0f}원)\n")
@@ -359,7 +384,7 @@ def calculate_dsr(
     if not is_ok:
         max_principal = _max_loan_by_dsr(
             income_won, dsr_limit, existing_annual_total,
-            new_rate_stressed, new_loan_months, new_loan_method, "주담대",
+            new_rate_stressed, new_loan_months, new_loan_method, new_loan_type,
         )
         lines.append("### DSR 한도 내 최대 대출 가능액")
         lines.append(f"- 동일 조건(금리 {new_rate_stressed}%, {new_loan_months}개월, {new_loan_method}) 기준")
