@@ -19,7 +19,8 @@ RUN pip install --no-cache-dir ".[chat]"
 # Copy application code
 COPY backend/ ./backend/
 COPY knowledge_graph/ ./knowledge_graph/
-COPY data/ ./data/
+# data/ may not exist (gitignored); create empty dir as fallback
+RUN mkdir -p ./data
 COPY skills/ ./skills/
 
 # Copy frontend build from stage 1

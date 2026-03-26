@@ -3,8 +3,8 @@ set -euo pipefail
 
 SERVER="ubuntu@144.24.74.197"
 SSH_KEY="$HOME/.ssh/oracle_key"
-REMOTE_DIR="/home/ubuntu/banking_bot"
-REPO="https://github.com/prismacube/banking_bot.git"
+REMOTE_DIR="/home/ubuntu/KBBank_Knowledge_graph"
+REPO="https://github.com/BancaKim/KBBank_Knowledge_graph.git"
 
 ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no "$SERVER" bash -s -- "$REMOTE_DIR" "$REPO" <<'REMOTE'
 set -euo pipefail
