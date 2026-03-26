@@ -2,18 +2,22 @@ interface Props {
   onZoomIn: () => void;
   onZoomOut: () => void;
   onReset: () => void;
+  isMobile?: boolean;
 }
 
-export default function Toolbar({ onZoomIn, onZoomOut, onReset }: Props) {
+export default function Toolbar({ onZoomIn, onZoomOut, onReset, isMobile = false }: Props) {
   return (
     <div
       style={{
         position: "absolute",
-        top: 16,
-        right: 16,
+        // On mobile: move to bottom-right to avoid colliding with the toggle button at top-right
+        ...(isMobile
+          ? { bottom: 16, right: 16 }
+          : { top: 16, right: 16 }),
         display: "flex",
         flexDirection: "column",
         gap: 4,
+        zIndex: 10,
       }}
     >
       {[

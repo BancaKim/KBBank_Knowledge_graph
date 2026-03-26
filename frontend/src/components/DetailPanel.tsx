@@ -4,12 +4,55 @@ import { NODE_COLORS } from "../types/graph";
 interface Props {
   node: GraphNode | null;
   onClose: () => void;
+  isMobile?: boolean;
 }
 
-export default function DetailPanel({ node, onClose }: Props) {
+export default function DetailPanel({ node, onClose, isMobile = false }: Props) {
   if (!node) return null;
 
-  const d = node.data;
+  if (isMobile) {
+    return (
+      <>
+        {/* Scrim */}
+        <div
+          onClick={onClose}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(26,25,23,0.35)",
+            zIndex: 300,
+          }}
+        />
+        {/* Bottom sheet */}
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            maxHeight: "60vh",
+            background: "#FAFAF8",
+            borderTop: "1px solid #E2E0D8",
+            borderRadius: "16px 16px 0 0",
+            overflowY: "auto",
+            padding: "16px 20px 32px",
+            boxSizing: "border-box",
+            zIndex: 301,
+            boxShadow: "0 -4px 24px rgba(0,0,0,0.14)",
+            animation: "slideUpSheet 0.24s ease-out",
+          }}
+        >
+          <style>{`@keyframes slideUpSheet { from { transform: translateY(100%); } to { transform: translateY(0); } }`}</style>
+          {/* Handle bar */}
+          <div style={{
+            width: 36, height: 4, borderRadius: 2, background: "#DDD9CE",
+            margin: "0 auto 16px",
+          }} />
+          <DetailPanelContent node={node} onClose={onClose} />
+        </div>
+      </>
+    );
+  }
 
   return (
     <div
@@ -23,6 +66,15 @@ export default function DetailPanel({ node, onClose }: Props) {
         boxSizing: "border-box",
       }}
     >
+      <DetailPanelContent node={node} onClose={onClose} />
+    </div>
+  );
+}
+
+function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () => void }) {
+  const d = node.data;
+  return (
+    <>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
         <span
           style={{
@@ -165,7 +217,7 @@ export default function DetailPanel({ node, onClose }: Props) {
           {d.description && <InfoRow label="설명" value={String(d.description).slice(0, 200)} />}
         </>
       )}
-    </div>
+    </>
   );
 }
 
