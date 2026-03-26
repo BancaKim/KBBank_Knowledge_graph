@@ -84,7 +84,7 @@ export default function CategoryFilter({
 
   return (
     <div style={{ padding: "0 4px" }}>
-      <h3 style={{ color: "#ccc", fontSize: 14, marginBottom: 8, marginTop: 0 }}>
+      <h3 style={{ color: "#3D3B37", fontSize: 13, marginBottom: 8, marginTop: 0, fontWeight: 600, letterSpacing: "-0.2px" }}>
         카테고리
       </h3>
       <div style={{ display: "flex", gap: 6, marginBottom: 10 }}>
@@ -106,9 +106,9 @@ export default function CategoryFilter({
               gap: 8,
               padding: "6px 0",
               cursor: "pointer",
-              color: "#fff",
-              fontSize: 14,
-              fontWeight: "bold",
+              color: "#1A1917",
+              fontSize: 13,
+              fontWeight: 600,
             }}
           >
             <input
@@ -118,7 +118,7 @@ export default function CategoryFilter({
                 if (el) el.indeterminate = isGroupIndeterminate(children);
               }}
               onChange={() => toggleGroup(children)}
-              style={{ accentColor: NODE_COLORS.category }}
+              style={{ accentColor: "#FDB913" }}
             />
             <span
               style={{
@@ -127,17 +127,18 @@ export default function CategoryFilter({
                 borderRadius: "50%",
                 background: NODE_COLORS.category,
                 display: "inline-block",
+                flexShrink: 0,
               }}
             />
             <span>{parent}</span>
             <span
               style={{
                 marginLeft: "auto",
-                background: "#444",
+                background: "#E8E5DD",
                 borderRadius: 10,
                 padding: "1px 8px",
                 fontSize: 11,
-                color: "#aaa",
+                color: "#6B6860",
                 fontWeight: "normal",
               }}
             >
@@ -156,26 +157,26 @@ export default function CategoryFilter({
                   gap: 8,
                   padding: "4px 0",
                   cursor: "pointer",
-                  color: "#ccc",
-                  fontSize: 13,
+                  color: "#4A4845",
+                  fontSize: 12,
                 }}
               >
                 <input
                   type="checkbox"
                   checked={selectedCategories.has(cat)}
                   onChange={() => toggleCategory(cat)}
-                  style={{ accentColor: NODE_COLORS.product }}
+                  style={{ accentColor: "#FDB913" }}
                 />
                 <span>{cat}</span>
                 {categoryCounts[cat] != null && (
                   <span
                     style={{
                       marginLeft: "auto",
-                      background: "#333",
+                      background: "#ECEAE3",
                       borderRadius: 10,
                       padding: "1px 8px",
                       fontSize: 11,
-                      color: "#999",
+                      color: "#9C9A95",
                     }}
                   >
                     {categoryCounts[cat]}
@@ -187,7 +188,7 @@ export default function CategoryFilter({
         </div>
       ))}
 
-      <h3 style={{ color: "#ccc", fontSize: 14, marginBottom: 8, marginTop: 20 }}>
+      <h3 style={{ color: "#3D3B37", fontSize: 13, marginBottom: 8, marginTop: 20, fontWeight: 600, letterSpacing: "-0.2px" }}>
         노드 타입
       </h3>
       {NODE_TYPES.map(({ key, label }) => (
@@ -197,25 +198,26 @@ export default function CategoryFilter({
             display: "flex",
             alignItems: "center",
             gap: 8,
-            padding: "5px 0",
+            padding: "4px 0",
             cursor: "pointer",
-            color: "#ddd",
-            fontSize: 13,
+            color: "#4A4845",
+            fontSize: 12,
           }}
         >
           <input
             type="checkbox"
             checked={selectedNodeTypes.has(key)}
             onChange={() => toggleNodeType(key)}
-            style={{ accentColor: NODE_COLORS[key] || "#999" }}
+            style={{ accentColor: NODE_COLORS[key] || "#FDB913" }}
           />
           <span
             style={{
-              width: 10,
-              height: 10,
+              width: 9,
+              height: 9,
               borderRadius: "50%",
               background: NODE_COLORS[key] || "#999",
               display: "inline-block",
+              flexShrink: 0,
             }}
           />
           <span>{label}</span>
@@ -228,9 +230,11 @@ export default function CategoryFilter({
 const btnStyle: React.CSSProperties = {
   padding: "4px 10px",
   fontSize: 11,
-  border: "1px solid #555",
-  borderRadius: 4,
-  background: "#2a2a3e",
-  color: "#ccc",
+  border: "1px solid #DDD9CE",
+  borderRadius: 6,
+  background: "#FFFFFF",
+  color: "#4A4845",
   cursor: "pointer",
+  fontFamily: "inherit",
+  transition: "border-color 0.15s, background 0.15s",
 };

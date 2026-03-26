@@ -16,8 +16,8 @@ export default function DetailPanel({ node, onClose }: Props) {
       style={{
         width: 350,
         height: "100%",
-        background: "#1e1e32",
-        borderLeft: "1px solid #333",
+        background: "#FAFAF8",
+        borderLeft: "1px solid #E2E0D8",
         overflowY: "auto",
         padding: "20px",
         boxSizing: "border-box",
@@ -29,10 +29,11 @@ export default function DetailPanel({ node, onClose }: Props) {
             display: "inline-block",
             padding: "3px 10px",
             borderRadius: 12,
-            background: NODE_COLORS[node.type] || "#555",
+            background: NODE_COLORS[node.type] || "#999",
             color: "#fff",
             fontSize: 11,
-            fontWeight: "bold",
+            fontWeight: 700,
+            letterSpacing: "0.3px",
           }}
         >
           {node.type.toUpperCase()}
@@ -43,16 +44,22 @@ export default function DetailPanel({ node, onClose }: Props) {
           style={{
             background: "none",
             border: "none",
-            color: "#888",
-            fontSize: 20,
+            color: "#9C9A95",
+            fontSize: 18,
             cursor: "pointer",
+            lineHeight: 1,
+            padding: "2px 4px",
+            borderRadius: 4,
+            transition: "color 0.15s",
           }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#1A1917")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "#9C9A95")}
         >
           ✕
         </button>
       </div>
 
-      <h2 style={{ color: "#fff", fontSize: 18, marginBottom: 16, lineHeight: 1.3 }}>
+      <h2 style={{ color: "#1A1917", fontSize: 17, marginBottom: 16, lineHeight: 1.4, letterSpacing: "-0.3px", fontWeight: 700 }}>
         {node.label}
       </h2>
 
@@ -63,7 +70,7 @@ export default function DetailPanel({ node, onClose }: Props) {
           )}
           {d.description && (
             <Section title="상품설명">
-              <p style={{ color: "#bbb", fontSize: 13, lineHeight: 1.6 }}>
+              <p style={{ color: "#4A4845", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
                 {String(d.description).slice(0, 300)}
                 {String(d.description).length > 300 ? "..." : ""}
               </p>
@@ -84,12 +91,14 @@ export default function DetailPanel({ node, onClose }: Props) {
                 display: "block",
                 marginTop: 20,
                 padding: "10px",
-                background: "#4A90D9",
-                color: "#fff",
+                background: "#FDB913",
+                color: "#1A1917",
                 borderRadius: 8,
                 textAlign: "center",
                 textDecoration: "none",
                 fontSize: 13,
+                fontWeight: 700,
+                letterSpacing: "-0.2px",
               }}
             >
               은행에서 보기
@@ -163,7 +172,7 @@ export default function DetailPanel({ node, onClose }: Props) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: 16 }}>
-      <h4 style={{ color: "#999", fontSize: 12, marginBottom: 6 }}>
+      <h4 style={{ color: "#9C9A95", fontSize: 11, marginBottom: 6, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.4px" }}>
         {title}
       </h4>
       {children}
@@ -173,11 +182,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
-    <div style={{ marginBottom: 10, display: "flex", gap: 8 }}>
-      <span style={{ color: "#888", fontSize: 12, minWidth: 70, flexShrink: 0 }}>
+    <div style={{ marginBottom: 10, display: "flex", gap: 8, padding: "8px 10px", background: "#F4F3EF", borderRadius: 6 }}>
+      <span style={{ color: "#9C9A95", fontSize: 11, minWidth: 64, flexShrink: 0, paddingTop: 1, fontWeight: 500 }}>
         {label}
       </span>
-      <span style={{ color: "#ddd", fontSize: 13 }}>{value}</span>
+      <span style={{ color: "#1A1917", fontSize: 13, lineHeight: 1.45 }}>{value}</span>
     </div>
   );
 }
@@ -185,11 +194,11 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 function RateBar({ min, max }: { min: number; max: number }) {
   const maxRate = 10;
   return (
-    <div style={{ marginBottom: 6 }}>
+    <div style={{ marginBottom: 12 }}>
       <div
         style={{
-          height: 8,
-          background: "#333",
+          height: 7,
+          background: "#E8E5DD",
           borderRadius: 4,
           position: "relative",
           overflow: "hidden",
@@ -201,16 +210,16 @@ function RateBar({ min, max }: { min: number; max: number }) {
             left: `${(min / maxRate) * 100}%`,
             width: `${((max - min) / maxRate) * 100}%`,
             height: "100%",
-            background: "linear-gradient(90deg, #4A90D9, #7ED321)",
+            background: "linear-gradient(90deg, #FDB913, #F5A623)",
             borderRadius: 4,
           }}
         />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-        <span style={{ color: "#4A90D9", fontSize: 14, fontWeight: "bold" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+        <span style={{ color: "#6B6860", fontSize: 13, fontWeight: 600 }}>
           {min}%
         </span>
-        <span style={{ color: "#7ED321", fontSize: 14, fontWeight: "bold" }}>
+        <span style={{ color: "#1A1917", fontSize: 13, fontWeight: 700 }}>
           {max}%
         </span>
       </div>

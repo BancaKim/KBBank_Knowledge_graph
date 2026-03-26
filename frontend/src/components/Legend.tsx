@@ -24,13 +24,16 @@ export default function Legend() {
         position: "absolute",
         bottom: 16,
         left: 16,
-        background: "rgba(26,26,46,0.9)",
-        border: "1px solid #333",
-        borderRadius: 8,
+        background: "rgba(255,255,252,0.92)",
+        border: "1px solid #E2E0D8",
+        borderRadius: 10,
         padding: "10px 14px",
         display: "flex",
-        gap: 14,
+        gap: 12,
         flexWrap: "wrap",
+        maxWidth: 520,
+        backdropFilter: "blur(6px)",
+        boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
       }}
     >
       {LEGEND_ITEMS.map(({ type, label }) => (
@@ -40,14 +43,15 @@ export default function Legend() {
         >
           <span
             style={{
-              width: 10,
-              height: 10,
+              width: 9,
+              height: 9,
               borderRadius: "50%",
               background: NODE_COLORS[type],
               display: "inline-block",
+              flexShrink: 0,
             }}
           />
-          <span style={{ color: "#bbb", fontSize: 11 }}>{label}</span>
+          <span style={{ color: "#4A4845", fontSize: 11, fontWeight: 500 }}>{label}</span>
         </div>
       ))}
     </div>

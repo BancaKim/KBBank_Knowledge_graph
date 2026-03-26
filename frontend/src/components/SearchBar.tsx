@@ -49,19 +49,21 @@ export default function SearchBar({ onSelectResult, nodes }: Props) {
         type="text"
         value={query}
         onChange={handleInput}
-        onFocus={() => results.length > 0 && setShowDropdown(true)}
-        onBlur={() => setShowDropdown(false)}
+        onFocus={(e) => { e.currentTarget.style.borderColor = "#FDB913"; if (results.length > 0) setShowDropdown(true); }}
+        onBlur={(e) => { e.currentTarget.style.borderColor = "#DDD9CE"; setShowDropdown(false); }}
         placeholder="상품 검색..."
         style={{
           width: "100%",
           padding: "10px 14px",
           borderRadius: "8px",
-          border: "1px solid #444",
-          background: "#2a2a3e",
-          color: "#eee",
+          border: "1.5px solid #DDD9CE",
+          background: "#FFFFFF",
+          color: "#1A1917",
           fontSize: "14px",
           outline: "none",
           boxSizing: "border-box",
+          fontFamily: "inherit",
+          transition: "border-color 0.15s",
         }}
       />
       {searching && (
@@ -71,7 +73,7 @@ export default function SearchBar({ onSelectResult, nodes }: Props) {
             right: 12,
             top: "50%",
             transform: "translateY(-50%)",
-            color: "#888",
+            color: "#9C9A95",
             fontSize: "12px",
           }}
         >
@@ -86,12 +88,14 @@ export default function SearchBar({ onSelectResult, nodes }: Props) {
             top: "100%",
             left: 0,
             right: 0,
-            background: "#2a2a3e",
-            border: "1px solid #444",
+            background: "#FFFFFF",
+            border: "1.5px solid #DDD9CE",
+            borderTop: "none",
             borderRadius: "0 0 8px 8px",
             maxHeight: 300,
             overflowY: "auto",
             zIndex: 100,
+            boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
           }}
         >
           {results.map((p) => (
@@ -103,18 +107,18 @@ export default function SearchBar({ onSelectResult, nodes }: Props) {
               style={{
                 padding: "10px 14px",
                 cursor: "pointer",
-                borderBottom: "1px solid #333",
-                color: "#ddd",
+                borderBottom: "1px solid #F0EEE8",
+                color: "#1A1917",
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#3a3a5e")
+                (e.currentTarget.style.background = "#FDF9EE")
               }
               onMouseLeave={(e) =>
                 (e.currentTarget.style.background = "transparent")
               }
             >
               <div style={{ fontWeight: "bold", fontSize: 13 }}>{p.name}</div>
-              <div style={{ fontSize: 11, color: "#999", marginTop: 2 }}>
+              <div style={{ fontSize: 11, color: "#9C9A95", marginTop: 2 }}>
                 {p.category}
                 {p.rate_min != null && ` · ${p.rate_min}% ~ ${p.rate_max}%`}
               </div>

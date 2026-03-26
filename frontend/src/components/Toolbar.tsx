@@ -28,15 +28,27 @@ export default function Toolbar({ onZoomIn, onZoomOut, onReset }: Props) {
           style={{
             width: 36,
             height: 36,
-            border: "1px solid #444",
-            borderRadius: 6,
-            background: "#2a2a3e",
-            color: "#ccc",
+            border: "1px solid #E2E0D8",
+            borderRadius: 8,
+            background: "rgba(255,255,252,0.92)",
+            color: "#3D3B37",
             fontSize: 18,
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            backdropFilter: "blur(6px)",
+            boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
+            transition: "border-color 0.15s, background 0.15s",
+            fontFamily: "inherit",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "#FDB913";
+            e.currentTarget.style.background = "#FDF9EE";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "#E2E0D8";
+            e.currentTarget.style.background = "rgba(255,255,252,0.92)";
           }}
         >
           {label}

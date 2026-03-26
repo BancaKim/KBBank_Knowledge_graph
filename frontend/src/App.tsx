@@ -110,24 +110,25 @@ export default function App() {
   if (!data) return null;
 
   return (
-    <div style={{ height: "100vh", width: "100vw", background: "#16162a", fontFamily: "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" }}>
+    <div style={{ height: "100vh", width: "100vw", background: "#ECEAE3", fontFamily: "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" }}>
       <ResizablePanels
         left={<ChatPanel onHighlightNodes={handleChatHighlight} />}
         right={
           <div style={{ display: "flex", height: "100%", width: "100%" }}>
-            {/* Sidebar — stays dark, it's part of the graph canvas */}
+            {/* Sidebar — warm light theme matching chatbot */}
             <div style={sidebarStyle}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
                 <div style={{
                   width: 28, height: 28, background: "#FDB913", borderRadius: 8,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: 13, fontWeight: 800, color: "#1A1917", flexShrink: 0,
+                  boxShadow: "0 2px 6px rgba(253,185,19,0.28)",
                 }}>큽</div>
-                <h1 style={{ color: "#F5F4F0", fontSize: 15, margin: 0, fontWeight: 700, letterSpacing: "-0.3px" }}>
+                <h1 style={{ color: "#1A1917", fontSize: 15, margin: 0, fontWeight: 700, letterSpacing: "-0.3px" }}>
                   금융상품 지식그래프
                 </h1>
               </div>
-              <div style={{ color: "#ff7070", fontSize: 11, marginBottom: 18, marginLeft: 38 }}>
+              <div style={{ color: "#C0392B", fontSize: 11, marginBottom: 18, marginLeft: 38, opacity: 0.75 }}>
                 개인 토이프로젝트 · 실제 은행과 무관
               </div>
 
@@ -143,9 +144,9 @@ export default function App() {
                 />
               </div>
 
-              <div style={{ marginTop: 24, padding: "12px", background: "#252540", borderRadius: 8, border: "1px solid rgba(255,255,255,0.06)" }}>
-                <div style={{ color: "#6B6A7A", fontSize: 11, marginBottom: 4, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.5px" }}>통계</div>
-                <div style={{ color: "#C8C6D4", fontSize: 13 }}>
+              <div style={{ marginTop: 24, padding: "12px", background: "#ECEAE3", borderRadius: 8, border: "1px solid #DDD9CE" }}>
+                <div style={{ color: "#9C9A95", fontSize: 11, marginBottom: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px" }}>통계</div>
+                <div style={{ color: "#3D3B37", fontSize: 13, fontWeight: 500 }}>
                   노드 {data.metadata.stats.total_nodes} · 엣지 {data.metadata.stats.total_edges}
                 </div>
               </div>
@@ -153,20 +154,20 @@ export default function App() {
               <div style={{
                 marginTop: "auto",
                 paddingTop: 20,
-                borderTop: "1px solid rgba(255,255,255,0.07)",
+                borderTop: "1px solid #E2E0D8",
                 marginBottom: 8,
               }}>
                 <div style={{
                   padding: "10px 12px",
-                  background: "rgba(220, 38, 38, 0.08)",
+                  background: "rgba(192, 57, 43, 0.05)",
                   borderRadius: 8,
-                  border: "1px solid rgba(220, 38, 38, 0.2)",
+                  border: "1px solid rgba(192, 57, 43, 0.18)",
                 }}>
-                  <div style={{ color: "#ff7070", fontSize: 11, fontWeight: 700, marginBottom: 4, letterSpacing: "0.3px" }}>
+                  <div style={{ color: "#C0392B", fontSize: 11, fontWeight: 700, marginBottom: 4, letterSpacing: "0.3px" }}>
                     DISCLAIMER
                   </div>
-                  <div style={{ color: "#9C9AAA", fontSize: 11, lineHeight: 1.55 }}>
-                    본 서비스는 실제 은행과 무관한 <strong style={{ color: "#C8C6D4" }}>개인 토이프로젝트</strong>입니다.
+                  <div style={{ color: "#6B6860", fontSize: 11, lineHeight: 1.55 }}>
+                    본 서비스는 실제 은행과 무관한 <strong style={{ color: "#3D3B37" }}>개인 토이프로젝트</strong>입니다.
                     제공되는 정보는 참고용이며, 실제 금융 상담은 반드시 해당 금융기관에 문의하시기 바랍니다.
                   </div>
                 </div>
@@ -229,8 +230,8 @@ const centerStyle: React.CSSProperties = {
 const sidebarStyle: React.CSSProperties = {
   width: 250,
   height: "100%",
-  background: "#1e1e32",
-  borderRight: "1px solid rgba(255,255,255,0.07)",
+  background: "#F4F3EF",
+  borderRight: "1px solid #E2E0D8",
   overflowY: "auto",
   padding: "16px",
   boxSizing: "border-box",

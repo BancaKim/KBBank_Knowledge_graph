@@ -72,15 +72,16 @@ export default function ResizablePanels({
             width: 48,
             height: 48,
             borderRadius: "50%",
-            background: "#4A90D9",
-            color: "#fff",
+            background: "#FDB913",
+            color: "#1A1917",
             border: "none",
             fontSize: 20,
             cursor: "pointer",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+            boxShadow: "0 4px 16px rgba(253,185,19,0.45)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            fontWeight: 700,
           }}
           title={mobileView === "chat" ? "그래프 보기" : "챗봇으로 돌아가기"}
         >
@@ -102,15 +103,15 @@ export default function ResizablePanels({
       <div
         onMouseDown={handleMouseDown}
         style={{
-          width: 6,
+          width: 5,
           cursor: "col-resize",
-          background: "#333",
+          background: "#E2E0D8",
           flexShrink: 0,
           transition: "background 0.2s",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#4A90D9")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#FDB913")}
         onMouseLeave={(e) => {
-          if (!dragging.current) e.currentTarget.style.background = "#333";
+          if (!dragging.current) e.currentTarget.style.background = "#E2E0D8";
         }}
       />
       <div style={{ flex: 1, height: "100%", overflow: "hidden" }}>

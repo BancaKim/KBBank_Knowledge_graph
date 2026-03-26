@@ -165,7 +165,7 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     const defs = svg.append("defs");
     defs.append("marker").attr("id", "arrow").attr("viewBox", "0 -5 10 10")
       .attr("refX", 20).attr("refY", 0).attr("markerWidth", 5).attr("markerHeight", 5)
-      .attr("orient", "auto").append("path").attr("d", "M0,-3L7,0L0,3").attr("fill", "#444");
+      .attr("orient", "auto").append("path").attr("d", "M0,-3L7,0L0,3").attr("fill", "#B8B4A8");
 
     const g = svg.append("g");
 
@@ -177,13 +177,13 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
 
     // === LINKS ===
     const link = g.append("g").selectAll<SVGLineElement, GraphLink>("line").data(visibleLinks).join("line")
-      .attr("stroke", "#333").attr("stroke-opacity", 0.2).attr("stroke-width", 0.7)
+      .attr("stroke", "#C8C4BB").attr("stroke-opacity", 0.5).attr("stroke-width", 0.8)
       .attr("marker-end", "url(#arrow)");
 
     // === LINK LABELS (hidden by default, shown on select) ===
     const linkLabel = g.append("g").selectAll<SVGTextElement, GraphLink>("text").data(visibleLinks).join("text")
       .text((d) => d.type.replace(/_/g, " "))
-      .attr("font-size", 9).attr("fill", "#aaa").attr("text-anchor", "middle")
+      .attr("font-size", 9).attr("fill", "#6B6860").attr("text-anchor", "middle")
       .attr("dominant-baseline", "central").attr("pointer-events", "none")
       .attr("visibility", "hidden");
 
@@ -192,8 +192,8 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
       .data(nodes).join("circle")
       .attr("r", radius)
       .attr("fill", (d) => NODE_COLORS[d.type] || "#999")
-      .attr("stroke", "#ffffff30")
-      .attr("stroke-width", 1)
+      .attr("stroke", "rgba(255,255,255,0.7)")
+      .attr("stroke-width", 1.5)
       .attr("cursor", "pointer");
 
     // === LABELS ===
@@ -201,7 +201,7 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
       .text((d) => d.label.length > 14 ? d.label.slice(0, 14) + "\u2026" : d.label)
       .attr("font-size", (d) => d.type === "parentcategory" ? 13 : d.type === "category" ? 11 : d.type === "product" ? 8 : 7)
       .attr("font-weight", (d) => d.type === "parentcategory" || d.type === "category" ? "bold" : "normal")
-      .attr("fill", "#ccc").attr("text-anchor", "middle")
+      .attr("fill", "#3D3B37").attr("text-anchor", "middle")
       .attr("dy", (d) => radius(d) + 10).attr("pointer-events", "none");
 
     // Store D3 state in ref for highlight effect
@@ -211,36 +211,36 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
 
     function resetAll() {
       node.attr("opacity", 1)
-        .attr("stroke", "#ffffff30")
-        .attr("stroke-width", 1);
-      link.attr("stroke", "#333").attr("stroke-opacity", 0.2).attr("stroke-width", 0.7);
-      label.attr("opacity", 0.7);
+        .attr("stroke", "rgba(255,255,255,0.7)")
+        .attr("stroke-width", 1.5);
+      link.attr("stroke", "#C8C4BB").attr("stroke-opacity", 0.5).attr("stroke-width", 0.8);
+      label.attr("opacity", 0.8);
       linkLabel.attr("visibility", "hidden");
     }
 
     function highlight(nodeId: string) {
       const neighbors = connectedMap.get(nodeId) || new Set<string>();
 
-      // Nodes: selected=bright ring, neighbors=visible, rest=faded
-      node.attr("opacity", (d) => d.id === nodeId || neighbors.has(d.id) ? 1 : 0.08)
+      // Nodes: selected=gold ring, neighbors=visible, rest=faded
+      node.attr("opacity", (d) => d.id === nodeId || neighbors.has(d.id) ? 1 : 0.1)
         .attr("stroke", (d) => {
-          if (d.id === nodeId) return "#FFD700";
-          if (neighbors.has(d.id)) return "#ffffff80";
-          return "#ffffff10";
+          if (d.id === nodeId) return "#FDB913";
+          if (neighbors.has(d.id)) return "rgba(255,255,255,0.85)";
+          return "rgba(255,255,255,0.3)";
         })
         .attr("stroke-width", (d) => d.id === nodeId ? 4 : neighbors.has(d.id) ? 2 : 0.5);
 
       // Links: connected=colored+thick, rest=nearly invisible
-      link.attr("stroke", (l) => isLinkOf(l, nodeId) ? (EDGE_COLORS[l.type] || "#888") : "#222")
-        .attr("stroke-opacity", (l) => isLinkOf(l, nodeId) ? 0.9 : 0.03)
+      link.attr("stroke", (l) => isLinkOf(l, nodeId) ? (EDGE_COLORS[l.type] || "#888") : "#E2E0D8")
+        .attr("stroke-opacity", (l) => isLinkOf(l, nodeId) ? 0.9 : 0.15)
         .attr("stroke-width", (l) => isLinkOf(l, nodeId) ? 2.5 : 0.5);
 
       // Labels: only show for selected + neighbors
-      label.attr("opacity", (d) => d.id === nodeId || neighbors.has(d.id) ? 1 : 0.04);
+      label.attr("opacity", (d) => d.id === nodeId || neighbors.has(d.id) ? 1 : 0.08);
 
       // Edge labels: show for connected edges
       linkLabel.attr("visibility", (l) => isLinkOf(l, nodeId) ? "visible" : "hidden")
-        .attr("fill", (l) => EDGE_COLORS[l.type] || "#aaa");
+        .attr("fill", (l) => EDGE_COLORS[l.type] || "#6B6860");
     }
 
     // ========== INTERACTIONS ==========
@@ -382,10 +382,10 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     if (highlighted.size === 0) {
       // Reset to default
       node.attr("opacity", 1)
-        .attr("stroke", "#ffffff30")
-        .attr("stroke-width", 1);
-      link.attr("stroke", "#333").attr("stroke-opacity", 0.2).attr("stroke-width", 0.7);
-      label.attr("opacity", 0.7);
+        .attr("stroke", "rgba(255,255,255,0.7)")
+        .attr("stroke-width", 1.5);
+      link.attr("stroke", "#C8C4BB").attr("stroke-opacity", 0.5).attr("stroke-width", 0.8);
+      label.attr("opacity", 0.8);
       linkLabel.attr("visibility", "hidden");
       return;
     }
@@ -405,25 +405,25 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     };
 
     // Nodes: highlighted=gold ring, neighbors=visible, rest=faded
-    node.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.08)
+    node.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.1)
       .attr("stroke", (d) => {
-        if (highlighted.has(d.id)) return "#FFD700";
-        if (allNeighbors.has(d.id)) return "#ffffff80";
-        return "#ffffff10";
+        if (highlighted.has(d.id)) return "#FDB913";
+        if (allNeighbors.has(d.id)) return "rgba(255,255,255,0.85)";
+        return "rgba(255,255,255,0.3)";
       })
       .attr("stroke-width", (d) => highlighted.has(d.id) ? 4 : allNeighbors.has(d.id) ? 2 : 0.5);
 
     // Links: connected=colored+thick, rest=nearly invisible
-    link.attr("stroke", (l) => isLinkRelevant(l) ? (EDGE_COLORS[l.type] || "#888") : "#222")
-      .attr("stroke-opacity", (l) => isLinkRelevant(l) ? 0.9 : 0.03)
+    link.attr("stroke", (l) => isLinkRelevant(l) ? (EDGE_COLORS[l.type] || "#888") : "#E2E0D8")
+      .attr("stroke-opacity", (l) => isLinkRelevant(l) ? 0.9 : 0.15)
       .attr("stroke-width", (l) => isLinkRelevant(l) ? 2.5 : 0.5);
 
     // Labels: only show for highlighted + neighbors
-    label.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.04);
+    label.attr("opacity", (d) => isRelevant(d.id) ? 1 : 0.08);
 
     // Edge labels: show for connected edges
     linkLabel.attr("visibility", (l) => isLinkRelevant(l) ? "visible" : "hidden")
-      .attr("fill", (l) => EDGE_COLORS[l.type] || "#aaa");
+      .attr("fill", (l) => EDGE_COLORS[l.type] || "#6B6860");
 
     // Auto-zoom to highlighted nodes
     if (svgRef.current && zoomRef.current) {
@@ -452,12 +452,13 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
   }, [highlightNodeId, highlightNodeIds]);
 
   return (
-    <div style={{ width: "100%", height: "100%", background: "#0f0f1a", position: "relative" }}>
+    <div style={{ width: "100%", height: "100%", background: "#F7F6F2", position: "relative" }}>
       <svg ref={svgRef} style={{ width: "100%", height: "100%" }} />
       <div ref={tooltipRef} style={{
-        position: "fixed", background: "rgba(20,20,30,0.95)", border: "1px solid #444",
-        borderRadius: 6, padding: "8px 12px", color: "#eee", fontSize: 12,
+        position: "fixed", background: "rgba(255,255,252,0.97)", border: "1px solid #E2E0D8",
+        borderRadius: 8, padding: "8px 12px", color: "#1A1917", fontSize: 12,
         pointerEvents: "none", opacity: 0, zIndex: 1000, transition: "opacity 0.1s",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
       }} />
     </div>
   );
