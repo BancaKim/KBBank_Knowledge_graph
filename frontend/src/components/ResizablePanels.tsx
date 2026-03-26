@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 interface Props {
   left: React.ReactNode;
@@ -8,6 +8,8 @@ interface Props {
   maxLeftWidth?: number; // percentage, default 80
 }
 
+const MOBILE_BREAKPOINT = 768;
+
 export default function ResizablePanels({
   left,
   right,
@@ -16,8 +18,16 @@ export default function ResizablePanels({
   maxLeftWidth = 80,
 }: Props) {
   const [leftWidth, setLeftWidth] = useState(defaultLeftWidth);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
+  const [mobileView, setMobileView] = useState<"chat" | "graph">("chat");
   const dragging = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const handleMouseDown = useCallback(() => {
     dragging.current = true;
@@ -43,6 +53,42 @@ export default function ResizablePanels({
     document.addEventListener("mouseup", onUp);
   }, [minLeftWidth, maxLeftWidth]);
 
+  // Mobile: show only chat or graph with a toggle button
+  if (isMobile) {
+    return (
+      <div style={{ width: "100%", height: "100%", position: "relative" }}>
+        <div style={{ width: "100%", height: "100%" }}>
+          {mobileView === "chat" ? left : right}
+        </div>
+        <button
+          onClick={() => setMobileView(mobileView === "chat" ? "graph" : "chat")}
+          style={{
+            position: "fixed",
+            bottom: 20,
+            right: 20,
+            zIndex: 1000,
+            width: 48,
+            height: 48,
+            borderRadius: "50%",
+            background: "#4A90D9",
+            color: "#fff",
+            border: "none",
+            fontSize: 20,
+            cursor: "pointer",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          title={mobileView === "chat" ? "그래프 보기" : "챗봇으로 돌아가기"}
+        >
+          {mobileView === "chat" ? "📊" : "💬"}
+        </button>
+      </div>
+    );
+  }
+
+  // Desktop: resizable split panels
   return (
     <div
       ref={containerRef}
