@@ -18,7 +18,9 @@ export default function ResizablePanels({
   maxLeftWidth = 80,
 }: Props) {
   const [leftWidth, setLeftWidth] = useState(defaultLeftWidth);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < MOBILE_BREAKPOINT : false
+  );
   const [mobileView, setMobileView] = useState<"chat" | "graph">("chat");
   const dragging = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,8 +66,8 @@ export default function ResizablePanels({
           onClick={() => setMobileView(mobileView === "chat" ? "graph" : "chat")}
           style={{
             position: "fixed",
-            bottom: 20,
-            right: 20,
+            top: 16,
+            right: 16,
             zIndex: 1000,
             width: 48,
             height: 48,
