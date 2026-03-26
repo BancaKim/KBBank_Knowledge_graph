@@ -31,19 +31,6 @@ flowchart TD
     style K fill:#E67E22,color:#fff
 ```
 
-### 핵심 기술 스택
-
-| 계층 | 기술 |
-|------|------|
-| 데이터 수집 | Playwright, PyMuPDF, GPT-4o Vision OCR |
-| 엔티티 추출 | **LangChain `with_structured_output(strict=True)`** + Foundry 온톨로지 스킬 주입 |
-| 그래프 DB | Neo4j Aura (클라우드) |
-| 백엔드 | FastAPI + **LangGraph StateGraph** (Agentic Workflow) |
-| 프론트엔드 | React 19 + D3.js + TypeScript + Vite |
-| 배포 | Docker + nginx (SSL) + Oracle Cloud |
-
----
-
 ## Agentic Workflow
 
 ### LangGraph StateGraph 아키텍처
@@ -139,16 +126,7 @@ MD 파일
 
 Palantir Foundry 온톨로지 스킬의 카탈로그 Object Type + Enum 정의를 LLM 시스템 프롬프트에 주입하여 도메인 인식 추출을 수행합니다.
 
-### 정규식 대비 개선점
 
-| 항목 | 정규식 파서 | LLM 추출 |
-|------|:---------:|:-------:|
-| 금리 기준금리별 분리 (CD/COFIX/금융채) | X | O |
-| 가산금리/우대금리 분해 | X | O |
-| 통장자동대출/기한연장/연체금리 | X | O |
-| 금액 문자열 자연어 파싱 | X | O |
-| 서브클래스 (적립식/거치식/요구불) | X | O |
-| 원문 보존 필드 | X | O |
 
 ---
 
@@ -231,44 +209,6 @@ graph TB
     style LP fill:#4A90D9,color:#fff,stroke-width:3px
     style LR fill:#D0021B,color:#fff
     style LPR fill:#E74C3C,color:#fff
-```
-
----
-
-## 실행 방법
-
-### 데이터 파이프라인 (로컬)
-
-```bash
-# 1. PDF → Markdown
-python -m scraper.parse_pdfs
-
-# 2. Markdown → Neo4j (LLM 추출)
-python -m knowledge_graph.llm_extractor data/products/
-
-# 2-alt. Markdown → Neo4j (정규식 fallback)
-python -m knowledge_graph.builder --all
-```
-
-### 서비스 (로컬 개발)
-
-```bash
-# 백엔드
-pip install -e ".[chat]"
-uvicorn backend.main:app --reload
-
-# 프론트엔드
-cd frontend && npm install && npm run dev
-```
-
-### Docker 배포
-
-```bash
-# 빌드 + 실행
-docker compose -f docker-compose.prod.yml up -d
-
-# Oracle Cloud 서버 배포
-bash deploy.sh
 ```
 
 ---
