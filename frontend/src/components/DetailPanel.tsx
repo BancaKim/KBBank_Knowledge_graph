@@ -92,7 +92,7 @@ export default function DetailPanel({ node, onClose }: Props) {
                 fontSize: 13,
               }}
             >
-              KB국민은행에서 보기
+              은행에서 보기
             </a>
           )}
         </>

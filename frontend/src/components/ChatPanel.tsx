@@ -522,7 +522,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
       id: genId(),
       role: "assistant",
       content:
-        "안녕하세요! KB국민은행 금융상품 상담 챗봇입니다. 예금, 적금, 대출 등 금융상품에 대해 궁금한 점을 물어보세요.",
+        "안녕하세요! 큽 금융상품 상담 챗봇입니다. 예금, 적금, 대출 등 금융상품에 대해 궁금한 점을 물어보세요.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -663,11 +663,11 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
         {/* Header */}
         <div className="chat-header">
           <div className="chat-header-title-row">
-            <div className="chat-header-logo">KB</div>
-            <h2 className="chat-header-title">KB 금융상품 상담</h2>
+            <div className="chat-header-logo">큽div>
+            <h2 className="chat-header-title">큽 금융상품 상담</h2>
           </div>
           <p className="chat-header-subtitle">GraphRAG 기반 지식그래프 챗봇</p>
-          <p className="chat-header-disclaimer">개인 프로젝트 · KB국민은행과 무관</p>
+          <p className="chat-header-disclaimer">개인 프로젝트 · 실제 은행과 무관</p>
         </div>
 
         {/* API Key Section */}
@@ -742,7 +742,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
             <div key={msg.id} className="message-group">
               <div className={`message-row message-row--${msg.role}`}>
                 {msg.role === "assistant" && (
-                  <div className="assistant-avatar">KB</div>
+                  <div className="assistant-avatar">큽div>
                 )}
                 <div className={`bubble bubble--${msg.role}`}>
                   {msg.content}
@@ -779,7 +779,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
 
           {loading && (
             <div className="typing-row">
-              <div className="assistant-avatar">KB</div>
+              <div className="assistant-avatar">큽div>
               <div className="typing-bubble">
                 <div className="typing-dot" />
                 <div className="typing-dot" />

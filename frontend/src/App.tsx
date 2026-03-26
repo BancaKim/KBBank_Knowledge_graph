@@ -88,8 +88,8 @@ export default function App() {
   if (loading) {
     return (
       <div style={centerStyle}>
-        <div style={loadingLogoStyle}>KB</div>
-        <div style={{ fontSize: 18, fontWeight: 700, color: "#1A1917", marginBottom: 8, letterSpacing: "-0.3px" }}>KB 금융상품 지식그래프</div>
+        <div style={loadingLogoStyle}>큽div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: "#1A1917", marginBottom: 8, letterSpacing: "-0.3px" }}>큽 금융상품 지식그래프</div>
         <div style={{ color: "#9C9A95", fontSize: 14 }}>데이터를 불러오는 중...</div>
       </div>
     );
@@ -122,13 +122,13 @@ export default function App() {
                   width: 28, height: 28, background: "#FDB913", borderRadius: 8,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: 13, fontWeight: 800, color: "#1A1917", flexShrink: 0,
-                }}>KB</div>
+                }}>큽div>
                 <h1 style={{ color: "#F5F4F0", fontSize: 15, margin: 0, fontWeight: 700, letterSpacing: "-0.3px" }}>
                   금융상품 지식그래프
                 </h1>
               </div>
               <div style={{ color: "#ff7070", fontSize: 11, marginBottom: 18, marginLeft: 38 }}>
-                개인 토이프로젝트 · KB국민은행과 무관
+                개인 토이프로젝트 · 실제 은행과 무관
               </div>
 
               <SearchBar onSelectResult={handleSearchSelect} nodes={data.nodes} />
@@ -166,7 +166,7 @@ export default function App() {
                     DISCLAIMER
                   </div>
                   <div style={{ color: "#9C9AAA", fontSize: 11, lineHeight: 1.55 }}>
-                    본 서비스는 KB국민은행과 무관한 <strong style={{ color: "#C8C6D4" }}>개인 토이프로젝트</strong>입니다.
+                    본 서비스는 실제 은행과 무관한 <strong style={{ color: "#C8C6D4" }}>개인 토이프로젝트</strong>입니다.
                     제공되는 정보는 참고용이며, 실제 금융 상담은 반드시 해당 금융기관에 문의하시기 바랍니다.
                   </div>
                 </div>
