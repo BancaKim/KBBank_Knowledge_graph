@@ -140,6 +140,28 @@ export default function App() {
                   노드: {data.metadata.stats.total_nodes} · 엣지: {data.metadata.stats.total_edges}
                 </div>
               </div>
+
+              <div style={{
+                marginTop: "auto",
+                paddingTop: 20,
+                borderTop: "1px solid #333",
+                marginBottom: 8,
+              }}>
+                <div style={{
+                  padding: "10px 12px",
+                  background: "#2a1a1a",
+                  borderRadius: 8,
+                  border: "1px solid #4a2a2a",
+                }}>
+                  <div style={{ color: "#e88", fontSize: 11, fontWeight: 700, marginBottom: 4 }}>
+                    DISCLAIMER
+                  </div>
+                  <div style={{ color: "#aaa", fontSize: 10, lineHeight: 1.5 }}>
+                    본 서비스는 KB국민은행과 무관한 <strong style={{ color: "#ccc" }}>개인 토이프로젝트</strong>입니다.
+                    제공되는 정보는 참고용이며, 실제 금융 상담은 반드시 해당 금융기관에 문의하시기 바랍니다.
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Graph Area */}
@@ -189,4 +211,6 @@ const sidebarStyle: React.CSSProperties = {
   padding: "16px",
   boxSizing: "border-box",
   flexShrink: 0,
+  display: "flex",
+  flexDirection: "column",
 };
