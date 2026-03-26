@@ -88,8 +88,9 @@ export default function App() {
   if (loading) {
     return (
       <div style={centerStyle}>
-        <div style={{ fontSize: 24, marginBottom: 8 }}>KB 금융상품 지식그래프</div>
-        <div style={{ color: "#888" }}>데이터를 불러오는 중...</div>
+        <div style={loadingLogoStyle}>KB</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: "#1A1917", marginBottom: 8, letterSpacing: "-0.3px" }}>KB 금융상품 지식그래프</div>
+        <div style={{ color: "#9C9A95", fontSize: 14 }}>데이터를 불러오는 중...</div>
       </div>
     );
   }
@@ -97,10 +98,10 @@ export default function App() {
   if (error) {
     return (
       <div style={centerStyle}>
-        <div style={{ fontSize: 24, marginBottom: 8, color: "#e74c3c" }}>연결 오류</div>
-        <div style={{ color: "#888" }}>{error}</div>
-        <div style={{ color: "#666", fontSize: 13, marginTop: 12 }}>
-          Backend가 실행 중인지 확인하세요: <code>uvicorn backend.main:app</code>
+        <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: "#DC2626", letterSpacing: "-0.3px" }}>연결 오류</div>
+        <div style={{ color: "#6B6860", fontSize: 14 }}>{error}</div>
+        <div style={{ color: "#9C9A95", fontSize: 13, marginTop: 12, background: "#F4F3EF", padding: "8px 14px", borderRadius: 8 }}>
+          Backend가 실행 중인지 확인하세요: <code style={{ fontFamily: "ui-monospace, monospace", fontSize: 12 }}>uvicorn backend.main:app</code>
         </div>
       </div>
     );
@@ -109,19 +110,24 @@ export default function App() {
   if (!data) return null;
 
   return (
-    <div style={{ height: "100vh", width: "100vw", background: "#16162a", fontFamily: "'Noto Sans KR', sans-serif" }}>
+    <div style={{ height: "100vh", width: "100vw", background: "#16162a", fontFamily: "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" }}>
       <ResizablePanels
         left={<ChatPanel onHighlightNodes={handleChatHighlight} />}
         right={
           <div style={{ display: "flex", height: "100%", width: "100%" }}>
-            {/* Sidebar */}
+            {/* Sidebar — stays dark, it's part of the graph canvas */}
             <div style={sidebarStyle}>
-              <h1 style={{ color: "#fff", fontSize: 16, marginTop: 0, marginBottom: 4 }}>
-                KB 금융상품
-                <br />
-                <span style={{ color: "#4A90D9", fontSize: 13, fontWeight: "normal" }}>지식그래프</span>
-              </h1>
-              <div style={{ color: "#ff7070", fontSize: 11, marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+                <div style={{
+                  width: 28, height: 28, background: "#FDB913", borderRadius: 8,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 13, fontWeight: 800, color: "#1A1917", flexShrink: 0,
+                }}>KB</div>
+                <h1 style={{ color: "#F5F4F0", fontSize: 15, margin: 0, fontWeight: 700, letterSpacing: "-0.3px" }}>
+                  금융상품 지식그래프
+                </h1>
+              </div>
+              <div style={{ color: "#ff7070", fontSize: 11, marginBottom: 18, marginLeft: 38 }}>
                 개인 토이프로젝트 · KB국민은행과 무관
               </div>
 
@@ -137,30 +143,30 @@ export default function App() {
                 />
               </div>
 
-              <div style={{ marginTop: 24, padding: "12px", background: "#252540", borderRadius: 8 }}>
-                <div style={{ color: "#888", fontSize: 11, marginBottom: 4 }}>통계</div>
-                <div style={{ color: "#ddd", fontSize: 13 }}>
-                  노드: {data.metadata.stats.total_nodes} · 엣지: {data.metadata.stats.total_edges}
+              <div style={{ marginTop: 24, padding: "12px", background: "#252540", borderRadius: 8, border: "1px solid rgba(255,255,255,0.06)" }}>
+                <div style={{ color: "#6B6A7A", fontSize: 11, marginBottom: 4, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.5px" }}>통계</div>
+                <div style={{ color: "#C8C6D4", fontSize: 13 }}>
+                  노드 {data.metadata.stats.total_nodes} · 엣지 {data.metadata.stats.total_edges}
                 </div>
               </div>
 
               <div style={{
                 marginTop: "auto",
                 paddingTop: 20,
-                borderTop: "1px solid #333",
+                borderTop: "1px solid rgba(255,255,255,0.07)",
                 marginBottom: 8,
               }}>
                 <div style={{
                   padding: "10px 12px",
-                  background: "#2a1a1a",
+                  background: "rgba(220, 38, 38, 0.08)",
                   borderRadius: 8,
-                  border: "1px solid #4a2a2a",
+                  border: "1px solid rgba(220, 38, 38, 0.2)",
                 }}>
-                  <div style={{ color: "#ff7070", fontSize: 11, fontWeight: 700, marginBottom: 4 }}>
+                  <div style={{ color: "#ff7070", fontSize: 11, fontWeight: 700, marginBottom: 4, letterSpacing: "0.3px" }}>
                     DISCLAIMER
                   </div>
-                  <div style={{ color: "#aaa", fontSize: 11, lineHeight: 1.5 }}>
-                    본 서비스는 KB국민은행과 무관한 <strong style={{ color: "#ccc" }}>개인 토이프로젝트</strong>입니다.
+                  <div style={{ color: "#9C9AAA", fontSize: 11, lineHeight: 1.55 }}>
+                    본 서비스는 KB국민은행과 무관한 <strong style={{ color: "#C8C6D4" }}>개인 토이프로젝트</strong>입니다.
                     제공되는 정보는 참고용이며, 실제 금융 상담은 반드시 해당 금융기관에 문의하시기 바랍니다.
                   </div>
                 </div>
@@ -194,22 +200,37 @@ export default function App() {
   );
 }
 
+const loadingLogoStyle: React.CSSProperties = {
+  width: 48,
+  height: 48,
+  background: "#FDB913",
+  borderRadius: 14,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: 18,
+  fontWeight: 800,
+  color: "#1A1917",
+  marginBottom: 20,
+  boxShadow: "0 4px 16px rgba(253, 185, 19, 0.35)",
+};
+
 const centerStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   height: "100vh",
-  background: "#16162a",
-  color: "#fff",
-  fontFamily: "'Noto Sans KR', sans-serif",
+  background: "#FAFAF8",
+  color: "#1A1917",
+  fontFamily: "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif",
 };
 
 const sidebarStyle: React.CSSProperties = {
   width: 250,
   height: "100%",
   background: "#1e1e32",
-  borderRight: "1px solid #333",
+  borderRight: "1px solid rgba(255,255,255,0.07)",
   overflowY: "auto",
   padding: "16px",
   boxSizing: "border-box",

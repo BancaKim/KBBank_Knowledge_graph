@@ -20,6 +20,502 @@ interface Props {
   onHighlightNodes: (nodeIds: string[]) => void;
 }
 
+const styles = `
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+  .chat-root {
+    --gold: #FDB913;
+    --gold-deep: #e6a510;
+    --gold-light: rgba(253, 185, 19, 0.12);
+    --gold-glow: rgba(253, 185, 19, 0.25);
+    --surface: #FAFAF8;
+    --surface-2: #F4F3EF;
+    --surface-3: #ECEAE3;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.14);
+    --text-primary: #1A1917;
+    --text-secondary: #6B6860;
+    --text-muted: #9C9A95;
+    --user-bubble: #1A1917;
+    --assistant-bubble: #FFFFFF;
+    --error: #DC2626;
+    --success: #16A34A;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 8px;
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .chat-header {
+    padding: 18px 20px 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .chat-header-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 3px;
+  }
+
+  .chat-header-logo {
+    width: 28px;
+    height: 28px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1A1917;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+
+  .chat-header-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+
+  .chat-header-disclaimer {
+    color: #ff7070;
+    font-size: 11px;
+    font-weight: 400;
+    margin-left: 38px;
+  }
+
+  .chat-header-subtitle {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin: 0;
+    margin-left: 38px;
+    letter-spacing: 0.1px;
+  }
+
+  /* API key section */
+  .api-key-section {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  .api-key-toggle {
+    width: 100%;
+    padding: 9px 20px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+
+  .api-key-toggle:hover {
+    background: var(--surface-2);
+  }
+
+  .api-key-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .api-key-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .api-key-body {
+    padding: 0 20px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .api-key-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .api-key-input-wrap {
+    position: relative;
+    flex: 1;
+  }
+
+  .api-key-input {
+    width: 100%;
+    padding: 8px 36px 8px 12px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--border-strong);
+    background: var(--surface-2);
+    color: var(--text-primary);
+    font-size: 12px;
+    outline: none;
+    font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+    box-sizing: border-box;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .api-key-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .api-key-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-glow);
+    background: #fff;
+  }
+
+  .api-key-eye {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 2px 4px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+
+  .api-key-eye:hover {
+    color: var(--text-secondary);
+  }
+
+  .api-btn-save {
+    padding: 8px 14px;
+    border-radius: var(--radius-xs);
+    border: none;
+    background: var(--gold);
+    color: #1A1917;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  .api-btn-save:hover {
+    background: var(--gold-deep);
+    transform: translateY(-1px);
+  }
+
+  .api-btn-save:active {
+    transform: translateY(0);
+  }
+
+  .api-btn-clear {
+    padding: 8px 14px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--error);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .api-btn-clear:hover {
+    background: #FEF2F2;
+    border-color: var(--error);
+  }
+
+  .api-key-hint {
+    color: var(--text-muted);
+    font-size: 11px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Messages area */
+  .messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    scroll-behavior: smooth;
+  }
+
+  .messages-area::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .messages-area::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .messages-area::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 2px;
+  }
+
+  .message-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: msgFadeIn 0.2s ease-out;
+  }
+
+  @keyframes msgFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .message-row {
+    display: flex;
+  }
+
+  .message-row--user {
+    justify-content: flex-end;
+  }
+
+  .message-row--assistant {
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .assistant-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #1A1917;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+  }
+
+  .bubble {
+    max-width: 82%;
+    padding: 11px 15px;
+    font-size: 14px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .bubble--user {
+    background: var(--user-bubble);
+    color: #FFFFFF;
+    border-radius: 18px 18px 5px 18px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .bubble--assistant {
+    background: var(--assistant-bubble);
+    color: var(--text-primary);
+    border-radius: 5px 18px 18px 18px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+  }
+
+  .message-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    padding: 0 4px;
+  }
+
+  .message-meta--user {
+    text-align: right;
+  }
+
+  .message-meta--assistant {
+    text-align: left;
+    margin-left: 36px;
+  }
+
+  /* Referenced nodes */
+  .ref-nodes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+    margin-left: 36px;
+    align-items: center;
+  }
+
+  .ref-label {
+    color: var(--text-muted);
+    font-size: 11px;
+    align-self: center;
+  }
+
+  .ref-chip {
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-2);
+    color: #2563EB;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  }
+
+  .ref-chip:hover {
+    background: #EFF6FF;
+    border-color: #93C5FD;
+    transform: translateY(-1px);
+  }
+
+  .ref-more {
+    color: var(--text-muted);
+    font-size: 11px;
+    align-self: center;
+  }
+
+  /* Typing indicator */
+  .typing-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .typing-bubble {
+    padding: 13px 17px;
+    background: var(--assistant-bubble);
+    border-radius: 5px 18px 18px 18px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .typing-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: typingBounce 1.2s ease-in-out infinite;
+  }
+
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30%            { transform: translateY(-5px); opacity: 1; }
+  }
+
+  /* Input area */
+  .input-area {
+    padding: 12px 16px 14px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .input-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 8px 8px 8px 14px;
+    background: #fff;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .input-wrap:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-glow);
+  }
+
+  .chat-textarea {
+    flex: 1;
+    padding: 2px 0;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    resize: none;
+    font-family: inherit;
+    line-height: 1.5;
+    min-height: 22px;
+    max-height: 120px;
+  }
+
+  .chat-textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  .send-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: none;
+    background: var(--gold);
+    color: #1A1917;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, transform 0.1s, opacity 0.15s;
+    line-height: 1;
+  }
+
+  .send-btn:disabled {
+    background: var(--surface-3);
+    color: var(--text-muted);
+    cursor: default;
+  }
+
+  .send-btn:not(:disabled):hover {
+    background: var(--gold-deep);
+    transform: scale(1.05);
+  }
+
+  .send-btn:not(:disabled):active {
+    transform: scale(0.97);
+  }
+
+  .api-key-toggle-arrow {
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-left: 4px;
+  }
+`;
+
 export default function ChatPanel({ onHighlightNodes }: Props) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -36,7 +532,6 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
 
-  // API key state
   const [apiKey, setApiKey] = useState<string>(() => {
     try {
       return localStorage.getItem(API_KEY_STORAGE_KEY) || "";
@@ -48,7 +543,6 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
   const [showApiKeySection, setShowApiKeySection] = useState(false);
   const [showKeyValue, setShowKeyValue] = useState(false);
 
-  // Persist API key to localStorage
   const saveApiKey = useCallback(() => {
     const trimmed = apiKeyInput.trim();
     setApiKey(trimmed);
@@ -130,7 +624,6 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
       };
       setMessages((prev) => [...prev, assistantMsg]);
 
-      // Highlight referenced nodes on the graph
       if (data.referenced_nodes?.length > 0) {
         onHighlightNodes(
           data.referenced_nodes.map((n: { id: string }) => n.id)
@@ -164,338 +657,162 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
   const hasKey = apiKey.length > 0;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        background: "#1a1a2e",
-        fontFamily: "'Noto Sans KR', sans-serif",
-      }}
-    >
-      {/* Header */}
-      <div
-        style={{
-          padding: "16px 20px",
-          borderBottom: "1px solid #333",
-          background: "#1e1e32",
-        }}
-      >
-        <h2 style={{ color: "#fff", fontSize: 16, margin: 0 }}>
-          KB 금융상품 상담
-          <span style={{ color: "#ff7070", fontSize: 11, fontWeight: 400, marginLeft: 8, verticalAlign: "middle" }}>
-            개인 프로젝트 (KB 무관)
-          </span>
-        </h2>
-        <p style={{ color: "#888", fontSize: 12, margin: "4px 0 0" }}>
-          GraphRAG 기반 지식그래프 챗봇
-        </p>
-      </div>
-
-      {/* API Key Section */}
-      <div
-        style={{
-          borderBottom: "1px solid #333",
-          background: "#16162a",
-        }}
-      >
-        <button
-          onClick={() => setShowApiKeySection((v) => !v)}
-          style={{
-            width: "100%",
-            padding: "8px 20px",
-            background: "none",
-            border: "none",
-            color: "#ccc",
-            fontSize: 12,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            fontFamily: "'Noto Sans KR', sans-serif",
-          }}
-        >
-          <span>API 키 설정</span>
-          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span
-              style={{
-                display: "inline-block",
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: hasKey ? "#4ade80" : "#f87171",
-              }}
-            />
-            <span style={{ color: hasKey ? "#4ade80" : "#f87171", fontSize: 11 }}>
-              {hasKey ? "API 키 설정됨" : "API 키 미설정"}
-            </span>
-            <span style={{ fontSize: 10, color: "#666" }}>
-              {showApiKeySection ? "▲" : "▼"}
-            </span>
-          </span>
-        </button>
-
-        {showApiKeySection && (
-          <div style={{ padding: "0 20px 12px", display: "flex", flexDirection: "column", gap: 8 }}>
-            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-              <div style={{ position: "relative", flex: 1 }}>
-                <input
-                  type={showKeyValue ? "text" : "password"}
-                  value={apiKeyInput}
-                  onChange={(e) => setApiKeyInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      saveApiKey();
-                    }
-                  }}
-                  placeholder="sk-..."
-                  style={{
-                    width: "100%",
-                    padding: "7px 36px 7px 10px",
-                    borderRadius: 8,
-                    border: "1px solid #444",
-                    background: "#2a2a3e",
-                    color: "#eee",
-                    fontSize: 12,
-                    outline: "none",
-                    fontFamily: "monospace",
-                    boxSizing: "border-box",
-                  }}
-                />
-                <button
-                  onClick={() => setShowKeyValue((v) => !v)}
-                  title={showKeyValue ? "숨기기" : "보기"}
-                  style={{
-                    position: "absolute",
-                    right: 4,
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    background: "none",
-                    border: "none",
-                    color: "#888",
-                    cursor: "pointer",
-                    fontSize: 13,
-                    padding: "2px 4px",
-                    lineHeight: 1,
-                  }}
-                >
-                  {showKeyValue ? "◉" : "○"}
-                </button>
-              </div>
-              <button
-                onClick={saveApiKey}
-                style={{
-                  padding: "7px 12px",
-                  borderRadius: 8,
-                  border: "none",
-                  background: "#4A90D9",
-                  color: "#fff",
-                  fontSize: 12,
-                  cursor: "pointer",
-                  whiteSpace: "nowrap",
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                }}
-              >
-                저장
-              </button>
-              {hasKey && (
-                <button
-                  onClick={clearApiKey}
-                  style={{
-                    padding: "7px 12px",
-                    borderRadius: 8,
-                    border: "1px solid #555",
-                    background: "transparent",
-                    color: "#f87171",
-                    fontSize: 12,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                    fontFamily: "'Noto Sans KR', sans-serif",
-                  }}
-                >
-                  키 삭제
-                </button>
-              )}
-            </div>
-            <p style={{ color: "#666", fontSize: 11, margin: 0 }}>
-              OpenAI API 키는 브라우저에만 저장되며 서버에 기록되지 않습니다.
-            </p>
+    <>
+      <style>{styles}</style>
+      <div className="chat-root">
+        {/* Header */}
+        <div className="chat-header">
+          <div className="chat-header-title-row">
+            <div className="chat-header-logo">KB</div>
+            <h2 className="chat-header-title">KB 금융상품 상담</h2>
           </div>
-        )}
-      </div>
+          <p className="chat-header-subtitle">GraphRAG 기반 지식그래프 챗봇</p>
+          <p className="chat-header-disclaimer">개인 프로젝트 · KB국민은행과 무관</p>
+        </div>
 
-      {/* Messages */}
-      <div
-        role="log"
-        aria-live="polite"
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          padding: "16px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 12,
-        }}
-      >
-        {messages.map((msg) => (
-          <div key={msg.id}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent:
-                  msg.role === "user" ? "flex-end" : "flex-start",
-              }}
-            >
-              <div
-                style={{
-                  maxWidth: "85%",
-                  padding: "12px 16px",
-                  borderRadius:
-                    msg.role === "user"
-                      ? "16px 16px 4px 16px"
-                      : "16px 16px 16px 4px",
-                  background: msg.role === "user" ? "#4A90D9" : "#2a2a3e",
-                  color: "#fff",
-                  fontSize: 14,
-                  lineHeight: 1.6,
-                  whiteSpace: "pre-wrap",
-                }}
-              >
-                {msg.content}
+        {/* API Key Section */}
+        <div className="api-key-section">
+          <button
+            onClick={() => setShowApiKeySection((v) => !v)}
+            className="api-key-toggle"
+          >
+            <span style={{ fontWeight: 500 }}>API 키 설정</span>
+            <span className="api-key-status">
+              <span
+                className="api-key-dot"
+                style={{ background: hasKey ? "#16A34A" : "#DC2626" }}
+              />
+              <span style={{ color: hasKey ? "#16A34A" : "#DC2626", fontSize: 11, fontWeight: 500 }}>
+                {hasKey ? "설정됨" : "미설정"}
+              </span>
+              <span className="api-key-toggle-arrow">
+                {showApiKeySection ? "▲" : "▼"}
+              </span>
+            </span>
+          </button>
+
+          {showApiKeySection && (
+            <div className="api-key-body">
+              <div className="api-key-row">
+                <div className="api-key-input-wrap">
+                  <input
+                    type={showKeyValue ? "text" : "password"}
+                    value={apiKeyInput}
+                    onChange={(e) => setApiKeyInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        saveApiKey();
+                      }
+                    }}
+                    placeholder="sk-..."
+                    className="api-key-input"
+                  />
+                  <button
+                    onClick={() => setShowKeyValue((v) => !v)}
+                    title={showKeyValue ? "숨기기" : "보기"}
+                    className="api-key-eye"
+                  >
+                    {showKeyValue ? "◉" : "○"}
+                  </button>
+                </div>
+                <button onClick={saveApiKey} className="api-btn-save">
+                  저장
+                </button>
+                {hasKey && (
+                  <button onClick={clearApiKey} className="api-btn-clear">
+                    삭제
+                  </button>
+                )}
               </div>
+              <p className="api-key-hint">
+                API 키는 브라우저에만 저장되며 서버에 기록되지 않습니다.
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Messages */}
+        <div
+          role="log"
+          aria-live="polite"
+          className="messages-area"
+        >
+          {messages.map((msg) => (
+            <div key={msg.id} className="message-group">
+              <div className={`message-row message-row--${msg.role}`}>
+                {msg.role === "assistant" && (
+                  <div className="assistant-avatar">KB</div>
+                )}
+                <div className={`bubble bubble--${msg.role}`}>
+                  {msg.content}
+                </div>
+              </div>
+
               {msg.role === "assistant" && msg.elapsedSeconds != null && (
-                <div
-                  style={{
-                    fontSize: 11,
-                    color: "#888",
-                    marginTop: 4,
-                    textAlign: "right",
-                  }}
-                >
+                <div className="message-meta message-meta--assistant">
                   {msg.elapsedSeconds}초
                 </div>
               )}
-            </div>
 
-            {/* Referenced nodes chips */}
-            {msg.referencedNodes && msg.referencedNodes.length > 0 && (
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: 6,
-                  marginTop: 8,
-                  paddingLeft: 8,
-                }}
-              >
-                <span
-                  style={{
-                    color: "#666",
-                    fontSize: 11,
-                    alignSelf: "center",
-                  }}
-                >
-                  참조:
-                </span>
-                {msg.referencedNodes.slice(0, 8).map((node, j) => (
-                  <button
-                    key={j}
-                    onClick={() => handleNodeClick([node.id])}
-                    style={{
-                      padding: "3px 10px",
-                      borderRadius: 12,
-                      border: "1px solid #444",
-                      background: "#252540",
-                      color: "#8ecae6",
-                      fontSize: 11,
-                      cursor: "pointer",
-                    }}
-                  >
-                    {node.name || node.id}
-                  </button>
-                ))}
-                {msg.referencedNodes.length > 8 && (
-                  <span
-                    style={{
-                      color: "#666",
-                      fontSize: 11,
-                      alignSelf: "center",
-                    }}
-                  >
-                    +{msg.referencedNodes.length - 8}
-                  </span>
-                )}
+              {msg.referencedNodes && msg.referencedNodes.length > 0 && (
+                <div className="ref-nodes">
+                  <span className="ref-label">참조</span>
+                  {msg.referencedNodes.slice(0, 8).map((node, j) => (
+                    <button
+                      key={j}
+                      onClick={() => handleNodeClick([node.id])}
+                      className="ref-chip"
+                    >
+                      {node.name || node.id}
+                    </button>
+                  ))}
+                  {msg.referencedNodes.length > 8 && (
+                    <span className="ref-more">
+                      +{msg.referencedNodes.length - 8}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {loading && (
+            <div className="typing-row">
+              <div className="assistant-avatar">KB</div>
+              <div className="typing-bubble">
+                <div className="typing-dot" />
+                <div className="typing-dot" />
+                <div className="typing-dot" />
               </div>
-            )}
-          </div>
-        ))}
-
-        {loading && (
-          <div style={{ display: "flex", justifyContent: "flex-start" }}>
-            <div
-              style={{
-                padding: "12px 16px",
-                borderRadius: "16px 16px 16px 4px",
-                background: "#2a2a3e",
-                color: "#888",
-                fontSize: 14,
-              }}
-            >
-              답변 생성 중...
             </div>
-          </div>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
 
-      {/* Input */}
-      <div
-        style={{
-          padding: "12px 16px",
-          borderTop: "1px solid #333",
-          background: "#1e1e32",
-          display: "flex",
-          gap: 8,
-        }}
-      >
-        <textarea
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="금융상품에 대해 질문하세요..."
-          rows={1}
-          style={{
-            flex: 1,
-            padding: "10px 14px",
-            borderRadius: 12,
-            border: "1px solid #444",
-            background: "#2a2a3e",
-            color: "#eee",
-            fontSize: 14,
-            outline: "none",
-            resize: "none",
-            fontFamily: "'Noto Sans KR', sans-serif",
-          }}
-        />
-        <button
-          onClick={sendMessage}
-          disabled={loading || !input.trim()}
-          style={{
-            padding: "10px 20px",
-            borderRadius: 12,
-            border: "none",
-            background: loading || !input.trim() ? "#333" : "#4A90D9",
-            color: "#fff",
-            fontSize: 14,
-            cursor: loading || !input.trim() ? "default" : "pointer",
-            fontFamily: "'Noto Sans KR', sans-serif",
-          }}
-        >
-          전송
-        </button>
+        {/* Input */}
+        <div className="input-area">
+          <div className="input-wrap">
+            <textarea
+              ref={inputRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="금융상품에 대해 질문하세요..."
+              rows={1}
+              className="chat-textarea"
+            />
+            <button
+              onClick={sendMessage}
+              disabled={loading || !input.trim()}
+              className="send-btn"
+              aria-label="전송"
+            >
+              ↑
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
