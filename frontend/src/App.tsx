@@ -328,7 +328,27 @@ export default function App() {
             )}
 
             {/* Detail Panel */}
-            {selectedNode && <DetailPanel node={selectedNode} onClose={handleCloseDetail} isMobile={isMobile} />}
+            {selectedNode && (
+              <DetailPanel
+                node={selectedNode}
+                onClose={handleCloseDetail}
+                isMobile={isMobile}
+                connectedNodes={
+                  data?.nodes.filter((n) =>
+                    data.links.some((l) => {
+                      const src = typeof l.source === "object" ? (l.source as GraphNode).id : String(l.source);
+                      const tgt = typeof l.target === "object" ? (l.target as GraphNode).id : String(l.target);
+                      return (src === selectedNode.id && tgt === n.id) || (tgt === selectedNode.id && src === n.id);
+                    })
+                  ) ?? []
+                }
+                onNodeSelect={(n) => {
+                  setSelectedNode(n);
+                  setHighlightNodeId(n.id);
+                  setHighlightNodeIds([n.id]);
+                }}
+              />
+            )}
           </div>
         }
         defaultLeftWidth={40}

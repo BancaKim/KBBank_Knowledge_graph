@@ -1,3 +1,4 @@
+import { useRef, useState, useCallback } from "react";
 import type { GraphNode } from "../types/graph";
 import { NODE_COLORS } from "../types/graph";
 
@@ -5,52 +6,18 @@ interface Props {
   node: GraphNode | null;
   onClose: () => void;
   isMobile?: boolean;
+  connectedNodes?: GraphNode[];
+  onNodeSelect?: (node: GraphNode) => void;
 }
 
-export default function DetailPanel({ node, onClose, isMobile = false }: Props) {
+export default function DetailPanel({ node, onClose, isMobile = false, connectedNodes = [], onNodeSelect }: Props) {
   if (!node) return null;
 
   if (isMobile) {
     return (
-      <>
-        {/* Scrim */}
-        <div
-          onClick={onClose}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(26,25,23,0.35)",
-            zIndex: 300,
-          }}
-        />
-        {/* Bottom sheet */}
-        <div
-          style={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            maxHeight: "60vh",
-            background: "#FAFAF8",
-            borderTop: "1px solid #E2E0D8",
-            borderRadius: "16px 16px 0 0",
-            overflowY: "auto",
-            padding: "16px 20px 32px",
-            boxSizing: "border-box",
-            zIndex: 301,
-            boxShadow: "0 -4px 24px rgba(0,0,0,0.14)",
-            animation: "slideUpSheet 0.24s ease-out",
-          }}
-        >
-          <style>{`@keyframes slideUpSheet { from { transform: translateY(100%); } to { transform: translateY(0); } }`}</style>
-          {/* Handle bar */}
-          <div style={{
-            width: 36, height: 4, borderRadius: 2, background: "#DDD9CE",
-            margin: "0 auto 16px",
-          }} />
-          <DetailPanelContent node={node} onClose={onClose} />
-        </div>
-      </>
+      <MobileBottomSheet onClose={onClose}>
+        <DetailPanelContent node={node} onClose={onClose} connectedNodes={connectedNodes} onNodeSelect={onNodeSelect} />
+      </MobileBottomSheet>
     );
   }
 
@@ -66,12 +33,92 @@ export default function DetailPanel({ node, onClose, isMobile = false }: Props) 
         boxSizing: "border-box",
       }}
     >
-      <DetailPanelContent node={node} onClose={onClose} />
+      <DetailPanelContent node={node} onClose={onClose} connectedNodes={connectedNodes} onNodeSelect={onNodeSelect} />
     </div>
   );
 }
 
-function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () => void }) {
+/** Draggable mobile bottom sheet */
+function MobileBottomSheet({ onClose, children }: { onClose: () => void; children: React.ReactNode }) {
+  const [height, setHeight] = useState(50); // vh
+  const dragging = useRef(false);
+  const startY = useRef(0);
+  const startH = useRef(50);
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    dragging.current = true;
+    startY.current = e.touches[0].clientY;
+    startH.current = height;
+  }, [height]);
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!dragging.current) return;
+    const dy = startY.current - e.touches[0].clientY;
+    const dvh = (dy / window.innerHeight) * 100;
+    const newH = Math.min(85, Math.max(20, startH.current + dvh));
+    setHeight(newH);
+  }, []);
+
+  const onTouchEnd = useCallback(() => {
+    dragging.current = false;
+    // Snap: if dragged below 15vh, close
+    if (height < 15) onClose();
+  }, [height, onClose]);
+
+  return (
+    <>
+      <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(26,25,23,0.35)", zIndex: 300 }} />
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: `${height}vh`,
+          background: "#FAFAF8",
+          borderTop: "1px solid #E2E0D8",
+          borderRadius: "16px 16px 0 0",
+          overflowY: "auto",
+          padding: "0 20px 32px",
+          boxSizing: "border-box",
+          zIndex: 301,
+          boxShadow: "0 -4px 24px rgba(0,0,0,0.14)",
+          animation: "slideUpSheet 0.24s ease-out",
+          transition: dragging.current ? "none" : "height 0.15s ease-out",
+        }}
+      >
+        <style>{`@keyframes slideUpSheet { from { transform: translateY(100%); } to { transform: translateY(0); } }`}</style>
+        {/* Drag handle */}
+        <div
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          style={{
+            padding: "12px 0 8px",
+            cursor: "grab",
+            touchAction: "none",
+            display: "flex",
+            justifyContent: "center",
+            position: "sticky",
+            top: 0,
+            background: "#FAFAF8",
+            zIndex: 1,
+          }}
+        >
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: "#C8C4BB" }} />
+        </div>
+        {children}
+      </div>
+    </>
+  );
+}
+
+function DetailPanelContent({ node, onClose, connectedNodes = [], onNodeSelect }: {
+  node: GraphNode;
+  onClose: () => void;
+  connectedNodes?: GraphNode[];
+  onNodeSelect?: (node: GraphNode) => void;
+}) {
   const d = node.data;
   return (
     <>
@@ -102,10 +149,7 @@ function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () =>
             lineHeight: 1,
             padding: "2px 4px",
             borderRadius: 4,
-            transition: "color 0.15s",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#1A1917")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "#9C9A95")}
         >
           ✕
         </button>
@@ -117,9 +161,7 @@ function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () =>
 
       {node.type === "product" && (
         <>
-          {d.product_type && (
-            <InfoRow label="유형" value={String(d.product_type)} />
-          )}
+          {d.product_type && <InfoRow label="유형" value={String(d.product_type)} />}
           {d.description && (
             <Section title="상품설명">
               <p style={{ color: "#4A4845", fontSize: 13, lineHeight: 1.6, margin: 0 }}>
@@ -128,12 +170,8 @@ function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () =>
               </p>
             </Section>
           )}
-          {d.amount_max_raw && (
-            <InfoRow label="최대한도" value={String(d.amount_max_raw)} />
-          )}
-          {d.eligibility_summary && (
-            <InfoRow label="가입대상" value={String(d.eligibility_summary).slice(0, 150)} />
-          )}
+          {d.amount_max_raw && <InfoRow label="최대한도" value={String(d.amount_max_raw)} />}
+          {d.eligibility_summary && <InfoRow label="가입대상" value={String(d.eligibility_summary).slice(0, 150)} />}
           {d.page_url && (
             <a
               href={String(d.page_url)}
@@ -150,7 +188,6 @@ function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () =>
                 textDecoration: "none",
                 fontSize: 13,
                 fontWeight: 700,
-                letterSpacing: "-0.2px",
               }}
             >
               은행에서 보기
@@ -159,26 +196,13 @@ function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () =>
         </>
       )}
 
-      {node.type === "category" && (
-        <>
-          {d.name_en && <InfoRow label="English" value={String(d.name_en)} />}
-        </>
-      )}
+      {node.type === "category" && d.name_en && <InfoRow label="English" value={String(d.name_en)} />}
 
       {node.type === "interestrate" && (
         <>
-          {d.min_rate != null && d.max_rate != null && (
-            <RateBar min={Number(d.min_rate)} max={Number(d.max_rate)} />
-          )}
-          {d.min_rate != null && (
-            <InfoRow
-              label="금리 범위"
-              value={`${d.min_rate}% ~ ${d.max_rate}%`}
-            />
-          )}
-          {d.rate_type && (
-            <InfoRow label="금리 유형" value={String(d.rate_type)} />
-          )}
+          {d.min_rate != null && d.max_rate != null && <RateBar min={Number(d.min_rate)} max={Number(d.max_rate)} />}
+          {d.min_rate != null && <InfoRow label="금리 범위" value={`${d.min_rate}% ~ ${d.max_rate}%`} />}
+          {d.rate_type && <InfoRow label="금리 유형" value={String(d.rate_type)} />}
         </>
       )}
 
@@ -217,6 +241,51 @@ function DetailPanelContent({ node, onClose }: { node: GraphNode; onClose: () =>
           {d.description && <InfoRow label="설명" value={String(d.description).slice(0, 200)} />}
         </>
       )}
+
+      {/* Connected nodes */}
+      {connectedNodes.length > 0 && (
+        <Section title={`연결된 노드 (${connectedNodes.length})`}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {connectedNodes.slice(0, 12).map((cn) => (
+              <button
+                key={cn.id}
+                onClick={() => onNodeSelect?.(cn)}
+                style={{
+                  padding: "4px 10px",
+                  borderRadius: 20,
+                  border: "1px solid #E2E0D8",
+                  background: "#fff",
+                  color: NODE_COLORS[cn.type] || "#6B6860",
+                  fontSize: 11,
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                  transition: "background 0.15s, transform 0.1s",
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span style={{
+                  display: "inline-block",
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: NODE_COLORS[cn.type] || "#999",
+                  marginRight: 5,
+                  verticalAlign: "middle",
+                }} />
+                {cn.label}
+              </button>
+            ))}
+            {connectedNodes.length > 12 && (
+              <span style={{ color: "#9C9A95", fontSize: 11, alignSelf: "center" }}>
+                +{connectedNodes.length - 12}
+              </span>
+            )}
+          </div>
+        </Section>
+      )}
     </>
   );
 }
@@ -247,33 +316,19 @@ function RateBar({ min, max }: { min: number; max: number }) {
   const maxRate = 10;
   return (
     <div style={{ marginBottom: 12 }}>
-      <div
-        style={{
-          height: 7,
-          background: "#E8E5DD",
+      <div style={{ height: 7, background: "#E8E5DD", borderRadius: 4, position: "relative", overflow: "hidden" }}>
+        <div style={{
+          position: "absolute",
+          left: `${(min / maxRate) * 100}%`,
+          width: `${((max - min) / maxRate) * 100}%`,
+          height: "100%",
+          background: "linear-gradient(90deg, #FDB913, #F5A623)",
           borderRadius: 4,
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            left: `${(min / maxRate) * 100}%`,
-            width: `${((max - min) / maxRate) * 100}%`,
-            height: "100%",
-            background: "linear-gradient(90deg, #FDB913, #F5A623)",
-            borderRadius: 4,
-          }}
-        />
+        }} />
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-        <span style={{ color: "#6B6860", fontSize: 13, fontWeight: 600 }}>
-          {min}%
-        </span>
-        <span style={{ color: "#1A1917", fontSize: 13, fontWeight: 700 }}>
-          {max}%
-        </span>
+        <span style={{ color: "#6B6860", fontSize: 13, fontWeight: 600 }}>{min}%</span>
+        <span style={{ color: "#1A1917", fontSize: 13, fontWeight: 700 }}>{max}%</span>
       </div>
     </div>
   );
