@@ -81,6 +81,16 @@ def _make_tools(db: Any) -> list:
         eligibility_check,
     )
     from backend.agent.skills import loan_search
+    from backend.agent.skills.dsr_calculator import calculate_dsr, calculate_max_mortgage_by_dsr
+    from backend.agent.skills.ltv_calculator import calculate_ltv_limit
+    from backend.agent.skills.mortgage_calculator import calculate_mortgage_limit
+    from backend.agent.skills.cypher_rag import query_knowledge_graph
+
+    # Wrap cypher_rag tool with db pre-bound
+    @tool
+    def query_graph(question: str) -> str:
+        """Neo4j 지식그래프에 자연어로 질문합니다. Cypher 쿼리를 자동 생성하여 실행합니다."""
+        return query_knowledge_graph.invoke({"question": question, "db": db})
 
     @tool
     def search_products(query: str) -> str:
@@ -156,6 +166,10 @@ def _make_tools(db: Any) -> list:
         search_loan_products, get_loan_product_detail, get_loan_rates,
         calculate_loan_payment, calculate_deposit_maturity,
         get_regulation_info,
+        # PR #1 DSR/LTV/모기지 계산기 (정교한 규제 반영)
+        calculate_dsr, calculate_max_mortgage_by_dsr,
+        calculate_ltv_limit, calculate_mortgage_limit,
+        query_graph,
     ]
 
 
