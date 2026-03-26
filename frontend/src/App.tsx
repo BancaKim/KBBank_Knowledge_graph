@@ -88,7 +88,7 @@ export default function App() {
   if (loading) {
     return (
       <div style={centerStyle}>
-        <div style={loadingLogoStyle}>큽div>
+        <div style={loadingLogoStyle}>큽</div>
         <div style={{ fontSize: 18, fontWeight: 700, color: "#1A1917", marginBottom: 8, letterSpacing: "-0.3px" }}>큽 금융상품 지식그래프</div>
         <div style={{ color: "#9C9A95", fontSize: 14 }}>데이터를 불러오는 중...</div>
       </div>
@@ -122,7 +122,7 @@ export default function App() {
                   width: 28, height: 28, background: "#FDB913", borderRadius: 8,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: 13, fontWeight: 800, color: "#1A1917", flexShrink: 0,
-                }}>큽div>
+                }}>큽</div>
                 <h1 style={{ color: "#F5F4F0", fontSize: 15, margin: 0, fontWeight: 700, letterSpacing: "-0.3px" }}>
                   금융상품 지식그래프
                 </h1>

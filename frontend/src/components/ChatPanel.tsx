@@ -663,7 +663,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
         {/* Header */}
         <div className="chat-header">
           <div className="chat-header-title-row">
-            <div className="chat-header-logo">큽div>
+            <div className="chat-header-logo">큽</div>
             <h2 className="chat-header-title">큽 금융상품 상담</h2>
           </div>
           <p className="chat-header-subtitle">GraphRAG 기반 지식그래프 챗봇</p>
@@ -742,7 +742,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
             <div key={msg.id} className="message-group">
               <div className={`message-row message-row--${msg.role}`}>
                 {msg.role === "assistant" && (
-                  <div className="assistant-avatar">큽div>
+                  <div className="assistant-avatar">큽</div>
                 )}
                 <div className={`bubble bubble--${msg.role}`}>
                   {msg.content}
@@ -779,7 +779,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
 
           {loading && (
             <div className="typing-row">
-              <div className="assistant-avatar">큽div>
+              <div className="assistant-avatar">큽</div>
               <div className="typing-bubble">
                 <div className="typing-dot" />
                 <div className="typing-dot" />
