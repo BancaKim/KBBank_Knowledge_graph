@@ -72,7 +72,7 @@ def _load_skill(name: str) -> str:
 # Tool factory
 # ---------------------------------------------------------------------------
 
-def _make_tools(db: Any) -> list:
+def _make_tools(db: Any, api_key: str | None = None) -> list:
     from backend.agent.skills import (
         graph_rag,
         product_search,
@@ -86,11 +86,14 @@ def _make_tools(db: Any) -> list:
     from backend.agent.skills.mortgage_calculator import calculate_mortgage_limit
     from backend.agent.skills.cypher_rag import query_knowledge_graph
 
-    # Wrap cypher_rag tool with db pre-bound
+    # Wrap cypher_rag tool with db + llm pre-bound
+    from langchain_openai import ChatOpenAI as _CypherLLM
+    _cypher_llm = _CypherLLM(model="gpt-4o-mini", temperature=0, api_key=api_key)
+
     @tool
     def query_graph(question: str) -> str:
         """Neo4j 지식그래프에 자연어로 질문합니다. Cypher 쿼리를 자동 생성하여 실행합니다."""
-        return query_knowledge_graph.invoke({"question": question, "db": db})
+        return query_knowledge_graph.invoke({"question": question, "db": db, "llm": _cypher_llm})
 
     @tool
     def search_products(query: str) -> str:
@@ -113,10 +116,10 @@ def _make_tools(db: Any) -> list:
         return product_compare.compare_products.invoke({"product_a": product_a, "product_b": product_b, "db": db})
 
     @tool
-    def check_eligibility(product_name: str, age: int = 0, employment_type: str = "") -> str:
+    def check_eligibility(product_name: str, age: int = 0, employment: str = "") -> str:
         """특정 상품의 가입 자격을 확인합니다."""
         return eligibility_check.check_eligibility.invoke({
-            "product_name": product_name, "age": age, "employment_type": employment_type, "db": db,
+            "product_name": product_name, "age": age, "employment": employment, "db": db,
         })
 
     @tool
@@ -191,7 +194,7 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
     resolved_key = api_key or os.environ.get("OPENAI_API_KEY")
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=resolved_key)
 
-    tools = _make_tools(db)
+    tools = _make_tools(db, api_key=resolved_key)
     llm_with_tools = llm.bind_tools(tools)
     system_prompt = _build_system_prompt()
 

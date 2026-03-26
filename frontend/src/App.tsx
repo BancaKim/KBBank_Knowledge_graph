@@ -116,11 +116,14 @@ export default function App() {
           <div style={{ display: "flex", height: "100%", width: "100%" }}>
             {/* Sidebar */}
             <div style={sidebarStyle}>
-              <h1 style={{ color: "#fff", fontSize: 16, marginTop: 0, marginBottom: 16 }}>
+              <h1 style={{ color: "#fff", fontSize: 16, marginTop: 0, marginBottom: 4 }}>
                 KB 금융상품
                 <br />
                 <span style={{ color: "#4A90D9", fontSize: 13, fontWeight: "normal" }}>지식그래프</span>
               </h1>
+              <div style={{ color: "#ff7070", fontSize: 11, marginBottom: 16 }}>
+                개인 토이프로젝트 · KB국민은행과 무관
+              </div>
 
               <SearchBar onSelectResult={handleSearchSelect} nodes={data.nodes} />
 
@@ -153,10 +156,10 @@ export default function App() {
                   borderRadius: 8,
                   border: "1px solid #4a2a2a",
                 }}>
-                  <div style={{ color: "#e88", fontSize: 11, fontWeight: 700, marginBottom: 4 }}>
+                  <div style={{ color: "#ff7070", fontSize: 11, fontWeight: 700, marginBottom: 4 }}>
                     DISCLAIMER
                   </div>
-                  <div style={{ color: "#aaa", fontSize: 10, lineHeight: 1.5 }}>
+                  <div style={{ color: "#aaa", fontSize: 11, lineHeight: 1.5 }}>
                     본 서비스는 KB국민은행과 무관한 <strong style={{ color: "#ccc" }}>개인 토이프로젝트</strong>입니다.
                     제공되는 정보는 참고용이며, 실제 금융 상담은 반드시 해당 금융기관에 문의하시기 바랍니다.
                   </div>

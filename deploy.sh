@@ -26,7 +26,7 @@ echo "=== Syncing .env ==="
 [ -f .env ] || echo "WARNING: .env not found — create it manually"
 
 echo "=== Building and restarting Docker ==="
-docker compose -f docker-compose.prod.yml build --no-cache
+docker compose -f docker-compose.prod.yml build
 docker compose -f docker-compose.prod.yml up -d --force-recreate
 
 echo "=== Cleaning up old images ==="
@@ -35,7 +35,7 @@ docker image prune -f
 echo "=== Verifying ==="
 sleep 3
 docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
-curl -sf http://localhost:80/api/health && echo " <- health OK" || echo " <- health check failed (may need a moment)"
+curl -sf http://localhost:8000/api/health && echo " <- health OK" || echo " <- health check failed (may need a moment)"
 
 echo "=== Deploy complete ==="
 REMOTE

@@ -183,6 +183,9 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
       >
         <h2 style={{ color: "#fff", fontSize: 16, margin: 0 }}>
           KB 금융상품 상담
+          <span style={{ color: "#ff7070", fontSize: 11, fontWeight: 400, marginLeft: 8, verticalAlign: "middle" }}>
+            개인 프로젝트 (KB 무관)
+          </span>
         </h2>
         <p style={{ color: "#888", fontSize: 12, margin: "4px 0 0" }}>
           GraphRAG 기반 지식그래프 챗봇
