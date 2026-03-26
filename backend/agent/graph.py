@@ -1,27 +1,25 @@
-"""Multi-agent banking chatbot using create_agent + SubAgentMiddleware.
+"""Banking chatbot using pure LangGraph StateGraph.
 
-Supervisor pattern: main agent routes to specialized sub-agents
-(deposit_expert, loan_expert, calculator, comparator).
-
-Uses LangChain standard `create_agent` API with SubAgentMiddleware
-from deepagents for automatic sub-agent delegation.
+Lightweight single-agent with all tools. No deepagents dependency.
 """
 
 from __future__ import annotations
 
 import os
-from typing import Any
+from pathlib import Path
+from typing import Any, Annotated, TypedDict
 
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
+from langgraph.graph import StateGraph, END
+from langgraph.prebuilt import ToolNode
 
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
     pass
-
-from pathlib import Path
 
 from backend.agent.prompts import (
     CALCULATOR_PROMPT,
@@ -31,35 +29,58 @@ from backend.agent.prompts import (
     MAIN_SYSTEM_PROMPT,
 )
 
-# Skills directory (contains SKILL.md + references/)
 _SKILLS_DIR = Path(__file__).resolve().parent.parent.parent / "skills"
 
 
 # ---------------------------------------------------------------------------
-# Tool factory — create tools with db pre-bound via closure
+# State
 # ---------------------------------------------------------------------------
 
-def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
-    """Create all tools with Neo4j db connection pre-bound.
+def _merge_messages(left: list, right: list) -> list:
+    return left + right
 
-    Wrapper tools capture `db` (and optionally `llm`) from closure
-    so the LLM only sees the user-facing parameters.
-    """
-    # Import raw tool modules
+
+class AgentState(TypedDict):
+    messages: Annotated[list, _merge_messages]
+
+
+# ---------------------------------------------------------------------------
+# Skills loader (lazy, cached)
+# ---------------------------------------------------------------------------
+
+_skills_cache: dict[str, str] = {}
+
+
+def _load_skill(name: str) -> str:
+    if name not in _skills_cache:
+        skill_path = _SKILLS_DIR / name / "SKILL.md"
+        if skill_path.exists():
+            _skills_cache[name] = skill_path.read_text(encoding="utf-8")[:3000]
+        else:
+            ref_dir = _SKILLS_DIR / name / "references"
+            if ref_dir.exists():
+                parts = []
+                for f in sorted(ref_dir.glob("*.md")):
+                    parts.append(f.read_text(encoding="utf-8")[:2000])
+                _skills_cache[name] = "\n\n".join(parts)[:3000]
+            else:
+                _skills_cache[name] = ""
+    return _skills_cache[name]
+
+
+# ---------------------------------------------------------------------------
+# Tool factory
+# ---------------------------------------------------------------------------
+
+def _make_tools(db: Any) -> list:
     from backend.agent.skills import (
         graph_rag,
         product_search,
         product_compare,
         rate_calculator,
         eligibility_check,
-        dsr_calculator,
-        cypher_rag,
-        ltv_calculator,
-        mortgage_calculator,
     )
     from backend.agent.skills import loan_search
-
-    # --- Deposit/common tools (db-bound) ---
 
     @tool
     def search_products(query: str) -> str:
@@ -68,17 +89,17 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
 
     @tool
     def get_product_detail(product_name: str) -> str:
-        """특정 상품의 상세 정보(금리, 가입조건, 우대금리, 채널 등)를 조회합니다."""
+        """특정 상품의 상세 정보를 조회합니다."""
         return product_search.get_product_detail.invoke({"product_name": product_name, "db": db})
 
     @tool
     def list_products_by_category(category: str) -> str:
-        """특정 카테고리(정기예금, 적금, 신용대출 등)의 상품 목록을 조회합니다."""
+        """특정 카테고리의 상품 목록을 조회합니다."""
         return product_search.list_products_by_category.invoke({"category": category, "db": db})
 
     @tool
     def compare_products(product_a: str, product_b: str) -> str:
-        """두 상품을 비교합니다. 금리, 한도, 기간, 채널 등을 표로 비교합니다."""
+        """두 상품을 비교합니다."""
         return product_compare.compare_products.invoke({"product_a": product_a, "product_b": product_b, "db": db})
 
     @tool
@@ -88,30 +109,26 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
             "product_name": product_name, "age": age, "employment_type": employment_type, "db": db,
         })
 
-    # --- Loan-specific tools (db-bound) ---
-
     @tool
     def search_loan_products(query: str) -> str:
-        """대출 상품을 검색합니다. 신용대출, 담보대출, 전세대출, 자동차대출 등을 검색합니다."""
+        """대출 상품을 검색합니다."""
         return loan_search.search_loan_products.invoke({"query": query, "db": db})
 
     @tool
     def get_loan_product_detail(name: str) -> str:
-        """대출 상품의 상세 정보를 조회합니다. 금리(기준금리별), 상환방법, 담보, 수수료, 소비자권리를 포함합니다."""
+        """대출 상품의 상세 정보를 조회합니다."""
         return loan_search.get_loan_product_detail.invoke({"name": name, "db": db})
 
     @tool
     def get_loan_rates(base_rate_type: str) -> str:
-        """특정 기준금리 유형(CD91일물, COFIX, 금융채 등)별 대출 금리를 비교 조회합니다."""
+        """특정 기준금리 유형별 대출 금리를 비교 조회합니다."""
         return loan_search.get_loan_rates.invoke({"base_rate_type": base_rate_type, "db": db})
-
-    # --- Calculation tools (no db needed) ---
 
     @tool
     def calculate_loan_payment(
         principal: int, annual_rate: float, months: int, method: str = "원리금균등"
     ) -> str:
-        """대출 월 상환액을 계산합니다. method: 원리금균등, 원금균등, 만기일시"""
+        """대출 월 상환액을 계산합니다."""
         return rate_calculator.calculate_loan_payment.invoke({
             "principal": principal, "annual_rate": annual_rate, "months": months, "method": method,
         })
@@ -120,304 +137,79 @@ def _make_tools(db: Any, llm: Any = None) -> dict[str, Any]:
     def calculate_deposit_maturity(
         principal: int, annual_rate: float, months: int, tax_type: str = "일반과세"
     ) -> str:
-        """예금 만기 수령액을 계산합니다. tax_type: 일반과세, 비과세, 세금우대"""
+        """예금 만기 수령액을 계산합니다."""
         return rate_calculator.calculate_deposit_maturity.invoke({
             "principal": principal, "annual_rate": annual_rate, "months": months, "tax_type": tax_type,
         })
 
-    # --- DSR calculation tools (no db needed) ---
-
     @tool
-    def calculate_dsr(
-        annual_income: float,
-        new_loan_amount: float,
-        new_loan_rate: float,
-        new_loan_months: int,
-        new_loan_method: str = "원리금균등",
-        new_loan_type: str = "주담대",
-        new_loan_rate_type: str = "변동",
-        region: str = "수도권",
-        sector: str = "은행",
-        existing_loans: str = "",
-    ) -> str:
-        """DSR(총부채원리금상환비율)을 계산합니다. 금감원 기준으로 스트레스 DSR 가산금리, 만기일시 원리금균등전환, 금리유형별 차등을 반영합니다."""
-        return dsr_calculator.calculate_dsr.invoke({
-            "annual_income": annual_income,
-            "new_loan_amount": new_loan_amount,
-            "new_loan_rate": new_loan_rate,
-            "new_loan_months": new_loan_months,
-            "new_loan_method": new_loan_method,
-            "new_loan_type": new_loan_type,
-            "new_loan_rate_type": new_loan_rate_type,
-            "region": region,
-            "sector": sector,
-            "existing_loans": existing_loans,
-        })
+    def get_regulation_info(topic: str) -> str:
+        """LTV, DSR, 대출한도, 생애최초 등 부동산 대출 규제 정보를 조회합니다."""
+        content = _load_skill("financial-regulations")
+        if not content:
+            return "규제 정보 스킬이 로드되지 않았습니다."
+        return content[:2000]
 
-    @tool
-    def calculate_max_mortgage_by_dsr(
-        annual_income: float,
-        loan_rate: float,
-        loan_months: int,
-        loan_method: str = "원리금균등",
-        loan_rate_type: str = "변동",
-        region: str = "수도권",
-        sector: str = "은행",
-        existing_loans: str = "",
-    ) -> str:
-        """DSR 한도 내 최대 주택담보대출 가능액을 계산합니다. 상환방식별·기간별·금리유형별 비교표도 제공합니다."""
-        return dsr_calculator.calculate_max_mortgage_by_dsr.invoke({
-            "annual_income": annual_income,
-            "loan_rate": loan_rate,
-            "loan_months": loan_months,
-            "loan_method": loan_method,
-            "loan_rate_type": loan_rate_type,
-            "region": region,
-            "sector": sector,
-            "existing_loans": existing_loans,
-        })
-
-    # --- LTV & Mortgage limit tools (no db needed) ---
-
-    @tool
-    def calculate_ltv_limit(
-        property_value: float,
-        region: str = "수도권",
-        is_first_time: bool = False,
-        num_homes: int = 0,
-        disposal_condition: bool = False,
-        prior_loans: float = 0.0,
-        lease_deposit: float = 0.0,
-        num_rooms: int = 1,
-        is_apartment: bool = True,
-    ) -> str:
-        """LTV(담보인정비율) 기반 주택담보대출 최대 한도를 계산합니다. 규제지역/비규제지역, 생애최초, 주택가격대별 상한을 반영합니다."""
-        return ltv_calculator.calculate_ltv_limit.invoke({
-            "property_value": property_value,
-            "region": region,
-            "is_first_time": is_first_time,
-            "num_homes": num_homes,
-            "disposal_condition": disposal_condition,
-            "prior_loans": prior_loans,
-            "lease_deposit": lease_deposit,
-            "num_rooms": num_rooms,
-            "is_apartment": is_apartment,
-        })
-
-    @tool
-    def calculate_mortgage_limit(
-        property_value: float,
-        annual_income: float,
-        loan_rate: float,
-        loan_months: int = 360,
-        loan_method: str = "원리금균등",
-        loan_rate_type: str = "변동",
-        region: str = "수도권",
-        sector: str = "은행",
-        is_first_time: bool = False,
-        num_homes: int = 0,
-        disposal_condition: bool = False,
-        prior_loans: float = 0.0,
-        lease_deposit: float = 0.0,
-        is_apartment: bool = True,
-        num_rooms: int = 1,
-        existing_loans: str = "",
-    ) -> str:
-        """주택담보대출 최종 한도를 계산합니다. LTV와 DSR을 모두 계산하여 min(LTV한도, DSR한도)를 안내합니다."""
-        return mortgage_calculator.calculate_mortgage_limit.invoke({
-            "property_value": property_value,
-            "annual_income": annual_income,
-            "loan_rate": loan_rate,
-            "loan_months": loan_months,
-            "loan_method": loan_method,
-            "loan_rate_type": loan_rate_type,
-            "region": region,
-            "sector": sector,
-            "is_first_time": is_first_time,
-            "num_homes": num_homes,
-            "disposal_condition": disposal_condition,
-            "prior_loans": prior_loans,
-            "lease_deposit": lease_deposit,
-            "is_apartment": is_apartment,
-            "num_rooms": num_rooms,
-            "existing_loans": existing_loans,
-        })
-
-    # --- Agentic GraphRAG (LLM → Cypher, db-bound + llm-bound) ---
-
-    @tool
-    def query_knowledge_graph(question: str) -> str:
-        """자연어 질문을 Cypher 쿼리로 변환하여 지식그래프를 검색합니다. 복합 조건, 관계 탐색, 집계/비교/정렬 등 기존 검색 도구로 처리 어려운 질문에 사용합니다."""
-        return cypher_rag.query_knowledge_graph.invoke({"question": question, "db": db, "llm": llm})
-
-    return {
-        # Deposit tools
-        "search_products": search_products,
-        "get_product_detail": get_product_detail,
-        "list_products_by_category": list_products_by_category,
-        "check_eligibility": check_eligibility,
-        "calculate_deposit_maturity": calculate_deposit_maturity,
-        # Loan tools
-        "search_loan_products": search_loan_products,
-        "get_loan_product_detail": get_loan_product_detail,
-        "get_loan_rates": get_loan_rates,
-        # Shared tools
-        "compare_products": compare_products,
-        "calculate_loan_payment": calculate_loan_payment,
-        # DSR tools
-        "calculate_dsr": calculate_dsr,
-        "calculate_max_mortgage_by_dsr": calculate_max_mortgage_by_dsr,
-        # LTV & Mortgage limit tools
-        "calculate_ltv_limit": calculate_ltv_limit,
-        "calculate_mortgage_limit": calculate_mortgage_limit,
-        # Agentic GraphRAG
-        "query_knowledge_graph": query_knowledge_graph,
-    }
+    return [
+        search_products, get_product_detail, list_products_by_category,
+        compare_products, check_eligibility,
+        search_loan_products, get_loan_product_detail, get_loan_rates,
+        calculate_loan_payment, calculate_deposit_maturity,
+        get_regulation_info,
+    ]
 
 
 # ---------------------------------------------------------------------------
-# Agent factory
+# Build graph
 # ---------------------------------------------------------------------------
+
+def _build_system_prompt() -> str:
+    return "\n\n".join([
+        MAIN_SYSTEM_PROMPT,
+        "## 예금/적금 전문 지식\n" + DEPOSIT_EXPERT_PROMPT,
+        "## 대출 전문 지식\n" + LOAN_EXPERT_PROMPT,
+        "## 금융 계산\n" + CALCULATOR_PROMPT,
+        "## 상품 비교/추천\n" + COMPARATOR_PROMPT,
+    ])
+
 
 def create_banking_agent(db: Any = None, api_key: str | None = None):
-    """Create a multi-agent banking chatbot with SubAgentMiddleware.
-
-    Architecture:
-      Main Agent (supervisor) → routes to specialized sub-agents
-      ├── deposit_expert: 예금/적금 상담
-      ├── loan_expert: 대출 상담
-      ├── calculator: 금융 계산
-      └── comparator: 상품 비교/추천
-    """
-    from langchain.agents import create_agent
-    from deepagents.middleware.subagents import SubAgentMiddleware
-
     resolved_key = api_key or os.environ.get("OPENAI_API_KEY")
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=resolved_key)
 
-    # Create tools with db + llm pre-bound
-    tools = _make_tools(db, llm)
+    tools = _make_tools(db)
+    llm_with_tools = llm.bind_tools(tools)
+    system_prompt = _build_system_prompt()
 
-    # Define sub-agents with specialized tools and prompts
-    subagents = [
-        {
-            "name": "deposit_expert",
-            "description": (
-                "예금/적금 상품 관련 질문에 답변합니다. "
-                "정기예금, 적금, 자유입출금통장, 주택청약의 금리, 가입조건, "
-                "세제혜택, 우대금리, 예금자보호 등을 안내합니다."
-            ),
-            "system_prompt": DEPOSIT_EXPERT_PROMPT,
-            "tools": [
-                tools["search_products"],
-                tools["get_product_detail"],
-                tools["list_products_by_category"],
-                tools["check_eligibility"],
-                tools["calculate_deposit_maturity"],
-                tools["query_knowledge_graph"],
-            ],
-        },
-        {
-            "name": "loan_expert",
-            "description": (
-                "대출 상품 관련 질문에 답변합니다. "
-                "신용대출, 담보대출, 전월세대출, 자동차대출의 금리(기준금리별), "
-                "상환방법, 담보, 중도상환수수료, 소비자 3대 권리를 안내합니다. "
-                "LTV, DSR, 대출한도, 생애최초, 규제지역 등 규제 관련 질문도 답변합니다. "
-                "DSR 계산, LTV 한도, 최종 대출한도(min(LTV,DSR)), "
-                "대출 상환액 계산, 최대 대출 가능액 산출도 직접 수행합니다."
-            ),
-            "system_prompt": LOAN_EXPERT_PROMPT,
-            "tools": [
-                tools["search_loan_products"],
-                tools["get_loan_product_detail"],
-                tools["get_loan_rates"],
-                tools["list_products_by_category"],
-                tools["check_eligibility"],
-                tools["calculate_loan_payment"],
-                tools["calculate_dsr"],
-                tools["calculate_max_mortgage_by_dsr"],
-                tools["calculate_ltv_limit"],
-                tools["calculate_mortgage_limit"],
-                tools["query_knowledge_graph"],
-            ],
-        },
-        {
-            "name": "calculator",
-            "description": (
-                "금융 계산을 수행합니다. "
-                "대출 월 상환액(원리금균등/원금균등/만기일시), "
-                "예금 만기 수령액(세전/세후), "
-                "DSR 계산, LTV 한도 계산, 주택담보대출 최종 한도 계산, "
-                "최대 대출 가능액 산출 등을 계산합니다."
-            ),
-            "system_prompt": CALCULATOR_PROMPT,
-            "tools": [
-                tools["calculate_loan_payment"],
-                tools["calculate_deposit_maturity"],
-                tools["calculate_dsr"],
-                tools["calculate_max_mortgage_by_dsr"],
-                tools["calculate_ltv_limit"],
-                tools["calculate_mortgage_limit"],
-            ],
-        },
-        {
-            "name": "comparator",
-            "description": (
-                "여러 금융상품을 비교하거나 조건에 맞는 상품을 추천합니다. "
-                "예금/대출 간 크로스 비교, 금리 비교, 조건별 추천을 수행합니다."
-            ),
-            "system_prompt": COMPARATOR_PROMPT,
-            "tools": [
-                tools["search_products"],
-                tools["search_loan_products"],
-                tools["get_product_detail"],
-                tools["get_loan_product_detail"],
-                tools["compare_products"],
-                tools["list_products_by_category"],
-                tools["query_knowledge_graph"],
-            ],
-        },
-    ]
+    def agent_node(state: AgentState) -> dict:
+        messages = [SystemMessage(content=system_prompt)] + state["messages"]
+        response = llm_with_tools.invoke(messages)
+        return {"messages": [response]}
 
-    # SkillsMiddleware — LLM loads skills on-demand (token efficient)
-    from deepagents.backends import FilesystemBackend
-    from deepagents.middleware.skills import SkillsMiddleware
+    def should_continue(state: AgentState) -> str:
+        last = state["messages"][-1]
+        if hasattr(last, "tool_calls") and last.tool_calls:
+            return "tools"
+        return END
 
-    skills_backend = FilesystemBackend(root_dir=str(_SKILLS_DIR.parent))
-    skills_sources = [str(_SKILLS_DIR)]
+    graph = StateGraph(AgentState)
+    graph.add_node("agent", agent_node)
+    graph.add_node("tools", ToolNode(tools))
+    graph.set_entry_point("agent")
+    graph.add_conditional_edges("agent", should_continue, {"tools": "tools", END: END})
+    graph.add_edge("tools", "agent")
 
-    # Create main agent — no direct tools, MUST delegate to sub-agents
-    agent = create_agent(
-        model=llm,
-        tools=[],  # No direct tools — forces delegation to sub-agents
-        system_prompt=MAIN_SYSTEM_PROMPT,
-        middleware=[
-            SubAgentMiddleware(
-                default_model=llm,
-                subagents=subagents,
-            ),
-            SkillsMiddleware(
-                backend=skills_backend,
-                sources=skills_sources,
-            ),
-        ],
-        name="kb_banking_agent",
-    )
-
-    return agent
+    return graph.compile()
 
 
 # ---------------------------------------------------------------------------
-# Public API — backward compatible
+# Public API
 # ---------------------------------------------------------------------------
 
 def _extract_refs(db: Any, answer: str) -> list[dict]:
-    """Extract referenced product nodes from answer text."""
     if not db or not answer:
         return []
     try:
-        # Search for product names mentioned in the answer
         results = db.run_query(
             """
             MATCH (p:Product)
@@ -443,16 +235,9 @@ def chat(
     db: Any = None,
     api_key: str | None = None,
 ) -> dict:
-    """Process a chat query using the multi-agent banking chatbot.
-
-    Drop-in replacement for the previous single-agent ``chat`` function.
-    Returns: {"answer": str, "referenced_nodes": list[dict]}
-    """
     try:
         agent = create_banking_agent(db, api_key=api_key)
 
-        # Build messages from history
-        from langchain_core.messages import HumanMessage, AIMessage
         messages = []
         if history:
             for msg in history[-6:]:
