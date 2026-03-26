@@ -20,6 +20,7 @@ RUN pip install --no-cache-dir ".[chat]"
 COPY backend/ ./backend/
 COPY knowledge_graph/ ./knowledge_graph/
 COPY data/ ./data/
+COPY skills/ ./skills/
 
 # Copy frontend build from stage 1
 COPY --from=frontend-build /app/frontend/dist ./frontend/dist
