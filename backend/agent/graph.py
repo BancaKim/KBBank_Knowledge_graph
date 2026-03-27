@@ -161,6 +161,22 @@ def _make_tools(db: Any, api_key: str | None = None) -> list:
         content = _load_skill("financial-regulations")
         if not content:
             return "규제 정보 스킬이 로드되지 않았습니다."
+        sections = content.split("##")
+        if any(kw in topic for kw in ("LTV", "담보")):
+            keywords = ("LTV", "담보")
+        elif any(kw in topic for kw in ("DSR", "소득")):
+            keywords = ("DSR", "소득")
+        elif any(kw in topic for kw in ("생애최초", "첫집")):
+            keywords = ("생애최초", "첫집")
+        elif "한도" in topic:
+            keywords = ("한도",)
+        else:
+            keywords = None
+        if keywords:
+            matched = [s for s in sections if any(kw in s for kw in keywords)]
+            if matched:
+                result = "##" + "##".join(matched)
+                return result[:2000]
         return content[:2000]
 
     return [
@@ -188,6 +204,16 @@ def _build_system_prompt() -> str:
         "## 금융 계산\n" + CALCULATOR_PROMPT,
         "## 상품 비교/추천\n" + COMPARATOR_PROMPT,
     ])
+
+
+_agent_cache: dict[str, Any] = {}
+
+
+def _get_or_create_agent(db: Any, api_key: str | None):
+    cache_key = f"{id(db)}:{api_key[:8] if api_key else 'none'}"
+    if cache_key not in _agent_cache:
+        _agent_cache[cache_key] = create_banking_agent(db, api_key=api_key)
+    return _agent_cache[cache_key]
 
 
 def create_banking_agent(db: Any = None, api_key: str | None = None):
@@ -253,7 +279,7 @@ def chat(
     api_key: str | None = None,
 ) -> dict:
     try:
-        agent = create_banking_agent(db, api_key=api_key)
+        agent = _get_or_create_agent(db, api_key=api_key)
 
         messages = []
         if history:
