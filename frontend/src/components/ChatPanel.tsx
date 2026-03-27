@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import Markdown from "react-markdown";
 import { API_BASE } from "../config";
 
 const genId = (): string =>
@@ -324,9 +325,19 @@ const styles = `
     padding: 11px 15px;
     font-size: 14px;
     line-height: 1.65;
-    white-space: pre-wrap;
     word-break: break-word;
   }
+  .bubble--assistant p { margin: 0.4em 0; }
+  .bubble--assistant ul, .bubble--assistant ol { margin: 0.4em 0; padding-left: 1.4em; }
+  .bubble--assistant li { margin: 0.2em 0; }
+  .bubble--assistant strong { font-weight: 700; }
+  .bubble--assistant h3 { font-size: 15px; font-weight: 700; margin: 0.8em 0 0.3em; }
+  .bubble--assistant h4 { font-size: 14px; font-weight: 700; margin: 0.6em 0 0.2em; }
+  .bubble--assistant table { border-collapse: collapse; width: 100%; margin: 0.5em 0; font-size: 13px; }
+  .bubble--assistant th, .bubble--assistant td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+  .bubble--assistant th { background: var(--bg-secondary); font-weight: 600; }
+  .bubble--assistant code { background: var(--bg-secondary); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+  .bubble--assistant hr { border: none; border-top: 1px solid var(--border); margin: 0.6em 0; }
 
   .bubble--user {
     background: var(--user-bubble);
@@ -745,7 +756,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
                   <div className="assistant-avatar">큽</div>
                 )}
                 <div className={`bubble bubble--${msg.role}`}>
-                  {msg.content}
+                  <Markdown>{msg.content}</Markdown>
                 </div>
               </div>
 
