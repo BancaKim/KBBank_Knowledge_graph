@@ -76,21 +76,34 @@ def list_products_by_category(category: str, db=None) -> str:
     conn = db or Neo4jConnection()
     try:
         result = conn.run_query("""
-            MATCH (p:Product {category: $cat})
+            MATCH (p:Product)-[:BELONGS_TO]->(c:Category)
+            WHERE c.name CONTAINS $cat OR p.category CONTAINS $cat
             OPTIONAL MATCH (p)-[:HAS_RATE]->(r:InterestRate)
+            OPTIONAL MATCH (p)-[:HAS_TERM]->(t:Term)
             RETURN p.name AS name, p.amount_max_raw AS amount,
-                   r.min_rate AS rate_min, r.max_rate AS rate_max
+                   r.min_rate AS rate_min, r.max_rate AS rate_max,
+                   t.raw_text AS term
             ORDER BY p.name
         """, {"cat": category})
 
         if not result:
             return f"'{category}' 카테고리에 상품이 없습니다."
 
-        lines = [f"## {category} 상품 목록 ({len(result)}개)\n"]
+        # Deduplicate by name
+        seen = set()
+        unique = []
         for r in result:
+            if r['name'] not in seen:
+                seen.add(r['name'])
+                unique.append(r)
+
+        lines = [f"## {category} 상품 목록 ({len(unique)}개)\n"]
+        for r in unique:
             line = f"- **{r['name']}**"
             if r.get('rate_min'):
-                line += f" (금리: {r['rate_min']}%~{r.get('rate_max', '')}%)"
+                line += f" (금리: 연 {r['rate_min']}%~{r.get('rate_max', '')}%)"
+            if r.get('term'):
+                line += f" / 기간: {r['term']}"
             if r.get('amount'):
                 line += f" / 한도: {r['amount']}"
             lines.append(line)
