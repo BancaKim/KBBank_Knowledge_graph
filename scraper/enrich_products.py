@@ -1,4 +1,4 @@
-"""Enrich sparse MD product files with detailed content from KB Star Bank."""
+"""Enrich sparse MD product files with detailed content from financial institution."""
 
 import asyncio
 import re

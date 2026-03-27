@@ -1,4 +1,4 @@
-"""2-stage PDF parsing pipeline for KB Star Bank financial products.
+"""2-stage PDF parsing pipeline for financial institution products.
 
 Pipeline:
   data/raw/{category}/*.pdf
@@ -117,7 +117,7 @@ def pdf_to_text_fallback(pdf_path: str) -> str:
 # Stage 2: GPT-4o-mini structured extraction
 # ---------------------------------------------------------------------------
 
-EXTRACTION_PROMPT = '''당신은 KB국민은행 금융상품 문서 파서입니다.
+EXTRACTION_PROMPT = '''당신은 금융기관 금융상품 문서 파서입니다.
 아래 상품 설명서 텍스트에서 다음 정보를 JSON으로 추출하세요.
 
 추출 항목:

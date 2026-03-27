@@ -1,6 +1,6 @@
 ---
 name: compare-products
-description: Compare two or more KB Star Bank financial products side-by-side
+description: Compare two or more financial institution products side-by-side
 ---
 
 # 상품 비교

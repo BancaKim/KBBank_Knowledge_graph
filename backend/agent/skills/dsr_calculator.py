@@ -550,6 +550,6 @@ def calculate_max_mortgage_by_dsr(
     lines.append("※ 금감원 DSR 산정기준 적용 (스트레스 DSR 3단계, 2025.7.1~)")
     lines.append("※ 실제 한도는 LTV 규제와 비교하여 낮은 금액 적용")
     lines.append("※ 규제지역 주택가격대별 한도(15억↓6억, 25억↓4억, 25억↑2억)도 별도 적용")
-    lines.append("※ KB국민은행 고객센터(1588-9999) 또는 영업점 방문 상담을 권장합니다.")
+    lines.append("※ 자세한 사항은 해당 금융기관 또는 영업점 방문 상담을 권장합니다.")
 
     return "\n".join(lines)

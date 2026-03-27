@@ -1,4 +1,4 @@
-"""Download deposit product PDFs from KB국민은행 website.
+"""Download deposit product PDFs from financial institution website.
 
 Navigates through 4 tabs (예금, 적금, 입출금자유, 주택청약),
 clicks each product to view details, then saves as PDF.
@@ -30,7 +30,7 @@ def slugify(text: str) -> str:
 
 
 async def main():
-    print("KB국민은행 예금 상품 PDF 다운로드")
+    print("금융기관 예금 상품 PDF 다운로드")
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)

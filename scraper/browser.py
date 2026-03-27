@@ -1,4 +1,4 @@
-"""Async Playwright browser manager for KB Star Bank scraper."""
+"""Async Playwright browser manager for financial institution scraper."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 
 class BrowserManager:
-    """Async context manager wrapping a headless Chromium browser.
+    """Async context manager wrapping a headless Chromium browser for financial institution scraping.
 
     Usage::
 

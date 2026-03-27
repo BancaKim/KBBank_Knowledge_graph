@@ -1,9 +1,11 @@
 ---
 name: scrape-products
-description: Scrape KB Star Bank financial product descriptions from obank.kbstar.com
+description: Scrape financial institution product descriptions from public banking website
 ---
 
-# KB Star Bank 상품 스크래핑
+# 금융기관 상품 스크래핑
+
+Source: public banking website (obank.kbstar.com)
 
 ## 트리거
 - 사용자가 "상품 데이터 수집", "스크래핑", "상품 업데이트" 요청 시
@@ -37,6 +39,6 @@ description: Scrape KB Star Bank financial product descriptions from obank.kbsta
 - `--headless`: 브라우저 UI 없이 실행 (기본값)
 
 ## 참고
-- KB Star Bank URL 패턴: `https://obank.kbstar.com/quics?page=C######`
+- 금융기관 URL 패턴: `https://obank.kbstar.com/quics?page=C######`
 - 요청 간 2-5초 랜덤 딜레이 적용 (봇 차단 방지)
 - 실패한 상품은 건너뛰고 계속 진행

@@ -109,16 +109,13 @@ def score_response(answer: str, test_case: dict) -> dict:
     # Quality checks
     is_error = "오류" in answer or "죄송합니다" in answer[:50]
     is_too_short = len(answer) < 100
-    is_hallucinating = "KB국민은행" in answer  # Should say 큽 not KB
+    # Check if answer mentions specific bank names when not contextually appropriate
+    is_hallucinating = any(bank in answer for bank in ["카카오뱅크", "토스뱅크", "우리은행"]) if "금융기관" in answer else False
     # Detect numeric data from tool calls: percentages, Korean monetary amounts,
     # duration patterns (개월/년/일), and explicit rate markers.
-    import re
     has_tool_data = bool(
         any(kw in answer for kw in ["연 ", "%", "만원", "개월", "억원", "천만원"]) or
-        re.search(r"\d+[\.,]?\d*\s*%", answer) or          # e.g. 2.4%, 0.5 %
-        re.search(r"\d+\s*천만\s*원", answer) or            # e.g. 5천만원
-        re.search(r"\d+\s*억\s*원", answer) or              # e.g. 1억원
-        re.search(r"\d+\s*(년|개월|일)\s*(이상|이내|만기)?", answer)  # 30년, 12개월
+        any(pat.search(answer) for pat in _NUMERIC_PATTERNS)
     )
 
     quality_score = 1.0

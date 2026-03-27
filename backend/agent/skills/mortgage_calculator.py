@@ -256,6 +256,6 @@ def calculate_mortgage_limit(
     lines.append("※ DSR: 금감원 스트레스 DSR 3단계 (2025.7.1~) 적용")
     lines.append("※ 수도권/규제지역 주담대 만기 30년 상한 적용 (6.27 대책)")
     lines.append("※ 실제 한도는 은행 심사(신용등급, 소득증빙 등)에 따라 달라질 수 있습니다.")
-    lines.append("※ KB국민은행 고객센터(1588-9999) 또는 영업점 방문 상담을 권장합니다.")
+    lines.append("※ 자세한 사항은 해당 금융기관 또는 영업점 방문 상담을 권장합니다.")
 
     return "\n".join(lines)

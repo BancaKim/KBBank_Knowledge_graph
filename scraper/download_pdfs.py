@@ -1,4 +1,4 @@
-"""Download PDF product sheets from KB Star Bank print popup pages."""
+"""Download PDF product sheets from financial institution print popup pages."""
 import asyncio
 import re
 from pathlib import Path
@@ -128,7 +128,7 @@ async def download_product_pdf(page, product, category, listing_url):
 
 
 async def main():
-    print("KB Star Bank Product PDF Downloader (Print Popup Method)")
+    print("Financial Institution Product PDF Downloader (Print Popup Method)")
     print("=" * 60)
 
     async with async_playwright() as pw:

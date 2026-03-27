@@ -1,4 +1,7 @@
-"""KB Star Bank financial products scraper."""
+"""Financial institution financial products scraper.
+
+Source: public banking website
+"""
 
 from scraper.browser import BrowserManager
 from scraper.config import CATEGORIES, BASE_URL, OUTPUT_DIR

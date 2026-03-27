@@ -1,8 +1,11 @@
-"""Configuration for KB Star Bank (obank.kbstar.com) scraper."""
+"""Configuration for financial institution (obank.kbstar.com) scraper.
+
+Source: public banking website
+"""
 
 from pathlib import Path
 
-# Base URL for KB Star Bank online banking
+# Base URL for online banking
 BASE_URL = "https://obank.kbstar.com/quics"
 
 # The site uses ?page=C###### pattern for navigation.

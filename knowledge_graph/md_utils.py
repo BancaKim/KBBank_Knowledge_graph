@@ -110,7 +110,7 @@ def safe_float(value: Any) -> float | None:
 # ---------------------------------------------------------------------------
 
 CHANNEL_MAP: dict[str, tuple[str, str]] = {
-    "스타뱅킹": ("channel__스타뱅킹", "KB Star Banking App"),
+    "스타뱅킹": ("channel__스타뱅킹", "Mobile Banking App"),
     "인터넷": ("channel__인터넷", "Internet Banking"),
     "영업점": ("channel__영업점", "Branch"),
     "고객센터": ("channel__고객센터", "Call Center"),

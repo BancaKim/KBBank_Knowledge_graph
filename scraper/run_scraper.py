@@ -1,4 +1,4 @@
-"""CLI entry point for the KB Star Bank financial products scraper."""
+"""CLI entry point for the financial institution financial products scraper."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ logger = logging.getLogger("scraper")
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="scrape",
-        description="Scrape KB Star Bank (obank.kbstar.com) financial product pages.",
+        description="Scrape financial institution (obank.kbstar.com) financial product pages.",
     )
     parser.add_argument(
         "--categories",
@@ -82,7 +82,7 @@ async def async_main(args: argparse.Namespace) -> None:
             sys.exit(1)
 
     logger.info("=" * 60)
-    logger.info("KB Star Bank Scraper")
+    logger.info("Financial Institution Scraper")
     logger.info("=" * 60)
     logger.info("Categories: %s", ", ".join(categories or CATEGORIES.keys()))
     logger.info("Output: %s", args.output)

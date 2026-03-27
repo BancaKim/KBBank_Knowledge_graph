@@ -1,4 +1,4 @@
-"""Enrich MD files using data scraped from KB Star Bank listing pages.
+"""Enrich MD files using data scraped from financial institution listing pages.
 
 Strategy:
 - Visit each listing page with Playwright

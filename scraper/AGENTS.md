@@ -1,6 +1,7 @@
 # scraper/
 
-KB스타뱅킹(obank.kbstar.com) 금융상품 웹 스크래퍼. Playwright 기반.
+금융기관(obank.kbstar.com) 금융상품 웹 스크래퍼. Playwright 기반.
+Source: public banking website
 
 ## 파일
 

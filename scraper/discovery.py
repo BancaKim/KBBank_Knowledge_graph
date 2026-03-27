@@ -1,6 +1,8 @@
-"""Discover financial product pages on KB Star Bank.
+"""Discover financial product pages on financial institution website.
 
-The site structure (verified 2026-03-23):
+Source: public banking website (verified 2026-03-23)
+
+The site structure:
 - Product listing page: /quics?page=C016613 (예금/적금/입출금자유/주택청약 tabs)
 - Each tab has a product list after a "상품목록 N건" heading
 - Product links use href="#none" and navigate via JavaScript
@@ -207,7 +209,7 @@ async def _extract_product_list(page: Page, category: str) -> list[DiscoveredPro
             const dds = li.querySelectorAll('dd');
             for (const dd of dds) {
                 const t = dd.textContent.trim();
-                if (['인터넷', '스타뱅킹', '영업점', '리브 Next', '고객센터'].includes(t)) {
+                if (['인터넷', '모바일뱅킹', '영업점', '리브 Next', '고객센터'].includes(t)) {
                     channels.push(t);
                 }
             }

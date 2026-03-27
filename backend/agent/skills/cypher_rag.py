@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 DEPOSIT_SCHEMA = """\
-## KB국민은행 금융상품 지식그래프 스키마 (예금)
+## 금융상품 지식그래프 스키마 (예금)
 
 ### 예금 상품 노드
 - (:Product {id, name, product_type, description, amount_max_raw, amount_max_won, eligibility_summary, page_url})
@@ -30,7 +30,7 @@ DEPOSIT_SCHEMA = """\
 - (:ParentCategory {id, name})
 - (:InterestRate {id, rate_type, min_rate, max_rate, base_rate_name, spread})  — rate_type: base/preferential/penalty
 - (:Term {id, min_months, max_months, raw_text})
-- (:Channel {id, name})  — 예: 스타뱅킹, 인터넷뱅킹, 영업점
+- (:Channel {id, name})  — 예: 모바일뱅킹, 인터넷뱅킹, 영업점
 - (:EligibilityCondition {id, description, min_age, max_age, target_audience})
 - (:PreferentialRate {id, name, condition_description, rate_value_pp})
 - (:TaxBenefit {id, type, eligible, description})  — type: 일반과세/비과세종합저축/비과세
@@ -59,7 +59,7 @@ DEPOSIT_SCHEMA = """\
 """
 
 LOAN_SCHEMA = """\
-## KB국민은행 금융상품 지식그래프 스키마 (대출)
+## 금융상품 지식그래프 스키마 (대출)
 
 ### 대출 상품 노드
 - (:LoanProduct {id, name, loan_type, description, amount_max_raw, eligibility_summary, rate_cut_request_available, contract_withdrawal_available, illegal_contract_termination})
@@ -106,7 +106,7 @@ FEW_SHOT_EXAMPLES = [
         ),
     },
     {
-        "question": "스타뱅킹에서 가입 가능한 예금 상품",
+        "question": "모바일뱅킹에서 가입 가능한 예금 상품",
         "cypher": (
             "MATCH (p:Product)-[:AVAILABLE_VIA]->(ch:Channel) "
             "WHERE ch.name CONTAINS '스타뱅킹' "
@@ -406,7 +406,7 @@ def _format_results(results: list[dict], cypher: str) -> str:
 
 @tool
 def query_knowledge_graph(question: str, db=None, llm=None) -> str:
-    """자연어 질문을 Cypher 쿼리로 변환하여 KB국민은행 지식그래프를 검색합니다.
+    """자연어 질문을 Cypher 쿼리로 변환하여 금융상품 지식그래프를 검색합니다.
 
     복합 조건 검색, 다중 관계 탐색, 집계/비교/정렬 등 기존 검색 도구로
     처리하기 어려운 질문에 사용합니다.

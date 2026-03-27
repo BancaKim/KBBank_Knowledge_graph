@@ -4,7 +4,7 @@ from langchain_core.tools import tool
 
 @tool
 def search_products(query: str, db=None) -> str:
-    """Search KB국민은행 금융상품 지식그래프에서 상품을 검색합니다.
+    """금융상품 지식그래프에서 상품을 검색합니다.
 
     Args:
         query: 검색할 키워드 (예: "비상금대출", "정기예금", "전세대출")

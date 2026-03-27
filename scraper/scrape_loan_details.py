@@ -1,4 +1,4 @@
-"""Scrape loan product detail pages from KB Star Bank.
+"""Scrape loan product detail pages from financial institution.
 
 Detail pages are only accessible via JavaScript function calls (dtlLoan)
 from the listing page. This script:

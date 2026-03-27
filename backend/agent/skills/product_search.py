@@ -7,7 +7,7 @@ def get_product_detail(product_name: str, db=None) -> str:
     """특정 금융상품의 상세 정보를 조회합니다.
 
     Args:
-        product_name: 상품 이름 (예: "KB 비상금대출", "KB Star 정기예금")
+        product_name: 상품 이름 (예: "비상금대출", "정기예금")
     """
     from knowledge_graph.db import Neo4jConnection
     conn = db or Neo4jConnection()

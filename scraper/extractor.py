@@ -1,4 +1,4 @@
-"""Extract structured product data from KB Star Bank detail pages.
+"""Extract structured product data from financial institution detail pages.
 
 Detail page structure (verified 2026-03-23):
 - Product header: heading with subtitle + name
