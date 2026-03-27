@@ -27,7 +27,7 @@
     },
     {
       "id": "kb-maejigkadaecul-sinca-daehwan",
-      "label": "KB 매직카대출(신차 대환)",
+      "label": "큽 매직카대출(신차 대환)",
       "type": "product",
       "group": 0,
       "data": {
@@ -36,20 +36,20 @@
         "amount_max_raw": "6천만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:56:20",
-        "name": "KB 매직카대출(신차 대환)",
+        "name": "큽 매직카대출(신차 대환)",
         "description": "",
         "category": "자동차대출",
-        "eligibility_summary": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ ",
+        "eligibility_summary": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ ",
         "size": 9.444444444444445
       }
     },
     {
       "id": "kb-maejigkadaecul-sinca-daehwan__feat__0",
-      "label": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 KB국민은행으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+      "label": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 큽 금융으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 KB국민은행으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+        "name": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 큽 금융으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
         "description": "",
         "size": 5.277777777777778
       }
@@ -74,7 +74,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인 만19세이상",
-        "description": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 5년 이내여야 합니다",
+        "description": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 5년 이내여야 합니다",
         "min_age": 19,
         "size": 5.277777777777778
       }
@@ -93,7 +93,7 @@
     },
     {
       "id": "kb-maejigkadaecul-sinca",
-      "label": "KB 매직카대출(신차)",
+      "label": "큽 매직카대출(신차)",
       "type": "product",
       "group": 0,
       "data": {
@@ -102,7 +102,7 @@
         "amount_max_raw": "6천만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:56:04",
-        "name": "KB 매직카대출(신차)",
+        "name": "큽 매직카대출(신차)",
         "description": "",
         "category": "자동차대출",
         "eligibility_summary": "신차구입 목적으로 자동차판매회사(대리점)와 매매계약을 체결하고 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차, 화물차(5톤 이하) 및 대형이륜자동차(260CC초과)\n         (개인택시, 캠핑카 및 카라반, 수입차 포함, 친환경차량* 미포함",
@@ -111,11 +111,11 @@
     },
     {
       "id": "kb-maejigkadaecul-sinca__feat__0",
-      "label": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+      "label": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+        "name": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
         "description": "",
         "size": 5.277777777777778
       }
@@ -159,7 +159,7 @@
     },
     {
       "id": "kb-maejigkadaecul-junggoca-gumaeyong",
-      "label": "KB 매직카대출(중고차 구매用)",
+      "label": "큽 매직카대출(중고차 구매用)",
       "type": "product",
       "group": 0,
       "data": {
@@ -168,7 +168,7 @@
         "amount_max_raw": "4천만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:54:32",
-        "name": "KB 매직카대출(중고차 구매用)",
+        "name": "큽 매직카대출(중고차 구매用)",
         "description": "",
         "category": "자동차대출",
         "eligibility_summary": "중고차 구입 목적으로 자동차매매업자와 계약(경·공매, 리스완료 후 구매 포함)을 체결하고 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차, 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 최초 자동차등록일로부터 15년 이내인 ",
@@ -225,7 +225,7 @@
     },
     {
       "id": "kb-maejigkadaecul-junggoca-daehwan",
-      "label": "KB 매직카대출(중고차 대환)",
+      "label": "큽 매직카대출(중고차 대환)",
       "type": "product",
       "group": 0,
       "data": {
@@ -234,20 +234,20 @@
         "amount_max_raw": "4천만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:56:35",
-        "name": "KB 매직카대출(중고차 대환)",
+        "name": "큽 매직카대출(중고차 대환)",
         "description": "",
         "category": "자동차대출",
-        "eligibility_summary": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞",
+        "eligibility_summary": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞",
         "size": 9.444444444444445
       }
     },
     {
       "id": "kb-maejigkadaecul-junggoca-daehwan__feat__0",
-      "label": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 KB국민은행으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+      "label": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 큽 금융으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 KB국민은행으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+        "name": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 큽 금융으로 대환하고 분할상환하는 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
         "description": "",
         "size": 5.277777777777778
       }
@@ -272,7 +272,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인 만19세이상",
-        "description": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 15년 이내이고, 명의",
+        "description": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 15년 이내이고, 명의",
         "min_age": 19,
         "size": 5.277777777777778
       }
@@ -291,7 +291,7 @@
     },
     {
       "id": "kb-maejigkadaecul-junggoca",
-      "label": "KB 매직카대출(중고차)",
+      "label": "큽 매직카대출(중고차)",
       "type": "product",
       "group": 0,
       "data": {
@@ -300,7 +300,7 @@
         "amount_max_raw": "4천만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:55:33",
-        "name": "KB 매직카대출(중고차)",
+        "name": "큽 매직카대출(중고차)",
         "description": "",
         "category": "자동차대출",
         "eligibility_summary": "중고차 구입 목적으로 자동차매매업자와 계약(경·공매, 리스완료 후 구매 포함)을 체결하고 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차, 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 최초 자동차등록일로부터 15년 이내인 ",
@@ -357,7 +357,7 @@
     },
     {
       "id": "kb-bisanggeumdaecul",
-      "label": "KB 비상금대출",
+      "label": "큽 비상금대출",
       "type": "product",
       "group": 0,
       "data": {
@@ -366,7 +366,7 @@
         "amount_max_raw": "3백만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:46:59",
-        "name": "KB 비상금대출",
+        "name": "큽 비상금대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "서울보증보험㈜의 개인금융신용보험증권 발급가능한 만19세 이상 내국인",
@@ -447,7 +447,7 @@
     },
     {
       "id": "kb-saehyimangholssiii",
-      "label": "KB 새희망홀씨Ⅱ",
+      "label": "큽 새희망홀씨Ⅱ",
       "type": "product",
       "group": 0,
       "data": {
@@ -456,7 +456,7 @@
         "amount_max_raw": "35백만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:47:38",
-        "name": "KB 새희망홀씨Ⅱ",
+        "name": "큽 새희망홀씨Ⅱ",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 국내거주 국민으로서 연간소득 40백만원 이하[다만, 개인신용평점 하위 20% 이하인 경우에는 연간소득 50백만원 이하] 이고 다음  각 항목 중 하나에 해당하는 고객\n     ①증빙소득서류 제출자 (직업 및 소득 확인서류 등으로 증빙된 소득)\n     ②국민연금보험료 또는 지역건강보험료(세대주에 한함) ",
@@ -536,7 +536,7 @@
     },
     {
       "id": "kb-sinyongdaecul",
-      "label": "KB 신용대출",
+      "label": "큽 신용대출",
       "type": "product",
       "group": 0,
       "data": {
@@ -545,7 +545,7 @@
         "amount_max_raw": "3.5억원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:47:26",
-        "name": "KB 신용대출",
+        "name": "큽 신용대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "당행 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객으로 각 직군별 재직기간  \n기준을 충족하고, 소득증빙 가능한 직장인 고객 \n☞ 건강보험 자격득실확인서로 재직확인이 가능한 근로소득자만 대상으로 함",
@@ -601,7 +601,7 @@
     },
     {
       "id": "kb-sinhonbubu-jeonsejageumdaecul",
-      "label": "KB 신혼부부 전세자금대출",
+      "label": "큽 신혼부부 전세자금대출",
       "type": "product",
       "group": 0,
       "data": {
@@ -610,7 +610,7 @@
         "amount_max_raw": "2억원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:53:41",
-        "name": "KB 신혼부부 전세자금대출",
+        "name": "큽 신혼부부 전세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "혼인기간 7년 이내 신혼부부 또는 3개월 이내 결혼예정자로서 아래 내용을 모두 충족하는 민법상 성년인 세대주 또는 세대주로 인정되는 고객\n(1) 임차보증금이 수도권 7억원(그 외 지역 5억원) 이하인 임대차계약을 체결하고, 임차보증금의 5% 이상을 지급한 경우\n(2) 본인과 배우자(결혼예정자 포함)의 합산 주택수가 1주택* 이내인 경우\n* 보유 중인 주택이",
@@ -678,13 +678,13 @@
     },
     {
       "id": "kb-sinhonbubu-jeonsejageumdaecul__pref__2",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -726,13 +726,13 @@
     },
     {
       "id": "kb-sinhonbubu-jeonsejageumdaecul__pref__6",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -930,14 +930,14 @@
     },
     {
       "id": "kb-jutaegguibjageumdaecul-jibdan-ibjujangeumdaecul",
-      "label": "KB 주택구입자금대출",
+      "label": "큽 주택구입자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "loan",
-        "name": "KB 주택구입자금대출",
+        "name": "큽 주택구입자금대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "주택을 구입하시는 분",
@@ -981,14 +981,14 @@
     },
     {
       "id": "kb-jutaegdambodaecul",
-      "label": "KB 주택담보대출",
+      "label": "큽 주택담보대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "loan",
-        "name": "KB 주택담보대출",
+        "name": "큽 주택담보대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "주택을 담보로 대출 신청하는 고객 (주택구입/신축/경락주택 구입자금대출 및 통장자동대출 포함)",
@@ -1044,13 +1044,13 @@
     },
     {
       "id": "kb-jutaegdambodaecul__pref__1",
-      "label": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결제계",
+      "label": "- **신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결제계",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결제계",
-        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결제계좌가 지정된 KB국민카드(신용) 이용시)",
+        "name": "- **신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결제계",
+        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결제계좌가 지정된 큽카드(신용) 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -1092,13 +1092,13 @@
     },
     {
       "id": "kb-jutaegdambodaecul__pref__5",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용시)",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용시)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용시)",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용시)",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -1140,7 +1140,7 @@
     },
     {
       "id": "kb-jutaegjeonsejageumdaecul-eunhaengjaeweon-hyeobyagbojeung",
-      "label": "KB 주택전세자금대출 (은행재원 협약보증)",
+      "label": "큽 주택전세자금대출 (은행재원 협약보증)",
       "type": "product",
       "group": 0,
       "data": {
@@ -1149,7 +1149,7 @@
         "product_type": "loan",
         "amount_max_raw": "4억4천4백만원",
         "scraped_at": "2026-03-23T13:52:09",
-        "name": "KB 주택전세자금대출 (은행재원 협약보증)",
+        "name": "큽 주택전세자금대출 (은행재원 협약보증)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주 또는 세대주로 인정되는 자로서 「주택금융신용보증서」가 발급되는 고객으로서 아래의 사항을 모두 충족하는 고객\n1. 임차보증금이 수도권 7억원(그 외 지역 5억원) 이하인 임대차계약을 체결*하고, 임차보증금의 5% 이상을 지급한 경우\n* 월세가 있는 경우 전월세전환율을 적용하여 임차보증금 계산\n2. 본인과 배우자(결혼예정자 포함)의 합산 ",
@@ -1205,13 +1205,13 @@
     },
     {
       "id": "kb-jutaegjeonsejageumdaecul-eunhaengjaeweon-hyeobyagbojeung__pref__1",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -1253,13 +1253,13 @@
     },
     {
       "id": "kb-jutaegjeonsejageumdaecul-eunhaengjaeweon-hyeobyagbojeung__pref__5",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -1289,7 +1289,7 @@
     },
     {
       "id": "kb-ceongnyeon-majcumhyeong-jeonsejageumdaecul",
-      "label": "KB 청년 맞춤형 전세자금대출",
+      "label": "큽 청년 맞춤형 전세자금대출",
       "type": "product",
       "group": 0,
       "data": {
@@ -1298,7 +1298,7 @@
         "product_type": "loan",
         "amount_max_raw": "2억원",
         "scraped_at": "2026-03-23T13:51:54",
-        "name": "KB 청년 맞춤형 전세자금대출",
+        "name": "큽 청년 맞춤형 전세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "일반대출\n      - 아래 조건을 모두 충족하는 만 19세 이상 만 34세 이하 무주택 세대주 또는 예비세대주주)\n         (1) 임차보증금 수도권 7억원(그 외 지역 5억원) 이하\nㅇ 월세가 있는 경우 전월세전환율을 적용하여 임차보증금 계산\n         (2) 임차보증금의 5% 이상 계약금 지급\n         (3) 부부합산 연소득 7천만원",
@@ -1355,14 +1355,14 @@
     },
     {
       "id": "kb-ceongyag-jutaegjonghabjeocug-dambodaecul",
-      "label": "KB 청약(주택종합저축)담보대출",
+      "label": "큽 청약(주택종합저축)담보대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "loan",
-        "name": "KB 청약(주택종합저축)담보대출",
+        "name": "큽 청약(주택종합저축)담보대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "은행이 인정하는 본인 단독명의의 당행 주택기금 청약상품을 담보로 제공하는 자",
@@ -1419,7 +1419,7 @@
     },
     {
       "id": "kb-cinhwangyeong-maejigkadaecul-sinca-gumaeyong",
-      "label": "KB 친환경 매직카대출(신차 구매用)",
+      "label": "큽 친환경 매직카대출(신차 구매用)",
       "type": "product",
       "group": 0,
       "data": {
@@ -1428,7 +1428,7 @@
         "product_type": "loan",
         "amount_max_raw": "6천만원",
         "scraped_at": "2026-03-23T13:54:17",
-        "name": "KB 친환경 매직카대출(신차 구매用)",
+        "name": "큽 친환경 매직카대출(신차 구매用)",
         "description": "",
         "category": "자동차대출",
         "eligibility_summary": "신차구입 목적으로 자동차판매회사(대리점)와 매매계약을 체결하고 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차, 화물차(5톤 이하)로 사용연료가 전기, 수소전기, 하이브리드(휘발류+전기)를 연료로 사용하는 친환경차 \n(개인택시, 캠핑카 및 카라반,",
@@ -1437,11 +1437,11 @@
     },
     {
       "id": "kb-cinhwangyeong-maejigkadaecul-sinca-gumaeyong__feat__0",
-      "label": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+      "label": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+        "name": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
         "description": "",
         "size": 5.277777777777778
       }
@@ -1485,7 +1485,7 @@
     },
     {
       "id": "kb-cinhwangyeong-maejigkadaecul-sinca",
-      "label": "KB 친환경 매직카대출(신차)",
+      "label": "큽 친환경 매직카대출(신차)",
       "type": "product",
       "group": 0,
       "data": {
@@ -1494,7 +1494,7 @@
         "amount_max_raw": "6천만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:55:49",
-        "name": "KB 친환경 매직카대출(신차)",
+        "name": "큽 친환경 매직카대출(신차)",
         "description": "",
         "category": "자동차대출",
         "eligibility_summary": "신차구입 목적으로 자동차판매회사(대리점)와 매매계약을 체결하고 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차, 화물차(5톤 이하)로 사용연료가 전기, 수소전기, 하이브리드(휘발류+전기)를 사용하는 친환경차\n         (개인택시, 캠핑카 및 ",
@@ -1503,11 +1503,11 @@
     },
     {
       "id": "kb-cinhwangyeong-maejigkadaecul-sinca__feat__0",
-      "label": "캐피탈 대비 유리한 금리조건으로 친환경차량 신차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+      "label": "캐피탈 대비 유리한 금리조건으로 친환경차량 신차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "캐피탈 대비 유리한 금리조건으로 친환경차량 신차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+        "name": "캐피탈 대비 유리한 금리조건으로 친환경차량 신차를 구매하려는 고객을 위한 맞춤상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
         "description": "",
         "size": 5.277777777777778
       }
@@ -1551,14 +1551,14 @@
     },
     {
       "id": "kbgoldeunraipeu-gongsajutaegyeongeumron",
-      "label": "KB골든라이프 공사주택연금론",
+      "label": "큽골든라이프 공사주택연금론",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "",
-        "name": "KB골든라이프 공사주택연금론",
+        "name": "큽골든라이프 공사주택연금론",
         "description": "",
         "category": "",
         "eligibility_summary": "소유자 또는 배우자 만 55세 이상, 보유주택 공시가격 등이 12억원 이하",
@@ -1603,7 +1603,7 @@
     },
     {
       "id": "kbnarasarangdaecul-ilbanjageum",
-      "label": "KB나라사랑대출(일반자금)",
+      "label": "큽나라사랑대출(일반자금)",
       "type": "product",
       "group": 0,
       "data": {
@@ -1611,7 +1611,7 @@
         "amount_max_raw": "국가보훈부 추천금액",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:48:04",
-        "name": "KB나라사랑대출(일반자금)",
+        "name": "큽나라사랑대출(일반자금)",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "국가보훈부로부터 전자문서로 대출 추천을 받은 국가유공자, 장기복무(10년이상 복무)한 제대군인 고객\n\n대출신청자격\n\n\n\n\n\n\n\n대출종류\n대출신청대상\n자격구분\n\n\n\n\n주택개량자금\n- 건물 신축 후 5년 경과한 소유주택을 개량 하고자 하는 고객\n- 국가유공자\n\n\n생활안정자금\n- 일반 및 재해복구 자금: 가계생활안정자금이 필요한 고객- 보철용 차량구입 : 보철용",
@@ -1655,7 +1655,7 @@
     },
     {
       "id": "kbsaehyimangholssi-gingeubsaenggyejageum",
-      "label": "KB새희망홀씨 긴급생계자금",
+      "label": "큽새희망홀씨 긴급생계자금",
       "type": "product",
       "group": 0,
       "data": {
@@ -1664,20 +1664,20 @@
         "amount_max_raw": "5백만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:47:52",
-        "name": "KB새희망홀씨 긴급생계자금",
+        "name": "큽새희망홀씨 긴급생계자금",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 국내거주 국민으로서 다음 각 항목에 모두  해당하는 고객\n  (1) KB새희망홀씨(KB새희망홀씨Ⅱ)」대출을 1년 이상 성실상환 중인 고객 중 최근 1년간 누적 연체일수가 10일 이하인 고객\n  (2)「KB새희망홀씨 긴급생계자금」을 보유하지 않은 고객(1인 1계좌만 가능)\n  ※ 재직 및 소득확인서류 제출",
+        "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 국내거주 국민으로서 다음 각 항목에 모두  해당하는 고객\n  (1) 큽새희망홀씨(큽새희망홀씨Ⅱ)」대출을 1년 이상 성실상환 중인 고객 중 최근 1년간 누적 연체일수가 10일 이하인 고객\n  (2)「큽새희망홀씨 긴급생계자금」을 보유하지 않은 고객(1인 1계좌만 가능)\n  ※ 재직 및 소득확인서류 제출",
         "size": 18.333333333333336
       }
     },
     {
       "id": "kbsaehyimangholssi-gingeubsaenggyejageum__feat__0",
-      "label": "기존 보유 「KB새희망홀씨Ⅱ (KB새희망홀씨 포함)」 대출을 성실상환 중인 서민을 위한 긴급생계자금 지원 대출상품",
+      "label": "기존 보유 「큽새희망홀씨Ⅱ (큽새희망홀씨 포함)」 대출을 성실상환 중인 서민을 위한 긴급생계자금 지원 대출상품",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "기존 보유 「KB새희망홀씨Ⅱ (KB새희망홀씨 포함)」 대출을 성실상환 중인 서민을 위한 긴급생계자금 지원 대출상품",
+        "name": "기존 보유 「큽새희망홀씨Ⅱ (큽새희망홀씨 포함)」 대출을 성실상환 중인 서민을 위한 긴급생계자금 지원 대출상품",
         "description": "",
         "size": 5.277777777777778
       }
@@ -1702,7 +1702,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 국내거주 국민으로서 다음 각 항목에 모두  해당하는 고객\n  (1) KB새희망홀씨(KB새희망홀씨Ⅱ)」대출을 1년 이상 성실상환 중인 고객 중 최근 1년간 누적 연체일수가 10일 이하인 고객\n  (2)「KB새희망홀씨 긴급생계자금」을 보유하지 않은 고객(1인 1계좌만 가능)\n  ※ 재직 및 소득확인서류 제출 생략",
+        "description": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 국내거주 국민으로서 다음 각 항목에 모두  해당하는 고객\n  (1) 큽새희망홀씨(큽새희망홀씨Ⅱ)」대출을 1년 이상 성실상환 중인 고객 중 최근 1년간 누적 연체일수가 10일 이하인 고객\n  (2)「큽새희망홀씨 긴급생계자금」을 보유하지 않은 고객(1인 1계좌만 가능)\n  ※ 재직 및 소득확인서류 제출 생략",
         "size": 5.277777777777778
       }
     },
@@ -1720,7 +1720,7 @@
     },
     {
       "id": "kbseuta-sinyongdaecul-singyu",
-      "label": "KB스타 신용대출(신규)",
+      "label": "큽스타 신용대출(신규)",
       "type": "product",
       "group": 0,
       "data": {
@@ -1729,7 +1729,7 @@
         "amount_max_raw": "3.5억원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:47:13",
-        "name": "KB스타 신용대출(신규)",
+        "name": "큽스타 신용대출(신규)",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객으로 직군별 재직기간 기준을 충족하고, 소득증빙이 가능한 직장인\n☞ 재직기간은 현직장 재직기간만 인정하며, 전직장 재직기간은 인정하지 않음\n☞ 건강보험자격득실확인서로 재직을 확인할 수 있는 근로소득자만 대상으로 함",
@@ -1738,11 +1738,11 @@
     },
     {
       "id": "kbseuta-sinyongdaecul-singyu__feat__0",
-      "label": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 신용대출 상품\nKB 스타뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
+      "label": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 신용대출 상품\n큽 모바일뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 신용대출 상품\nKB 스타뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
+        "name": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 신용대출 상품\n큽 모바일뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
         "description": "",
         "size": 5.277777777777778
       }
@@ -1773,7 +1773,7 @@
     },
     {
       "id": "kbseuta-sinyongdaeculii-singyu",
-      "label": "KB스타 신용대출Ⅱ(신규)",
+      "label": "큽스타 신용대출Ⅱ(신규)",
       "type": "product",
       "group": 0,
       "data": {
@@ -1782,7 +1782,7 @@
         "amount_max_raw": "3.5억원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:46:46",
-        "name": "KB스타 신용대출Ⅱ(신규)",
+        "name": "큽스타 신용대출Ⅱ(신규)",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객으로 직군별 재직기간 기준을 충족하고, 소득증빙이 가능한 직장인\n☞ 재직기간은 현직장 재직기간만 인정하며, 전직장 재직기간은 인정하지 않음\n☞ 건강보험자격득실확인서로 재직을 확인할 수 있는 근로소득자만 대상으로 함",
@@ -1791,11 +1791,11 @@
     },
     {
       "id": "kbseuta-sinyongdaeculii-singyu__feat__0",
-      "label": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 거래실적우대금리형 신용대출 상품\nKB 스타뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
+      "label": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 거래실적우대금리형 신용대출 상품\n큽 모바일뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 거래실적우대금리형 신용대출 상품\nKB 스타뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
+        "name": "증빙소득 발생 직장인 누구나 신청 가능한 비대면 전용 거래실적우대금리형 신용대출 상품\n큽 모바일뱅킹에서 간편하게 신규 가능한 비대면 전용 신용대출",
         "description": "",
         "size": 5.277777777777778
       }
@@ -1826,27 +1826,27 @@
     },
     {
       "id": "kbseuta-apateudambodaecul-jutaegjageum",
-      "label": "KB스타 아파트담보대출(주택자금)",
+      "label": "큽스타 아파트담보대출(주택자금)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "loan",
-        "name": "KB스타 아파트담보대출(주택자금)",
+        "name": "큽스타 아파트담보대출(주택자금)",
         "description": "",
         "category": "담보대출",
-        "eligibility_summary": "KB시세정보가 제공되는 본인명의 또는 배우자와의 공동명의 아파트를 담보로 제공하여 대출을 신청하는 소득확인 가능한 고객",
+        "eligibility_summary": "큽시세정보가 제공되는 본인명의 또는 배우자와의 공동명의 아파트를 담보로 제공하여 대출을 신청하는 소득확인 가능한 고객",
         "size": 16.38888888888889
       }
     },
     {
       "id": "kbseuta-apateudambodaecul-jutaegjageum__feat__0",
-      "label": "KB 스타뱅킹 전용 아파트 담보대출",
+      "label": "큽 모바일뱅킹 전용 아파트 담보대출",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "KB 스타뱅킹 전용 아파트 담보대출",
+        "name": "큽 모바일뱅킹 전용 아파트 담보대출",
         "description": "",
         "size": 5.277777777777778
       }
@@ -1872,7 +1872,7 @@
       "data": {
         "target_audience": "",
         "name": "가입자격",
-        "description": "KB시세정보가 제공되는 본인명의 또는 배우자와의 공동명의 아파트를 담보로 제공하여 대출을 신청하는 소득확인 가능한 고객",
+        "description": "큽시세정보가 제공되는 본인명의 또는 배우자와의 공동명의 아파트를 담보로 제공하여 대출을 신청하는 소득확인 가능한 고객",
         "size": 5.277777777777778
       }
     },
@@ -1890,7 +1890,7 @@
     },
     {
       "id": "kbseuta-usugeorae-sinyongdaecul",
-      "label": "KB스타 우수거래 신용대출",
+      "label": "큽스타 우수거래 신용대출",
       "type": "product",
       "group": 0,
       "data": {
@@ -1899,20 +1899,20 @@
         "amount_max_raw": "3.5억원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:48:43",
-        "name": "KB스타 우수거래 신용대출",
+        "name": "큽스타 우수거래 신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "KB 국민은행과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
+        "eligibility_summary": "큽 큽 금융과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
         "size": 19.444444444444443
       }
     },
     {
       "id": "kbseuta-usugeorae-sinyongdaecul__feat__0",
-      "label": "KB 국민은행과 거래하는 STAR CLUB 베스트 등급 이상 고객에게 거래실적 우대 추가 한도를 제공하는 비대면 전용 신용대출 상품",
+      "label": "큽 큽 금융과 거래하는 STAR CLUB 베스트 등급 이상 고객에게 거래실적 우대 추가 한도를 제공하는 비대면 전용 신용대출 상품",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "KB 국민은행과 거래하는 STAR CLUB 베스트 등급 이상 고객에게 거래실적 우대 추가 한도를 제공하는 비대면 전용 신용대출 상품",
+        "name": "큽 큽 금융과 거래하는 STAR CLUB 베스트 등급 이상 고객에게 거래실적 우대 추가 한도를 제공하는 비대면 전용 신용대출 상품",
         "description": "",
         "size": 5.277777777777778
       }
@@ -1925,7 +1925,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "KB 국민은행과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
+        "description": "큽 큽 금융과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
         "size": 5.277777777777778
       }
     },
@@ -2007,13 +2007,13 @@
     },
     {
       "id": "gugminjutaeggigeum-mangidaehwan-jutaegjeonsejageumdaecul__pref__1",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -2055,13 +2055,13 @@
     },
     {
       "id": "gugminjutaeggigeum-mangidaehwan-jutaegjeonsejageumdaecul__pref__5",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -2296,13 +2296,13 @@
     },
     {
       "id": "sahoejeogbaeryeo-daesangja-teugryebojeung-jeonsejageumdaecul__pref__2",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -2344,13 +2344,13 @@
     },
     {
       "id": "sahoejeogbaeryeo-daesangja-teugryebojeung-jeonsejageumdaecul__pref__6",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -2445,13 +2445,13 @@
     },
     {
       "id": "sinyonghoebogjiweonja-teugryebojeung-jutaegjeonsejageumdaecul__pref__1",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -2493,13 +2493,13 @@
     },
     {
       "id": "sinyonghoebogjiweonja-teugryebojeung-jutaegjeonsejageumdaecul__pref__5",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -2580,25 +2580,25 @@
     },
     {
       "id": "imdaejutaeg-ibjuja-teugryebojeung-jeonsejageumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 1.4,
-        "name": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드(신용) 이용실적 우대, 결제계좌를 KB국민은행으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우 등)",
+        "name": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드(신용) 이용실적 우대, 결제계좌를 큽 금융으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "imdaejutaeg-ibjuja-teugryebojeung-jeonsejageumdaecul__pref__1",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -2640,13 +2640,13 @@
     },
     {
       "id": "imdaejutaeg-ibjuja-teugryebojeung-jeonsejageumdaecul__pref__5",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -2753,13 +2753,13 @@
     },
     {
       "id": "jeongcaegseomingeumyung-iyongja-teugryebojeung-jeonsejageumdaecul__pref__2",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -2801,13 +2801,13 @@
     },
     {
       "id": "jeongcaegseomingeumyung-iyongja-teugryebojeung-jeonsejageumdaecul__pref__6",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -2964,13 +2964,13 @@
     },
     {
       "id": "jinggeomdarijeonsejageumbojeung-jutaegjeonsejageumdaecul__pref__1",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -3012,13 +3012,13 @@
     },
     {
       "id": "jinggeomdarijeonsejageumbojeung-jutaegjeonsejageumdaecul__pref__5",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -3122,14 +3122,14 @@
     },
     {
       "id": "kb-gs-paytongjang",
-      "label": "KB GS Pay통장",
+      "label": "큽 GS Pay통장",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "KB GS Pay통장",
+        "name": "큽 GS Pay통장",
         "description": "",
         "category": "입출금통장",
         "eligibility_summary": "만 14세 이상 실명의 개인(1인1계좌), 개인사업자 및 공동명의 가입 불가, 외국인은 비대면 상품 가입 가능 시에 한함.",
@@ -3211,14 +3211,14 @@
     },
     {
       "id": "kb-star-jeonggiyegeum",
-      "label": "KB Star 정기예금",
+      "label": "큽 Star 정기예금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "KB Star 정기예금",
+        "name": "큽 Star 정기예금",
         "description": "",
         "eligibility_summary": "개인 및 개인사업자",
         "category": "정기예금",
@@ -3377,14 +3377,14 @@
     },
     {
       "id": "kb-young-youth-tongjang",
-      "label": "KB Young Youth 통장",
+      "label": "큽 Young Youth 통장",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "KB Young Youth 통장",
+        "name": "큽 Young Youth 통장",
         "description": "",
         "eligibility_summary": "만 19세 미만 개인",
         "category": "입출금통장",
@@ -3443,11 +3443,11 @@
     },
     {
       "id": "ptype__ibculgeumi-jayuroun-yegeum-jeocugyegeum-gijon-jeocugyegeum-tongjang-jeonhwan-ganeung-dan-gongdongmyeongyi-gyejwa-kbjeunggweontongjang-mmdatongjangeun-jeonhwan-bulga",
-      "label": "입출금이 자유로운 예금(저축예금)\n※ 기존 저축예금 통장 전환 가능\n※ 단, 공동명의 계좌, KB증권통장, MMDA통장은 전환 불가",
+      "label": "입출금이 자유로운 예금(저축예금)\n※ 기존 저축예금 통장 전환 가능\n※ 단, 공동명의 계좌, 큽증권통장, MMDA통장은 전환 불가",
       "type": "producttype",
       "group": 13,
       "data": {
-        "name": "입출금이 자유로운 예금(저축예금)\n※ 기존 저축예금 통장 전환 가능\n※ 단, 공동명의 계좌, KB증권통장, MMDA통장은 전환 불가",
+        "name": "입출금이 자유로운 예금(저축예금)\n※ 기존 저축예금 통장 전환 가능\n※ 단, 공동명의 계좌, 큽증권통장, MMDA통장은 전환 불가",
         "size": 5.277777777777778
       }
     },
@@ -3507,29 +3507,29 @@
     },
     {
       "id": "kbmoimgeumgo",
-      "label": "KB모임금고",
+      "label": "큽모임금고",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "KB모임금고",
+        "name": "큽모임금고",
         "description": "",
         "category": "정기예금",
-        "eligibility_summary": "KB모임통장 서비스에 등록된 통장을 보유한 실명의 개인",
+        "eligibility_summary": "큽모임통장 서비스에 등록된 통장을 보유한 실명의 개인",
         "size": 8.055555555555555
       }
     },
     {
       "id": "kbmoimgeumgo__rate__base",
-      "label": "KB모임금고 금리",
+      "label": "큽모임금고 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB모임금고 금리",
+        "name": "큽모임금고 금리",
         "max_rate": 2.0,
         "min_rate": 0.1,
         "size": 5.277777777777778
@@ -3543,7 +3543,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "KB모임통장 서비스에 등록된 통장을 보유한 실명의 개인",
+        "description": "큽모임통장 서비스에 등록된 통장을 보유한 실명의 개인",
         "size": 5.277777777777778
       }
     },
@@ -3575,14 +3575,14 @@
     },
     {
       "id": "kbsaenggyebigyejwa",
-      "label": "KB생계비계좌",
+      "label": "큽생계비계좌",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "KB생계비계좌",
+        "name": "큽생계비계좌",
         "description": "",
         "category": "입출금통장",
         "eligibility_summary": "실명의 개인(연령 제한 없음, 전 금융기관 1인 1계좌), 외국인 가입 가능",
@@ -3628,14 +3628,14 @@
     },
     {
       "id": "kbseutatongjang",
-      "label": "KB스타통장",
+      "label": "큽스타통장",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "KB스타통장",
+        "name": "큽스타통장",
         "description": "",
         "category": "입출금통장",
         "eligibility_summary": "실명의 개인 (1인 1계좌), 개인사업자 및 서류 미제출 임의단체 포함, 공동명의 가입 불가.",
@@ -3703,14 +3703,14 @@
     },
     {
       "id": "kbjutaegyeongeumjikimitongjang",
-      "label": "KB주택연금지킴이통장",
+      "label": "큽주택연금지킴이통장",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "",
         "amount_max_raw": "",
-        "name": "KB주택연금지킴이통장",
+        "name": "큽주택연금지킴이통장",
         "description": "",
         "category": "예금",
         "eligibility_summary": "실명의 개인으로 한국주택금융공사의 주택담보노후연금(주택연금)을 수령하는 고객(1인1계좌), '주택연금 전용계좌 이용대상 확인서' 제출 후 가입 가능",
@@ -3768,14 +3768,14 @@
     },
     {
       "id": "one-kb-saeobjatongjang",
-      "label": "ONE KB 사업자통장",
+      "label": "ONE 큽 사업자통장",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "ONE KB 사업자통장",
+        "name": "ONE 큽 사업자통장",
         "description": "",
         "category": "입출금통장",
         "eligibility_summary": "개인사업자 및 법인 등",
@@ -4085,14 +4085,14 @@
     },
     {
       "id": "monimo-kb-maeilija-tongjang",
-      "label": "모니모 KB 매일이자 통장",
+      "label": "모니모 큽 매일이자 통장",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "deposit",
         "amount_max_raw": "",
-        "name": "모니모 KB 매일이자 통장",
+        "name": "모니모 큽 매일이자 통장",
         "description": "",
         "category": "입출금통장",
         "eligibility_summary": "만 17세 이상의 실명의 개인(1인 1계좌), 관련서류 미제출 임의단체, 개인사업자 및 공동명의 가입 불가, 비거주자 및 외국인 가입 불가",
@@ -4101,13 +4101,13 @@
     },
     {
       "id": "monimo-kb-maeilija-tongjang__rate__base",
-      "label": "모니모 KB 매일이자 통장 금리",
+      "label": "모니모 큽 매일이자 통장 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "모니모 KB 매일이자 통장 금리",
+        "name": "모니모 큽 매일이자 통장 금리",
         "max_rate": 2.9,
         "min_rate": 0.2,
         "size": 5.277777777777778
@@ -4236,14 +4236,14 @@
     },
     {
       "id": "kb-young-youth-jeoggeum",
-      "label": "KB Young Youth 적금",
+      "label": "큽 Young Youth 적금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB Young Youth 적금",
+        "name": "큽 Young Youth 적금",
         "description": "",
         "category": "적금",
         "eligibility_summary": "만 19세 미만 실명의 개인 (1인 1계좌), 개인사업자 및 서류미제출 임의단체, 공동 명의 가입 불가",
@@ -4274,13 +4274,13 @@
     },
     {
       "id": "kb-young-youth-jeoggeum__rate__base",
-      "label": "KB Young Youth 적금 금리",
+      "label": "큽 Young Youth 적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB Young Youth 적금 금리",
+        "name": "큽 Young Youth 적금 금리",
         "max_rate": 0.5,
         "min_rate": 0.1,
         "size": 5.277777777777778
@@ -4350,7 +4350,7 @@
     },
     {
       "id": "kb-teug-han-jeoggeum",
-      "label": "KB 특★한 적금",
+      "label": "큽 특★한 적금",
       "type": "product",
       "group": 0,
       "data": {
@@ -4358,7 +4358,7 @@
         "product_type": "savings",
         "amount_max_raw": "",
         "scraped_at": "2026-03-23T13:37:56",
-        "name": "KB 특★한 적금",
+        "name": "큽 특★한 적금",
         "description": "내가 원하는 특별한 날을 만기일로 지정하고 변경할 수 있는 단기 적금",
         "category": "적금",
         "eligibility_summary": "",
@@ -4389,13 +4389,13 @@
     },
     {
       "id": "kb-teug-han-jeoggeum__rate__base",
-      "label": "KB 특★한 적금 금리",
+      "label": "큽 특★한 적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB 특★한 적금 금리",
+        "name": "큽 특★한 적금 금리",
         "max_rate": 2.0,
         "min_rate": 0.5,
         "size": 5.277777777777778
@@ -4464,17 +4464,17 @@
     },
     {
       "id": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig",
-      "label": "KB국민프리미엄적금 (정액적립식)",
+      "label": "큽프리미엄적금 (정액적립식)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB국민프리미엄적금 (정액적립식)",
+        "name": "큽프리미엄적금 (정액적립식)",
         "description": "",
         "category": "적금",
-        "eligibility_summary": "실명의 개인 (KB국민프리미엄적금(자유적립식) 포함 1인 1계좌)",
+        "eligibility_summary": "실명의 개인 (큽프리미엄적금(자유적립식) 포함 1인 1계좌)",
         "size": 8.88888888888889
       }
     },
@@ -4491,13 +4491,13 @@
     },
     {
       "id": "kbgugminpeurimieomjeoggeum-jeongaegjeogribsig__rate__base",
-      "label": "KB국민프리미엄적금 (정액적립식) 금리",
+      "label": "큽프리미엄적금 (정액적립식) 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB국민프리미엄적금 (정액적립식) 금리",
+        "name": "큽프리미엄적금 (정액적립식) 금리",
         "max_rate": 4.3,
         "min_rate": 2.5,
         "size": 5.277777777777778
@@ -4524,7 +4524,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "실명의 개인 (KB국민프리미엄적금(자유적립식) 포함 1인 1계좌)",
+        "description": "실명의 개인 (큽프리미엄적금(자유적립식) 포함 1인 1계좌)",
         "size": 5.277777777777778
       }
     },
@@ -4566,14 +4566,14 @@
     },
     {
       "id": "kbnamanyi-jeoggeum",
-      "label": "KB나만의 적금",
+      "label": "큽나만의 적금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB나만의 적금",
+        "name": "큽나만의 적금",
         "description": "",
         "category": "적금",
         "eligibility_summary": "실명의 개인(1인 2계좌 제한), 개인사업자 및 서류 미제출 임의단체 가입 가능, 공동명의 가입 불가",
@@ -4593,13 +4593,13 @@
     },
     {
       "id": "kbnamanyi-jeoggeum__rate__base",
-      "label": "KB나만의 적금 금리",
+      "label": "큽나만의 적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB나만의 적금 금리",
+        "name": "큽나만의 적금 금리",
         "max_rate": 1.0,
         "min_rate": 0.5,
         "size": 5.277777777777778
@@ -4668,14 +4668,14 @@
     },
     {
       "id": "kbnaemamdaerojeoggeum",
-      "label": "KB내맘대로적금",
+      "label": "큽내맘대로적금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB내맘대로적금",
+        "name": "큽내맘대로적금",
         "description": "",
         "category": "적금",
         "eligibility_summary": "만 14세 이상의 실명의 개인 (공동명의 불가)",
@@ -4695,13 +4695,13 @@
     },
     {
       "id": "kbnaemamdaerojeoggeum__rate__base",
-      "label": "KB내맘대로적금 금리",
+      "label": "큽내맘대로적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB내맘대로적금 금리",
+        "name": "큽내맘대로적금 금리",
         "min_rate": 2.25,
         "size": 5.277777777777778
       }
@@ -4770,14 +4770,14 @@
     },
     {
       "id": "kbmalgeunhaneuljeoggeum",
-      "label": "KB맑은하늘적금",
+      "label": "큽맑은하늘적금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB맑은하늘적금",
+        "name": "큽맑은하늘적금",
         "description": "",
         "category": "적금",
         "eligibility_summary": "실명의 개인, 1인 3계좌까지 가입 가능, 개인사업자 및 서류 미제출 임의단체 가입 가능, 공동명의 가입 불가.",
@@ -4797,13 +4797,13 @@
     },
     {
       "id": "kbmalgeunhaneuljeoggeum__rate__base",
-      "label": "KB맑은하늘적금 금리",
+      "label": "큽맑은하늘적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB맑은하늘적금 금리",
+        "name": "큽맑은하늘적금 금리",
         "max_rate": 3.85,
         "min_rate": 0.1,
         "size": 5.277777777777778
@@ -4862,14 +4862,14 @@
     },
     {
       "id": "kbsanghobugeum-jeongaegjeogribsig",
-      "label": "KB상호부금(정액적립식)",
+      "label": "큽상호부금(정액적립식)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "savings",
-        "name": "KB상호부금(정액적립식)",
+        "name": "큽상호부금(정액적립식)",
         "description": "",
         "eligibility_summary": "제한없음",
         "category": "적금",
@@ -4889,13 +4889,13 @@
     },
     {
       "id": "kbsanghobugeum-jeongaegjeogribsig__rate__base",
-      "label": "KB상호부금(정액적립식) 금리",
+      "label": "큽상호부금(정액적립식) 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB상호부금(정액적립식) 금리",
+        "name": "큽상호부금(정액적립식) 금리",
         "max_rate": 3.4,
         "min_rate": 0.1,
         "size": 5.277777777777778
@@ -4964,14 +4964,14 @@
     },
     {
       "id": "kbseuta-geongangjeoggeum",
-      "label": "KB스타 건강적금",
+      "label": "큽스타 건강적금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB스타 건강적금",
+        "name": "큽스타 건강적금",
         "description": "",
         "category": "적금",
         "eligibility_summary": "만 14세 이상 실명의 개인(1인 1계좌 보유 가능). 개인사업자, 임의단체 및 공동명의 가입 불가.",
@@ -4991,13 +4991,13 @@
     },
     {
       "id": "kbseuta-geongangjeoggeum__rate__base",
-      "label": "KB스타 건강적금 금리",
+      "label": "큽스타 건강적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB스타 건강적금 금리",
+        "name": "큽스타 건강적금 금리",
         "max_rate": 3.0,
         "min_rate": 0.5,
         "size": 5.277777777777778
@@ -5057,14 +5057,14 @@
     },
     {
       "id": "kbaisarangjeoggeum",
-      "label": "KB아이사랑적금",
+      "label": "큽아이사랑적금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB아이사랑적금",
+        "name": "큽아이사랑적금",
         "description": "",
         "category": "적금",
         "eligibility_summary": "만19세 이상 실명의 개인 (1인 1계좌), 개인사업자, 임의단체 및 공동명의 가입불가",
@@ -5084,13 +5084,13 @@
     },
     {
       "id": "kbaisarangjeoggeum__rate__base",
-      "label": "KB아이사랑적금 금리",
+      "label": "큽아이사랑적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB아이사랑적금 금리",
+        "name": "큽아이사랑적금 금리",
         "max_rate": 4.0,
         "min_rate": 1.0,
         "size": 5.277777777777778
@@ -5188,13 +5188,13 @@
     },
     {
       "id": "kbjangbyeongnaeiljunbijeoggeum__rate__base",
-      "label": "KB장병내일준비적금 금리",
+      "label": "큽장병내일준비적금 금리",
       "type": "interestrate",
       "group": 4,
       "data": {
         "rate_type": "base",
         "base_rate_name": "",
-        "name": "KB장병내일준비적금 금리",
+        "name": "큽장병내일준비적금 금리",
         "max_rate": 10.5,
         "min_rate": 0.5,
         "size": 5.277777777777778
@@ -5582,17 +5582,17 @@
     },
     {
       "id": "kb-4daeyeongeum-sinyongdaecul",
-      "label": "KB 4대연금 신용대출",
+      "label": "큽 4대연금 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 4대연금 신용대출",
+        "name": "큽 4대연금 신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "4대연금 중 어느 하나를 매월 국민은행 계좌를 통해 수령하는 고객으로 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
+        "eligibility_summary": "4대연금 중 어느 하나를 매월 큽 금융 계좌를 통해 수령하는 고객으로 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
         "size": 20.27777777777778
       }
     },
@@ -5638,19 +5638,19 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "4대연금 중 어느 하나를 매월 국민은행 계좌를 통해 수령하는 고객으로 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
+        "description": "4대연금 중 어느 하나를 매월 큽 금융 계좌를 통해 수령하는 고객으로 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-4daeyeongeum-sinyongdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적, 급여(연금)계좌 관련 실적 등)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적, 급여(연금)계좌 관련 실적 등)",
         "size": 5.277777777777778
       }
     },
@@ -5668,14 +5668,14 @@
     },
     {
       "id": "kb-cofixyeondong-mogijiron",
-      "label": "KB COFIX연동 모기지론",
+      "label": "큽 COFIX연동 모기지론",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB COFIX연동 모기지론",
+        "name": "큽 COFIX연동 모기지론",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "주택을 담보로 대출 신청하는 고객 (주택구입/신축/경락주택가압금대출 및 통장자동대출 포함)",
@@ -5695,14 +5695,14 @@
     },
     {
       "id": "kb-i-star-jigjangin-sinyongdaecul-bonbuseungindaecul",
-      "label": "KB i-star 직장인 신용대출(본부승인대출)",
+      "label": "큽 i-star 직장인 신용대출(본부승인대출)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "loan",
-        "name": "KB i-star 직장인 신용대출(본부승인대출)",
+        "name": "큽 i-star 직장인 신용대출(본부승인대출)",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "우량업체 신용대출 대상기업에 재직중인 임직원",
@@ -5722,11 +5722,11 @@
     },
     {
       "id": "kb-i-star-jigjangin-sinyongdaecul-bonbuseungindaecul__feat__0",
-      "label": "KB 국민은행에서 우량업체 신용대출로 승인된 대상기업으로 임직원대출 협약을 맺은 기업체 임직원을 대상으로 대출한도 및 대출금리를 우대해 주는 신용대출",
+      "label": "큽 큽 금융에서 우량업체 신용대출로 승인된 대상기업으로 임직원대출 협약을 맺은 기업체 임직원을 대상으로 대출한도 및 대출금리를 우대해 주는 신용대출",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "KB 국민은행에서 우량업체 신용대출로 승인된 대상기업으로 임직원대출 협약을 맺은 기업체 임직원을 대상으로 대출한도 및 대출금리를 우대해 주는 신용대출",
+        "name": "큽 큽 금융에서 우량업체 신용대출로 승인된 대상기업으로 임직원대출 협약을 맺은 기업체 임직원을 대상으로 대출한도 및 대출금리를 우대해 주는 신용대출",
         "description": "",
         "size": 5.277777777777778
       }
@@ -5744,13 +5744,13 @@
       }
     },
     {
-      "id": "channel__스타뱅킹",
-      "label": "KB스타뱅킹",
+      "id": "channel__모바일뱅킹",
+      "label": "모바일뱅킹",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "KB스타뱅킹",
-        "name_en": "KB Star Banking App",
+        "name": "모바일뱅킹",
+        "name_en": "Mobile Banking App",
         "size": 22.22222222222222
       }
     },
@@ -5790,14 +5790,14 @@
     },
     {
       "id": "kb-gongmuweonudaedaecul",
-      "label": "KB 공무원우대대출",
+      "label": "큽 공무원우대대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "amount_max_raw": "",
         "product_type": "loan",
-        "name": "KB 공무원우대대출",
+        "name": "큽 공무원우대대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "공무원 연금법 적용 현직 공무원(군무원포함, 현역 군인 및 사립학교 교직원 제외)으로서 연금취급기관장이 발급하는 '금융기관 알선대출 용자추천서'에 의해 대출을 신청하는 고객으로서 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
@@ -5875,7 +5875,7 @@
     },
     {
       "id": "kb-dadungi-jeonsejageumdaecul",
-      "label": "KB 다둥이 전세자금대출",
+      "label": "큽 다둥이 전세자금대출",
       "type": "product",
       "group": 0,
       "data": {
@@ -5884,7 +5884,7 @@
         "amount_max_raw": "2억원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:53:57",
-        "name": "KB 다둥이 전세자금대출",
+        "name": "큽 다둥이 전세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 미성년자(만 19세 미만)인 자녀가 2인 이상인 다둥이가구로서 아래 내용을 모두 충족하는 민법상 성년인 세대주 또는 세대주로 인정되는 고객\n(1) 임차보증금 수도권 7억원(그 외 지역 5억원) 이하\n(2) 임차보증금의 5% 이상 지급\n(3) 본인과 배우자(결혼예정자 포함)의 합산 주택수가 1주택* 이내인 경우\n* 보유 중인 주택이 2020.7.10일",
@@ -5993,20 +5993,20 @@
       "data": {
         "rate_value_pp": 1.5,
         "name": "- **우대 조건명**: 우대금리(연 1.5%p) (신용카드 이용실적,",
-        "condition_description": "- **우대 조건명**: 우대금리(연 1.5%p) (신용카드 이용실적, KB국민은행 결제계좌 지정, 급여(연금)이체 실적 등)",
+        "condition_description": "- **우대 조건명**: 우대금리(연 1.5%p) (신용카드 이용실적, 큽 금융 결제계좌 지정, 급여(연금)이체 실적 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-i-star-jigjanginhaengbogsinyongdaecul-2019-02-27-panmaejungdan",
-      "label": "KB i-STAR 직장인행복신용대출",
+      "label": "큽 i-STAR 직장인행복신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB i-STAR 직장인행복신용대출",
+        "name": "큽 i-STAR 직장인행복신용대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "동일 중소법인기업 3년 이상 재직중인 급여소득자로 아래 요건을 모두 충족하는 고객.",
@@ -6062,24 +6062,24 @@
     },
     {
       "id": "channel__gugmineunhaeng-hompeiji",
-      "label": "국민은행 홈페이지",
+      "label": "큽 금융 홈페이지",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "국민은행 홈페이지",
+        "name": "큽 금융 홈페이지",
         "name_en": "",
         "size": 5.833333333333333
       }
     },
     {
       "id": "kb-i-star-jigjanginhaengbogsinyongdaecul-2019-02-27-panmaejungdan__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB국민은행으로",
+      "label": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽 금융으로",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB국민은행으로",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB국민은행으로 결제계좌가 지정된 KB국민카드(신용) 이용시)",
+        "name": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽 금융으로",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽 금융으로 결제계좌가 지정된 큽카드(신용) 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -6121,13 +6121,13 @@
     },
     {
       "id": "kb-i-star-jigjanginhaengbogsinyongdaecul-2019-02-27-panmaejungdan__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
@@ -6145,17 +6145,17 @@
     },
     {
       "id": "kb-star-club-sinyongdaecul-2025-11-14-panmaejungdan",
-      "label": "KB STAR CLUB 신용대출",
+      "label": "큽 STAR CLUB 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB STAR CLUB 신용대출",
+        "name": "큽 STAR CLUB 신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "KB 국민은행과 거래하는 베스트 이상의 STAR CLUB 고객으로서 대출적격자로 판정된 고객",
+        "eligibility_summary": "큽 큽 금융과 거래하는 베스트 이상의 STAR CLUB 고객으로서 대출적격자로 판정된 고객",
         "size": 20.555555555555557
       }
     },
@@ -6230,13 +6230,13 @@
     },
     {
       "id": "kb-dadungi-jeonsejageumdaecul__pref__2",
-      "label": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+      "label": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
-        "condition_description": "- KB국민카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "name": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
+        "condition_description": "- 큽카드(신용) 이용실적 우대 : 연 0.1%p ~ 연 0.3%p",
         "size": 5.277777777777778
       }
     },
@@ -6266,13 +6266,13 @@
     },
     {
       "id": "kb-dadungi-jeonsejageumdaecul__pref__5",
-      "label": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+      "label": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
-        "condition_description": "- KB스타뱅킹 이용실적 우대 : 연 0.1%p",
+        "name": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
+        "condition_description": "- 모바일뱅킹 이용실적 우대 : 연 0.1%p",
         "size": 5.277777777777778
       }
     },
@@ -6302,7 +6302,7 @@
     },
     {
       "id": "kb-maejigkadaecul-gijon-sincahalbu-daehwanyong",
-      "label": "KB 매직카대출(기존 신차할부 대환用)",
+      "label": "큽 매직카대출(기존 신차할부 대환用)",
       "type": "product",
       "group": 0,
       "data": {
@@ -6311,10 +6311,10 @@
         "product_type": "loan",
         "amount_max_raw": "6천만원",
         "scraped_at": "2026-03-23T13:55:03",
-        "name": "KB 매직카대출(기존 신차할부 대환用)",
+        "name": "큽 매직카대출(기존 신차할부 대환用)",
         "description": "",
         "category": "자동차대출",
-        "eligibility_summary": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ ",
+        "eligibility_summary": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ ",
         "size": 9.166666666666666
       }
     },
@@ -6331,11 +6331,11 @@
     },
     {
       "id": "kb-maejigkadaecul-gijon-sincahalbu-daehwanyong__feat__0",
-      "label": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 KB국민은행으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+      "label": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 큽 금융으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 KB국민은행으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+        "name": "다른 금융기관(은행권 제외)에서 받은 신차할부금융을 큽 금융으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
         "description": "",
         "size": 5.277777777777778
       }
@@ -6360,7 +6360,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인 만19세이상",
-        "description": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 5년 이내여야 합니다",
+        "description": "다른 금융기관(은행권 제외)에서 신차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 5년 이내여야 합니다",
         "min_age": 19,
         "size": 5.277777777777778
       }
@@ -6379,7 +6379,7 @@
     },
     {
       "id": "kb-maejigkadaecul-gijon-junggocahalbu-daehwanyong",
-      "label": "KB 매직카대출(기존 중고차할부 대환用)",
+      "label": "큽 매직카대출(기존 중고차할부 대환用)",
       "type": "product",
       "group": 0,
       "data": {
@@ -6388,20 +6388,20 @@
         "product_type": "loan",
         "amount_max_raw": "4천만원",
         "scraped_at": "2026-03-23T13:55:18",
-        "name": "KB 매직카대출(기존 중고차할부 대환用)",
+        "name": "큽 매직카대출(기존 중고차할부 대환用)",
         "description": "",
         "category": "자동차대출",
-        "eligibility_summary": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞",
+        "eligibility_summary": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞",
         "size": 9.166666666666666
       }
     },
     {
       "id": "kb-maejigkadaecul-gijon-junggocahalbu-daehwanyong__feat__0",
-      "label": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 KB국민은행으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+      "label": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 큽 금융으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 KB국민은행으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
+        "name": "다른 금융기관(은행권 제외)에서 받은 중고차할부금융을 큽 금융으로 대환하고 분할상환하는 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음",
         "description": "",
         "size": 5.277777777777778
       }
@@ -6426,7 +6426,7 @@
       "data": {
         "target_audience": "개인",
         "name": "개인 만19세이상",
-        "description": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 KB국민은행으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 15년 이내이고 명의이",
+        "description": "다른 금융기관(은행권 제외)에서 중고차 구매를 목적으로 받은 자동차할부금융(대출)을 큽 금융으로 대환하고자 하는 고객으로서 소득증빙이 가능한 만 19세 이상 개인고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차 및 화물차(5톤 이하)\n(개인택시, 캠핑카 및 카라반, 수입차 포함)\n☞ 기존 자동차할부금융(대출) 대출실행일은 최초자동차등록일 전·후 30일 이내여야 합니다\n☞ 본건 대출실행일 기준 대환대출 해당 자동차는 최초자동차등록일로부터 15년 이내이고 명의이",
         "min_age": 19,
         "size": 5.277777777777778
       }
@@ -6445,7 +6445,7 @@
     },
     {
       "id": "kb-maejigkadaecul-sinca-gumaeyong",
-      "label": "KB 매직카대출(신차 구매用)",
+      "label": "큽 매직카대출(신차 구매用)",
       "type": "product",
       "group": 0,
       "data": {
@@ -6454,7 +6454,7 @@
         "amount_max_raw": "6천만원",
         "product_type": "loan",
         "scraped_at": "2026-03-23T13:54:47",
-        "name": "KB 매직카대출(신차 구매用)",
+        "name": "큽 매직카대출(신차 구매用)",
         "description": "",
         "category": "자동차대출",
         "eligibility_summary": "신차를 구입하는 고객으로 소득 증빙이 가능한 만 19세 이상의 고객\n\n※ 대출대상 : 근로소득자(6개월 이상), 사업소득자(12개월 이상), 연금소득자\n※ 대상차종 : 승용차, 승합차, 화물차(5톤 이하) 및 대형이륜자동차(260CC초과)\n(개인택시, 캠핑카 및 카라반, 수입차 포함, 친환경차량* 미포함)\n* 친환경차량 : 「환경친화적 자동차의 개발 및 보",
@@ -6463,11 +6463,11 @@
     },
     {
       "id": "kb-maejigkadaecul-sinca-gumaeyong__feat__0",
-      "label": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+      "label": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\nKB국민카드로 결제시 캐시백 혜택 제공!",
+        "name": "캐피탈 대비 유리한 금리조건으로 신규자동차를 구매하려는 고객을 위한 비대면 전용 대출상품\n별도의 취급수수료, 보험료, 근저당설정 부담 없음\n큽카드로 결제시 캐시백 혜택 제공!",
         "description": "",
         "size": 5.277777777777778
       }
@@ -6492,19 +6492,19 @@
       "data": {
         "target_audience": "",
         "name": "가입자격",
-        "description": "KB 국민은행과 거래하는 베스트 이상의 STAR CLUB 고객으로서 대출적격자로 판정된 고객",
+        "description": "큽 큽 금융과 거래하는 베스트 이상의 STAR CLUB 고객으로서 대출적격자로 판정된 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-star-club-sinyongdaecul-2025-11-14-panmaejungdan__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p 우대 (KB신용카드 이",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p 우대 (큽신용카드 이",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p 우대 (KB신용카드 이",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p 우대 (KB신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, KB 스타뱅킹 이용)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p 우대 (큽신용카드 이",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p 우대 (큽신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, 큽 모바일뱅킹 이용)",
         "size": 5.277777777777778
       }
     },
@@ -6522,14 +6522,14 @@
     },
     {
       "id": "kb-star-t-sinyongdaecul-2019-09-27-panmaejungdan",
-      "label": "KB Star*t 신용대출",
+      "label": "큽 Star*t 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB Star*t 신용대출",
+        "name": "큽 Star*t 신용대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "다음에 해당하는 우량업체에 재직중인 신입사원: 공무원/군인(장교 임관예정고객 포함)/교직원: 재직기간 2년미만의 만 35세미만 고객, 기타 우량업체: 재직기간 3개월 이상~2년미만인 연 환산소득 2천만원이상인 만 35세미만 고객",
@@ -6596,13 +6596,13 @@
     },
     {
       "id": "kb-star-t-sinyongdaecul-2019-09-27-panmaejungdan__pref__0",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.3%p (KB스타뱅킹 이용",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.3%p (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.3%p (KB스타뱅킹 이용",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.3%p (KB스타뱅킹 이용 실적)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.3%p (모바일뱅킹 이용",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.3%p (모바일뱅킹 이용 실적)",
         "size": 5.277777777777778
       }
     },
@@ -6644,39 +6644,39 @@
     },
     {
       "id": "kb-star-t-sinyongdaecul-2019-09-27-panmaejungdan__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-star-sinyongdaecul-2021-08-30-panmaejungdan",
-      "label": "KB Star 신용대출",
+      "label": "큽 Star 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB Star 신용대출",
+        "name": "큽 Star 신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "현직장 12개월 이상 재직중인 근로소득자 및 KB국민은행 주거래고객 중 KB국민은행 개인신용평가시스템(CSS)에 의해 대출한도가 산정되는 고객",
+        "eligibility_summary": "현직장 12개월 이상 재직중인 근로소득자 및 큽 금융 주거래고객 중 큽 금융 개인신용평가시스템(CSS)에 의해 대출한도가 산정되는 고객",
         "size": 20.555555555555557
       }
     },
     {
       "id": "kb-star-sinyongdaecul-2021-08-30-panmaejungdan__feat__hyeonjigjang-12gaeweolisang-jaejigjungin-geunrosodeugja-mic-kbgugmineunhaeng-jugeoraegogaegeul-daesang",
-      "label": "현직장 12개월이상 재직중인 근로소득자 및 KB국민은행 주거래고객을 대상으로 신청 가능한 비대면 전용 신용대출상품",
+      "label": "현직장 12개월이상 재직중인 근로소득자 및 큽 금융 주거래고객을 대상으로 신청 가능한 비대면 전용 신용대출상품",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "현직장 12개월이상 재직중인 근로소득자 및 KB국민은행 주거래고객을 대상으로 신청 가능한 비대면 전용 신용대출상품",
+        "name": "현직장 12개월이상 재직중인 근로소득자 및 큽 금융 주거래고객을 대상으로 신청 가능한 비대면 전용 신용대출상품",
         "description": "",
         "size": 5.277777777777778
       }
@@ -6712,20 +6712,20 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "현직장 12개월 이상 재직중인 근로소득자 및 KB국민은행 주거래고객 중 KB국민은행 개인신용평가시스템(CSS)에 의해 대출한도가 산정되는 고객",
+        "description": "현직장 12개월 이상 재직중인 근로소득자 및 큽 금융 주거래고객 중 큽 금융 개인신용평가시스템(CSS)에 의해 대출한도가 산정되는 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-welcome-plus-jeonsejageumdaecul",
-      "label": "KB WELCOME PLUS 전세자금대출",
+      "label": "큽 WELCOME PLUS 전세자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB WELCOME PLUS 전세자금대출",
+        "name": "큽 WELCOME PLUS 전세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "국내 거주 및 국내 소득이 3개월 이상 증빙 가능한 만19세이상 외국인 또는 외국국적동포이며 '서울보증보험증권'이 발급되는 고객으로서 아래의 사항을 모두 충족하는 고객.",
@@ -6792,13 +6792,13 @@
     },
     {
       "id": "kb-welcome-plus-jeonsejageumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 1.4,
-        "name": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드(신용) 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 적립식예금 계좌 보유, KB스타뱅킹 이용실적)",
+        "name": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드(신용) 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 적립식예금 계좌 보유, 모바일뱅킹 이용실적)",
         "size": 5.277777777777778
       }
     },
@@ -6828,14 +6828,14 @@
     },
     {
       "id": "kb-wise-jigjangindaecul-2019-09-27-panmaejungdan",
-      "label": "KB WISE 직장인대출",
+      "label": "큽 WISE 직장인대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB WISE 직장인대출",
+        "name": "큽 WISE 직장인대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "다음에 해당하는 우량업체(기관)에 1년이상 재직중인 임직원",
@@ -6901,13 +6901,13 @@
     },
     {
       "id": "kb-wise-jigjangindaecul-2019-09-27-panmaejungdan__pref__0",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.3%p (KB스타뱅킹 이용",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.3%p (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.3%p (KB스타뱅킹 이용",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.3%p (KB스타뱅킹 이용 실적이 있는 경우)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.3%p (모바일뱅킹 이용",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.3%p (모바일뱅킹 이용 실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -6949,29 +6949,29 @@
     },
     {
       "id": "kb-wise-jigjangindaecul-2019-09-27-panmaejungdan__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gamaengjeomdaepyo-sinyongdaecul-2021-03-30-panmaejungdan",
-      "label": "KB 가맹점대표 신용대출",
+      "label": "큽 가맹점대표 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 가맹점대표 신용대출",
+        "name": "큽 가맹점대표 신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "최근 3개월 이상 계속하여 KB국민카드 매출실적이 발생하고, 카드 매출대금 결제계좌를 당행으로 지정(변경)한 KB국민카드 가맹점 대표 (단, 유흥/숙박/다단계 판매 등 일부 가맹점 업종은 대출대상에서 제외)",
+        "eligibility_summary": "최근 3개월 이상 계속하여 큽카드 매출실적이 발생하고, 카드 매출대금 결제계좌를 당행으로 지정(변경)한 큽카드 가맹점 대표 (단, 유흥/숙박/다단계 판매 등 일부 가맹점 업종은 대출대상에서 제외)",
         "size": 21.38888888888889
       }
     },
@@ -7028,19 +7028,19 @@
       "data": {
         "target_audience": "",
         "name": "가입자격",
-        "description": "최근 3개월 이상 계속하여 KB국민카드 매출실적이 발생하고, 카드 매출대금 결제계좌를 당행으로 지정(변경)한 KB국민카드 가맹점 대표 (단, 유흥/숙박/다단계 판매 등 일부 가맹점 업종은 대출대상에서 제외)",
+        "description": "최근 3개월 이상 계속하여 큽카드 매출실적이 발생하고, 카드 매출대금 결제계좌를 당행으로 지정(변경)한 큽카드 가맹점 대표 (단, 유흥/숙박/다단계 판매 등 일부 가맹점 업종은 대출대상에서 제외)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gamaengjeomdaepyo-sinyongdaecul-2021-03-30-panmaejungdan__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결",
+      "label": "- **큽신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결제계좌가 지정된 KB국민카드(신용) 이용시)",
+        "name": "- **큽신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결제계좌가 지정된 큽카드(신용) 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -7082,26 +7082,26 @@
     },
     {
       "id": "kb-gamaengjeomdaepyo-sinyongdaecul-2021-03-30-panmaejungdan__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gaeobseunggyegieob-sangsog-jeungyeose-nabbujageumdaecul-budongsandambo-2022-9-30-panmaejungdan",
-      "label": "KB 가업승계기업 상속/증여세 납부자금대출(부동산담보)",
+      "label": "큽 가업승계기업 상속/증여세 납부자금대출(부동산담보)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 가업승계기업 상속/증여세 납부자금대출(부동산담보)",
+        "name": "큽 가업승계기업 상속/증여세 납부자금대출(부동산담보)",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "당행의 가업승계컨설팅 서비스를 받는 가업승계기업의 후계자",
@@ -7147,26 +7147,26 @@
     },
     {
       "id": "kb-gaeobseunggyegieob-sangsog-jeungyeose-nabbujageumdaecul-budongsandambo-2022-9-30-panmaejungdan__pref__1",
-      "label": "- **영업점 우대금리**: 최고 연 0.3% (KB스타클럽(골드스타 이",
+      "label": "- **영업점 우대금리**: 최고 연 0.3% (큽스타클럽(골드스타 이",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **영업점 우대금리**: 최고 연 0.3% (KB스타클럽(골드스타 이",
-        "condition_description": "- **영업점 우대금리**: 최고 연 0.3% (KB스타클럽(골드스타 이상) 등)",
+        "name": "- **영업점 우대금리**: 최고 연 0.3% (큽스타클럽(골드스타 이",
+        "condition_description": "- **영업점 우대금리**: 최고 연 0.3% (큽스타클럽(골드스타 이상) 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gaeobseunggyegieob-sangsog-jeungyeose-nabbujageumdaecul-sinyong-2022-9-30-panmaejungdan",
-      "label": "KB 가업승계기업 상속/증여세 납부자금대출(신용)",
+      "label": "큽 가업승계기업 상속/증여세 납부자금대출(신용)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 가업승계기업 상속/증여세 납부자금대출(신용)",
+        "name": "큽 가업승계기업 상속/증여세 납부자금대출(신용)",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "당행의 가업승계컨설팅 서비스를 받는 가업승계기업의 후계자",
@@ -7200,13 +7200,13 @@
     },
     {
       "id": "kb-gaeobseunggyegieob-sangsog-jeungyeose-nabbujageumdaecul-sinyong-2022-9-30-panmaejungdan__pref__0",
-      "label": "- **KB스타클럽 이용실적 우대**: 최고 연 0.3%p (KB국민은행",
+      "label": "- **큽스타클럽 이용실적 우대**: 최고 연 0.3%p (큽 금융",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB스타클럽 이용실적 우대**: 최고 연 0.3%p (KB국민은행",
-        "condition_description": "- **KB스타클럽 이용실적 우대**: 최고 연 0.3%p (KB국민은행으로 급여계좌가 지정된 KB국민카드(신용) 이용시)",
+        "name": "- **큽스타클럽 이용실적 우대**: 최고 연 0.3%p (큽 금융",
+        "condition_description": "- **큽스타클럽 이용실적 우대**: 최고 연 0.3%p (큽 금융으로 급여계좌가 지정된 큽카드(신용) 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -7248,26 +7248,26 @@
     },
     {
       "id": "kb-gaeobseunggyegieob-sangsog-jeungyeose-nabbujageumdaecul-sinyong-2022-9-30-panmaejungdan__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gaeinsaeobja-riseutateudaecul",
-      "label": "KB 개인사업자 리스타트대출",
+      "label": "큽 개인사업자 리스타트대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 개인사업자 리스타트대출",
+        "name": "큽 개인사업자 리스타트대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "전환대상 대출 포함 휴·폐업 사업자 관련 SOHO대출을 전액 상환할 수 있는 고객",
@@ -7301,14 +7301,14 @@
     },
     {
       "id": "kb-gaeintaegsi-haengbogdaecul-2025-3-7-panmaejungdan",
-      "label": "KB 개인택시 행복대출",
+      "label": "큽 개인택시 행복대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 개인택시 행복대출",
+        "name": "큽 개인택시 행복대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "개인택시 영업종사 사업자(휴·폐업자 제외)로서 서울보증보험(주) 보증증권 발급이 가능한 개인 고객",
@@ -7363,38 +7363,38 @@
     },
     {
       "id": "kb-gaeintaegsi-haengbogdaecul-2025-3-7-panmaejungdan__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용) 이용실적에 따라)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용) 이용실적에 따라)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gaeintaegsi-haengbogdaecul-2025-3-7-panmaejungdan__pref__1",
-      "label": "- **기타 우대금리**: 최고 연 0.7%p (KBDI거래고객(신용)고",
+      "label": "- **기타 우대금리**: 최고 연 0.7%p (큽DI거래고객(신용)고",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.7,
-        "name": "- **기타 우대금리**: 최고 연 0.7%p (KBDI거래고객(신용)고",
-        "condition_description": "- **기타 우대금리**: 최고 연 0.7%p (KBDI거래고객(신용)고객, 한국 스마트(이비카드)로 급여계좌 당행 지정 등)",
+        "name": "- **기타 우대금리**: 최고 연 0.7%p (큽DI거래고객(신용)고",
+        "condition_description": "- **기타 우대금리**: 최고 연 0.7%p (큽DI거래고객(신용)고객, 한국 스마트(이비카드)로 급여계좌 당행 지정 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gyeongragjutaegguibjageumdaecul",
-      "label": "KB 경락주택구입자금대출",
+      "label": "큽 경락주택구입자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 경락주택구입자금대출",
+        "name": "큽 경락주택구입자금대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "경매 또는 공매주택 매각(경락)허가 결정을 얻은 분으로서 은행에서 정한 소정의 자격자",
@@ -7461,26 +7461,26 @@
     },
     {
       "id": "kb-gyeongragjutaegguibjageumdaecul__pref__1",
-      "label": "- **영업점 우대**: 최고 연 0.3%p (KB스타클럽(로얄스타이상)",
+      "label": "- **영업점 우대**: 최고 연 0.3%p (큽스타클럽(로얄스타이상)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **영업점 우대**: 최고 연 0.3%p (KB스타클럽(로얄스타이상)",
-        "condition_description": "- **영업점 우대**: 최고 연 0.3%p (KB스타클럽(로얄스타이상), 비거치식 장기분할상환대출(10년이상), 아파트담보 또는 KB시세적용, 우량등급 고객 우대(CSS1~6등급) 등)",
+        "name": "- **영업점 우대**: 최고 연 0.3%p (큽스타클럽(로얄스타이상)",
+        "condition_description": "- **영업점 우대**: 최고 연 0.3%p (큽스타클럽(로얄스타이상), 비거치식 장기분할상환대출(10년이상), 아파트담보 또는 큽시세적용, 우량등급 고객 우대(CSS1~6등급) 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-goldeunraipeu-jutaegyeongeumron",
-      "label": "KB 골든라이프 주택연금론",
+      "label": "큽 골든라이프 주택연금론",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 골든라이프 주택연금론",
+        "name": "큽 골든라이프 주택연금론",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "만 40세 이상인 고객으로 본인소유의 주거용주택을 전액 담보 제공하는 개인, 만 55세 미만 고객은 실직 또는 폐업 관련 증빙서류 제출 시 가능",
@@ -7585,13 +7585,13 @@
     },
     {
       "id": "kb-goldeunraipeu-jutaegyeongeumron__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.10% (KB스타뱅킹 이용",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.10% (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.10% (KB스타뱅킹 이용",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.10% (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.10% (모바일뱅킹 이용",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.10% (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
@@ -7630,11 +7630,11 @@
     },
     {
       "id": "channel__kbseumateudaecul",
-      "label": "KB스마트대출",
+      "label": "큽스마트대출",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "KB스마트대출",
+        "name": "큽스마트대출",
         "name_en": "",
         "size": 5.277777777777778
       }
@@ -7653,26 +7653,26 @@
     },
     {
       "id": "kb-gongmuweonudaedaecul__pref__1",
-      "label": "- **KB신용카드**: 연 0.1%p (결제계좌가 당행인 KB국민카드",
+      "label": "- **큽신용카드**: 연 0.1%p (결제계좌가 당행인 큽카드",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB신용카드**: 연 0.1%p (결제계좌가 당행인 KB국민카드",
-        "condition_description": "- **KB신용카드**: 연 0.1%p (결제계좌가 당행인 KB국민카드 사용카드를 보유하거나, 가입 신청한 고객)",
+        "name": "- **큽신용카드**: 연 0.1%p (결제계좌가 당행인 큽카드",
+        "condition_description": "- **큽신용카드**: 연 0.1%p (결제계좌가 당행인 큽카드 사용카드를 보유하거나, 가입 신청한 고객)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gugminonedaecul-2025-11-14-panmaejungdan",
-      "label": "KB 국민ONE대출",
+      "label": "큽 국민ONE대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 국민ONE대출",
+        "name": "큽 국민ONE대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "당행 1년이상 거래고객 중 거래실적 우수고객",
@@ -7739,13 +7739,13 @@
     },
     {
       "id": "kb-gugminonedaecul-2025-11-14-panmaejungdan__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB국민은행으로",
+      "label": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽 금융으로",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB국민은행으로",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB국민은행으로 지정하고, 최근 3개월 30만원(연0.1%p)/60만원(연0.2%p)/90만원(연0.3%p)이상 이용실적이 있는 경우)",
+        "name": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽 금융으로",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽 금융으로 지정하고, 최근 3개월 30만원(연0.1%p)/60만원(연0.2%p)/90만원(연0.3%p)이상 이용실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -7787,26 +7787,26 @@
     },
     {
       "id": "kb-gugminonedaecul-2025-11-14-panmaejungdan__pref__4",
-      "label": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
+      "label": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
-        "condition_description": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
+        "name": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
+        "condition_description": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gugmindoyagdaecul-je2geumyunggweondaehwan",
-      "label": "KB 국민도약대출(제2금융권대환)",
+      "label": "큽 국민도약대출(제2금융권대환)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 국민도약대출(제2금융권대환)",
+        "name": "큽 국민도약대출(제2금융권대환)",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객으로 '제2금융권(비은행권) 신용대출'을 대환하고자 하는 고객",
@@ -7862,14 +7862,14 @@
     },
     {
       "id": "kb-gugminhaengbog-sinyongdaecul-2020-5-29-panmaejungdan",
-      "label": "KB 국민행복 신용대출",
+      "label": "큽 국민행복 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 국민행복 신용대출",
+        "name": "큽 국민행복 신용대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출한도가 산정되는 고객, 자영업 고객은 제외",
@@ -7947,13 +7947,13 @@
     },
     {
       "id": "kb-gugminhaengbog-sinyongdaecul-2020-5-29-panmaejungdan__pref__0",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.3% (KB스타뱅킹 이용",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.3% (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.3% (KB스타뱅킹 이용",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.3% (KB스타뱅킹 이용 실적)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.3% (모바일뱅킹 이용",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.3% (모바일뱅킹 이용 실적)",
         "size": 5.277777777777778
       }
     },
@@ -7995,26 +7995,26 @@
     },
     {
       "id": "kb-gugminhaengbog-sinyongdaecul-2020-5-29-panmaejungdan__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gugminhyimangdaecul-2023-02-03-panmaejungdan",
-      "label": "KB 국민희망대출",
+      "label": "큽 국민희망대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 국민희망대출",
+        "name": "큽 국민희망대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "제2금융권 대출 보유고객 중 개인신용평가(CSS)에 의해 대출적격자로 판정된 고객 중 재직기간 3년 이상, 임종소득 25백만원 이상인 고객",
@@ -8069,26 +8069,26 @@
     },
     {
       "id": "kb-gugminhyimangdaecul-2023-02-03-panmaejungdan__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB신용카드 이용",
+      "label": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽신용카드 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB신용카드 이용",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB신용카드 이용실적)",
+        "name": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽신용카드 이용",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽신용카드 이용실적)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-gun-ganbu-weolsejageumdaecul",
-      "label": "KB 군 간부 월세자금대출",
+      "label": "큽 군 간부 월세자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 군 간부 월세자금대출",
+        "name": "큽 군 간부 월세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "관리부대로부터 대출추천을 받은 군 간부",
@@ -8144,14 +8144,14 @@
     },
     {
       "id": "kb-gun-ganbu-jeonsejageumdaecul-gibon",
-      "label": "KB 군 간부 전세자금대출(기본)",
+      "label": "큽 군 간부 전세자금대출(기본)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 군 간부 전세자금대출(기본)",
+        "name": "큽 군 간부 전세자금대출(기본)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "관리부대로부터 대출추천을 받은 군 간부로서 서울보증보험㈜의 ‘개인금융신용보험증권’ 발급이 가능한 고객",
@@ -8218,17 +8218,17 @@
     },
     {
       "id": "kb-gun-ganbu-jeonsejageumdaecul-cuga",
-      "label": "KB 군 간부 전세자금대출(추가)",
+      "label": "큽 군 간부 전세자금대출(추가)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 군 간부 전세자금대출(추가)",
+        "name": "큽 군 간부 전세자금대출(추가)",
         "description": "",
         "category": "전월세대출",
-        "eligibility_summary": "「KB 군 간부 전세자금대출(기본)」을 신청하거나 보유 중인 군 간부로 부동산중개업소를 통하여 주택임대차계약을 체결하고 서울보증보험㈜의 ‘개인금융신용보험증권’ 발급이 가능한 고객",
+        "eligibility_summary": "「큽 군 간부 전세자금대출(기본)」을 신청하거나 보유 중인 군 간부로 부동산중개업소를 통하여 주택임대차계약을 체결하고 서울보증보험㈜의 ‘개인금융신용보험증권’ 발급이 가능한 고객",
         "size": 16.944444444444443
       }
     },
@@ -8286,20 +8286,20 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "「KB 군 간부 전세자금대출(기본)」을 신청하거나 보유 중인 군 간부로 부동산중개업소를 통하여 주택임대차계약을 체결하고 서울보증보험㈜의 ‘개인금융신용보험증권’ 발급이 가능한 고객",
+        "description": "「큽 군 간부 전세자금대출(기본)」을 신청하거나 보유 중인 군 간부로 부동산중개업소를 통하여 주택임대차계약을 체결하고 서울보증보험㈜의 ‘개인금융신용보험증권’ 발급이 가능한 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-guninyeongeum-hyeobyagdaecul",
-      "label": "KB 군인연금 협약대출",
+      "label": "큽 군인연금 협약대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 군인연금 협약대출",
+        "name": "큽 군인연금 협약대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "군인연금법에 의해 매월 당행 계좌로 연금을 수령하며, 개인신용평가시스템(CSS) 심사기준을 충족하는 고객",
@@ -8365,13 +8365,13 @@
     },
     {
       "id": "kb-guninyeongeum-hyeobyagdaecul__pref__0",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 최고 연 0.3% (결제계좌를 K",
+      "label": "- **모바일뱅킹 이용실적 우대**: 최고 연 0.3% (결제계좌를 K",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 최고 연 0.3% (결제계좌를 K",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 최고 연 0.3% (결제계좌를 KB국민은행으로 지정하고, 최근 3개월 300만원 이상 이용실적이 있는 경우)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 최고 연 0.3% (결제계좌를 K",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 최고 연 0.3% (결제계좌를 큽 금융으로 지정하고, 최근 3개월 300만원 이상 이용실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -8413,29 +8413,29 @@
     },
     {
       "id": "kb-guninyeongeum-hyeobyagdaecul__pref__4",
-      "label": "- **KB 스타뱅킹 이용 우대**: 연 0.1% ()",
+      "label": "- **큽 모바일뱅킹 이용 우대**: 연 0.1% ()",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB 스타뱅킹 이용 우대**: 연 0.1% ()",
-        "condition_description": "- **KB 스타뱅킹 이용 우대**: 연 0.1% ()",
+        "name": "- **큽 모바일뱅킹 이용 우대**: 연 0.1% ()",
+        "condition_description": "- **큽 모바일뱅킹 이용 우대**: 연 0.1% ()",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-geurinrimodelring-hyeobyagdaecul-gagye",
-      "label": "KB 그린리모델링 협약대출(가계)",
+      "label": "큽 그린리모델링 협약대출(가계)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 그린리모델링 협약대출(가계)",
+        "name": "큽 그린리모델링 협약대출(가계)",
         "description": "",
         "category": "담보대출",
-        "eligibility_summary": "만 19세 이상 주택소유자로서 KB국민은행 대출심사기준을 통과하고 '주택금융신용보증서'가 발급되는 고객.",
+        "eligibility_summary": "만 19세 이상 주택소유자로서 큽 금융 대출심사기준을 통과하고 '주택금융신용보증서'가 발급되는 고객.",
         "size": 16.38888888888889
       }
     },
@@ -8481,20 +8481,20 @@
       "data": {
         "target_audience": "",
         "name": "가입자격 만19세이상",
-        "description": "만 19세 이상 주택소유자로서 KB국민은행 대출심사기준을 통과하고 '주택금융신용보증서'가 발급되는 고객.",
+        "description": "만 19세 이상 주택소유자로서 큽 금융 대출심사기준을 통과하고 '주택금융신용보증서'가 발급되는 고객.",
         "min_age": 19,
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-geurinrimodelring-hyeobyagdaecul-gagye__pref__0",
-      "label": "- **KB국민카드(신용) 이용실적 우대**: 연 0.1%p~0.3%p",
+      "label": "- **큽카드(신용) 이용실적 우대**: 연 0.1%p~0.3%p",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB국민카드(신용) 이용실적 우대**: 연 0.1%p~0.3%p",
-        "condition_description": "- **KB국민카드(신용) 이용실적 우대**: 연 0.1%p~0.3%p (결제계좌를 KB국민은행으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우.)",
+        "name": "- **큽카드(신용) 이용실적 우대**: 연 0.1%p~0.3%p",
+        "condition_description": "- **큽카드(신용) 이용실적 우대**: 연 0.1%p~0.3%p (결제계좌를 큽 금융으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우.)",
         "size": 5.277777777777778
       }
     },
@@ -8524,13 +8524,13 @@
     },
     {
       "id": "kb-geurinrimodelring-hyeobyagdaecul-gagye__pref__3",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통한 이체실적이 있는 경우.)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통한 이체실적이 있는 경우.)",
         "size": 5.277777777777778
       }
     },
@@ -8548,14 +8548,14 @@
     },
     {
       "id": "kb-geumyungjeonmunin-udaedaecul-2019-09-27-panmaejungdan",
-      "label": "KB 금융전문인 우대대출",
+      "label": "큽 금융전문인 우대대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 금융전문인 우대대출",
+        "name": "큽 금융전문인 우대대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "제1금융기관 및 금융관련기관에 1년 이상 재직중인 직원",
@@ -8610,13 +8610,13 @@
     },
     {
       "id": "kb-geumyungjeonmunin-udaedaecul-2019-09-27-panmaejungdan__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB신용카드 이용",
+      "label": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽신용카드 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB신용카드 이용",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 연 0.3%p (KB신용카드 이용 실적이 있는 경우)",
+        "name": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽신용카드 이용",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 연 0.3%p (큽신용카드 이용 실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -8646,29 +8646,29 @@
     },
     {
       "id": "kb-geumyungjeonmunin-udaedaecul-2019-09-27-panmaejungdan__pref__3",
-      "label": "- **KB스타뱅킹 이용 시**: 연 0.1%p ()",
+      "label": "- **모바일뱅킹 이용 시**: 연 0.1%p ()",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB스타뱅킹 이용 시**: 연 0.1%p ()",
-        "condition_description": "- **KB스타뱅킹 이용 시**: 연 0.1%p ()",
+        "name": "- **모바일뱅킹 이용 시**: 연 0.1%p ()",
+        "condition_description": "- **모바일뱅킹 이용 시**: 연 0.1%p ()",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-geubyeoicesinyongdaecul",
-      "label": "KB 급여이체신용대출",
+      "label": "큽 급여이체신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 급여이체신용대출",
+        "name": "큽 급여이체신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "개인신용평가(CSS)에 의해 대출적격자로 판정된 고객 중 대출신청일 현재 동일직장 1년 이상 재직 중이며, KB국민은행과 급여이체 대행계약을 체결한 업체로부터 대출신청월 또는 직전 월 기준 현재 1회 이상 급여이체 실적이 있는 고객. 개인사업자, 사업소득원천징수 대상자, 연금이체자 등은 대출대상 제외.",
+        "eligibility_summary": "개인신용평가(CSS)에 의해 대출적격자로 판정된 고객 중 대출신청일 현재 동일직장 1년 이상 재직 중이며, 큽 금융과 급여이체 대행계약을 체결한 업체로부터 대출신청월 또는 직전 월 기준 현재 1회 이상 급여이체 실적이 있는 고객. 개인사업자, 사업소득원천징수 대상자, 연금이체자 등은 대출대상 제외.",
         "size": 21.11111111111111
       }
     },
@@ -8725,19 +8725,19 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자",
-        "description": "개인신용평가(CSS)에 의해 대출적격자로 판정된 고객 중 대출신청일 현재 동일직장 1년 이상 재직 중이며, KB국민은행과 급여이체 대행계약을 체결한 업체로부터 대출신청월 또는 직전 월 기준 현재 1회 이상 급여이체 실적이 있는 고객. 개인사업자, 사업소득원천징수 대상자, 연금이체자 등은 대출대상 제외.",
+        "description": "개인신용평가(CSS)에 의해 대출적격자로 판정된 고객 중 대출신청일 현재 동일직장 1년 이상 재직 중이며, 큽 금융과 급여이체 대행계약을 체결한 업체로부터 대출신청월 또는 직전 월 기준 현재 1회 이상 급여이체 실적이 있는 고객. 개인사업자, 사업소득원천징수 대상자, 연금이체자 등은 대출대상 제외.",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-geubyeoicesinyongdaecul__pref__0",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.3% (KB스타뱅킹 이용",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.3% (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.3% (KB스타뱅킹 이용",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.3% (KB스타뱅킹 이용 실적이 있는 경우)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.3% (모바일뱅킹 이용",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.3% (모바일뱅킹 이용 실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -8779,26 +8779,26 @@
     },
     {
       "id": "kb-geubyeoicesinyongdaecul__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-naemamdaero-maineoseu-tongjang",
-      "label": "KB 내맘대로 마이너스 통장",
+      "label": "큽 내맘대로 마이너스 통장",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 내맘대로 마이너스 통장",
+        "name": "큽 내맘대로 마이너스 통장",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "1년 이상 재직중인 직장인으로서 당행 신용평가등급(CSS) 1~4등급 이내",
@@ -8832,14 +8832,14 @@
     },
     {
       "id": "kb-bubunbunhal-jeonsejageumdaecul",
-      "label": "KB 부분분할 전세자금대출",
+      "label": "큽 부분분할 전세자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 부분분할 전세자금대출",
+        "name": "큽 부분분할 전세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주 또는 세대주로 인정되는 고객, 임차보증금 수도권 7억원(그 외 지역 5억원) 이하, 임차보증금의 5% 이상 계약금 지급, 본인과 배우자(결혼예정자 포함)가 모두 무주택자",
@@ -8908,26 +8908,26 @@
     },
     {
       "id": "kb-bubunbunhal-jeonsejageumdaecul__pref__0",
-      "label": "- **우대금리**: 최고 연 1.4% (KB국민카드 이용실적, 급여(연",
+      "label": "- **우대금리**: 최고 연 1.4% (큽카드 이용실적, 급여(연",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 1.4,
-        "name": "- **우대금리**: 최고 연 1.4% (KB국민카드 이용실적, 급여(연",
-        "condition_description": "- **우대금리**: 최고 연 1.4% (KB국민카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 적립식예금 계좌 보유 등)",
+        "name": "- **우대금리**: 최고 연 1.4% (큽카드 이용실적, 급여(연",
+        "condition_description": "- **우대금리**: 최고 연 1.4% (큽카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 적립식예금 계좌 보유 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-bunhalsanghwan-mogijiron",
-      "label": "KB 분할상환 모기지론",
+      "label": "큽 분할상환 모기지론",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 분할상환 모기지론",
+        "name": "큽 분할상환 모기지론",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "주택을 담보로 대출 신청하는 고객(주택구입/신축/경락주택 구입자금대출)",
@@ -8994,13 +8994,13 @@
     },
     {
       "id": "kb-bunhalsanghwan-mogijiron__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.99% (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 0.99% (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.99,
-        "name": "- **실적연동 우대금리**: 최고 연 0.99% (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.99% (KB국민카드(신용) 이용실적 우대, 결제계좌를 당행으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우 등)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.99% (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.99% (큽카드(신용) 이용실적 우대, 결제계좌를 당행으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우 등)",
         "size": 5.277777777777778
       }
     },
@@ -9030,14 +9030,14 @@
     },
     {
       "id": "kb-beurisjibojeungdaecul",
-      "label": "KB 브릿지보증대출",
+      "label": "큽 브릿지보증대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 브릿지보증대출",
+        "name": "큽 브릿지보증대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "당행 지역신용보증재단의 보증서 사업자대출을 보유중인 폐업사업자(개인사업자)로서, 지역신용보증재단의 브릿지보증서 발급을 승인받은 고객",
@@ -9103,14 +9103,14 @@
     },
     {
       "id": "kb-saeobjadeundeun-sinyongdaecul",
-      "label": "KB 사업자든든 신용대출",
+      "label": "큽 사업자든든 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 사업자든든 신용대출",
+        "name": "큽 사업자든든 신용대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "사업자등록증을 소지하고 현재 사업을 영위하고 있는 자영업자 또는 사업소득원천징수 대상자",
@@ -9165,13 +9165,13 @@
     },
     {
       "id": "kb-saeobjadeundeun-sinyongdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적 우대, 급여(연금)이체 관련 실적 우대, 자동이체 실적우대, 예금 관련 실적우대, KB스타뱅킹 이용 우대)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적 우대, 급여(연금)이체 관련 실적 우대, 자동이체 실적우대, 예금 관련 실적우대, 모바일뱅킹 이용 우대)",
         "size": 5.277777777777778
       }
     },
@@ -9189,14 +9189,14 @@
     },
     {
       "id": "kb-saisdol-junggeumridaecul",
-      "label": "KB 사잇돌 중금리대출",
+      "label": "큽 사잇돌 중금리대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 사잇돌 중금리대출",
+        "name": "큽 사잇돌 중금리대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "서울보증보험(주)의 보험증권 발급이 가능한 급여소득자, 사업소득자, 공적연금소득자 중 아래 기준을 충족하고 증빙서류 제출이 가능한 개인고객",
@@ -9241,13 +9241,13 @@
     },
     {
       "id": "kb-saisdol-junggeumridaecul__pref__0",
-      "label": "- **KB새희망홀씨Ⅱ 성실상환 우대금리**: 연 0.5%p (대출신청일",
+      "label": "- **큽새희망홀씨Ⅱ 성실상환 우대금리**: 연 0.5%p (대출신청일",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.5,
-        "name": "- **KB새희망홀씨Ⅱ 성실상환 우대금리**: 연 0.5%p (대출신청일",
-        "condition_description": "- **KB새희망홀씨Ⅱ 성실상환 우대금리**: 연 0.5%p (대출신청일 현재 기존보유 'KB새희망홀씨Ⅱ' 대출을 최근 1년 이상 납입지연일수 없이 성실상환 중인 고객)",
+        "name": "- **큽새희망홀씨Ⅱ 성실상환 우대금리**: 연 0.5%p (대출신청일",
+        "condition_description": "- **큽새희망홀씨Ⅱ 성실상환 우대금리**: 연 0.5%p (대출신청일 현재 기존보유 '큽새희망홀씨Ⅱ' 대출을 최근 1년 이상 납입지연일수 없이 성실상환 중인 고객)",
         "size": 5.277777777777778
       }
     },
@@ -9265,17 +9265,17 @@
     },
     {
       "id": "kb-usugeorae-sinyongdaecul",
-      "label": "KB 우수거래 신용대출",
+      "label": "큽 우수거래 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 우수거래 신용대출",
+        "name": "큽 우수거래 신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "KB 국민은행과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
+        "eligibility_summary": "큽 큽 금융과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
         "size": 21.11111111111111
       }
     },
@@ -9322,19 +9322,19 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "KB 국민은행과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
+        "description": "큽 큽 금융과 거래하는 STAR CLUB 베스트 등급 이상 고객으로 개인신용평가시스템에 의해 대출적격자로 판정된 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-usugeorae-sinyongdaecul__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 연 0.3%p (결제계좌를 KB국",
+      "label": "- **큽신용카드 이용실적 우대**: 연 0.3%p (결제계좌를 큽",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 연 0.3%p (결제계좌를 KB국",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 연 0.3%p (결제계좌를 KB국민은행으로 지정하고, 최근 3개월 30만원 이상 이용실적이 있는 경우)",
+        "name": "- **큽신용카드 이용실적 우대**: 연 0.3%p (결제계좌를 큽",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 연 0.3%p (결제계좌를 큽 금융으로 지정하고, 최근 3개월 30만원 이상 이용실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -9376,26 +9376,26 @@
     },
     {
       "id": "kb-usugeorae-sinyongdaecul__pref__4",
-      "label": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
+      "label": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
-        "condition_description": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
+        "name": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
+        "condition_description": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-weolsanghwanaeg-gojeonghyeong-jutaegdambodaecul",
-      "label": "KB 월상환액 고정형 주택담보대출",
+      "label": "큽 월상환액 고정형 주택담보대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 월상환액 고정형 주택담보대출",
+        "name": "큽 월상환액 고정형 주택담보대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "주택을 담보로 대출 신청하는 고객 (주택구입/신축/경락주택구입자금대출 포함)",
@@ -9499,11 +9499,11 @@
     },
     {
       "id": "kb-ilbanbudongsan-dambodaecul__feat__gijon-gugmineunhaeng-georae-siljeoggwa-gwangyeeobsi-sinsoghage-daecul-cwigeub",
-      "label": "기존 국민은행 거래 실적과 관계없이 신속하게 대출 취급",
+      "label": "기존 큽 금융 거래 실적과 관계없이 신속하게 대출 취급",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "기존 국민은행 거래 실적과 관계없이 신속하게 대출 취급",
+        "name": "기존 큽 금융 거래 실적과 관계없이 신속하게 대출 취급",
         "description": "",
         "size": 5.277777777777778
       }
@@ -9521,14 +9521,14 @@
     },
     {
       "id": "kb-jeoggyeogjeonhwandaecul",
-      "label": "KB 적격전환대출",
+      "label": "큽 적격전환대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 적격전환대출",
+        "name": "큽 적격전환대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "대출신청일 현재 채무자와 배우자의 총 주택 보유수가 본건 담보주택을 제외하고 무주택이며, 부부합산 연소득이 6천만원 이하",
@@ -9584,14 +9584,14 @@
     },
     {
       "id": "kb-jehyu-daehwan-sinyongdaecul",
-      "label": "KB 제휴 대환 신용대출",
+      "label": "큽 제휴 대환 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 제휴 대환 신용대출",
+        "name": "큽 제휴 대환 신용대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "한국씨티은행 개인신용대출을 이용중인 고객",
@@ -9646,13 +9646,13 @@
     },
     {
       "id": "kb-jehyu-daehwan-sinyongdaecul__pref__0",
-      "label": "- **KB 웰컴 우대금리**: 연 1.0%p (최초 신규시점으로부터 1",
+      "label": "- **큽 웰컴 우대금리**: 연 1.0%p (최초 신규시점으로부터 1",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 1.0,
-        "name": "- **KB 웰컴 우대금리**: 연 1.0%p (최초 신규시점으로부터 1",
-        "condition_description": "- **KB 웰컴 우대금리**: 연 1.0%p (최초 신규시점으로부터 1년간 제공)",
+        "name": "- **큽 웰컴 우대금리**: 연 1.0%p (최초 신규시점으로부터 1",
+        "condition_description": "- **큽 웰컴 우대금리**: 연 1.0%p (최초 신규시점으로부터 1년간 제공)",
         "size": 5.277777777777778
       }
     },
@@ -9670,14 +9670,14 @@
     },
     {
       "id": "kb-jugeohaengbog-weolsedaecul",
-      "label": "KB 주거행복 월세대출",
+      "label": "큽 주거행복 월세대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 주거행복 월세대출",
+        "name": "큽 주거행복 월세대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "부동산중개업소를 통하여 주택임대차계약을 체결하고 임차보증금의 5% 이상을 계약금으로 지급한 민법상 성년인 세대주",
@@ -9744,13 +9744,13 @@
     },
     {
       "id": "kb-jugeohaengbog-weolsedaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용) 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, KB스타뱅킹 이용실적, 적립식예금 30만원 이상 계좌 보유)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용) 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 모바일뱅킹 이용실적, 적립식예금 30만원 이상 계좌 보유)",
         "size": 5.277777777777778
       }
     },
@@ -9780,11 +9780,11 @@
     },
     {
       "id": "kb-jutaegguibjageumdaecul-jibdan-ibjujangeumdaecul__feat__gijon-gugmineunhaeng-georae-siljeog-eobsi-sinsoghage-daecul-cwigeub",
-      "label": "기존 국민은행 거래 실적 없이 신속하게 대출 취급",
+      "label": "기존 큽 금융 거래 실적 없이 신속하게 대출 취급",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "기존 국민은행 거래 실적 없이 신속하게 대출 취급",
+        "name": "기존 큽 금융 거래 실적 없이 신속하게 대출 취급",
         "description": "",
         "size": 5.277777777777778
       }
@@ -9836,14 +9836,14 @@
     },
     {
       "id": "kb-jinggeomdariron",
-      "label": "KB 징검다리론",
+      "label": "큽 징검다리론",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 징검다리론",
+        "name": "큽 징검다리론",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "대출신청일 현재 4대 서민금융상품을 성실하게 상환한 고객 중 소득서류제출이 가능하고, 개인신용평점 하위 20% 이상 고객",
@@ -9947,14 +9947,14 @@
     },
     {
       "id": "kb-ceoeumeasy-sinyongdaecul",
-      "label": "KB 처음EASY 신용대출",
+      "label": "큽 처음EASY 신용대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 처음EASY 신용대출",
+        "name": "큽 처음EASY 신용대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "만 19세 이상의 직장인 사회초년생, 초기사업가, 사업소득원천징수대상자, 아르바이트생, 전업주부, 은퇴자 등",
@@ -10010,13 +10010,13 @@
     },
     {
       "id": "kb-ceoeumeasy-sinyongdaecul__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 최고 연 0.3%p (결제계좌를",
+      "label": "- **큽신용카드 이용실적 우대**: 최고 연 0.3%p (결제계좌를",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 최고 연 0.3%p (결제계좌를",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 최고 연 0.3%p (결제계좌를 KB국민은행으로 지정하고, 최근 3개월 30만원 이상 이용실적이 있는 경우)",
+        "name": "- **큽신용카드 이용실적 우대**: 최고 연 0.3%p (결제계좌를",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 최고 연 0.3%p (결제계좌를 큽 금융으로 지정하고, 최근 3개월 30만원 이상 이용실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -10058,26 +10058,26 @@
     },
     {
       "id": "kb-ceoeumeasy-sinyongdaecul__pref__4",
-      "label": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
+      "label": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
-        "condition_description": "- **KB 스타뱅킹 이용 우대**: 연 0.1%p ()",
+        "name": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
+        "condition_description": "- **큽 모바일뱅킹 이용 우대**: 연 0.1%p ()",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-ceongnyeon-majcumhyeong-weolsejageumdaecul",
-      "label": "KB 청년 맞춤형 월세자금대출",
+      "label": "큽 청년 맞춤형 월세자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 청년 맞춤형 월세자금대출",
+        "name": "큽 청년 맞춤형 월세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "만 19세 이상 만 34세 이하 무주택 세대주 또는 예비세대주로서 주거급여수급자가 아닌 고객",
@@ -10189,14 +10189,14 @@
     },
     {
       "id": "kb-pyeeobjiweon-daehwandaecul-bojeung",
-      "label": "KB 폐업지원 대환대출(보증)",
+      "label": "큽 폐업지원 대환대출(보증)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 폐업지원 대환대출(보증)",
+        "name": "큽 폐업지원 대환대출(보증)",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "모든 사업장을 폐업한 개인사업자, 지역신용보증재단의 보증서 발급을 승인받은 고객",
@@ -10264,17 +10264,17 @@
     },
     {
       "id": "kb-pyeeobjiweon-daehwandaecul-budongsandambo",
-      "label": "KB 폐업지원 대환대출(부동산담보)",
+      "label": "큽 폐업지원 대환대출(부동산담보)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 폐업지원 대환대출(부동산담보)",
+        "name": "큽 폐업지원 대환대출(부동산담보)",
         "description": "",
         "category": "담보대출",
-        "eligibility_summary": "국민은행에서 사업자대출(부동산담보)을 이용중인 개인사업자로서 모든 사업장을 폐업하였거나 폐업 예정인 고객님",
+        "eligibility_summary": "큽 금융에서 사업자대출(부동산담보)을 이용중인 개인사업자로서 모든 사업장을 폐업하였거나 폐업 예정인 고객님",
         "size": 16.11111111111111
       }
     },
@@ -10331,23 +10331,23 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자",
-        "description": "국민은행에서 사업자대출(부동산담보)을 이용중인 개인사업자로서 모든 사업장을 폐업하였거나 폐업 예정인 고객님",
+        "description": "큽 금융에서 사업자대출(부동산담보)을 이용중인 개인사업자로서 모든 사업장을 폐업하였거나 폐업 예정인 고객님",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-pyeeobjiweon-daehwandaecul-sinyong",
-      "label": "KB 폐업지원 대환대출(신용)",
+      "label": "큽 폐업지원 대환대출(신용)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 폐업지원 대환대출(신용)",
+        "name": "큽 폐업지원 대환대출(신용)",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "국민은행에서 사업자대출(신용대출)을 이용중인 개인사업자로서 모든 사업장을 폐업하거나 폐업 예정인 고객",
+        "eligibility_summary": "큽 금융에서 사업자대출(신용대출)을 이용중인 개인사업자로서 모든 사업장을 폐업하거나 폐업 예정인 고객",
         "size": 19.166666666666664
       }
     },
@@ -10404,20 +10404,20 @@
       "data": {
         "target_audience": "개인사업자",
         "name": "개인사업자",
-        "description": "국민은행에서 사업자대출(신용대출)을 이용중인 개인사업자로서 모든 사업장을 폐업하거나 폐업 예정인 고객",
+        "description": "큽 금융에서 사업자대출(신용대출)을 이용중인 개인사업자로서 모든 사업장을 폐업하거나 폐업 예정인 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kb-peulreoseu-jeonsejageumdaecul-ii",
-      "label": "KB 플러스 전세자금대출 Ⅱ",
+      "label": "큽 플러스 전세자금대출 Ⅱ",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 플러스 전세자금대출 Ⅱ",
+        "name": "큽 플러스 전세자금대출 Ⅱ",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "현재 재직중인 직장에서 재직기간이 1년이상 된 민법상 성년인 세대주(단독세대주 포함)로서 '서울보증보험 증권'이 발급되고 아래의 사항을 모두 충족하는 고객",
@@ -10483,13 +10483,13 @@
     },
     {
       "id": "kb-peulreoseu-jeonsejageumdaecul-ii__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9% (KB국민카드(신용) 이",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9% (큽카드(신용) 이",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9% (KB국민카드(신용) 이",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9% (KB국민카드(신용) 이용실적 우대, 급여(연금)이체 실적 우대, 자동이체 거래실적 우대, 적립식예금 30만원 이상 계좌 보유 우대, KB스타뱅킹 이용실적 우대)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9% (큽카드(신용) 이",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9% (큽카드(신용) 이용실적 우대, 급여(연금)이체 실적 우대, 자동이체 거래실적 우대, 적립식예금 30만원 이상 계좌 보유 우대, 모바일뱅킹 이용실적 우대)",
         "size": 5.277777777777778
       }
     },
@@ -10519,14 +10519,14 @@
     },
     {
       "id": "kb-peulreoseu-jeonsejageumdaecul",
-      "label": "KB 플러스 전세자금대출",
+      "label": "큽 플러스 전세자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 플러스 전세자금대출",
+        "name": "큽 플러스 전세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주(단독세대주 포함)이며 '서울보증보험증권'이 발급되는 고객으로서 아래의 사항을 모두 충족하는 고객",
@@ -10592,13 +10592,13 @@
     },
     {
       "id": "kb-peulreoseu-jeonsejageumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 1.4,
-        "name": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4%p (KB국민카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 적립식예금 30만원 이상 계좌 보유, KB스타뱅킹 이용실적)",
+        "name": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4%p (큽카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 적립식예금 30만원 이상 계좌 보유, 모바일뱅킹 이용실적)",
         "size": 5.277777777777778
       }
     },
@@ -10661,14 +10661,14 @@
     },
     {
       "id": "kbnarasarangdaecul-jutaegjageum",
-      "label": "KB나라사랑대출(주택자금)",
+      "label": "큽나라사랑대출(주택자금)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB나라사랑대출(주택자금)",
+        "name": "큽나라사랑대출(주택자금)",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "무주택자로서 국가보훈부로부터 전자문서로 대출 추천을 받은 국가유공자 및 장기복무(10년이상 복무)한 제대군인 고객.",
@@ -10772,17 +10772,17 @@
     },
     {
       "id": "kbnaejibyeongeum-yeongyedaecul",
-      "label": "KB내집연금 연계대출",
+      "label": "큽내집연금 연계대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB내집연금 연계대출",
+        "name": "큽내집연금 연계대출",
         "description": "",
         "category": "담보대출",
-        "eligibility_summary": "「KB골든라이프 공사주택연금론(주담대전환형)」을 신청하고 해당 대출만으로 기존 주택담보대출을 전액상환하기에는 자금이 부족하여 추가 대출이 필요한 고객, 서울보증보험(주)의 개인금융신용보험증권 발급이 가능한 고객",
+        "eligibility_summary": "「큽골든라이프 공사주택연금론(주담대전환형)」을 신청하고 해당 대출만으로 기존 주택담보대출을 전액상환하기에는 자금이 부족하여 추가 대출이 필요한 고객, 서울보증보험(주)의 개인금융신용보험증권 발급이 가능한 고객",
         "size": 15.0
       }
     },
@@ -10829,20 +10829,20 @@
       "data": {
         "target_audience": "개인",
         "name": "개인",
-        "description": "「KB골든라이프 공사주택연금론(주담대전환형)」을 신청하고 해당 대출만으로 기존 주택담보대출을 전액상환하기에는 자금이 부족하여 추가 대출이 필요한 고객, 서울보증보험(주)의 개인금융신용보험증권 발급이 가능한 고객",
+        "description": "「큽골든라이프 공사주택연금론(주담대전환형)」을 신청하고 해당 대출만으로 기존 주택담보대출을 전액상환하기에는 자금이 부족하여 추가 대출이 필요한 고객, 서울보증보험(주)의 개인금융신용보험증권 발급이 가능한 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kbdagteoron",
-      "label": "KB닥터론",
+      "label": "큽닥터론",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB닥터론",
+        "name": "큽닥터론",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "근로소득 또는 사업소득이 있는 현직의사(전문의, 레지던트, 인턴, 군의관, 공중보건의 포함), 한의사, 치과의사, 또는 개업예정의(의사, 한의사, 치과의사), 의대본과 4학년 및 의사면허합격자(치의대,한의대 포함)로서 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
@@ -10897,13 +10897,13 @@
     },
     {
       "id": "kbdagteoron__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, KB 스타뱅킹 이용)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, 큽 모바일뱅킹 이용)",
         "size": 5.277777777777778
       }
     },
@@ -10921,14 +10921,14 @@
     },
     {
       "id": "kbroieoron",
-      "label": "KB로이어론",
+      "label": "큽로이어론",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB로이어론",
+        "name": "큽로이어론",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "근로소득 또는 사업소득이 있는 현직변호사, 판사, 검사, 군법무관 또는 사법연수원생으로서 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
@@ -10983,13 +10983,13 @@
     },
     {
       "id": "kbroieoron__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, KB 스타뱅킹 이용)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, 큽 모바일뱅킹 이용)",
         "size": 5.277777777777778
       }
     },
@@ -11019,14 +11019,14 @@
     },
     {
       "id": "kbsaribhaggyogyojigweonudaedaecul",
-      "label": "KB사립학교교직원우대대출",
+      "label": "큽사립학교교직원우대대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB사립학교교직원우대대출",
+        "name": "큽사립학교교직원우대대출",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "사립학교교직원 연금법 적용 현직(정규직)교직원으로서 연금공단이 발급하는 퇴직시급여예상액확인서에 의해 대출을 신청하는 고객 중 다른 금융기관에 협약대출 미보유자.",
@@ -11081,13 +11081,13 @@
     },
     {
       "id": "kbsaribhaggyogyojigweonudaedaecul__pref__0",
-      "label": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민카드 이용시)",
+      "label": "- **신용카드 이용실적 우대**: 연 0.3% (큽카드 이용시)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민카드 이용시)",
-        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민카드 이용시)",
+        "name": "- **신용카드 이용실적 우대**: 연 0.3% (큽카드 이용시)",
+        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (큽카드 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -11129,13 +11129,13 @@
     },
     {
       "id": "kbsaribhaggyogyojigweonudaedaecul__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1% (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
@@ -11153,38 +11153,38 @@
     },
     {
       "id": "kbsaribhaggyogyojigweonudaedaecul__pref__6",
-      "label": "- **KB스타클럽 우대**: 연 0.1% ()",
+      "label": "- **큽스타클럽 우대**: 연 0.1% ()",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB스타클럽 우대**: 연 0.1% ()",
-        "condition_description": "- **KB스타클럽 우대**: 연 0.1% ()",
+        "name": "- **큽스타클럽 우대**: 연 0.1% ()",
+        "condition_description": "- **큽스타클럽 우대**: 연 0.1% ()",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kbsaribhaggyogyojigweonudaedaecul__pref__7",
-      "label": "- **KB체크카드 신규/이용고객**: 연 0.2% ()",
+      "label": "- **큽체크카드 신규/이용고객**: 연 0.2% ()",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.2,
-        "name": "- **KB체크카드 신규/이용고객**: 연 0.2% ()",
-        "condition_description": "- **KB체크카드 신규/이용고객**: 연 0.2% ()",
+        "name": "- **큽체크카드 신규/이용고객**: 연 0.2% ()",
+        "condition_description": "- **큽체크카드 신규/이용고객**: 연 0.2% ()",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kbseuta-sinyongdaecul-galatagi",
-      "label": "KB스타 신용대출(갈아타기)",
+      "label": "큽스타 신용대출(갈아타기)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB스타 신용대출(갈아타기)",
+        "name": "큽스타 신용대출(갈아타기)",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객으로 직군별 재직기간 기준을 충족하고, 소득증빙이 가능한 직장인",
@@ -11262,11 +11262,11 @@
     },
     {
       "id": "kbseuta-apateudambodaecul-jutaegjageum__feat__kb-seutabaengking-jeonyong",
-      "label": "KB 스타뱅킹 전용",
+      "label": "큽 모바일뱅킹 전용",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "KB 스타뱅킹 전용",
+        "name": "큽 모바일뱅킹 전용",
         "description": "",
         "size": 5.277777777777778
       }
@@ -11284,25 +11284,25 @@
     },
     {
       "id": "channel__budongsan-dambodaecul-kbseuta-apateudambodaecul",
-      "label": "부동산 담보대출 > KB스타 아파트담보대출",
+      "label": "부동산 담보대출 > 큽스타 아파트담보대출",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "부동산 담보대출 > KB스타 아파트담보대출",
+        "name": "부동산 담보대출 > 큽스타 아파트담보대출",
         "name_en": "",
         "size": 5.277777777777778
       }
     },
     {
       "id": "kbseuta-jeonsejageumdaecul-hf-hangugjutaeggeumyunggongsa",
-      "label": "KB스타 전세자금대출(HF_한국주택금융공사)",
+      "label": "큽스타 전세자금대출(HF_한국주택금융공사)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB스타 전세자금대출(HF_한국주택금융공사)",
+        "name": "큽스타 전세자금대출(HF_한국주택금융공사)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주로서 임차보증금이 수도권 7억원(그 외 지역 5억원) 이하인 임대차계약을 체결한 고객, 임차보증금의 5% 이상을 지급한 고객 등",
@@ -11404,14 +11404,14 @@
     },
     {
       "id": "kbseuta-jeonsejageumdaecul-hug-jutaegdosibojeunggongsa",
-      "label": "KB스타 전세자금대출(HUG_주택도시보증공사)",
+      "label": "큽스타 전세자금대출(HUG_주택도시보증공사)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB스타 전세자금대출(HUG_주택도시보증공사)",
+        "name": "큽스타 전세자금대출(HUG_주택도시보증공사)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "만 19세 이상 주민등록등본상 세대주로서, 임차보증금이 수도권 7억원, 그 외 지역 5억원 이내로 임차계약기간이 1년 이상인 전세계약자.",
@@ -11502,14 +11502,14 @@
     },
     {
       "id": "kbseuta-jeonsejageumdaecul-sgi-seoulbojeungboheom",
-      "label": "KB스타 전세자금대출(SGI_서울보증보험)",
+      "label": "큽스타 전세자금대출(SGI_서울보증보험)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB스타 전세자금대출(SGI_서울보증보험)",
+        "name": "큽스타 전세자금대출(SGI_서울보증보험)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "만 19세 이상 주민등록등본상 세대주로서, 소득증빙이 가능하고 금융비용부담율이 40% 이내인 고객.",
@@ -11601,14 +11601,14 @@
     },
     {
       "id": "kbseuta-jeonsejageumdaecul-galatagi-hf-hangugjutaeggeumyunggongsa",
-      "label": "KB스타 전세자금대출(갈아타기)(HF_한국주택금융공사)",
+      "label": "큽스타 전세자금대출(갈아타기)(HF_한국주택금융공사)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB스타 전세자금대출(갈아타기)(HF_한국주택금융공사)",
+        "name": "큽스타 전세자금대출(갈아타기)(HF_한국주택금융공사)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주로서 임차보증금이 수도권 7억원(그 외 지역 5억원) 이하인 임대차계약을 체결한 고객 등",
@@ -11698,14 +11698,14 @@
     },
     {
       "id": "kbseuta-jeonsejageumdaecul-galatagi-hug-jutaegdosibojeunggongsa",
-      "label": "KB스타 전세자금대출(갈아타기)(HUG_주택도시보증공사)",
+      "label": "큽스타 전세자금대출(갈아타기)(HUG_주택도시보증공사)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB스타 전세자금대출(갈아타기)(HUG_주택도시보증공사)",
+        "name": "큽스타 전세자금대출(갈아타기)(HUG_주택도시보증공사)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "만 19세 이상 주민등록등본상 세대주, 임차보증금이 수도권 7억원, 그 외 지역 5억원 이내로 임차계약기간이 1년 이상인 전세계약자 등",
@@ -11796,14 +11796,14 @@
     },
     {
       "id": "kbseuta-jeonsejageumdaecul-galatagi-sgi-seoulbojeungboheom",
-      "label": "KB스타 전세자금대출(갈아타기)(SGI_서울보증보험)",
+      "label": "큽스타 전세자금대출(갈아타기)(SGI_서울보증보험)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB스타 전세자금대출(갈아타기)(SGI_서울보증보험)",
+        "name": "큽스타 전세자금대출(갈아타기)(SGI_서울보증보험)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "만 19세 이상 주민등록등본상 세대주, 소득증빙 가능 고객 등 여러 조건을 충족해야 합니다.",
@@ -11870,14 +11870,14 @@
     },
     {
       "id": "kbimdaebojeunggeumbanhwanjageumbojeungdaecul",
-      "label": "KB임대보증금반환자금보증대출",
+      "label": "큽임대보증금반환자금보증대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB임대보증금반환자금보증대출",
+        "name": "큽임대보증금반환자금보증대출",
         "description": "",
         "category": "담보대출",
         "eligibility_summary": "임대차계약의 기간 만료 등으로 임차인에게 임대보증금을 반환하기 위하여 대출을 받고자 하는 임대인으로 「주택금융신용보증서」가 발급되는 개인.",
@@ -11945,14 +11945,14 @@
     },
     {
       "id": "kbjeonsegeumansimdaecul",
-      "label": "KB전세금안심대출",
+      "label": "큽전세금안심대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB전세금안심대출",
+        "name": "큽전세금안심대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주로서 주택도시보증공사의 전세보증금반환보증과 전세자금대출특약보증 가입이 가능하고, 부동산 중개업소를 통해 임차보증금이 수도권 7억원 이하(그 외 지역은 5억원 이하)의 주택임대차 계약을 체결하고 임차보증금의 5% 이상을 지급한 경우.",
@@ -12008,13 +12008,13 @@
     },
     {
       "id": "kbjeonsegeumansimdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 1.4% (KB국민카드 이용실적,",
+      "label": "- **실적연동 우대금리**: 최고 연 1.4% (큽카드 이용실적,",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 1.4,
-        "name": "- **실적연동 우대금리**: 최고 연 1.4% (KB국민카드 이용실적,",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4% (KB국민카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, KB스타뱅킹 이용실적, 적립식예금 30만원 이상 계좌 보유)",
+        "name": "- **실적연동 우대금리**: 최고 연 1.4% (큽카드 이용실적,",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 1.4% (큽카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 모바일뱅킹 이용실적, 적립식예금 30만원 이상 계좌 보유)",
         "size": 5.277777777777778
       }
     },
@@ -12044,14 +12044,14 @@
     },
     {
       "id": "kbhaessalron-ilban",
-      "label": "KB햇살론 일반",
+      "label": "큽햇살론 일반",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB햇살론 일반",
+        "name": "큽햇살론 일반",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "민법상 성년으로 국내에 거주하는 대한민국 국민으로 직업 및 소득이 있으며 「서민금융진흥원」 신용보증서 발급이 가능자 중 연소득 35백만원 이하 또는 연소득 45백만원 이하이면서 개인신용평점 하위 20% 이하에 해당하는 고객.",
@@ -12107,14 +12107,14 @@
     },
     {
       "id": "kbhaessalron-teugrye",
-      "label": "KB햇살론 특례",
+      "label": "큽햇살론 특례",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB햇살론 특례",
+        "name": "큽햇살론 특례",
         "description": "",
         "category": "신용대출",
         "eligibility_summary": "직업 및 소득이 있으며 만 19세 이상으로 연소득 3천5백만원 이하(신용평점 무관) 또는 개인신용평점 하위 20% 이하이고 연소득 4천5백만원 이하인 고객",
@@ -12257,13 +12257,13 @@
     },
     {
       "id": "kt-gwanryeon-jaejigjigweone-daehan-daecul__pref__0",
-      "label": "- **KB신용카드 이용실적 우대**: 최고 연 0.3%p (KB국민카드",
+      "label": "- **큽신용카드 이용실적 우대**: 최고 연 0.3%p (큽카드",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **KB신용카드 이용실적 우대**: 최고 연 0.3%p (KB국민카드",
-        "condition_description": "- **KB신용카드 이용실적 우대**: 최고 연 0.3%p (KB국민카드(신용) 이용시)",
+        "name": "- **큽신용카드 이용실적 우대**: 최고 연 0.3%p (큽카드",
+        "condition_description": "- **큽신용카드 이용실적 우대**: 최고 연 0.3%p (큽카드(신용) 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -12305,13 +12305,13 @@
     },
     {
       "id": "kt-gwanryeon-jaejigjigweone-daehan-daecul__pref__4",
-      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
+      "label": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용",
-        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (KB스타뱅킹 이용 시)",
+        "name": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용",
+        "condition_description": "- **전자금융 관련 실적 우대**: 연 0.1%p (모바일뱅킹 이용 시)",
         "size": 5.277777777777778
       }
     },
@@ -12327,7 +12327,7 @@
         "name": "공무원 연금수급권자 신용대출",
         "description": "",
         "category": "신용대출",
-        "eligibility_summary": "공무원 퇴직연금(유족,장해연금 포함)을 매월(1회 이상)국민은행 계좌를 통해 수령하고, 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
+        "eligibility_summary": "공무원 퇴직연금(유족,장해연금 포함)을 매월(1회 이상)큽 금융 계좌를 통해 수령하고, 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
         "size": 20.555555555555557
       }
     },
@@ -12384,19 +12384,19 @@
       "data": {
         "target_audience": "공무원",
         "name": "공무원",
-        "description": "공무원 퇴직연금(유족,장해연금 포함)을 매월(1회 이상)국민은행 계좌를 통해 수령하고, 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
+        "description": "공무원 퇴직연금(유족,장해연금 포함)을 매월(1회 이상)큽 금융 계좌를 통해 수령하고, 개인신용평가시스템(CSS)에 의해 대출적격자로 판정된 고객",
         "size": 5.277777777777778
       }
     },
     {
       "id": "gongmuweon-yeongeumsugeubgweonja-sinyongdaecul__pref__0",
-      "label": "- **거래실적 우대**: 최고 연 0.5%p (KB신용카드 보유, 급여",
+      "label": "- **거래실적 우대**: 최고 연 0.5%p (큽신용카드 보유, 급여",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.5,
-        "name": "- **거래실적 우대**: 최고 연 0.5%p (KB신용카드 보유, 급여",
-        "condition_description": "- **거래실적 우대**: 최고 연 0.5%p (KB신용카드 보유, 급여(연금)이체 계약 등록, 자동이체 3건 이상 등록, KB스타뱅킹 등록 고객)",
+        "name": "- **거래실적 우대**: 최고 연 0.5%p (큽신용카드 보유, 급여",
+        "condition_description": "- **거래실적 우대**: 최고 연 0.5%p (큽신용카드 보유, 급여(연금)이체 계약 등록, 자동이체 3건 이상 등록, 모바일뱅킹 등록 고객)",
         "size": 5.277777777777778
       }
     },
@@ -12477,11 +12477,11 @@
     },
     {
       "id": "channel__kbgugmineunhaeng-gwangjujonghabgeumyungsenteo",
-      "label": "KB국민은행 광주종합금융센터",
+      "label": "큽 금융 광주종합금융센터",
       "type": "channel",
       "group": 6,
       "data": {
-        "name": "KB국민은행 광주종합금융센터",
+        "name": "큽 금융 광주종합금융센터",
         "name_en": "",
         "size": 5.277777777777778
       }
@@ -12572,13 +12572,13 @@
     },
     {
       "id": "guninsaenghwalanjeongjageumdaecul-kb-i-star-guninsaenghwalanjeongjageumdaecul__pref__0",
-      "label": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민카드 이용시)",
+      "label": "- **신용카드 이용실적 우대**: 연 0.3% (큽카드 이용시)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민카드 이용시)",
-        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민카드 이용시)",
+        "name": "- **신용카드 이용실적 우대**: 연 0.3% (큽카드 이용시)",
+        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (큽카드 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -12763,7 +12763,7 @@
         "name": "법인 예금담보 임직원대출",
         "description": "",
         "category": "담보대출",
-        "eligibility_summary": "KB 국민은행과 협약을 체결한 법인이 추천한 임직원",
+        "eligibility_summary": "큽 큽 금융과 협약을 체결한 법인이 추천한 임직원",
         "size": 11.666666666666668
       }
     },
@@ -12775,7 +12775,7 @@
       "data": {
         "target_audience": "",
         "name": "가입자격",
-        "description": "KB 국민은행과 협약을 체결한 법인이 추천한 임직원",
+        "description": "큽 큽 금융과 협약을 체결한 법인이 추천한 임직원",
         "size": 5.277777777777778
       }
     },
@@ -12833,13 +12833,13 @@
     },
     {
       "id": "budongsan-dambodaecul-caemujojeong-jeonhwanjedo__pref__0",
-      "label": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결제계",
+      "label": "- **신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결제계",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결제계",
-        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (KB국민은행으로 결제계좌가 지정된 KB국민카드(신용) 이용시)",
+        "name": "- **신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결제계",
+        "condition_description": "- **신용카드 이용실적 우대**: 연 0.3% (큽 금융으로 결제계좌가 지정된 큽카드(신용) 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -12881,13 +12881,13 @@
     },
     {
       "id": "budongsan-dambodaecul-caemujojeong-jeonhwanjedo__pref__4",
-      "label": "- **전자금융관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용시)",
+      "label": "- **전자금융관련 실적 우대**: 연 0.1% (모바일뱅킹 이용시)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **전자금융관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용시)",
-        "condition_description": "- **전자금융관련 실적 우대**: 연 0.1% (KB스타뱅킹 이용시)",
+        "name": "- **전자금융관련 실적 우대**: 연 0.1% (모바일뱅킹 이용시)",
+        "condition_description": "- **전자금융관련 실적 우대**: 연 0.1% (모바일뱅킹 이용시)",
         "size": 5.277777777777778
       }
     },
@@ -12967,13 +12967,13 @@
     },
     {
       "id": "budongsan-dambosintag-suigjeunggweonjeungseo-dambodaecul__pref__1",
-      "label": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
+      "label": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
-        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타 이상), 비거치식 장기일반상환대출(10년 이상) 등)",
+        "name": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
+        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타 이상), 비거치식 장기일반상환대출(10년 이상) 등)",
         "size": 5.277777777777778
       }
     },
@@ -13278,13 +13278,13 @@
     },
     {
       "id": "seoulteugbyeolsi-ceongnyeon-imcabojeunggeumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용) 이용실적에 따라)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용) 이용실적에 따라)",
         "size": 5.277777777777778
       }
     },
@@ -13314,13 +13314,13 @@
     },
     {
       "id": "seoulteugbyeolsi-ceongnyeon-imcabojeunggeumdaecul__pref__3",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통한 이체실적이 있는 경우)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통한 이체실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -13549,13 +13549,13 @@
     },
     {
       "id": "eiseu-ace-jeonmunjig-mubojeungdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, KB 스타뱅킹 이용)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽신용카드 이용실적, 급여(연금)이체 실적, 적립식예금 보유, 자동이체 실적, 큽 모바일뱅킹 이용)",
         "size": 5.277777777777778
       }
     },
@@ -13677,25 +13677,25 @@
     },
     {
       "id": "ilbanbudongsan-gyeongragjageumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용) 이용실적 우대, 결제계좌를 KB국민은행으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우 등)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용) 이용실적 우대, 결제계좌를 큽 금융으로 지정하고 최근 3개월간 30/60/90만원 이상 이용실적이 있는 경우 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "ilbanbudongsan-gyeongragjageumdaecul__pref__1",
-      "label": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
+      "label": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
-        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타 이상) 등)",
+        "name": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
+        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타 이상) 등)",
         "size": 5.277777777777778
       }
     },
@@ -13791,7 +13791,7 @@
       "data": {
         "rate_value_pp": 1.3,
         "name": "- **우대 조건명**: 최고 연 1.3%p (신용카드 이용실적, 급여(",
-        "condition_description": "- **우대 조건명**: 최고 연 1.3%p (신용카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, KB스타뱅킹 이용실적 등)",
+        "condition_description": "- **우대 조건명**: 최고 연 1.3%p (신용카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 모바일뱅킹 이용실적 등)",
         "size": 5.277777777777778
       }
     },
@@ -13996,13 +13996,13 @@
     },
     {
       "id": "jeonsesagipihaeja-teugryebojeung-jeonsejageumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드 이용실적에 따라)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드 이용실적에 따라)",
         "size": 5.277777777777778
       }
     },
@@ -14095,11 +14095,11 @@
     },
     {
       "id": "repay__ilsinab-kbgugmineunhaeng-gyejwaculgeum",
-      "label": "일시납(KB국민은행 계좌출금)",
+      "label": "일시납(큽 금융 계좌출금)",
       "type": "repaymentmethod",
       "group": 8,
       "data": {
-        "name": "일시납(KB국민은행 계좌출금)",
+        "name": "일시납(큽 금융 계좌출금)",
         "description": "",
         "size": 5.277777777777778
       }
@@ -14289,13 +14289,13 @@
     },
     {
       "id": "jutaegdambodaecul-caemujojeong-jeonhwanjedo__pref__1",
-      "label": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
+      "label": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
-        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타 이상): 연 0.1%p, 비거치식 장기분할상환대출(10년 이상): 연 0.1%p, 아파트담보 또는 KB시세 적용: 연 0.1%p, 우량등급고객(CSS 1~6): 연 0.1%p, 주택 전자계약 우대:",
+        "name": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
+        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타 이상): 연 0.1%p, 비거치식 장기분할상환대출(10년 이상): 연 0.1%p, 아파트담보 또는 큽시세 적용: 연 0.1%p, 우량등급고객(CSS 1~6): 연 0.1%p, 주택 전자계약 우대:",
         "size": 5.277777777777778
       }
     },
@@ -14375,25 +14375,25 @@
     },
     {
       "id": "jutaegrimodelring-gaeryang-jageumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용) 이용실적 우대, 급여(연금)이체 실적 우대, 자동이체 거래실적 우대 등)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용) 이용실적 우대, 급여(연금)이체 실적 우대, 자동이체 거래실적 우대 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "jutaegrimodelring-gaeryang-jageumdaecul__pref__1",
-      "label": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
+      "label": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타",
-        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (KB스타클럽(골드스타 이상), 비거치식 장기분할상환대출(10년 이상) 등)",
+        "name": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타",
+        "condition_description": "- **영업점 우대금리**: 최고 연 0.3%p (큽스타클럽(골드스타 이상), 비거치식 장기분할상환대출(10년 이상) 등)",
         "size": 5.277777777777778
       }
     },
@@ -14485,13 +14485,13 @@
     },
     {
       "id": "jutaegsincugjageumdaecul__pref__1",
-      "label": "- **영업점 우대**: 최고 연 0.3%p (KB스타클럽(로얄스타 이상",
+      "label": "- **영업점 우대**: 최고 연 0.3%p (큽스타클럽(로얄스타 이상",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.3,
-        "name": "- **영업점 우대**: 최고 연 0.3%p (KB스타클럽(로얄스타 이상",
-        "condition_description": "- **영업점 우대**: 최고 연 0.3%p (KB스타클럽(로얄스타 이상))",
+        "name": "- **영업점 우대**: 최고 연 0.3%p (큽스타클럽(로얄스타 이상",
+        "condition_description": "- **영업점 우대**: 최고 연 0.3%p (큽스타클럽(로얄스타 이상))",
         "size": 5.277777777777778
       }
     },
@@ -14576,11 +14576,11 @@
     },
     {
       "id": "tojibunyangjageumdaecul__feat__kbgugmineunhaenggwa-hyeobyageul-cegyeolhan-bunyanggigwanyi-bunyanggyeyagja-daesang-jiweon",
-      "label": "KB국민은행과 협약을 체결한 분양기관의 분양계약자 대상 지원",
+      "label": "큽 금융과 협약을 체결한 분양기관의 분양계약자 대상 지원",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "KB국민은행과 협약을 체결한 분양기관의 분양계약자 대상 지원",
+        "name": "큽 금융과 협약을 체결한 분양기관의 분양계약자 대상 지원",
         "description": "",
         "size": 5.277777777777778
       }
@@ -14629,20 +14629,20 @@
       "data": {
         "rate_value_pp": 0.9,
         "name": "- **실적연동 우대금리**: 최고 연 0.9% (신용카드 이용실적, 급",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9% (신용카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, KB스타뱅킹 이용실적 등)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9% (신용카드 이용실적, 급여(연금)이체 실적, 자동이체 거래실적, 모바일뱅킹 이용실적 등)",
         "size": 5.277777777777778
       }
     },
     {
       "id": "teugpan-kb-deundeun-jeonsegeumansimdaecul",
-      "label": "KB 전세금안심대출",
+      "label": "큽 전세금안심대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 전세금안심대출",
+        "name": "큽 전세금안심대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주로서 주택도시보증공사의 보증 가입이 가능하고 특정 조건을 충족하는 고객",
@@ -14698,13 +14698,13 @@
     },
     {
       "id": "teugpan-kb-deundeun-jeonsegeumansimdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드 이용실적",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드 이용실적",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드 이용실적",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드 이용실적에 따라)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드 이용실적",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드 이용실적에 따라)",
         "size": 5.277777777777778
       }
     },
@@ -14722,13 +14722,13 @@
     },
     {
       "id": "teugpan-kb-deundeun-jeonsegeumansimdaecul__pref__2",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.1%p (KB스타뱅킹을 통한 이체실적)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.1%p (모바일뱅킹을 통한 이체실적)",
         "size": 5.277777777777778
       }
     },
@@ -14770,14 +14770,14 @@
     },
     {
       "id": "teugpan-kb-deundeun-jutaegjeonsejageumdaecul",
-      "label": "KB 든든 주택전세자금대출",
+      "label": "큽 든든 주택전세자금대출",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 든든 주택전세자금대출",
+        "name": "큽 든든 주택전세자금대출",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주 또는 세대주로 인정되는 자로서 '주택금융신용보증서'가 발급되는 고객으로서 아래의 사항을 모두 충족하는 고객",
@@ -14855,13 +14855,13 @@
     },
     {
       "id": "teugpan-kb-deundeun-jutaegjeonsejageumdaecul__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용)",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (KB국민카드(신용) 이용실적 우대)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용)",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9%p (큽카드(신용) 이용실적 우대)",
         "size": 5.277777777777778
       }
     },
@@ -14891,14 +14891,14 @@
     },
     {
       "id": "teugpan-kb-deundeun-peulreoseu-jeonsejageumdaecul-singyuimcajageum",
-      "label": "KB 든든 플러스 전세자금대출(신규임차자금)",
+      "label": "큽 든든 플러스 전세자금대출(신규임차자금)",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "loan",
         "amount_max_raw": "",
-        "name": "KB 든든 플러스 전세자금대출(신규임차자금)",
+        "name": "큽 든든 플러스 전세자금대출(신규임차자금)",
         "description": "",
         "category": "전월세대출",
         "eligibility_summary": "민법상 성년인 세대주(단독세대주 포함)이며 '서울보증보험증권'이 발급되는 고객으로서 특정 조건을 충족해야 합니다.",
@@ -14965,13 +14965,13 @@
     },
     {
       "id": "teugpan-kb-deundeun-peulreoseu-jeonsejageumdaecul-singyuimcajageum__pref__0",
-      "label": "- **실적연동 우대금리**: 최고 연 0.9% (KB국민카드 이용실적에",
+      "label": "- **실적연동 우대금리**: 최고 연 0.9% (큽카드 이용실적에",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.9,
-        "name": "- **실적연동 우대금리**: 최고 연 0.9% (KB국민카드 이용실적에",
-        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9% (KB국민카드 이용실적에 따라)",
+        "name": "- **실적연동 우대금리**: 최고 연 0.9% (큽카드 이용실적에",
+        "condition_description": "- **실적연동 우대금리**: 최고 연 0.9% (큽카드 이용실적에 따라)",
         "size": 5.277777777777778
       }
     },
@@ -15001,13 +15001,13 @@
     },
     {
       "id": "teugpan-kb-deundeun-peulreoseu-jeonsejageumdaecul-singyuimcajageum__pref__3",
-      "label": "- **KB스타뱅킹 이용실적 우대**: 연 0.1% (이체실적이 있는 경",
+      "label": "- **모바일뱅킹 이용실적 우대**: 연 0.1% (이체실적이 있는 경",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 0.1,
-        "name": "- **KB스타뱅킹 이용실적 우대**: 연 0.1% (이체실적이 있는 경",
-        "condition_description": "- **KB스타뱅킹 이용실적 우대**: 연 0.1% (이체실적이 있는 경우)",
+        "name": "- **모바일뱅킹 이용실적 우대**: 연 0.1% (이체실적이 있는 경",
+        "condition_description": "- **모바일뱅킹 이용실적 우대**: 연 0.1% (이체실적이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -15458,11 +15458,11 @@
     },
     {
       "id": "kb-gs-paytongjang__feat__jadongjeonhwan-sangpum-juyohyetaeg-kbseutatongjang-kbjonghabtongjang",
-      "label": "자동전환 상품 주요혜택: KB스타통장, KB종합통장",
+      "label": "자동전환 상품 주요혜택: 큽스타통장, 큽종합통장",
       "type": "feature",
       "group": 3,
       "data": {
-        "name": "자동전환 상품 주요혜택: KB스타통장, KB종합통장",
+        "name": "자동전환 상품 주요혜택: 큽스타통장, 큽종합통장",
         "description": "",
         "size": 5.277777777777778
       }
@@ -15535,13 +15535,13 @@
     },
     {
       "id": "kbmoimgeumgo__pref__0",
-      "label": "- **우대금리**: 연 2% (KB모임통장 서비스에 참여 중인 모임원이",
+      "label": "- **우대금리**: 연 2% (큽모임통장 서비스에 참여 중인 모임원이",
       "type": "preferentialrate",
       "group": 11,
       "data": {
         "rate_value_pp": 2.0,
-        "name": "- **우대금리**: 연 2% (KB모임통장 서비스에 참여 중인 모임원이",
-        "condition_description": "- **우대금리**: 연 2% (KB모임통장 서비스에 참여 중인 모임원이 있는 경우)",
+        "name": "- **우대금리**: 연 2% (큽모임통장 서비스에 참여 중인 모임원이",
+        "condition_description": "- **우대금리**: 연 2% (큽모임통장 서비스에 참여 중인 모임원이 있는 경우)",
         "size": 5.277777777777778
       }
     },
@@ -15745,14 +15745,14 @@
     },
     {
       "id": "kb-teughan-jeoggeum",
-      "label": "KB 특★한 적금",
+      "label": "큽 특★한 적금",
       "type": "product",
       "group": 0,
       "data": {
         "page_url": "",
         "product_type": "savings",
         "amount_max_raw": "",
-        "name": "KB 특★한 적금",
+        "name": "큽 특★한 적금",
         "description": "",
         "category": "적금",
         "eligibility_summary": "실명의 개인(1인3계좌), 개인사업자, 임의단체 및 공동명의 가입불가",
@@ -16299,7 +16299,7 @@
     },
     {
       "source": "kb-maejigkadaecul-junggoca-gumaeyong",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -16665,7 +16665,7 @@
     },
     {
       "source": "kb-bisanggeumdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -16713,7 +16713,7 @@
     },
     {
       "source": "kb-saehyimangholssiii",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -17379,7 +17379,7 @@
     },
     {
       "source": "kb-jutaegguibjageumdaecul-jibdan-ibjujangeumdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -17997,7 +17997,7 @@
     },
     {
       "source": "kb-ceongnyeon-majcumhyeong-jeonsejageumdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -18147,7 +18147,7 @@
     },
     {
       "source": "kb-ceongyag-jutaegjonghabjeocug-dambodaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -18231,7 +18231,7 @@
     },
     {
       "source": "kb-cinhwangyeong-maejigkadaecul-sinca-gumaeyong",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -18543,7 +18543,7 @@
     },
     {
       "source": "kbseuta-sinyongdaecul-singyu",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -18615,7 +18615,7 @@
     },
     {
       "source": "kbseuta-sinyongdaeculii-singyu",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -18711,7 +18711,7 @@
     },
     {
       "source": "kbseuta-apateudambodaecul-jutaegjageum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -18759,7 +18759,7 @@
     },
     {
       "source": "kbseuta-usugeorae-sinyongdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -19221,7 +19221,7 @@
     },
     {
       "source": "danghaeng-yebujeoggeum-deung-susingeumriyeondongdambodaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -20781,7 +20781,7 @@
     },
     {
       "source": "kb-gs-paytongjang",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -20811,7 +20811,7 @@
     },
     {
       "source": "kb-star-jeonggiyegeum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -20949,7 +20949,7 @@
     },
     {
       "source": "kb-young-youth-tongjang",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -21051,7 +21051,7 @@
     },
     {
       "source": "kbmoimgeumgo",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -21117,7 +21117,7 @@
     },
     {
       "source": "kbsaenggyebigyejwa",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -21177,7 +21177,7 @@
     },
     {
       "source": "kbseutatongjang",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -21291,7 +21291,7 @@
     },
     {
       "source": "one-kb-saeobjatongjang",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -21651,7 +21651,7 @@
     },
     {
       "source": "kb-young-youth-jeoggeum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -21705,7 +21705,7 @@
     },
     {
       "source": "kb-teug-han-jeoggeum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -21873,7 +21873,7 @@
     },
     {
       "source": "kbnamanyi-jeoggeum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -22191,7 +22191,7 @@
     },
     {
       "source": "kbseuta-geongangjeoggeum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -22275,7 +22275,7 @@
     },
     {
       "source": "kbaisarangjeoggeum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -22365,7 +22365,7 @@
     },
     {
       "source": "kbjangbyeongnaeiljunbijeoggeum",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -22419,7 +22419,7 @@
     },
     {
       "source": "jutaegceongyagjonghabjeocug",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -22521,7 +22521,7 @@
     },
     {
       "source": "ceongnyeon-jutaegdeurim-ceongyagtongjang",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -22827,7 +22827,7 @@
     },
     {
       "source": "kb-4daeyeongeum-sinyongdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -23277,7 +23277,7 @@
     },
     {
       "source": "kb-i-star-jigjangin-sinyongdaecul-bonbuseungindaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -23493,7 +23493,7 @@
     },
     {
       "source": "kb-gongmuweonudaedaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -24027,7 +24027,7 @@
     },
     {
       "source": "kb-i-star-jigjanginhaengbogsinyongdaecul-2019-02-27-panmaejungdan",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -24261,7 +24261,7 @@
     },
     {
       "source": "kb-star-club-sinyongdaecul-2025-11-14-panmaejungdan",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -24435,7 +24435,7 @@
     },
     {
       "source": "kb-maejigkadaecul-gijon-sincahalbu-daehwanyong",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -24513,7 +24513,7 @@
     },
     {
       "source": "kb-maejigkadaecul-gijon-junggocahalbu-daehwanyong",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -24549,7 +24549,7 @@
     },
     {
       "source": "kb-maejigkadaecul-sinca-gumaeyong",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -24777,7 +24777,7 @@
     },
     {
       "source": "kb-star-sinyongdaecul-2021-08-30-panmaejungdan",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -25275,7 +25275,7 @@
     },
     {
       "source": "kb-gamaengjeomdaepyo-sinyongdaecul-2021-03-30-panmaejungdan",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -26607,7 +26607,7 @@
     },
     {
       "source": "kb-gugminonedaecul-2025-11-14-panmaejungdan",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -27081,7 +27081,7 @@
     },
     {
       "source": "kb-gugminhaengbog-sinyongdaecul-2020-5-29-panmaejungdan",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -28077,7 +28077,7 @@
     },
     {
       "source": "kb-guninyeongeum-hyeobyagdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -28461,7 +28461,7 @@
     },
     {
       "source": "kb-geumyungjeonmunin-udaedaecul-2019-09-27-panmaejungdan",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -29685,7 +29685,7 @@
     },
     {
       "source": "kb-saeobjadeundeun-sinyongdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -29967,7 +29967,7 @@
     },
     {
       "source": "kb-saisdol-junggeumridaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -30387,7 +30387,7 @@
     },
     {
       "source": "kb-jehyu-daehwan-sinyongdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -30975,7 +30975,7 @@
     },
     {
       "source": "kb-ceoeumeasy-sinyongdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -32283,7 +32283,7 @@
     },
     {
       "source": "kbdagteoron",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -32415,7 +32415,7 @@
     },
     {
       "source": "kbroieoron",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -32535,7 +32535,7 @@
     },
     {
       "source": "kbsaribhaggyogyojigweonudaedaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -32673,7 +32673,7 @@
     },
     {
       "source": "kbseuta-sinyongdaecul-galatagi",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -32829,7 +32829,7 @@
     },
     {
       "source": "kbseuta-jeonsejageumdaecul-hf-hangugjutaeggeumyunggongsa",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -32949,7 +32949,7 @@
     },
     {
       "source": "kbseuta-jeonsejageumdaecul-hug-jutaegdosibojeunggongsa",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -33075,7 +33075,7 @@
     },
     {
       "source": "kbseuta-jeonsejageumdaecul-sgi-seoulbojeungboheom",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -33219,7 +33219,7 @@
     },
     {
       "source": "kbseuta-jeonsejageumdaecul-galatagi-hf-hangugjutaeggeumyunggongsa",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -33357,7 +33357,7 @@
     },
     {
       "source": "kbseuta-jeonsejageumdaecul-galatagi-hug-jutaegdosibojeunggongsa",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -33477,7 +33477,7 @@
     },
     {
       "source": "kbseuta-jeonsejageumdaecul-galatagi-sgi-seoulbojeungboheom",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -33975,7 +33975,7 @@
     },
     {
       "source": "kt-gwanryeon-jaejigjigweone-daehan-daecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -34071,7 +34071,7 @@
     },
     {
       "source": "gongmuweon-yeongeumsugeubgweonja-sinyongdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -34497,7 +34497,7 @@
     },
     {
       "source": "guninsaenghwalanjeongjageumdaecul-kb-i-star-guninsaenghwalanjeongjageumdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -36465,7 +36465,7 @@
     },
     {
       "source": "ansimjeonhwandaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -36543,7 +36543,7 @@
     },
     {
       "source": "eiseu-ace-jeonmunjig-mubojeungdaecul",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -37323,7 +37323,7 @@
     },
     {
       "source": "jeonsebojeunggeumbanhwanbojeung-dandog",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
@@ -37653,7 +37653,7 @@
     },
     {
       "source": "jeonsejikimbojeung",
-      "target": "channel__스타뱅킹",
+      "target": "channel__모바일뱅킹",
       "type": "AVAILABLE_VIA",
       "value": 1.0
     },
