@@ -92,12 +92,14 @@ def _make_tools(db: Any, api_key: str | None = None) -> list:
 
     @tool
     def query_graph(question: str) -> str:
-        """Neo4j 지식그래프에 자연어로 질문합니다. Cypher 쿼리를 자동 생성하여 실행합니다."""
+        """[기본 검색 도구] 금융상품 지식그래프에 자연어로 질문합니다. 상품명, 금리, 기간, 우대조건, 가입자격 등 모든 정보를 동적으로 조회합니다.
+        상품 검색, 금리 비교, 조건별 필터링 등 데이터 조회가 필요한 모든 질문에 이 도구를 우선 사용하세요.
+        Cypher 쿼리를 자동 생성하여 실행하므로 어떤 복합 조건도 처리 가능합니다."""
         return query_knowledge_graph.invoke({"question": question, "db": db, "llm": _cypher_llm})
 
     @tool
     def search_products(query: str) -> str:
-        """상품을 검색합니다. 예금, 적금, 대출 등 모든 금융상품을 검색합니다."""
+        """[보조] 키워드 기반 예금/적금 상품 검색. query_graph로 결과가 부족할 때 보조로 사용합니다."""
         return graph_rag.search_products.invoke({"query": query, "db": db})
 
     @tool
@@ -180,15 +182,17 @@ def _make_tools(db: Any, api_key: str | None = None) -> list:
         return content[:2000]
 
     return [
+        # 기본 검색 도구 (Text2Cypher) — 최우선 사용
+        query_graph,
+        # 보조 검색 도구 (하드코딩 Cypher)
         search_products, get_product_detail, list_products_by_category,
         compare_products, check_eligibility,
         search_loan_products, get_loan_product_detail, get_loan_rates,
+        # 계산 도구
         calculate_loan_payment, calculate_deposit_maturity,
         get_regulation_info,
-        # PR #1 DSR/LTV/모기지 계산기 (정교한 규제 반영)
         calculate_dsr, calculate_max_mortgage_by_dsr,
         calculate_ltv_limit, calculate_mortgage_limit,
-        query_graph,
     ]
 
 
