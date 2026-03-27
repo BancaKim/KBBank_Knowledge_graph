@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { API_BASE } from "../config";
 
 const genId = (): string =>
@@ -756,7 +757,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
                   <div className="assistant-avatar">큽</div>
                 )}
                 <div className={`bubble bubble--${msg.role}`}>
-                  <Markdown>{msg.content}</Markdown>
+                  <Markdown remarkPlugins={[remarkGfm]}>{msg.content}</Markdown>
                 </div>
               </div>
 
