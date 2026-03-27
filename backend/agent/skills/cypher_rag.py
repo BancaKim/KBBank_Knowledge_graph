@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 # Graph Schema — LLM에게 제공하는 스키마 정보
 # ---------------------------------------------------------------------------
 
-GRAPH_SCHEMA = """\
-## KB국민은행 금융상품 지식그래프 스키마
+DEPOSIT_SCHEMA = """\
+## KB국민은행 금융상품 지식그래프 스키마 (예금)
 
 ### 예금 상품 노드
 - (:Product {id, name, product_type, description, amount_max_raw, amount_max_won, eligibility_summary, page_url})
@@ -39,19 +39,6 @@ GRAPH_SCHEMA = """\
 - (:Benefit {id, benefit_type, name, description})
 - (:ProductType {id, name})
 
-### 대출 상품 노드
-- (:LoanProduct {id, name, loan_type, description, amount_max_raw, eligibility_summary, rate_cut_request_available, contract_withdrawal_available, illegal_contract_termination})
-  — loan_type: credit(신용)/secured(담보)/jeonse(전세)/auto(자동차)
-- (:LoanCategory {id, name})  — 예: 신용대출, 주택담보대출, 전월세보증금대출
-- (:LoanRate {id, rate_type, min_rate, max_rate, base_rate_name, spread})
-  — base_rate_name: CD91일물, COFIX신규, COFIX잔액, 금융채6개월, 금융채12개월
-- (:LoanTerm {id, min_months, max_months, raw_text})
-- (:LoanEligibility {id, description, target_audience})
-- (:RepaymentMethod {id, name, description})  — 예: 원리금균등분할상환, 원금균등분할상환, 만기일시상환
-- (:LoanFee {id, fee_type, description})  — fee_type: early_repayment/incidental
-- (:LoanPreferentialRate {id, name, condition_description, rate_value_pp})
-- (:Collateral {id, collateral_type, description})
-
 ### 관계 (예금)
 (:Product)-[:BELONGS_TO]->(:Category)
 (:Product)-[:HAS_RATE]->(:InterestRate)
@@ -67,6 +54,26 @@ GRAPH_SCHEMA = """\
 (:Product)-[:COMPETES_WITH]->(:Product)
 (:ParentCategory)-[:HAS_SUBCATEGORY]->(:Category)
 
+### 풀텍스트 인덱스 (예금)
+- 'product_search' on Product(name, description) — CJK analyzer
+"""
+
+LOAN_SCHEMA = """\
+## KB국민은행 금융상품 지식그래프 스키마 (대출)
+
+### 대출 상품 노드
+- (:LoanProduct {id, name, loan_type, description, amount_max_raw, eligibility_summary, rate_cut_request_available, contract_withdrawal_available, illegal_contract_termination})
+  — loan_type: credit(신용)/secured(담보)/jeonse(전세)/auto(자동차)
+- (:LoanCategory {id, name})  — 예: 신용대출, 주택담보대출, 전월세보증금대출
+- (:LoanRate {id, rate_type, min_rate, max_rate, base_rate_name, spread})
+  — base_rate_name: CD91일물, COFIX신규, COFIX잔액, 금융채6개월, 금융채12개월
+- (:LoanTerm {id, min_months, max_months, raw_text})
+- (:LoanEligibility {id, description, target_audience})
+- (:RepaymentMethod {id, name, description})  — 예: 원리금균등분할상환, 원금균등분할상환, 만기일시상환
+- (:LoanFee {id, fee_type, description})  — fee_type: early_repayment/incidental
+- (:LoanPreferentialRate {id, name, condition_description, rate_value_pp})
+- (:Collateral {id, collateral_type, description})
+
 ### 관계 (대출)
 (:LoanProduct)-[:BELONGS_TO]->(:LoanCategory)
 (:LoanProduct)-[:HAS_RATE]->(:LoanRate)
@@ -78,10 +85,11 @@ GRAPH_SCHEMA = """\
 (:LoanProduct)-[:HAS_PREFERENTIAL_RATE]->(:LoanPreferentialRate)
 (:LoanProduct)-[:SECURED_BY]->(:Collateral)
 
-### 풀텍스트 인덱스
-- 'product_search' on Product(name, description) — CJK analyzer
+### 풀텍스트 인덱스 (대출)
 - 'loan_product_search' on LoanProduct(name, description) — CJK analyzer
 """
+
+GRAPH_SCHEMA = DEPOSIT_SCHEMA + "\n\n" + LOAN_SCHEMA  # backward compat
 
 # ---------------------------------------------------------------------------
 # Few-shot Cypher 예시 — 질문 유형별 대표 패턴
@@ -259,12 +267,28 @@ def _extract_cypher(llm_output: str) -> str:
     return text
 
 
-def _generate_cypher(llm: Any, question: str) -> str:
+def _detect_domain(question: str) -> str:
+    """질문에서 예금/대출 도메인을 감지."""
+    loan_keywords = {"대출", "담보", "LTV", "DSR", "상환", "신용대출", "전세대출", "주담대", "모기지", "자동차대출"}
+    deposit_keywords = {"예금", "적금", "정기예금", "저축", "입출금", "청약", "예금자보호", "비과세", "만기"}
+    q = question.lower()
+    has_loan = any(kw in q for kw in loan_keywords)
+    has_deposit = any(kw in q for kw in deposit_keywords)
+    if has_loan and not has_deposit:
+        return "loan"
+    if has_deposit and not has_loan:
+        return "deposit"
+    return "both"
+
+
+def _generate_cypher(llm: Any, question: str, domain: str = "both") -> str:
     """LLM을 사용하여 자연어 → Cypher 변환."""
     from langchain_core.messages import HumanMessage, SystemMessage
 
+    schema = {"deposit": DEPOSIT_SCHEMA, "loan": LOAN_SCHEMA, "both": GRAPH_SCHEMA}[domain]
+
     system = CYPHER_SYSTEM_PROMPT.format(
-        schema=GRAPH_SCHEMA,
+        schema=schema,
         examples=_build_examples_text(),
     )
 
@@ -401,10 +425,11 @@ def query_knowledge_graph(question: str, db=None, llm=None) -> str:
     if llm is None:
         return "LLM 연결이 필요합니다."
 
-    # Step 1: Cypher 생성
+    # Step 1: 도메인 감지 + Cypher 생성
+    domain = _detect_domain(question)
     try:
-        cypher = _generate_cypher(llm, question)
-        logger.info("Generated Cypher: %s", cypher)
+        cypher = _generate_cypher(llm, question, domain=domain)
+        logger.info("Generated Cypher (domain=%s): %s", domain, cypher)
     except Exception as e:
         logger.warning("Cypher generation failed: %s", e)
         return _fulltext_fallback(db, question)
@@ -414,6 +439,10 @@ def query_knowledge_graph(question: str, db=None, llm=None) -> str:
         results = _execute_cypher(db, cypher)
         if results:
             return _format_results(results, cypher)
+        else:
+            # Cypher가 정상 실행됐지만 매칭 데이터 없음 — fallback 불필요
+            logger.info("Cypher returned no results (domain=%s): %s", domain, cypher)
+            return f"검색 조건에 맞는 상품을 찾지 못했습니다. (실행된 쿼리: {cypher[:100]}...)"
     except Exception as e:
         logger.warning("Cypher execution failed: %s (query: %s)", e, cypher)
 
@@ -424,9 +453,12 @@ def query_knowledge_graph(question: str, db=None, llm=None) -> str:
             results2 = _execute_cypher(db, cypher2)
             if results2:
                 return _format_results(results2, cypher2)
+            else:
+                logger.info("Retry Cypher also returned no results: %s", cypher2)
+                return f"검색 조건에 맞는 상품을 찾지 못했습니다. (실행된 쿼리: {cypher2[:100]}...)"
         except Exception as e2:
             logger.warning("Cypher retry failed: %s", e2)
 
-    # Step 4: 풀텍스트 fallback
+    # Step 4: 풀텍스트 fallback (실행 오류 발생 시에만 도달)
     logger.info("Falling back to fulltext search for: %s", question)
     return _fulltext_fallback(db, question)
