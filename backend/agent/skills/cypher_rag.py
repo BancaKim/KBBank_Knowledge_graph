@@ -199,6 +199,29 @@ FEW_SHOT_EXAMPLES = [
             "ORDER BY score DESC LIMIT 5"
         ),
     },
+    {
+        "question": "자동차대출 상품과 금리",
+        "cypher": (
+            "MATCH (lp:LoanProduct)-[:HAS_RATE]->(lr:LoanRate) "
+            "WHERE lp.loan_type = 'auto' "
+            "OPTIONAL MATCH (lp)-[:SECURED_BY]->(col:Collateral) "
+            "RETURN lp.name AS 상품명, lr.base_rate_name AS 기준금리, "
+            "lr.min_rate AS 최저금리, lr.max_rate AS 최고금리, "
+            "col.description AS 담보조건 "
+            "ORDER BY lr.min_rate"
+        ),
+    },
+    {
+        "question": "예금담보대출 상품",
+        "cypher": (
+            "CALL db.index.fulltext.queryNodes('loan_product_search', '예금담보 예적금담보 유가증권담보') "
+            "YIELD node, score "
+            "OPTIONAL MATCH (node)-[:HAS_RATE]->(lr:LoanRate) "
+            "RETURN node.name AS 상품명, node.description AS 설명, "
+            "lr.min_rate AS 최저금리, lr.max_rate AS 최고금리, score "
+            "ORDER BY score DESC LIMIT 5"
+        ),
+    },
 ]
 
 # ---------------------------------------------------------------------------
