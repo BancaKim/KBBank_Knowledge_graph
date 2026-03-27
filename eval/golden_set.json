@@ -1,0 +1,272 @@
+[
+  {
+    "id": "D01",
+    "domain": "deposit",
+    "difficulty": "easy",
+    "question": "정기예금 상품 알려줘",
+    "required_elements": ["상품명", "금리 수치", "가입기간", "예금자보호"],
+    "forbidden_elements": ["대출", "상환", "LTV"],
+    "tool_expected": ["search_products"]
+  },
+  {
+    "id": "D02",
+    "domain": "deposit",
+    "difficulty": "easy",
+    "question": "적금이랑 예금 차이가 뭐야?",
+    "required_elements": ["적금 설명", "예금 설명", "차이점"],
+    "forbidden_elements": [],
+    "tool_expected": []
+  },
+  {
+    "id": "D03",
+    "domain": "deposit",
+    "difficulty": "medium",
+    "question": "비과세종합저축 가입 가능한 상품이 뭐가 있어?",
+    "required_elements": ["비과세종합저축 설명", "대상 상품명", "가입자격(만65세 이상 등)"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_products", "query_graph"]
+  },
+  {
+    "id": "D04",
+    "domain": "deposit",
+    "difficulty": "medium",
+    "question": "3000만원을 1년 정기예금에 넣으면 세후 얼마 받아?",
+    "required_elements": ["금리 수치", "세전이자", "세후이자", "만기수령액", "일반과세 15.4%"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_products", "calculate_deposit_maturity"]
+  },
+  {
+    "id": "D05",
+    "domain": "deposit",
+    "difficulty": "medium",
+    "question": "우대금리 조건이 가장 좋은 적금 추천해줘",
+    "required_elements": ["상품명", "우대금리 조건 목록", "최대 우대금리"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_products", "get_product_detail"]
+  },
+  {
+    "id": "D06",
+    "domain": "deposit",
+    "difficulty": "hard",
+    "question": "월 100만원씩 3년 적금 vs 3600만원 1년 정기예금 3번 반복, 뭐가 이익이야?",
+    "required_elements": ["적금 수익 계산", "정기예금 반복 수익 계산", "비교 결과", "세후 기준"],
+    "forbidden_elements": [],
+    "tool_expected": ["calculate_deposit_maturity", "search_products"]
+  },
+  {
+    "id": "D07",
+    "domain": "deposit",
+    "difficulty": "hard",
+    "question": "스타뱅킹에서만 가입 가능한 예금 상품 중 금리가 가장 높은 건?",
+    "required_elements": ["채널 필터(스타뱅킹)", "상품명", "금리 수치"],
+    "forbidden_elements": [],
+    "tool_expected": ["query_graph", "search_products"]
+  },
+  {
+    "id": "D08",
+    "domain": "deposit",
+    "difficulty": "easy",
+    "question": "예금자보호가 뭐야?",
+    "required_elements": ["예금보험공사", "1인당 5천만원", "보호 범위"],
+    "forbidden_elements": [],
+    "tool_expected": []
+  },
+  {
+    "id": "D09",
+    "domain": "deposit",
+    "difficulty": "medium",
+    "question": "주택청약 상품 종류와 차이점 알려줘",
+    "required_elements": ["청약 상품명", "가입조건", "금리"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_products", "list_products_by_category"]
+  },
+  {
+    "id": "D10",
+    "domain": "deposit",
+    "difficulty": "hard",
+    "question": "만 62세 은퇴자입니다. 퇴직금 2억으로 이자 생활 하려면 어떤 상품 조합이 좋을까요?",
+    "required_elements": ["분산 투자 제안", "예금자보호 한도 고려(5천만원)", "세제혜택", "월 이자 수령 가능 상품"],
+    "forbidden_elements": ["대출 권유"],
+    "tool_expected": ["search_products", "calculate_deposit_maturity"]
+  },
+  {
+    "id": "L01",
+    "domain": "loan",
+    "difficulty": "easy",
+    "question": "신용대출 금리 알려줘",
+    "required_elements": ["상품명", "금리 수치", "기준금리 유형(CD/금융채)"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_loan_products"]
+  },
+  {
+    "id": "L02",
+    "domain": "loan",
+    "difficulty": "easy",
+    "question": "대출 상환방법 종류 알려줘",
+    "required_elements": ["원리금균등", "원금균등", "만기일시상환", "각 특징"],
+    "forbidden_elements": [],
+    "tool_expected": []
+  },
+  {
+    "id": "L03",
+    "domain": "loan",
+    "difficulty": "medium",
+    "question": "연봉 5000만원인데 신용대출 얼마까지 가능해?",
+    "required_elements": ["DSR 기반 계산", "한도 금액", "금리 범위"],
+    "forbidden_elements": [],
+    "tool_expected": ["calculate_dsr", "search_loan_products"]
+  },
+  {
+    "id": "L04",
+    "domain": "loan",
+    "difficulty": "medium",
+    "question": "전세대출 받으려면 어떤 조건이 필요해?",
+    "required_elements": ["전세대출 상품명", "보증기관(SGI/HF/HUG)", "가입자격", "한도"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_loan_products", "get_loan_product_detail"]
+  },
+  {
+    "id": "L05",
+    "domain": "loan",
+    "difficulty": "medium",
+    "question": "CD금리랑 COFIX금리 차이가 뭐야? 어떤 게 유리해?",
+    "required_elements": ["CD91일물 설명", "COFIX 설명", "변동주기 차이", "장단점"],
+    "forbidden_elements": [],
+    "tool_expected": ["get_loan_rates"]
+  },
+  {
+    "id": "L06",
+    "domain": "loan",
+    "difficulty": "hard",
+    "question": "연봉 6000만원이고 9억 아파트를 수도권에서 사려고해. 생애최초야. 대출 얼마까지 돼?",
+    "required_elements": ["LTV 한도(생애최초 70%)", "DSR 한도(40%)", "스트레스DSR", "최종한도=min(LTV,DSR)", "월상환액"],
+    "forbidden_elements": ["LTV 40%~70% 같은 부정확한 범위"],
+    "tool_expected": ["calculate_mortgage_limit", "get_regulation_info"]
+  },
+  {
+    "id": "L07",
+    "domain": "loan",
+    "difficulty": "hard",
+    "question": "2억 대출을 30년 원리금균등으로 갚으면 총 이자가 얼마야? 20년이랑 비교해줘",
+    "required_elements": ["30년 월상환액", "30년 총이자", "20년 월상환액", "20년 총이자", "비교"],
+    "forbidden_elements": [],
+    "tool_expected": ["calculate_loan_payment"]
+  },
+  {
+    "id": "L08",
+    "domain": "loan",
+    "difficulty": "hard",
+    "question": "기존에 신용대출 3000만원(4.5%, 5년 남음) 있는데 주담대 추가로 얼마까지 가능해? 연봉 7000, 서울 12억 아파트",
+    "required_elements": ["기존 DSR 반영", "LTV 한도", "DSR 한도", "기존대출 차감", "최종 추가 가능 금액"],
+    "forbidden_elements": [],
+    "tool_expected": ["calculate_mortgage_limit", "calculate_dsr"]
+  },
+  {
+    "id": "L09",
+    "domain": "loan",
+    "difficulty": "medium",
+    "question": "중도상환수수료가 뭐야? 언제 면제돼?",
+    "required_elements": ["중도상환수수료 설명", "면제 조건(3년 경과 등)", "계산 방식"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_loan_products"]
+  },
+  {
+    "id": "L10",
+    "domain": "loan",
+    "difficulty": "easy",
+    "question": "금리인하요구권이 뭐야?",
+    "required_elements": ["금리인하요구권 설명", "신용상태 개선 시", "요청 방법"],
+    "forbidden_elements": [],
+    "tool_expected": []
+  },
+  {
+    "id": "L11",
+    "domain": "loan",
+    "difficulty": "hard",
+    "question": "자동차 살건데 5000만원 대출 가능해? 금리랑 조건 알려줘",
+    "required_elements": ["자동차대출 상품명", "금리", "한도", "담보조건(보증보험)"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_loan_products", "get_loan_product_detail"]
+  },
+  {
+    "id": "L12",
+    "domain": "loan",
+    "difficulty": "hard",
+    "question": "변동금리 vs 혼합금리 vs 고정금리 중 지금 시점에서 뭐가 유리해?",
+    "required_elements": ["각 금리유형 설명", "현재 금리 수준 언급", "장단점 비교"],
+    "forbidden_elements": ["단정적 추천"],
+    "tool_expected": ["get_loan_rates", "get_regulation_info"]
+  },
+  {
+    "id": "L13",
+    "domain": "loan",
+    "difficulty": "medium",
+    "question": "담보대출 LTV가 뭔지 쉽게 설명해줘",
+    "required_elements": ["LTV 정의", "예시(아파트 시세 대비 %)", "지역별 차이"],
+    "forbidden_elements": [],
+    "tool_expected": []
+  },
+  {
+    "id": "L14",
+    "domain": "loan",
+    "difficulty": "hard",
+    "question": "DSR 40% 규제 때문에 한도가 부족한데, 한도를 늘리는 방법이 있어?",
+    "required_elements": ["상환기간 연장", "금리유형 변경", "기존대출 상환", "공동명의", "소득 증빙 추가"],
+    "forbidden_elements": [],
+    "tool_expected": ["get_regulation_info"]
+  },
+  {
+    "id": "L15",
+    "domain": "loan",
+    "difficulty": "medium",
+    "question": "전세대출 만기 연장은 어떻게 해?",
+    "required_elements": ["만기 연장 절차", "필요 서류", "연장 가능 횟수/기간"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_loan_products"]
+  },
+  {
+    "id": "X01",
+    "domain": "cross",
+    "difficulty": "hard",
+    "question": "여유자금 1억이 있어. 5000만원은 예금, 5000만원은 대출 상환에 쓰려는데 어떤 게 이익이야?",
+    "required_elements": ["예금 이자 수익 계산", "대출 이자 절감 계산", "비교 결과", "세후 기준"],
+    "forbidden_elements": [],
+    "tool_expected": ["calculate_deposit_maturity", "calculate_loan_payment"]
+  },
+  {
+    "id": "X02",
+    "domain": "cross",
+    "difficulty": "hard",
+    "question": "내년에 내 정기예금 5000만원이 만기야. 그걸로 전세대출 일부 상환하는 게 나을까, 재예치하는 게 나을까?",
+    "required_elements": ["예금 재예치 수익", "대출 상환 이자 절감", "비교", "중도상환수수료 고려"],
+    "forbidden_elements": [],
+    "tool_expected": ["calculate_deposit_maturity", "calculate_loan_payment", "search_loan_products"]
+  },
+  {
+    "id": "X03",
+    "domain": "cross",
+    "difficulty": "medium",
+    "question": "정기예금을 담보로 대출받을 수 있어?",
+    "required_elements": ["예금담보대출 설명", "금리 우대", "한도(예금액의 90~95%)"],
+    "forbidden_elements": [],
+    "tool_expected": ["search_loan_products"]
+  },
+  {
+    "id": "X04",
+    "domain": "cross",
+    "difficulty": "hard",
+    "question": "30대 직장인 연봉 5000. 3년 안에 아파트 사려면 적금으로 얼마씩 모아야 하고, 대출은 얼마까지 가능해?",
+    "required_elements": ["적금 추천", "월 저축액 계산", "3년 후 목돈", "대출 가능 한도(LTV+DSR)", "총 매입 가능 금액"],
+    "forbidden_elements": [],
+    "tool_expected": ["calculate_deposit_maturity", "calculate_mortgage_limit", "search_products"]
+  },
+  {
+    "id": "X05",
+    "domain": "cross",
+    "difficulty": "medium",
+    "question": "예금금리랑 대출금리 차이가 왜 나는 거야?",
+    "required_elements": ["예대마진 설명", "은행 수익구조", "기준금리 영향"],
+    "forbidden_elements": [],
+    "tool_expected": []
+  }
+]

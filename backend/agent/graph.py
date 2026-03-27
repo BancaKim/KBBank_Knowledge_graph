@@ -207,11 +207,15 @@ def _build_system_prompt() -> str:
 
 
 _agent_cache: dict[str, Any] = {}
+_AGENT_CACHE_MAX = 4
 
 
 def _get_or_create_agent(db: Any, api_key: str | None):
     cache_key = f"{id(db)}:{api_key[:8] if api_key else 'none'}"
     if cache_key not in _agent_cache:
+        if len(_agent_cache) >= _AGENT_CACHE_MAX:
+            oldest = next(iter(_agent_cache))
+            del _agent_cache[oldest]
         _agent_cache[cache_key] = create_banking_agent(db, api_key=api_key)
     return _agent_cache[cache_key]
 
