@@ -6,6 +6,7 @@ from __future__ import annotations
 # Node labels
 # ---------------------------------------------------------------------------
 NODE_LABELS: list[str] = [
+    # Deposit
     "Product",
     "Category",
     "ParentCategory",
@@ -19,6 +20,19 @@ NODE_LABELS: list[str] = [
     "DepositProtection",
     "PreferentialRate",
     "ProductType",
+    # Loan
+    "LoanProduct",
+    "LoanCategory",
+    "LoanRate",
+    "LoanTerm",
+    "LoanEligibility",
+    "RepaymentMethod",
+    "LoanFee",
+    "LoanPreferentialRate",
+    "Collateral",
+    "PenaltyRate",
+    "TermExtension",
+    "Overdraft",
 ]
 
 # ---------------------------------------------------------------------------
@@ -44,6 +58,7 @@ RELATIONSHIP_TYPES: dict[str, dict[str, str]] = {
 # Visualization: color mapping (hex) for each node label
 # ---------------------------------------------------------------------------
 COLOR_MAP: dict[str, str] = {
+    # Deposit
     "Product": "#4A90D9",            # blue
     "Category": "#F5A623",           # orange
     "ParentCategory": "#E65100",     # deep orange
@@ -57,6 +72,19 @@ COLOR_MAP: dict[str, str] = {
     "DepositProtection": "#2980B9",  # dark blue
     "PreferentialRate": "#E74C3C",   # coral
     "ProductType": "#16A085",        # dark teal
+    # Loan (mapped to same colors as deposit equivalents)
+    "LoanProduct": "#4A90D9",
+    "LoanCategory": "#F5A623",
+    "LoanRate": "#D0021B",
+    "LoanTerm": "#9B59B6",
+    "LoanEligibility": "#95A5A6",
+    "RepaymentMethod": "#E67E22",
+    "LoanFee": "#8E44AD",
+    "LoanPreferentialRate": "#E74C3C",
+    "Collateral": "#7F8C8D",
+    "PenaltyRate": "#C0392B",
+    "TermExtension": "#2C3E50",
+    "Overdraft": "#D35400",
 }
 
 # ---------------------------------------------------------------------------

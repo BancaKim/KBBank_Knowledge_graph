@@ -54,6 +54,7 @@ def _fetch_relationships(conn: Neo4jConnection) -> list[dict[str, Any]]:
 # ---------------------------------------------------------------------------
 
 _LABEL_TO_TYPE: dict[str, str] = {
+    # Deposit
     "Product": "product",
     "Category": "category",
     "ParentCategory": "parentcategory",
@@ -68,6 +69,18 @@ _LABEL_TO_TYPE: dict[str, str] = {
     "PreferentialRate": "preferentialrate",
     "Fee": "fee",
     "ProductType": "producttype",
+    # Loan
+    "LoanProduct": "product",
+    "LoanCategory": "category",
+    "LoanRate": "interestrate",
+    "LoanTerm": "term",
+    "LoanEligibility": "eligibilitycondition",
+    "LoanFee": "fee",
+    "LoanPreferentialRate": "preferentialrate",
+    "Collateral": "collateral",
+    "PenaltyRate": "penaltyrate",
+    "TermExtension": "termextension",
+    "Overdraft": "overdraft",
 }
 
 
