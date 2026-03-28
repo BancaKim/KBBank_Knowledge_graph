@@ -338,7 +338,7 @@ def _create_category_hierarchy(conn: Neo4jConnection) -> None:
     hierarchy = {
         "예금": {
             "name_en": "Deposits",
-            "subcategories": ["입출금통장", "정기예금", "적금", "청약"],
+            "subcategories": ["입출금자유", "정기예금", "적금", "주택청약"],
         },
     }
 
