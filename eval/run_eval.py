@@ -19,7 +19,7 @@ try:
 except ImportError:
     pass
 
-API_URL = os.environ.get("EVAL_API_URL", "https://kb-kg.duckdns.org/api/chat")
+API_URL = os.environ.get("EVAL_API_URL", "https://bank-kg.duckdns.org/api/chat")
 GOLDEN_SET = Path(__file__).parent / "golden_set.json"
 
 

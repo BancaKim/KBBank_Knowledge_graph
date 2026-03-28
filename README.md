@@ -1,6 +1,6 @@
 # 큽 금융상품 지식그래프
 
-> **[Live Demo](https://kb-kg.duckdns.org/)** — 브라우저에서 바로 지식그래프를 탐색해보세요.
+> **[Live Demo](https://bank-kg.duckdns.org/)** — 브라우저에서 바로 지식그래프를 탐색해보세요.
 
 공개된 금융상품 정보를 수집하여 **Neo4j 지식그래프**로 구축한 개인 토이프로젝트입니다. LLM 기반 엔티티 추출로 162개 금융상품을 구조화하고, D3.js 시각화와 Agentic GraphRAG 챗봇을 제공합니다.
 
