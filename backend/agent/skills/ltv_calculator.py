@@ -309,7 +309,7 @@ def calculate_ltv_limit(
 
     lines.append("\n---")
     lines.append("※ 2025.6.27 대책 + 10.15 대책 기준")
-    lines.append("※ 실제 LTV는 KB시세·감정가·공시지가 중 낮은 금액 기준으로 산정됩니다.")
+    lines.append("※ 실제 LTV는 큽시세·감정가·공시지가 중 낮은 금액 기준으로 산정됩니다.")
     lines.append("※ 이 결과는 참고용이며, 최종 한도는 은행 심사를 통해 결정됩니다.")
     lines.append("※ DSR 한도와 비교하여 낮은 금액이 실제 대출 가능액입니다.")
 

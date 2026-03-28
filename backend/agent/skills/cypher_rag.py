@@ -109,7 +109,7 @@ FEW_SHOT_EXAMPLES = [
         "question": "모바일뱅킹에서 가입 가능한 예금 상품",
         "cypher": (
             "MATCH (p:Product)-[:AVAILABLE_VIA]->(ch:Channel) "
-            "WHERE ch.name CONTAINS '스타뱅킹' "
+            "WHERE ch.name CONTAINS '큽큽뱅킹' "
             "RETURN p.name AS 상품명, p.description AS 설명"
         ),
     },

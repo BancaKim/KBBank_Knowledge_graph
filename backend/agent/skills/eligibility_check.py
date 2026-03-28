@@ -7,7 +7,7 @@ def check_eligibility(product_name: str, age: int = 0, employment: str = "", db=
     """특정 금융상품의 가입 자격을 확인합니다.
 
     Args:
-        product_name: 상품 이름 (예: "KB 비상금대출")
+        product_name: 상품 이름 (예: "큽 비상금대출")
         age: 나이 (0이면 무시)
         employment: 직업 유형 (예: "직장인", "공무원", "개인사업자")
     """
