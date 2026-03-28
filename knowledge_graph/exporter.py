@@ -117,9 +117,22 @@ def _build_graph_node(record: dict[str, Any]) -> GraphNode:
     data = {k: v for k, v in props.items() if k != "id"}
     data["_degree"] = degree
 
+    # Pick best label: name > fee_type > collateral_type > base_rate_name > raw_text > condition_description > description > target_audience > id
+    label = (
+        props.get("name")
+        or props.get("fee_type")
+        or props.get("collateral_type")
+        or props.get("base_rate_name")
+        or props.get("raw_text")
+        or props.get("condition_description")
+        or props.get("target_audience")
+        or props.get("description", "")[:50]
+        or node_id
+    )
+
     return GraphNode(
         id=node_id,
-        label=props.get("name", node_id),
+        label=label,
         type=node_type,
         group=GROUP_INDEX.get(raw, 0),
         data=data,
