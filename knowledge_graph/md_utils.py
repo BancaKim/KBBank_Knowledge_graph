@@ -13,7 +13,7 @@ from typing import Any
 import frontmatter
 from slugify import slugify
 
-from knowledge_graph.models import Channel
+from knowledge_graph.deposit_models import Channel
 
 
 # ---------------------------------------------------------------------------
@@ -166,6 +166,10 @@ CATEGORY_NAME_EN: dict[str, str] = {
     "담보대출": "Secured Loan",
     "전월세대출": "Jeonse/Wolse Loan",
     "자동차대출": "Auto Loan",
+    "집단중도금_이주비대출": "Group Interim/Relocation Loan",
+    "집단중도금/이주비대출": "Group Interim/Relocation Loan",
+    "주택도시기금대출": "Housing Urban Fund Loan",
+    "개인사업자대출": "Individual Business Loan",
 }
 
 CATEGORY_TO_PARENT: dict[str, str] = {
@@ -180,10 +184,14 @@ CATEGORY_TO_PARENT: dict[str, str] = {
     "담보대출": "대출",
     "전월세대출": "대출",
     "자동차대출": "대출",
+    "집단중도금_이주비대출": "대출",
+    "집단중도금/이주비대출": "대출",
+    "주택도시기금대출": "대출",
+    "개인사업자대출": "대출",
 }
 
 DEPOSIT_CATEGORIES = {"적금", "입출금통장", "입출금자유", "정기예금", "예금", "청약", "주택청약"}
-LOAN_CATEGORIES = {"신용대출", "담보대출", "전월세대출", "자동차대출"}
+LOAN_CATEGORIES = {"신용대출", "담보대출", "전월세대출", "자동차대출", "집단중도금_이주비대출", "집단중도금/이주비대출", "주택도시기금대출", "개인사업자대출"}
 
 CATEGORY_TO_PRODUCT_TYPE: dict[str, str] = {
     "적금": "savings",
@@ -197,6 +205,10 @@ CATEGORY_TO_PRODUCT_TYPE: dict[str, str] = {
     "담보대출": "loan",
     "전월세대출": "loan",
     "자동차대출": "loan",
+    "집단중도금_이주비대출": "loan",
+    "집단중도금/이주비대출": "loan",
+    "주택도시기금대출": "loan",
+    "개인사업자대출": "loan",
 }
 
 
@@ -204,8 +216,8 @@ def is_loan_product(category: str, path: Path) -> bool:
     """Determine if a product is a loan based on category or file path."""
     if category in LOAN_CATEGORIES:
         return True
-    loan_dirs = {"대출", "담보대출"}
-    return any(p.name in loan_dirs for p in path.parents)
+    # Check if any parent directory is under 대출
+    return any(p.name == "대출" for p in path.parents)
 
 
 # ---------------------------------------------------------------------------

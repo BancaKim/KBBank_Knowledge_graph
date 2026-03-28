@@ -95,3 +95,26 @@ class Collateral(BaseModel):
     id: str
     collateral_type: str = ""  # 부동산/예적금/보증서 등
     description: str = ""
+
+
+class PenaltyRate(BaseModel):
+    """연체금리 — Legacy :연체금리 반영"""
+    id: str
+    max_rate: float | None = None
+    penalty_spread: float | None = None
+    description: str = ""
+
+
+class TermExtension(BaseModel):
+    """기한연장 — Legacy :기한연장 반영"""
+    id: str
+    available: bool = False
+    description: str = ""
+
+
+class Overdraft(BaseModel):
+    """통장자동대출 — Legacy :통장자동대출 반영"""
+    id: str
+    available: bool = False
+    max_text: str = ""
+    description: str = ""

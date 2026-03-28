@@ -7,7 +7,7 @@ const CATEGORY_GROUPS = [
   },
   {
     parent: "대출",
-    children: ["신용대출", "담보대출", "전월세대출", "자동차대출"],
+    children: ["신용대출", "담보대출", "전월세대출", "자동차대출", "집단중도금/이주비대출", "주택도시기금대출"],
   },
 ];
 
@@ -28,6 +28,10 @@ const NODE_TYPES = [
   { key: "preferentialrate", label: "우대금리" },
   { key: "fee", label: "수수료" },
   { key: "producttype", label: "상품유형" },
+  { key: "penaltyrate", label: "연체금리" },
+  { key: "termextension", label: "기한연장" },
+  { key: "overdraft", label: "통장자동대출" },
+  { key: "collateral", label: "담보" },
 ];
 
 interface Props {

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from knowledge_graph.db import Neo4jConnection
-from knowledge_graph.models import Product
+from knowledge_graph.deposit_models import Product
 
 
 # ---------------------------------------------------------------------------

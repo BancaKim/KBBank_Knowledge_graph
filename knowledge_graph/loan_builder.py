@@ -273,6 +273,76 @@ def _merge_collateral(conn: Neo4jConnection, p: ParsedLoanProduct) -> None:
     )
 
 
+def _merge_penalty_rate(conn: Neo4jConnection, p: ParsedLoanProduct) -> None:
+    if p.product is None or p.penalty_rate is None:
+        return
+    pr = p.penalty_rate
+    conn.run_write(
+        """
+        MERGE (pr:PenaltyRate {id: $prid})
+        SET pr.max_rate       = $max_rate,
+            pr.penalty_spread = $penalty_spread,
+            pr.description    = $description
+        WITH pr
+        MATCH (lp:LoanProduct {id: $pid})
+        MERGE (lp)-[:HAS_PENALTY_RATE]->(pr)
+        """,
+        {
+            "prid": pr.id,
+            "max_rate": pr.max_rate,
+            "penalty_spread": pr.penalty_spread,
+            "description": pr.description,
+            "pid": p.product.id,
+        },
+    )
+
+
+def _merge_term_extension(conn: Neo4jConnection, p: ParsedLoanProduct) -> None:
+    if p.product is None or p.term_extension is None:
+        return
+    te = p.term_extension
+    conn.run_write(
+        """
+        MERGE (te:TermExtension {id: $teid})
+        SET te.available   = $available,
+            te.description = $description
+        WITH te
+        MATCH (lp:LoanProduct {id: $pid})
+        MERGE (lp)-[:HAS_TERM_EXTENSION]->(te)
+        """,
+        {
+            "teid": te.id,
+            "available": te.available,
+            "description": te.description,
+            "pid": p.product.id,
+        },
+    )
+
+
+def _merge_overdraft(conn: Neo4jConnection, p: ParsedLoanProduct) -> None:
+    if p.product is None or p.overdraft is None:
+        return
+    od = p.overdraft
+    conn.run_write(
+        """
+        MERGE (od:Overdraft {id: $odid})
+        SET od.available   = $available,
+            od.max_text    = $max_text,
+            od.description = $description
+        WITH od
+        MATCH (lp:LoanProduct {id: $pid})
+        MERGE (lp)-[:HAS_OVERDRAFT]->(od)
+        """,
+        {
+            "odid": od.id,
+            "available": od.available,
+            "max_text": od.max_text,
+            "description": od.description,
+            "pid": p.product.id,
+        },
+    )
+
+
 # ---------------------------------------------------------------------------
 # Category hierarchy
 # ---------------------------------------------------------------------------
@@ -286,7 +356,7 @@ def _create_loan_category_hierarchy(conn: Neo4jConnection) -> None:
             pc.name_en = 'Loans'
         """
     )
-    for sub_name in ["신용대출", "담보대출", "전월세대출", "자동차대출"]:
+    for sub_name in ["신용대출", "담보대출", "전월세대출", "자동차대출", "집단중도금_이주비대출", "주택도시기금대출", "개인사업자대출"]:
         conn.run_write(
             """
             MATCH (pc:ParentCategory {id: 'parent__대출'})
@@ -350,6 +420,9 @@ def build_loan_graph(conn: Neo4jConnection, loan_dirs: list[Path] | None = None)
         _merge_loan_fees(conn, pp)
         _merge_loan_preferential_rates(conn, pp)
         _merge_collateral(conn, pp)
+        _merge_penalty_rate(conn, pp)
+        _merge_term_extension(conn, pp)
+        _merge_overdraft(conn, pp)
 
     print("[loan_builder] creating loan category hierarchy ...")
     _create_loan_category_hierarchy(conn)

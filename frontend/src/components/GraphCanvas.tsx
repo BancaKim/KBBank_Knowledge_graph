@@ -33,6 +33,11 @@ const EDGE_COLORS: Record<string, string> = {
   HAS_PREFERENTIAL_RATE: "#E74C3C",
   HAS_FEE: "#8E44AD",
   HAS_TYPE: "#16A085",
+  HAS_PENALTY_RATE: "#C0392B",
+  HAS_TERM_EXTENSION: "#2C3E50",
+  HAS_OVERDRAFT: "#D35400",
+  SECURED_BY: "#7F8C8D",
+  COMPETES_WITH: "#BDC3C7",
 };
 
 /** Stored D3 state for highlight updates without re-creating the graph */

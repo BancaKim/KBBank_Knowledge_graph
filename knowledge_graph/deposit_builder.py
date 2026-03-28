@@ -5,14 +5,14 @@ from __future__ import annotations
 from pathlib import Path
 
 from knowledge_graph.db import Neo4jConnection
-from knowledge_graph.parser import ParsedProduct, parse_all_products
+from knowledge_graph.deposit_parser import ParsedProduct, parse_all_products
 
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _PRODUCTS_DIR = _PROJECT_ROOT / "data" / "products"
-_SCHEMA_FILE = Path(__file__).resolve().parent / "schema.cypher"
+_SCHEMA_FILE = Path(__file__).resolve().parent / "deposit_schema.cypher"
 
 
 # ---------------------------------------------------------------------------

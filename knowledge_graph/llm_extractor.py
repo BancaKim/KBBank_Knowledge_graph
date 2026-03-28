@@ -39,7 +39,7 @@ from knowledge_graph.md_utils import (
     parse_korean_amount,
     parse_korean_term,
 )
-from knowledge_graph.models import (
+from knowledge_graph.deposit_models import (
     Benefit,
     Category,
     Channel,
@@ -53,7 +53,7 @@ from knowledge_graph.models import (
     TaxBenefit,
     Term,
 )
-from knowledge_graph.parser import ParsedProduct
+from knowledge_graph.deposit_parser import ParsedProduct
 
 # Loan models
 from knowledge_graph.loan_models import (
@@ -65,7 +65,10 @@ from knowledge_graph.loan_models import (
     LoanProduct,
     LoanRate,
     LoanTerm,
+    Overdraft,
+    PenaltyRate,
     RepaymentMethod,
+    TermExtension,
 )
 from knowledge_graph.loan_parser import ParsedLoanProduct
 
@@ -475,6 +478,35 @@ def map_loan(extracted: ExtractedLoanProduct, metadata: dict, path: Path) -> Par
             description=coll.description,
         )
 
+    # Penalty rate
+    pr = extracted.penalty_rate
+    if pr.max_rate or pr.penalty_spread or pr.description:
+        parsed.penalty_rate = PenaltyRate(
+            id=f"{product_id}__penalty_rate",
+            max_rate=pr.max_rate,
+            penalty_spread=pr.penalty_spread,
+            description=pr.description,
+        )
+
+    # Term extension
+    te = extracted.term_extension
+    if te.available or te.description:
+        parsed.term_extension = TermExtension(
+            id=f"{product_id}__term_ext",
+            available=te.available,
+            description=te.description,
+        )
+
+    # Overdraft
+    od = extracted.overdraft
+    if od.available or od.max_text or od.description:
+        parsed.overdraft = Overdraft(
+            id=f"{product_id}__overdraft",
+            available=od.available,
+            max_text=od.max_text,
+            description=od.description,
+        )
+
     return parsed
 
 
@@ -544,7 +576,7 @@ async def extract_all(
 
 async def _async_main() -> None:
     import argparse
-    from knowledge_graph.builder import build_graph
+    from knowledge_graph.deposit_builder import build_graph
     from knowledge_graph.loan_builder import build_loan_graph
     from knowledge_graph.db import Neo4jConnection
 
@@ -575,7 +607,7 @@ async def _async_main() -> None:
             print(f"[extractor] {len(deposits)} deposits, {len(loans)} loans")
             # Use existing builders
             for pp in deposits:
-                from knowledge_graph.builder import (
+                from knowledge_graph.deposit_builder import (
                     _merge_product, _merge_category, _merge_features, _merge_rates,
                     _merge_terms, _merge_eligibility, _merge_channels, _merge_tax_benefit,
                     _merge_deposit_protection, _merge_preferential_rates, _merge_benefits,
@@ -599,6 +631,7 @@ async def _async_main() -> None:
                     _merge_loan_terms, _merge_loan_eligibility, _merge_loan_channels,
                     _merge_repayment_methods, _merge_loan_fees,
                     _merge_loan_preferential_rates, _merge_collateral,
+                    _merge_penalty_rate, _merge_term_extension, _merge_overdraft,
                 )
                 _merge_loan_product(conn, lp)
                 _merge_loan_category(conn, lp)
@@ -610,6 +643,9 @@ async def _async_main() -> None:
                 _merge_loan_fees(conn, lp)
                 _merge_loan_preferential_rates(conn, lp)
                 _merge_collateral(conn, lp)
+                _merge_penalty_rate(conn, lp)
+                _merge_term_extension(conn, lp)
+                _merge_overdraft(conn, lp)
             print("[extractor] Neo4j write complete.")
 
 

@@ -15,7 +15,11 @@ export interface GraphNode {
     | "depositprotection"
     | "preferentialrate"
     | "fee"
-    | "producttype";
+    | "producttype"
+    | "penaltyrate"
+    | "termextension"
+    | "overdraft"
+    | "collateral";
   group: number;
   data: Record<string, unknown>;
   // D3 simulation properties
@@ -88,6 +92,10 @@ export const NODE_COLORS: Record<string, string> = {
   preferentialrate: "#E74C3C",
   fee: "#8E44AD",
   producttype: "#16A085",
+  penaltyrate: "#C0392B",
+  termextension: "#2C3E50",
+  overdraft: "#D35400",
+  collateral: "#7F8C8D",
 };
 
 export const NODE_GROUPS: Record<string, number> = {
@@ -105,4 +113,8 @@ export const NODE_GROUPS: Record<string, number> = {
   preferentialrate: 11,
   fee: 12,
   producttype: 13,
+  penaltyrate: 14,
+  termextension: 15,
+  overdraft: 16,
+  collateral: 17,
 };

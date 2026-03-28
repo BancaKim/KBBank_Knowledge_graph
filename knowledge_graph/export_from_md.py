@@ -15,9 +15,9 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from knowledge_graph.models import GraphLink, GraphNode
+from knowledge_graph.deposit_models import GraphLink, GraphNode
 from knowledge_graph.ontology import COLOR_MAP, GROUP_INDEX, NODE_LABELS
-from knowledge_graph.parser import ParsedProduct, parse_all_products
+from knowledge_graph.deposit_parser import ParsedProduct, parse_all_products
 
 # ---------------------------------------------------------------------------
 # Paths

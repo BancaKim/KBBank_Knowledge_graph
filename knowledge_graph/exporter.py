@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from knowledge_graph.db import Neo4jConnection
-from knowledge_graph.models import GraphLink, GraphNode
+from knowledge_graph.deposit_models import GraphLink, GraphNode
 from knowledge_graph.ontology import COLOR_MAP, GROUP_INDEX, NODE_LABELS
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent

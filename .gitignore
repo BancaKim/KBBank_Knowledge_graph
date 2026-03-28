@@ -34,3 +34,4 @@ rag_storage/
 !docs/**/*.png
 print-popup.png
 docs/
+.venv-mlx/

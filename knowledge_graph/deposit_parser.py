@@ -28,7 +28,7 @@ from knowledge_graph.md_utils import (
     split_sections_full as _split_sections_full,
     split_subsections as _split_subsections,
 )
-from knowledge_graph.models import (
+from knowledge_graph.deposit_models import (
     Benefit,
     Category,
     Channel,

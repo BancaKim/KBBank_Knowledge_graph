@@ -22,9 +22,12 @@ from knowledge_graph.loan_models import (
     LoanProduct,
     LoanRate,
     LoanTerm,
+    Overdraft,
+    PenaltyRate,
     RepaymentMethod,
+    TermExtension,
 )
-from knowledge_graph.models import Channel
+from knowledge_graph.deposit_models import Channel
 
 # Re-use shared helpers from md_utils (previously duplicated across parsers)
 from knowledge_graph.md_utils import (
@@ -56,6 +59,9 @@ class ParsedLoanProduct:
         self.fees: list[LoanFee] = []
         self.preferential_rates: list[LoanPreferentialRate] = []
         self.collateral: Collateral | None = None
+        self.penalty_rate: PenaltyRate | None = None
+        self.term_extension: TermExtension | None = None
+        self.overdraft: Overdraft | None = None
 
 
 # ---------------------------------------------------------------------------

@@ -102,3 +102,8 @@ DSR(%) = (모든 금융부채의 연간 원리금 상환액 합계) / 연간 소
 ### 최대 대출 가능액 역산
 - 원리금균등: closed-form 역산 (P = M × [(1+r)^n - 1] / [r × (1+r)^n])
 - 원금균등/만기일시: 이진탐색으로 원금 역산
+
+## 참조
+- → [DTI 계산기](dti-calculator.md): 소득 대비 상환비율 (기타대출 이자만 반영)
+- → [LTV 계산기](ltv-calculator.md): 담보가치 기준 한도
+- → [대출가능액 종합](loan-affordability.md): LTV·DTI·DSR 동시 적용

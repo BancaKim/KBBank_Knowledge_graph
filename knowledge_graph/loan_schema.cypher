@@ -11,5 +11,9 @@ CREATE CONSTRAINT loan_fee_id IF NOT EXISTS FOR (lf:LoanFee) REQUIRE lf.id IS UN
 CREATE CONSTRAINT loan_pref_rate_id IF NOT EXISTS FOR (lpr:LoanPreferentialRate) REQUIRE lpr.id IS UNIQUE
 CREATE CONSTRAINT collateral_id IF NOT EXISTS FOR (c:Collateral) REQUIRE c.id IS UNIQUE
 
+CREATE CONSTRAINT penalty_rate_id IF NOT EXISTS FOR (pr:PenaltyRate) REQUIRE pr.id IS UNIQUE
+CREATE CONSTRAINT term_extension_id IF NOT EXISTS FOR (te:TermExtension) REQUIRE te.id IS UNIQUE
+CREATE CONSTRAINT overdraft_id IF NOT EXISTS FOR (od:Overdraft) REQUIRE od.id IS UNIQUE
+
 CREATE INDEX loan_product_type IF NOT EXISTS FOR (lp:LoanProduct) ON (lp.loan_type)
 CREATE INDEX loan_category_name IF NOT EXISTS FOR (lc:LoanCategory) ON (lc.name)

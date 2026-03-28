@@ -33,5 +33,5 @@ all = [
 
 [project.scripts]
 scrape = "scraper.run_scraper:main"
-build-graph = "knowledge_graph.builder:main"
+build-graph = "knowledge_graph.deposit_builder:main"
 serve = "backend.main:run"
