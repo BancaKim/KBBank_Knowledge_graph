@@ -205,7 +205,7 @@ export default function App() {
                 selectedCategories={selectedCategories}
                 selectedNodeTypes={selectedNodeTypes}
               />
-              <Legend />
+              <Legend data={data} selectedCategories={selectedCategories} selectedNodeTypes={selectedNodeTypes} />
               <Toolbar onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} onReset={handleReset} isMobile={isMobile} />
 
               {/* Mobile: floating filter button (bottom-left) */}
