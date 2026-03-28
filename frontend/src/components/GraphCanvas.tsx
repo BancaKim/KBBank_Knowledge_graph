@@ -251,7 +251,7 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     // ========== INTERACTIONS ==========
 
     node.on("mouseover", function (event, d) {
-      if (!selectedNodeRef.current) highlight(d.id);
+      highlight(d.id);
       if (tooltip) {
         tooltip.textContent = "";
         const strong = document.createElement("strong");
@@ -275,7 +275,11 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
       if (tooltip) { tooltip.style.left = event.pageX + 12 + "px"; tooltip.style.top = event.pageY - 8 + "px"; }
     })
     .on("mouseout", function () {
-      if (!selectedNodeRef.current) resetAll();
+      if (selectedNodeRef.current) {
+        highlight(selectedNodeRef.current);
+      } else {
+        resetAll();
+      }
       if (tooltip) tooltip.style.opacity = "0";
     })
     .on("click", (event, d) => {
@@ -324,6 +328,30 @@ const GraphCanvas = forwardRef<GraphCanvasRef, Props>(function GraphCanvas(
     uniqueCats.forEach((cat, i) => {
       const a = (2 * Math.PI * i) / uniqueCats.length - Math.PI / 2;
       clusterCenters.set(cat, { x: width / 2 + cr * Math.cos(a), y: height / 2 + cr * Math.sin(a) });
+    });
+
+    // Pre-position nodes by cluster so layout starts organized (not random)
+    nodes.forEach((n) => {
+      const cat = categoryOf.get(n.id);
+      const center = cat ? clusterCenters.get(cat) : undefined;
+      const cx = center?.x ?? width / 2;
+      const cy = center?.y ?? height / 2;
+      if (n.type === "parentcategory") {
+        n.x = cx;
+        n.y = cy;
+      } else if (n.type === "category") {
+        // Place categories in a small ring around their cluster center
+        const catNodes = nodes.filter((m) => m.type === "category" && categoryOf.get(m.id) === cat);
+        const idx = catNodes.indexOf(n);
+        const catAngle = (2 * Math.PI * idx) / Math.max(catNodes.length, 1);
+        n.x = cx + 60 * Math.cos(catAngle);
+        n.y = cy + 60 * Math.sin(catAngle);
+      } else {
+        // Products and other nodes: spread around their cluster center with jitter
+        const jitter = () => (Math.random() - 0.5) * 120;
+        n.x = cx + jitter();
+        n.y = cy + jitter();
+      }
     });
 
     const physicsLinks = links.filter((l) => l.type !== "COMPETES_WITH");
