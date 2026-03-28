@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SERVER="ubuntu@144.24.74.197"
-SSH_KEY="$HOME/.ssh/oracle_key"
+SSH_KEY="$HOME/Downloads/ssh-key-2026-03-24.key"
 REMOTE_DIR="/home/ubuntu/KBBank_Knowledge_graph"
 REPO="https://github.com/BancaKim/KBBank_Knowledge_graph.git"
 

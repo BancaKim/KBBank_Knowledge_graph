@@ -3,7 +3,7 @@ import { NODE_COLORS } from "../types/graph";
 const CATEGORY_GROUPS = [
   {
     parent: "예금",
-    children: ["정기예금", "적금", "입출금통장", "청약"],
+    children: ["정기예금", "적금", "입출금자유", "주택청약"],
   },
   {
     parent: "대출",

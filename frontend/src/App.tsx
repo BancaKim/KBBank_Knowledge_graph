@@ -29,10 +29,12 @@ const ALL_NODE_TYPES = new Set([
   "product", "category", "parentcategory", "feature", "interestrate", "term",
   "channel", "eligibilitycondition", "repaymentmethod", "taxbenefit",
   "depositprotection", "preferentialrate", "fee", "producttype",
+  "collateral", "penaltyrate", "termextension", "overdraft",
 ]);
 const ALL_CATEGORIES = new Set([
-  "정기예금", "적금", "입출금통장", "청약",
+  "정기예금", "적금", "입출금자유", "주택청약",
   "신용대출", "담보대출", "전월세대출", "자동차대출",
+  "집단중도금_이주비대출", "주택도시기금대출",
 ]);
 
 export default function App() {
@@ -43,7 +45,7 @@ export default function App() {
   const [highlightNodeId, setHighlightNodeId] = useState<string | null>(null);
   const [highlightNodeIds, setHighlightNodeIds] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
-    new Set(["정기예금", "적금", "입출금통장", "청약"])
+    new Set(["정기예금", "적금", "입출금자유", "주택청약"])
   );
   const [selectedNodeTypes, setSelectedNodeTypes] = useState<Set<string>>(ALL_NODE_TYPES);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
