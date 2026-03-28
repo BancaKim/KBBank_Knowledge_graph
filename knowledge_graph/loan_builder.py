@@ -51,6 +51,7 @@ def _merge_loan_product(conn: Neo4jConnection, p: ParsedLoanProduct) -> None:
         MERGE (lp:LoanProduct {id: $id})
         SET lp.name                              = $name,
             lp.loan_type                         = $loan_type,
+            lp.category                          = $category,
             lp.description                       = $description,
             lp.amount_max_raw                    = $amount_max_raw,
             lp.amount_max_won                    = $amount_max_won,
@@ -65,6 +66,7 @@ def _merge_loan_product(conn: Neo4jConnection, p: ParsedLoanProduct) -> None:
             "id": prod.id,
             "name": prod.name,
             "loan_type": prod.loan_type,
+            "category": p.category.name if p.category else "",
             "description": prod.description,
             "amount_max_raw": prod.amount_max_raw,
             "amount_max_won": prod.amount_max_won,
