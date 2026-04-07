@@ -16,6 +16,8 @@ dist/
 
 # Data files (private — not shared)
 data/
+!data/graph/
+!data/graph/graph.json
 rag_storage/
 
 # IDE & OS
