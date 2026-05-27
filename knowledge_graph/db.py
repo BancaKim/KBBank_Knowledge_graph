@@ -25,8 +25,16 @@ class Neo4jConnection:
         password: str | None = None,
     ) -> None:
         self._uri = uri or os.environ.get("NEO4J_URI", "bolt://localhost:7687")
-        self._user = user or os.environ.get("NEO4J_USER", "neo4j")
+        # Honor Aura "Download credentials" var names (NEO4J_USERNAME / NEO4J_DATABASE),
+        # falling back to NEO4J_USER for backward compatibility.
+        self._user = (
+            user
+            or os.environ.get("NEO4J_USERNAME")
+            or os.environ.get("NEO4J_USER")
+            or "neo4j"
+        )
         self._password = password or os.environ.get("NEO4J_PASSWORD")
+        self._database = os.environ.get("NEO4J_DATABASE") or None
         if not self._password:
             raise RuntimeError(
                 "NEO4J_PASSWORD environment variable is required. "
@@ -52,7 +60,7 @@ class Neo4jConnection:
     @contextmanager
     def session(self) -> Generator[Session, None, None]:
         """Yield a Neo4j session and close it automatically."""
-        session = self._driver.session()
+        session = self._driver.session(database=self._database)
         try:
             yield session
         finally:
