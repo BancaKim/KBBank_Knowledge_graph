@@ -12,7 +12,7 @@ import ChatPanel from "./components/ChatPanel";
 import type { GraphNode } from "./types/graph";
 
 // Toggle this to enable/disable the chatbot panel (requires Neo4j Aura)
-const CHAT_ENABLED = false;
+const CHAT_ENABLED = true;
 
 const MOBILE_BREAKPOINT = 768;
 
