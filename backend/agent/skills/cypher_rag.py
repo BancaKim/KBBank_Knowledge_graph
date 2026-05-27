@@ -58,38 +58,7 @@ DEPOSIT_SCHEMA = """\
 - 'product_search' on Product(name, description) — CJK analyzer
 """
 
-LOAN_SCHEMA = """\
-## 금융상품 지식그래프 스키마 (대출)
-
-### 대출 상품 노드
-- (:LoanProduct {id, name, loan_type, description, amount_max_raw, eligibility_summary, rate_cut_request_available, contract_withdrawal_available, illegal_contract_termination})
-  — loan_type: credit(신용)/secured(담보)/jeonse(전세)/auto(자동차)
-- (:LoanCategory {id, name})  — 예: 신용대출, 주택담보대출, 전월세보증금대출
-- (:LoanRate {id, rate_type, min_rate, max_rate, base_rate_name, spread})
-  — base_rate_name: CD91일물, COFIX신규, COFIX잔액, 금융채6개월, 금융채12개월
-- (:LoanTerm {id, min_months, max_months, raw_text})
-- (:LoanEligibility {id, description, target_audience})
-- (:RepaymentMethod {id, name, description})  — 예: 원리금균등분할상환, 원금균등분할상환, 만기일시상환
-- (:LoanFee {id, fee_type, description})  — fee_type: early_repayment/incidental
-- (:LoanPreferentialRate {id, name, condition_description, rate_value_pp})
-- (:Collateral {id, collateral_type, description})
-
-### 관계 (대출)
-(:LoanProduct)-[:BELONGS_TO]->(:LoanCategory)
-(:LoanProduct)-[:HAS_RATE]->(:LoanRate)
-(:LoanProduct)-[:HAS_TERM]->(:LoanTerm)
-(:LoanProduct)-[:REQUIRES]->(:LoanEligibility)
-(:LoanProduct)-[:AVAILABLE_VIA]->(:Channel)
-(:LoanProduct)-[:REPAID_VIA]->(:RepaymentMethod)
-(:LoanProduct)-[:HAS_FEE]->(:LoanFee)
-(:LoanProduct)-[:HAS_PREFERENTIAL_RATE]->(:LoanPreferentialRate)
-(:LoanProduct)-[:SECURED_BY]->(:Collateral)
-
-### 풀텍스트 인덱스 (대출)
-- 'loan_product_search' on LoanProduct(name, description) — CJK analyzer
-"""
-
-GRAPH_SCHEMA = DEPOSIT_SCHEMA + "\n\n" + LOAN_SCHEMA  # backward compat
+GRAPH_SCHEMA = DEPOSIT_SCHEMA  # deposit-only (수신)
 
 # ---------------------------------------------------------------------------
 # Few-shot Cypher 예시 — 질문 유형별 대표 패턴
@@ -136,90 +105,6 @@ FEW_SHOT_EXAMPLES = [
             "MATCH (p:Product)-[:BELONGS_TO]->(c:Category), (p)-[:HAS_TERM]->(t:Term) "
             "WHERE c.name CONTAINS '적금' AND t.max_months >= 12 "
             "RETURN p.name AS 상품명, t.min_months AS 최소기간, t.max_months AS 최대기간"
-        ),
-    },
-    {
-        "question": "CD91일물 기준 최저금리 대출 TOP5",
-        "cypher": (
-            "MATCH (lp:LoanProduct)-[:HAS_RATE]->(lr:LoanRate) "
-            "WHERE lr.base_rate_name CONTAINS 'CD91일물' "
-            "RETURN lp.name AS 상품명, lr.base_rate_name AS 기준금리, "
-            "lr.min_rate AS 최저금리, lr.max_rate AS 최고금리 "
-            "ORDER BY lr.min_rate ASC LIMIT 5"
-        ),
-    },
-    {
-        "question": "원금균등분할상환 가능한 대출 상품",
-        "cypher": (
-            "MATCH (lp:LoanProduct)-[:REPAID_VIA]->(rm:RepaymentMethod) "
-            "WHERE rm.name CONTAINS '원금균등' "
-            "RETURN lp.name AS 상품명, collect(rm.name) AS 상환방법"
-        ),
-    },
-    {
-        "question": "중도상환수수료가 있는 대출 상품",
-        "cypher": (
-            "MATCH (lp:LoanProduct)-[:HAS_FEE]->(f:LoanFee) "
-            "WHERE f.fee_type = 'early_repayment' "
-            "RETURN lp.name AS 상품명, f.description AS 수수료내용"
-        ),
-    },
-    {
-        "question": "전세대출 상품 목록과 금리",
-        "cypher": (
-            "MATCH (lp:LoanProduct)-[:HAS_RATE]->(lr:LoanRate) "
-            "WHERE lp.loan_type = 'jeonse' "
-            "RETURN lp.name AS 상품명, lr.base_rate_name AS 기준금리, "
-            "lr.min_rate AS 최저금리, lr.max_rate AS 최고금리 "
-            "ORDER BY lr.min_rate"
-        ),
-    },
-    {
-        "question": "금리인하요구권 가능한 대출",
-        "cypher": (
-            "MATCH (lp:LoanProduct) "
-            "WHERE lp.rate_cut_request_available = true "
-            "RETURN lp.name AS 상품명, lp.loan_type AS 대출유형, lp.description AS 설명"
-        ),
-    },
-    {
-        "question": "부동산 담보로 가능한 대출",
-        "cypher": (
-            "MATCH (lp:LoanProduct)-[:SECURED_BY]->(col:Collateral) "
-            "WHERE col.collateral_type CONTAINS '부동산' "
-            "RETURN lp.name AS 상품명, col.collateral_type AS 담보유형, col.description AS 설명"
-        ),
-    },
-    {
-        "question": "비상금대출 검색",
-        "cypher": (
-            "CALL db.index.fulltext.queryNodes('loan_product_search', '비상금대출') "
-            "YIELD node, score "
-            "RETURN node.name AS 상품명, node.description AS 설명, score "
-            "ORDER BY score DESC LIMIT 5"
-        ),
-    },
-    {
-        "question": "자동차대출 상품과 금리",
-        "cypher": (
-            "MATCH (lp:LoanProduct)-[:HAS_RATE]->(lr:LoanRate) "
-            "WHERE lp.loan_type = 'auto' "
-            "OPTIONAL MATCH (lp)-[:SECURED_BY]->(col:Collateral) "
-            "RETURN lp.name AS 상품명, lr.base_rate_name AS 기준금리, "
-            "lr.min_rate AS 최저금리, lr.max_rate AS 최고금리, "
-            "col.description AS 담보조건 "
-            "ORDER BY lr.min_rate"
-        ),
-    },
-    {
-        "question": "예금담보대출 상품",
-        "cypher": (
-            "CALL db.index.fulltext.queryNodes('loan_product_search', '예금담보 예적금담보 유가증권담보') "
-            "YIELD node, score "
-            "OPTIONAL MATCH (node)-[:HAS_RATE]->(lr:LoanRate) "
-            "RETURN node.name AS 상품명, node.description AS 설명, "
-            "lr.min_rate AS 최저금리, lr.max_rate AS 최고금리, score "
-            "ORDER BY score DESC LIMIT 5"
         ),
     },
 ]
@@ -308,7 +193,7 @@ def _generate_cypher(llm: Any, question: str, domain: str = "both") -> str:
     """LLM을 사용하여 자연어 → Cypher 변환."""
     from langchain_core.messages import HumanMessage, SystemMessage
 
-    schema = {"deposit": DEPOSIT_SCHEMA, "loan": LOAN_SCHEMA, "both": GRAPH_SCHEMA}[domain]
+    schema = DEPOSIT_SCHEMA
 
     system = CYPHER_SYSTEM_PROMPT.format(
         schema=schema,
@@ -369,18 +254,6 @@ def _fulltext_fallback(db: Any, question: str) -> str:
         """,
         {"query": question},
     )
-    # 대출 검색
-    loan_results = db.run_query(
-        """
-        CALL db.index.fulltext.queryNodes('loan_product_search', $query)
-        YIELD node, score WHERE score > 0.3
-        RETURN node.name AS name, node.description AS description,
-               node.loan_type AS loan_type, score
-        ORDER BY score DESC LIMIT 5
-        """,
-        {"query": question},
-    )
-    results.extend(loan_results)
 
     if not results:
         return "검색 결과가 없습니다."
@@ -437,8 +310,8 @@ def query_knowledge_graph(question: str, db=None, llm=None) -> str:
     예시:
     - "금리 3% 이상이면서 비대면 가입 가능한 정기예금"
     - "우대금리 조건이 가장 많은 상품 TOP5"
-    - "CD91일물 기준 최저금리 대출"
-    - "원금균등 상환 가능하고 중도상환수수료 없는 대출"
+    - "비과세 가능하고 모바일로 가입할 수 있는 적금"
+    - "12개월 이상 가입 가능한 정기예금 금리 비교"
 
     Args:
         question: 자연어 질문

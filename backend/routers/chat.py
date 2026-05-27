@@ -27,16 +27,16 @@ class ChatResponse(BaseModel):
 async def chat_endpoint(
     request: ChatRequest,
     db: Neo4jConnection | None = Depends(get_db_optional),
-    x_openai_key: str | None = Header(None, alias="X-OpenAI-Key"),
+    x_anthropic_key: str | None = Header(None, alias="X-Anthropic-Key"),
 ):
     """Process a chat message using GraphRAG."""
     import time
 
-    api_key = x_openai_key or os.environ.get("OPENAI_API_KEY")
+    api_key = x_anthropic_key or os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         raise HTTPException(
             status_code=400,
-            detail="OpenAI API 키가 설정되지 않았습니다. 클라이언트에서 API 키를 입력하거나 서버 환경변수를 설정해주세요.",
+            detail="Anthropic API 키가 설정되지 않았습니다. 클라이언트에서 API 키를 입력하거나 서버 환경변수를 설정해주세요.",
         )
 
     try:
@@ -49,7 +49,7 @@ async def chat_endpoint(
         from backend.chatbot import chat
 
         start = time.monotonic()
-        result = await asyncio.to_thread(chat, request.message, request.history, db, api_key=x_openai_key)
+        result = await asyncio.to_thread(chat, request.message, request.history, db, api_key=x_anthropic_key)
         elapsed = round(time.monotonic() - start, 2)
         return ChatResponse(**result, elapsed_seconds=elapsed)
     except HTTPException:

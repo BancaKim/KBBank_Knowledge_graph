@@ -8,7 +8,7 @@ const genId = (): string =>
     ? crypto.randomUUID()
     : `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 
-const API_KEY_STORAGE_KEY = "openai_api_key";
+const API_KEY_STORAGE_KEY = "anthropic_api_key";
 
 interface ChatMessage {
   id: string;
@@ -591,7 +591,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
       setMessages((prev) => [
         ...prev,
         { id: genId(), role: "user" as const, content: text },
-        { id: genId(), role: "assistant" as const, content: "챗봇을 사용하려면 OpenAI API 키를 입력해주세요." },
+        { id: genId(), role: "assistant" as const, content: "챗봇을 사용하려면 Anthropic API 키를 입력해주세요." },
       ]);
       setInput("");
       return;
@@ -611,7 +611,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
         "Content-Type": "application/json",
       };
       if (apiKey) {
-        headers["X-OpenAI-Key"] = apiKey;
+        headers["X-Anthropic-Key"] = apiKey;
       }
 
       const res = await fetch(`${API_BASE}/chat`, {
@@ -717,7 +717,7 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
                         saveApiKey();
                       }
                     }}
-                    placeholder="sk-..."
+                    placeholder="sk-ant-..."
                     className="api-key-input"
                   />
                   <button

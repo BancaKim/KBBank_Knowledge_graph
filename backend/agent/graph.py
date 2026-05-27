@@ -11,7 +11,7 @@ from typing import Any, Annotated, TypedDict
 
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.tools import tool
-from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 
@@ -25,11 +25,12 @@ from backend.agent.prompts import (
     CALCULATOR_PROMPT,
     COMPARATOR_PROMPT,
     DEPOSIT_EXPERT_PROMPT,
-    LOAN_EXPERT_PROMPT,
     MAIN_SYSTEM_PROMPT,
 )
 
 _SKILLS_DIR = Path(__file__).resolve().parent.parent.parent / "skills"
+
+CHATBOT_MODEL = os.environ.get("CHATBOT_MODEL", "claude-sonnet-4-6")
 
 
 # ---------------------------------------------------------------------------
@@ -80,15 +81,10 @@ def _make_tools(db: Any, api_key: str | None = None) -> list:
         rate_calculator,
         eligibility_check,
     )
-    from backend.agent.skills import loan_search
-    from backend.agent.skills.dsr_calculator import calculate_dsr, calculate_max_mortgage_by_dsr
-    from backend.agent.skills.ltv_calculator import calculate_ltv_limit
-    from backend.agent.skills.mortgage_calculator import calculate_mortgage_limit
     from backend.agent.skills.cypher_rag import query_knowledge_graph
 
     # Wrap cypher_rag tool with db + llm pre-bound
-    from langchain_openai import ChatOpenAI as _CypherLLM
-    _cypher_llm = _CypherLLM(model="gpt-4o-mini", temperature=0, api_key=api_key)
+    _cypher_llm = ChatAnthropic(model=CHATBOT_MODEL, max_tokens=4096, api_key=api_key)
 
     @tool
     def query_graph(question: str) -> str:
@@ -125,30 +121,6 @@ def _make_tools(db: Any, api_key: str | None = None) -> list:
         })
 
     @tool
-    def search_loan_products(query: str) -> str:
-        """대출 상품을 검색합니다."""
-        return loan_search.search_loan_products.invoke({"query": query, "db": db})
-
-    @tool
-    def get_loan_product_detail(name: str) -> str:
-        """대출 상품의 상세 정보를 조회합니다."""
-        return loan_search.get_loan_product_detail.invoke({"name": name, "db": db})
-
-    @tool
-    def get_loan_rates(base_rate_type: str) -> str:
-        """특정 기준금리 유형별 대출 금리를 비교 조회합니다."""
-        return loan_search.get_loan_rates.invoke({"base_rate_type": base_rate_type, "db": db})
-
-    @tool
-    def calculate_loan_payment(
-        principal: int, annual_rate: float, months: int, method: str = "원리금균등"
-    ) -> str:
-        """대출 월 상환액을 계산합니다."""
-        return rate_calculator.calculate_loan_payment.invoke({
-            "principal": principal, "annual_rate": annual_rate, "months": months, "method": method,
-        })
-
-    @tool
     def calculate_deposit_maturity(
         principal: int, annual_rate: float, months: int, tax_type: str = "일반과세"
     ) -> str:
@@ -157,42 +129,14 @@ def _make_tools(db: Any, api_key: str | None = None) -> list:
             "principal": principal, "annual_rate": annual_rate, "months": months, "tax_type": tax_type,
         })
 
-    @tool
-    def get_regulation_info(topic: str) -> str:
-        """LTV, DSR, 대출한도, 생애최초 등 부동산 대출 규제 정보를 조회합니다."""
-        content = _load_skill("financial-regulations")
-        if not content:
-            return "규제 정보 스킬이 로드되지 않았습니다."
-        sections = content.split("##")
-        if any(kw in topic for kw in ("LTV", "담보")):
-            keywords = ("LTV", "담보")
-        elif any(kw in topic for kw in ("DSR", "소득")):
-            keywords = ("DSR", "소득")
-        elif any(kw in topic for kw in ("생애최초", "첫집")):
-            keywords = ("생애최초", "첫집")
-        elif "한도" in topic:
-            keywords = ("한도",)
-        else:
-            keywords = None
-        if keywords:
-            matched = [s for s in sections if any(kw in s for kw in keywords)]
-            if matched:
-                result = "##" + "##".join(matched)
-                return result[:2000]
-        return content[:2000]
-
     return [
         # 기본 검색 도구 (Text2Cypher) — 최우선 사용
         query_graph,
         # 보조 검색 도구 (하드코딩 Cypher)
         search_products, get_product_detail, list_products_by_category,
         compare_products, check_eligibility,
-        search_loan_products, get_loan_product_detail, get_loan_rates,
-        # 계산 도구
-        calculate_loan_payment, calculate_deposit_maturity,
-        get_regulation_info,
-        calculate_dsr, calculate_max_mortgage_by_dsr,
-        calculate_ltv_limit, calculate_mortgage_limit,
+        # 계산 도구 (예금 만기 수령액)
+        calculate_deposit_maturity,
     ]
 
 
@@ -204,7 +148,6 @@ def _build_system_prompt() -> str:
     return "\n\n".join([
         MAIN_SYSTEM_PROMPT,
         "## 예금/적금 전문 지식\n" + DEPOSIT_EXPERT_PROMPT,
-        "## 대출 전문 지식\n" + LOAN_EXPERT_PROMPT,
         "## 금융 계산\n" + CALCULATOR_PROMPT,
         "## 상품 비교/추천\n" + COMPARATOR_PROMPT,
     ])
@@ -225,8 +168,8 @@ def _get_or_create_agent(db: Any, api_key: str | None):
 
 
 def create_banking_agent(db: Any = None, api_key: str | None = None):
-    resolved_key = api_key or os.environ.get("OPENAI_API_KEY")
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=resolved_key)
+    resolved_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+    llm = ChatAnthropic(model=CHATBOT_MODEL, max_tokens=4096, api_key=resolved_key)
 
     tools = _make_tools(db, api_key=resolved_key)
     llm_with_tools = llm.bind_tools(tools)
@@ -266,11 +209,6 @@ def _extract_refs(db: Any, answer: str) -> list[dict]:
             MATCH (p:Product)
             WHERE any(word IN split($answer, ' ') WHERE size(word) > 3 AND p.name CONTAINS word)
             RETURN p.id AS id, p.name AS name
-            LIMIT 5
-            UNION
-            MATCH (lp:LoanProduct)
-            WHERE any(word IN split($answer, ' ') WHERE size(word) > 3 AND lp.name CONTAINS word)
-            RETURN lp.id AS id, lp.name AS name
             LIMIT 5
             """,
             {"answer": answer},

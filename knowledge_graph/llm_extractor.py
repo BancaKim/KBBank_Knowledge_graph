@@ -4,7 +4,7 @@ Replaces regex parsers with LangChain `with_structured_output()`.
 Injects Foundry ontology skill as domain context for deep extraction.
 
 Usage:
-    python -m knowledge_graph.llm_extractor data/products/ [--model gpt-4o-mini] [--dry-run]
+    python -m knowledge_graph.llm_extractor data/products/ [--model claude-sonnet-4-6] [--dry-run]
 """
 
 from __future__ import annotations
@@ -24,7 +24,6 @@ except ImportError:
     pass
 
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_openai import ChatOpenAI
 from slugify import slugify
 
 from knowledge_graph.extraction_schemas import (
@@ -201,36 +200,47 @@ def _build_messages(md_content: str, domain: str) -> list:
     ]
 
 
-def extract_deposit(md_content: str, model: str = "gpt-4o-mini") -> ExtractedDepositProduct:
+DEFAULT_MODEL = os.environ.get("EXTRACTION_MODEL", "claude-sonnet-4-6")
+
+
+def _structured_llm(schema: type, model: str):
+    """Build a structured-output LLM, routing by model name (Claude vs OpenAI).
+
+    Claude models use Anthropic tool-calling; ``max_tokens`` is required and the
+    OpenAI-only ``json_schema``/``strict`` knobs are omitted.
+    """
+    if model.startswith("claude"):
+        from langchain_anthropic import ChatAnthropic
+        # temperature is deprecated/rejected on newer Claude models (e.g. Opus 4.7); omit it.
+        llm = ChatAnthropic(model=model, max_tokens=8192)
+        return llm.with_structured_output(schema)
+    from langchain_openai import ChatOpenAI
+    llm = ChatOpenAI(model=model, temperature=0)
+    return llm.with_structured_output(schema, method="json_schema", strict=True)
+
+
+def extract_deposit(md_content: str, model: str = DEFAULT_MODEL) -> ExtractedDepositProduct:
     """Extract deposit product entities from markdown using LLM structured output."""
-    llm = ChatOpenAI(model=model, temperature=0)
-    structured = llm.with_structured_output(ExtractedDepositProduct, method="json_schema", strict=True)
-    messages = _build_messages(md_content, "deposit")
-    return structured.invoke(messages)
+    structured = _structured_llm(ExtractedDepositProduct, model)
+    return structured.invoke(_build_messages(md_content, "deposit"))
 
 
-def extract_loan(md_content: str, model: str = "gpt-4o-mini") -> ExtractedLoanProduct:
+def extract_loan(md_content: str, model: str = DEFAULT_MODEL) -> ExtractedLoanProduct:
     """Extract loan product entities from markdown using LLM structured output."""
-    llm = ChatOpenAI(model=model, temperature=0)
-    structured = llm.with_structured_output(ExtractedLoanProduct, method="json_schema", strict=True)
-    messages = _build_messages(md_content, "loan")
-    return structured.invoke(messages)
+    structured = _structured_llm(ExtractedLoanProduct, model)
+    return structured.invoke(_build_messages(md_content, "loan"))
 
 
-async def aextract_deposit(md_content: str, model: str = "gpt-4o-mini") -> ExtractedDepositProduct:
+async def aextract_deposit(md_content: str, model: str = DEFAULT_MODEL) -> ExtractedDepositProduct:
     """Async version of extract_deposit."""
-    llm = ChatOpenAI(model=model, temperature=0)
-    structured = llm.with_structured_output(ExtractedDepositProduct, method="json_schema", strict=True)
-    messages = _build_messages(md_content, "deposit")
-    return await structured.ainvoke(messages)
+    structured = _structured_llm(ExtractedDepositProduct, model)
+    return await structured.ainvoke(_build_messages(md_content, "deposit"))
 
 
-async def aextract_loan(md_content: str, model: str = "gpt-4o-mini") -> ExtractedLoanProduct:
+async def aextract_loan(md_content: str, model: str = DEFAULT_MODEL) -> ExtractedLoanProduct:
     """Async version of extract_loan."""
-    llm = ChatOpenAI(model=model, temperature=0)
-    structured = llm.with_structured_output(ExtractedLoanProduct, method="json_schema", strict=True)
-    messages = _build_messages(md_content, "loan")
-    return await structured.ainvoke(messages)
+    structured = _structured_llm(ExtractedLoanProduct, model)
+    return await structured.ainvoke(_build_messages(md_content, "loan"))
 
 
 # ---------------------------------------------------------------------------
@@ -516,7 +526,7 @@ def map_loan(extracted: ExtractedLoanProduct, metadata: dict, path: Path) -> Par
 
 async def extract_product(
     path: Path,
-    model: str = "gpt-4o-mini",
+    model: str = DEFAULT_MODEL,
 ) -> ParsedProduct | ParsedLoanProduct:
     """Extract entities from a single MD file using LLM."""
     metadata, body = load_md_file(path)
@@ -533,7 +543,7 @@ async def extract_product(
 
 async def extract_all(
     products_dir: Path,
-    model: str = "gpt-4o-mini",
+    model: str = DEFAULT_MODEL,
     concurrency: int = 10,
     max_cost: float = 5.0,
 ) -> list[ParsedProduct | ParsedLoanProduct]:
@@ -583,7 +593,7 @@ async def _async_main() -> None:
     parser = argparse.ArgumentParser(description="LLM-based entity extraction")
     parser.add_argument("products_dir", type=Path, nargs="?",
                         default=Path(__file__).resolve().parent.parent / "data" / "products")
-    parser.add_argument("--model", default="gpt-4o-mini")
+    parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--concurrency", type=int, default=10)
     parser.add_argument("--dry-run", action="store_true", help="Extract without Neo4j write")
     parser.add_argument("--output", type=Path, help="Save extracted JSON to file")

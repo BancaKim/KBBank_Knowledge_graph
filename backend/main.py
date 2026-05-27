@@ -54,7 +54,7 @@ app.add_middleware(
     allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type", "X-OpenAI-Key"],
+    allow_headers=["Content-Type", "X-Anthropic-Key"],
 )
 
 app.include_router(graph.router)
