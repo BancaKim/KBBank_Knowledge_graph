@@ -534,11 +534,12 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
       id: genId(),
       role: "assistant",
       content:
-        "안녕하세요! 큽 금융상품 상담 챗봇입니다. 예금, 적금, 대출 등 금융상품에 대해 궁금한 점을 물어보세요.",
+        "안녕하세요! 큽 수신상품(예금·적금) 상담 챗봇입니다. 금리, 가입조건, 우대조건 등 궁금한 점을 물어보세요.",
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [streamStatus, setStreamStatus] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesRef = useRef(messages);
@@ -601,7 +602,10 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setLoading(true);
+    setStreamStatus("🤔 질문 분석 중...");
 
+    const assistantId = genId();
+    const startTime = Date.now();
     try {
       const history = messagesRef.current
         .filter((m) => m.role === "user" || m.role === "assistant")
@@ -614,43 +618,84 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
         headers["X-Anthropic-Key"] = apiKey;
       }
 
-      const res = await fetch(`${API_BASE}/chat`, {
+      const res = await fetch(`${API_BASE}/chat/stream`, {
         method: "POST",
         headers,
         body: JSON.stringify({ message: text, history }),
       });
 
-      if (!res.ok) {
+      if (!res.ok || !res.body) {
         const errorData = await res.json().catch(() => null);
         const detail = errorData?.detail || `API error: ${res.status}`;
         throw new Error(detail);
       }
 
-      const data = await res.json();
-      const assistantMsg: ChatMessage = {
-        id: genId(),
-        role: "assistant",
-        content: data.answer,
-        referencedNodes: data.referenced_nodes || [],
-        elapsedSeconds: data.elapsed_seconds,
-      };
-      setMessages((prev) => [...prev, assistantMsg]);
-
-      if (data.referenced_nodes?.length > 0) {
-        onHighlightNodes(
-          data.referenced_nodes.map((n: { id: string }) => n.id)
-        );
-      }
-    } catch (err) {
+      // Live assistant message that we stream tokens into.
       setMessages((prev) => [
         ...prev,
-        {
-          id: genId(),
-          role: "assistant" as const,
-          content: `오류가 발생했습니다: ${err instanceof Error ? err.message : "알 수 없는 오류"}`,
-        },
+        { id: assistantId, role: "assistant" as const, content: "" },
       ]);
+      const patch = (p: Partial<ChatMessage>) =>
+        setMessages((prev) => prev.map((m) => (m.id === assistantId ? { ...m, ...p } : m)));
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let acc = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const parts = buffer.split("\n\n");
+        buffer = parts.pop() || "";
+        for (const part of parts) {
+          const line = part.trim();
+          if (!line.startsWith("data:")) continue;
+          let ev: {
+            type: string;
+            label?: string;
+            text?: string;
+            answer?: string;
+            referenced_nodes?: Array<{ id: string; type: string; name: string }>;
+            message?: string;
+          };
+          try {
+            ev = JSON.parse(line.slice(5).trim());
+          } catch {
+            continue;
+          }
+          if (ev.type === "step") {
+            setStreamStatus(ev.label || "");
+          } else if (ev.type === "reset") {
+            acc = "";
+            patch({ content: "" });
+          } else if (ev.type === "token") {
+            acc += ev.text || "";
+            setStreamStatus("");
+            patch({ content: acc });
+          } else if (ev.type === "done") {
+            const refs = ev.referenced_nodes || [];
+            patch({
+              content: ev.answer || acc,
+              referencedNodes: refs,
+              elapsedSeconds: Math.round((Date.now() - startTime) / 100) / 10,
+            });
+            if (refs.length > 0) onHighlightNodes(refs.map((n) => n.id));
+          } else if (ev.type === "error") {
+            patch({ content: `오류가 발생했습니다: ${ev.message || "알 수 없는 오류"}` });
+          }
+        }
+      }
+    } catch (err) {
+      const errMsg = `오류가 발생했습니다: ${err instanceof Error ? err.message : "알 수 없는 오류"}`;
+      setMessages((prev) =>
+        prev.some((m) => m.id === assistantId)
+          ? prev.map((m) => (m.id === assistantId ? { ...m, content: errMsg } : m))
+          : [...prev, { id: assistantId, role: "assistant" as const, content: errMsg }]
+      );
     } finally {
+      setStreamStatus("");
       setLoading(false);
     }
   }, [input, loading, apiKey, onHighlightNodes]);
@@ -789,10 +834,13 @@ export default function ChatPanel({ onHighlightNodes }: Props) {
             </div>
           ))}
 
-          {loading && (
+          {loading && streamStatus && (
             <div className="typing-row">
               <div className="assistant-avatar">큽</div>
               <div className="typing-bubble">
+                <span style={{ fontSize: 13, color: "#5b5b5b", marginRight: 8 }}>
+                  {streamStatus}
+                </span>
                 <div className="typing-dot" />
                 <div className="typing-dot" />
                 <div className="typing-dot" />

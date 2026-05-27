@@ -1,7 +1,9 @@
+import json
 import logging
 import os
 
 from fastapi import APIRouter, Depends, Header, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from backend.dependencies import get_db_optional
@@ -60,3 +62,45 @@ async def chat_endpoint(
             status_code=500,
             detail="답변 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
         ) from exc
+
+
+def _sse(event: dict) -> str:
+    return f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+
+
+@router.post("/stream")
+async def chat_stream_endpoint(
+    request: ChatRequest,
+    db: Neo4jConnection | None = Depends(get_db_optional),
+    x_anthropic_key: str | None = Header(None, alias="X-Anthropic-Key"),
+):
+    """Stream a chat response as Server-Sent Events (progress steps + answer tokens)."""
+    api_key = x_anthropic_key or os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise HTTPException(
+            status_code=400,
+            detail="Anthropic API 키가 설정되지 않았습니다. 클라이언트에서 API 키를 입력하거나 서버 환경변수를 설정해주세요.",
+        )
+
+    async def event_gen():
+        if db is None:
+            yield _sse({
+                "type": "done",
+                "answer": "현재 Neo4j 데이터베이스가 연결되지 않아 챗봇 기능을 사용할 수 없습니다.",
+                "referenced_nodes": [],
+            })
+            return
+        from backend.chatbot import chat_stream
+
+        try:
+            async for event in chat_stream(request.message, request.history, db, api_key=x_anthropic_key):
+                yield _sse(event)
+        except Exception:
+            logger.exception("Chat stream error")
+            yield _sse({"type": "error", "message": "답변 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."})
+
+    return StreamingResponse(
+        event_gen(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )

@@ -31,6 +31,8 @@ from backend.agent.prompts import (
 _SKILLS_DIR = Path(__file__).resolve().parent.parent.parent / "skills"
 
 CHATBOT_MODEL = os.environ.get("CHATBOT_MODEL", "claude-sonnet-4-6")
+# Cypher generation is a narrow, structured task — use a faster/cheaper model.
+CYPHER_MODEL = os.environ.get("CYPHER_MODEL", "claude-haiku-4-5-20251001")
 
 
 # ---------------------------------------------------------------------------
@@ -84,7 +86,7 @@ def _make_tools(db: Any, api_key: str | None = None) -> list:
     from backend.agent.skills.cypher_rag import query_knowledge_graph
 
     # Wrap cypher_rag tool with db + llm pre-bound
-    _cypher_llm = ChatAnthropic(model=CHATBOT_MODEL, max_tokens=4096, api_key=api_key)
+    _cypher_llm = ChatAnthropic(model=CYPHER_MODEL, max_tokens=2048, api_key=api_key)
 
     @tool
     def query_graph(question: str) -> str:
@@ -174,9 +176,14 @@ def create_banking_agent(db: Any = None, api_key: str | None = None):
     tools = _make_tools(db, api_key=resolved_key)
     llm_with_tools = llm.bind_tools(tools)
     system_prompt = _build_system_prompt()
+    # Cache the large static system prompt across the multi-call agent loop
+    # (Anthropic prompt caching) to cut latency/cost on repeated calls.
+    system_message = SystemMessage(
+        content=[{"type": "text", "text": system_prompt, "cache_control": {"type": "ephemeral"}}]
+    )
 
     def agent_node(state: AgentState) -> dict:
-        messages = [SystemMessage(content=system_prompt)] + state["messages"]
+        messages = [system_message] + state["messages"]
         response = llm_with_tools.invoke(messages)
         return {"messages": [response]}
 
@@ -247,4 +254,98 @@ def chat(
         return {
             "answer": f"죄송합니다. 답변 생성 중 오류가 발생했습니다: {type(exc).__name__}. 잠시 후 다시 시도해주세요.",
             "referenced_nodes": [],
+        }
+
+
+# ---------------------------------------------------------------------------
+# Streaming API (progress steps + answer tokens)
+# ---------------------------------------------------------------------------
+
+_STEP_LABELS = {
+    "query_graph": "🔍 지식그래프 검색 중...",
+    "search_products": "🔍 상품 검색 중...",
+    "get_product_detail": "📄 상품 상세 조회 중...",
+    "list_products_by_category": "📂 카테고리 조회 중...",
+    "compare_products": "⚖️ 상품 비교 중...",
+    "check_eligibility": "✅ 가입자격 확인 중...",
+    "calculate_deposit_maturity": "🧮 만기 수령액 계산 중...",
+}
+
+
+def _step_label(tool_name: str) -> str:
+    return _STEP_LABELS.get(tool_name, "🔧 도구 실행 중...")
+
+
+def _chunk_text(chunk: Any) -> str:
+    """Extract plain text from an AIMessageChunk (str or Anthropic content blocks)."""
+    content = getattr(chunk, "content", "")
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts = []
+        for block in content:
+            if isinstance(block, dict) and block.get("type") == "text":
+                parts.append(block.get("text", ""))
+            elif isinstance(block, str):
+                parts.append(block)
+        return "".join(parts)
+    return ""
+
+
+async def chat_stream(
+    query: str,
+    history: list[dict] | None = None,
+    db: Any = None,
+    api_key: str | None = None,
+):
+    """Async generator yielding progress/answer events for SSE.
+
+    Event dicts: {"type": "step"|"token"|"done"|"error", ...}
+    """
+    try:
+        agent = _get_or_create_agent(db, api_key=api_key)
+
+        messages: list = []
+        if history:
+            for msg in history[-6:]:
+                if msg["role"] == "user":
+                    messages.append(HumanMessage(content=msg["content"]))
+                elif msg["role"] == "assistant":
+                    messages.append(AIMessage(content=msg["content"]))
+        messages.append(HumanMessage(content=query))
+
+        answer_parts: list[str] = []
+        yield {"type": "step", "label": "🤔 질문 분석 중..."}
+
+        async for mode, data in agent.astream(
+            {"messages": messages}, stream_mode=["updates", "messages"]
+        ):
+            if mode == "updates":
+                agent_out = data.get("agent") if isinstance(data, dict) else None
+                msgs = agent_out.get("messages") if agent_out else None
+                last = msgs[-1] if msgs else None
+                tool_calls = getattr(last, "tool_calls", None) if last is not None else None
+                if tool_calls:
+                    # Any text streamed before a tool call was just narration —
+                    # tell the client to discard it so the final answer stays clean.
+                    if answer_parts:
+                        answer_parts.clear()
+                        yield {"type": "reset"}
+                    for tc in tool_calls:
+                        yield {"type": "step", "label": _step_label(tc.get("name", ""))}
+            elif mode == "messages":
+                msg_chunk, meta = data
+                if (meta or {}).get("langgraph_node") != "agent":
+                    continue
+                text = _chunk_text(msg_chunk)
+                if text:
+                    answer_parts.append(text)
+                    yield {"type": "token", "text": text}
+
+        answer = "".join(answer_parts) or "답변을 생성할 수 없습니다."
+        yield {"type": "done", "answer": answer, "referenced_nodes": _extract_refs(db, answer)}
+    except Exception as exc:
+        yield {
+            "type": "error",
+            "message": f"답변 생성 중 오류가 발생했습니다: {type(exc).__name__}. 잠시 후 다시 시도해주세요.",
         }
